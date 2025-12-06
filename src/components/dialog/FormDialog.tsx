@@ -47,14 +47,13 @@ export default function FormDialog({
         style={{ width, height }}
       >
         {/* Header */}
-        {width}
         <div className="absolute top-0 w-full p-6 flex justify-between items-center border-b-2  border-gray-200 px-4">
-          {title && <h2 className="text-xl font-semibold px-4">{title}</h2>}
+          {title && <h2 className="text-xl font-semibold px-4 ">{title}</h2>}
           <FaTimes
             onClick={onClose}
             size={20}
             color="gray"
-            className="cursor-pointer"
+            className="cursor-pointer z-10"
           />
         </div>
         {/* Content - 70% with scroll */}

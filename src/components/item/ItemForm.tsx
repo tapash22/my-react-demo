@@ -19,7 +19,6 @@ type ItemTouched = {
 
 interface ItemFormProps {
   editItem?: Item;
-  onClose: () => void;
   onFormChange: (data: Item, isValid: boolean) => void;
 }
 

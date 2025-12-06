@@ -30,6 +30,7 @@ function App() {
   const [editItem, setEditItem] = useState<Item | undefined>(undefined);
   //item form data
   const [formData, setFormData] = useState<Item | undefined>(undefined);
+  const [buttonEnable, setButtonEnable] = useState<boolean>(false);
 
   // Save to localStorage whenever state changes
   useEffect(() => {
@@ -38,6 +39,7 @@ function App() {
 
   // close dialog
   const handleClose = () => {
+    console.log("click");
     setDialogOpen(false);
     setEditItem(undefined);
     setFormData(undefined);
@@ -79,8 +81,9 @@ function App() {
   };
 
   // form onChange
-  const handleFormChange = (data: Item) => {
+  const handleFormChange = (data: Item, isValid: boolean) => {
     setFormData(data);
+    setButtonEnable(isValid);
   };
 
   return (
@@ -119,9 +122,18 @@ function App() {
               Cancel
             </button>
             <button
+              disabled={!buttonEnable}
               type="button"
               onClick={handleAddOrUpdate}
-              className="px-5 py-2 rounded-lg bg-blue-600 font-medium text-lg text-white"
+              className={`
+              px-5 py-2 rounded-lg font-medium text-lg text-white
+              bg-blue-600
+              disabled:bg-blue-400
+              disabled:text-black
+              disabled:opacity-50
+              disabled:cursor-default
+              hover:enabled:bg-blue-700
+            `}
             >
               {editItem ? "Update Item" : "Add Item"}
             </button>
