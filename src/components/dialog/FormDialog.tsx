@@ -28,9 +28,9 @@ export default function FormDialog({
       case "small":
         return { width: "30vw", height: "30vh" };
       case "medium":
-        return { width: "40vw", height: "60vh" };
+        return { width: "40vw", height: "70vh" };
       case "large":
-        return { width: "70vw", height: "70vh" };
+        return { width: "70vw", height: "80vh" };
       default:
         return { width: "50vw", height: "50vh" };
     }
@@ -39,21 +39,26 @@ export default function FormDialog({
   const { width, height } = getSize(sizeType);
 
   return (
-    <div className="fixed inset-0 bg-black/5  flex justify-center items-center z-50">
+    <div className="fixed inset-0 flex justify-center items-center z-50">
       <div
-        className="relative bg-white rounded-xl shadow-2xl
+        className="relative w-full bg-white rounded-xl shadow-2xl
           transform transition-all duration-300
           animate-[fadeIn_0.3s_ease,scaleIn_0.3s_ease]"
         style={{ width, height }}
       >
         {/* Header */}
+        {width}
         <div className="absolute top-0 w-full p-6 flex justify-between items-center border-b-2  border-gray-200 px-4">
           {title && <h2 className="text-xl font-semibold px-4">{title}</h2>}
-          <FaTimes onClick={onClose} size={20} color="gray" />
+          <FaTimes
+            onClick={onClose}
+            size={20}
+            color="gray"
+            className="cursor-pointer"
+          />
         </div>
-
         {/* Content - 70% with scroll */}
-        <div className="p-5 overflow-y-auto h-full  top-15 bottom-10 flex justify-center items-center">
+        <div className="p-5 overflow-y-auto absolute h-full w-full  top-0  bottom-10 flex justify-center items-center">
           {/* confirm message */}
           {subtitle && (
             <div className="flex justify-center items-center p-5 ">
@@ -67,9 +72,8 @@ export default function FormDialog({
           )}
 
           {/* childern */}
-          {children && <div className="p-5">{children}</div>}
+          {children && <div className="p-5 w-100">{children}</div>}
         </div>
-
         {/* footer 15% */}
         {footer && (
           <div className="absolute bottom-0 w-full p-6 border-t-2 border-gray-200 flex justify-end gap-3">
