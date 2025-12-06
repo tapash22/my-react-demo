@@ -1,26 +1,81 @@
-interface DialogProps {
+import { FaTimes } from "react-icons/fa";
+
+export interface DialogProps {
   open: boolean;
   onClose: () => void;
-  children: React.ReactNode;
+  children?: React.ReactNode;
+  title?: string;
+  subtitle?: string;
+  sizeType?: "tiny" | "small" | "medium" | "large";
+  footer?: React.ReactNode;
 }
 
-export default function FormDialog({ open, onClose, children }: DialogProps) {
+export default function FormDialog({
+  open,
+  onClose,
+  children,
+  title,
+  subtitle,
+  sizeType = "medium",
+  footer,
+}: DialogProps) {
   if (!open) return null;
 
+  const getSize = (type: "tiny" | "small" | "medium" | "large") => {
+    switch (type) {
+      case "tiny":
+        return { width: "30vw", height: "30vh" };
+      case "small":
+        return { width: "30vw", height: "30vh" };
+      case "medium":
+        return { width: "40vw", height: "60vh" };
+      case "large":
+        return { width: "70vw", height: "70vh" };
+      default:
+        return { width: "50vw", height: "50vh" };
+    }
+  };
+
+  const { width, height } = getSize(sizeType);
+
   return (
-    <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex justify-center items-center z-50">
+    <div className="fixed inset-0 bg-black/5  flex justify-center items-center z-50">
       <div
-        className="bg-white rounded-xl p-5 w-[500px] shadow-2xl
+        className="relative bg-white rounded-xl shadow-2xl
           transform transition-all duration-300
           animate-[fadeIn_0.3s_ease,scaleIn_0.3s_ease]"
+        style={{ width, height }}
       >
-        <button
-          onClick={onClose}
-          className="absolute top-2 right-2 text-gray-500 hover:text-gray-800"
-        >
-          ✖
-        </button>
-        {children}
+        {/* Header */}
+        <div className="absolute top-0 w-full p-6 flex justify-between items-center border-b-2  border-gray-200 px-4">
+          {title && <h2 className="text-xl font-semibold px-4">{title}</h2>}
+          <FaTimes onClick={onClose} size={20} color="gray" />
+        </div>
+
+        {/* Content - 70% with scroll */}
+        <div className="p-5 overflow-y-auto h-full  top-15 bottom-10 flex justify-center items-center">
+          {/* confirm message */}
+          {subtitle && (
+            <div className="flex justify-center items-center p-5 ">
+              <p className="tracking-wide leading-4 font-normal text-xl">
+                Are you sure you want to delete this{" "}
+                <span className="font-bold text-lg tracking-wide">
+                  {subtitle}?
+                </span>
+              </p>
+            </div>
+          )}
+
+          {/* childern */}
+          {children && <div className="p-5">{children}</div>}
+        </div>
+
+        {/* footer 15% */}
+        {footer && (
+          <div className="absolute bottom-0 w-full p-6 border-t-2 border-gray-200 flex justify-end gap-3">
+            {footer}
+          </div>
+        )}
       </div>
     </div>
   );
