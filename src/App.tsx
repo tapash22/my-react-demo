@@ -1,11 +1,13 @@
 import { useEffect, useReducer, useState } from "react";
 import "./App.css";
 import Form from "./components/Form";
-import ItemForm from "./components/item/ItemForm";
+import ItemForm from "./components/form/ItemForm";
 import FormDialog from "./components/dialog/FormDialog";
 import ItemList from "./components/item/ItemList";
 import { initialState, itemReducer, type Item } from "./reducer/itemreducer";
 import ConfirmationMessage from "./components/alert/ConfirmationMessage";
+import UsingRefExample from "./components/practice/UsingRefExample";
+import { LoginForm } from "./components/form/LoginForm";
 
 function App() {
   //use for show date
@@ -98,6 +100,11 @@ function App() {
         click
       </button>
       <Form />
+
+      <div className="w-full h-full p-5 block space-y-7">
+        <UsingRefExample />
+        <LoginForm />
+      </div>
 
       <button
         className="bg-green-600 rounded-xl px-5 py-2 text-sm text-red-500 font-normal tracking-wide"
