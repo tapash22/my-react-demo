@@ -8,6 +8,7 @@ import { initialState, itemReducer, type Item } from "./reducer/itemreducer";
 import ConfirmationMessage from "./components/alert/ConfirmationMessage";
 import UsingRefExample from "./components/practice/UsingRefExample";
 import { LoginForm } from "./components/form/LoginForm";
+import { ScrollToTop } from "./components/practice/ScrollToTop";
 
 function App() {
   //use for show date
@@ -157,6 +158,7 @@ function App() {
         onConfirm={confirmDelete}
         onClose={handleClose}
       />
+      <ScrollToTop />
     </>
   );
 }
