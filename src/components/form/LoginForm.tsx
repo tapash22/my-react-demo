@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import {
   validateLoginForm,
   validateLoginField,
-  type LoginErrors,
+  type Errors,
   type LoginFields,
 } from "../validation/validators";
 import type { ItemTouched } from "./ItemForm";
@@ -11,7 +11,7 @@ export function LoginForm() {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
-  const [errors, setErrors] = useState<LoginErrors>({});
+  const [errors, setErrors] = useState<Errors<LoginFields>>({});
   const [form, setForm] = useState<LoginFields>({ email: "", password: "" });
   const [buttonEnable, setButtonEnable] = useState<boolean>(false);
   const [touched, setTouched] = useState<ItemTouched>({});

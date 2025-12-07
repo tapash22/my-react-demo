@@ -1,27 +1,30 @@
 import type { Item } from "../../reducer/itemreducer";
 
-//errors type declear
-export interface ItemErrors {
-  [key: string]: string;
-}
+// Errors type (works for any form)
+export type Errors<T> = Partial<Record<keyof T, string>>;
+
+export type FieldValuePair<T> = {
+  name: keyof T;
+  value: T[keyof T];
+};
 
 export interface LoginFields {
   email: string;
   password: string;
 }
 
-export interface LoginErrors {
-  [key: string]: string;
-}
+// Generic field validator type
+export type ValidateFieldFn<T> = (field: FieldValuePair<T>) => string;
 
-export type LoginFieldValuePair = {
-  name: keyof LoginFields;
-  value: string;
-};
+// Generic form validator type
+export type ValidateFormFn<T> = (data: T) => Errors<T>;
 
-export type LoginValidateFieldFn = (field: LoginFieldValuePair) => string;
+// ===== Login Validators =====
 
-export const validateLoginField: LoginValidateFieldFn = ({ name, value }) => {
+export const validateLoginField: ValidateFieldFn<LoginFields> = ({
+  name,
+  value,
+}) => {
   const strValue = value.trim();
 
   switch (name) {
@@ -40,8 +43,8 @@ export const validateLoginField: LoginValidateFieldFn = ({ name, value }) => {
 };
 
 // Validate full login form
-export const validateLoginForm = (data: LoginFields): LoginErrors => {
-  const errors: LoginErrors = {};
+export const validateLoginForm: ValidateFormFn<LoginFields> = (data) => {
+  const errors: Errors<LoginFields> = {};
 
   (Object.keys(data) as (keyof LoginFields)[]).forEach((key) => {
     const error = validateLoginField({ name: key, value: data[key] });
@@ -51,19 +54,10 @@ export const validateLoginForm = (data: LoginFields): LoginErrors => {
   return errors;
 };
 
-// Reusable type for a field name
-export type ItemField = keyof Item;
+// ===== Item Validators =====
 
-// Reusable type for a field-value pair
-export type FieldValuePair = {
-  name: ItemField;
-  value: string | number;
-};
-
-// Reusable type for a validation function
-export type ValidateFieldFn = (field: FieldValuePair) => string;
-
-export const validateField: ValidateFieldFn = ({ name, value }) => {
+// Validate entire form field
+export const validateField: ValidateFieldFn<Item> = ({ name, value }) => {
   const strValue = String(value);
   switch (name) {
     case "name":
@@ -97,10 +91,10 @@ export const validateField: ValidateFieldFn = ({ name, value }) => {
 };
 
 // Validate entire form
-export const validateForm = (data: Item): ItemErrors => {
-  const errors: ItemErrors = {};
+export const validateForm: ValidateFormFn<Item> = (data) => {
+  const errors: Errors<Item> = {};
 
-  (Object.keys(data) as ItemField[]).forEach((key) => {
+  (Object.keys(data) as (keyof Item)[]).forEach((key) => {
     const error = validateField({ name: key, value: data[key] });
     if (error) errors[key] = error;
   });
