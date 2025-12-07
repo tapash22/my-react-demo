@@ -140,11 +140,7 @@ function App() {
           </>
         }
       >
-        <ItemForm
-          onClose={handleClose}
-          editItem={editItem}
-          onFormChange={handleFormChange}
-        />
+        <ItemForm editItem={editItem} onFormChange={handleFormChange} />
       </FormDialog>
 
       <ConfirmationMessage
