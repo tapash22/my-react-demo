@@ -9,6 +9,9 @@ import ConfirmationMessage from "./components/alert/ConfirmationMessage";
 import UsingRefExample from "./components/practice/UsingRefExample";
 import { LoginForm } from "./components/form/LoginForm";
 import { ScrollToTop } from "./components/practice/ScrollToTop";
+import { CartProvider } from "./components/practice/CartProvider";
+import { ProductList } from "./components/item/ProductList";
+import { Cart } from "./components/item/Cart";
 
 function App() {
   //use for show date
@@ -105,6 +108,19 @@ function App() {
       <div className="w-full h-full p-5 block space-y-7">
         <UsingRefExample />
         <LoginForm />
+        {/* using product with cart action for added */}
+        <div className="p-5">
+          <CartProvider>
+            <div className="flex flex-col md:flex-row">
+              <div className="flex-1">
+                <ProductList />
+              </div>
+              <div className="w-full md:w-1/3 bg-gray-100">
+                <Cart />
+              </div>
+            </div>
+          </CartProvider>
+        </div>
       </div>
 
       <button
