@@ -12,6 +12,7 @@ import { ScrollToTop } from "./components/practice/ScrollToTop";
 import { CartProvider } from "./components/practice/CartProvider";
 import { ProductList } from "./components/item/ProductList";
 import { Cart } from "./components/item/Cart";
+import Navbar from "./components/bar/Navbar";
 
 function App() {
   //use for show date
@@ -94,6 +95,7 @@ function App() {
 
   return (
     <>
+      <Navbar />
       <h1 className="text-3xl font-bold underline">Vite + React</h1>
       <p>{date}</p>
       <h2>{count}</h2>
