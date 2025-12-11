@@ -1,11 +1,14 @@
-import { lazy, Suspense } from "react";
+import { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
+import { lazyWithDelay } from "../utils/lazyWithDelay";
+import Loader from "../components/loader/Loader";
 
 //Lazy load pages
-const Home = lazy(() => import("../views/Home"));
-const About = lazy(() => import("../views/About"));
+const Home = lazyWithDelay(() => import("../views/Home"), 5000);
+const About = lazyWithDelay(() => import("../views/About"), 5000);
 
-// Optional: you can add more pages dynamically
+// add more pages dynamically
+//array of object store routes
 const routeConfig = [
   { path: "/", element: <Home /> },
   { path: "/about", element: <About /> },
@@ -13,7 +16,7 @@ const routeConfig = [
 
 export default function AppRoutes() {
   return (
-    <Suspense fallback={<div>loading ...</div>}>
+    <Suspense fallback={<Loader />}>
       <Routes>
         {routeConfig.map(({ path, element }) => (
           <Route key={path} path={path} element={element} />
