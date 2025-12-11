@@ -13,6 +13,9 @@ import { CartProvider } from "./components/practice/CartProvider";
 import { ProductList } from "./components/item/ProductList";
 import { Cart } from "./components/item/Cart";
 import Navbar from "./components/bar/Navbar";
+import { Example } from "./components/hooks/usememo/Example";
+import { FilterExample } from "./components/hooks/usememo/FilterExample";
+import { SearchExample } from "./components/hooks/useTransition/SearchExample";
 
 function App() {
   //use for show date
@@ -96,6 +99,12 @@ function App() {
   return (
     <>
       <Navbar />
+      <div className="my-10">
+        <Example />
+        <FilterExample />
+
+        <SearchExample />
+      </div>
       <h1 className="text-3xl font-bold underline">Vite + React</h1>
       <p>{date}</p>
       <h2>{count}</h2>
