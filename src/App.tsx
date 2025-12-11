@@ -17,6 +17,7 @@ import { Example } from "./components/hooks/usememo/Example";
 import { FilterExample } from "./components/hooks/usememo/FilterExample";
 import { SearchExample } from "./components/hooks/useTransition/SearchExample";
 import AppRoutes from "./routes/AppRoutes";
+import ExampleIcon from "./components/icon-dynamic/ExampleIcon";
 
 function App() {
   //use for show date
@@ -101,6 +102,7 @@ function App() {
     <>
       <Navbar />
       <div className="my-10">
+        <ExampleIcon />
         <AppRoutes />
 
         <Example />
