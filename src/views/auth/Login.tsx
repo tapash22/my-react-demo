@@ -14,5 +14,9 @@ export default function Login() {
     navigate("/dashboard");
   };
 
-  return <LoginForm onFormChange={handleLogin} />;
+  return (
+    <div className="flex justify-center items-center h-screen">
+      <LoginForm onFormChange={handleLogin} />
+    </div>
+  );
 }

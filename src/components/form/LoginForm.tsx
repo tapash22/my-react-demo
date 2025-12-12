@@ -72,9 +72,9 @@ export function LoginForm({ onFormChange }: LoginFormProps) {
   };
 
   return (
-    <>
-      <p>Login Form</p>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-3 w-80">
+    <div className="block p-10 rounded-xl drop-shadow-2xl bg-white space-y-5">
+      <p className="text-xl font-bold tracking-wide p-3">Login Form</p>
+      <form onSubmit={handleSubmit} className="flex flex-col  gap-5 w-100">
         <div className="block w-full">
           <input
             ref={emailRef}
@@ -84,10 +84,12 @@ export function LoginForm({ onFormChange }: LoginFormProps) {
             placeholder="Email"
             onChange={handleChange}
             onBlur={handleBlur}
-            className="border p-2 rounded"
+            className="input-field"
           />
           {touched.email && errors.email && (
-            <p className="text-red-500 text-sm">{errors.email}</p>
+            <p className="text-red-500 text-sm w-100 flex justify-start p-2 ">
+              {errors.email}
+            </p>
           )}
         </div>
         <div className="block w-full">
@@ -99,16 +101,20 @@ export function LoginForm({ onFormChange }: LoginFormProps) {
             value={form.password}
             onChange={handleChange}
             onBlur={handleBlur}
-            className="border p-2 rounded"
+            className="input-field"
           />
           {touched.password && errors.password && (
-            <p className="text-red-500 text-sm">{errors.password}</p>
+            <p className="text-red-500 text-sm w-100 flex justify-start p-2">
+              {errors.password}
+            </p>
           )}
         </div>
-        <button
-          type="submit"
-          disabled={!buttonEnable}
-          className={`
+        <div className="w-100">
+          <button
+            type="submit"
+            disabled={!buttonEnable}
+            className={`
+              w-100
               px-5 py-2 rounded-lg font-medium text-lg text-white
               bg-blue-600
               disabled:bg-blue-400
@@ -117,10 +123,11 @@ export function LoginForm({ onFormChange }: LoginFormProps) {
               disabled:cursor-default
               hover:enabled:bg-blue-700
             `}
-        >
-          Login
-        </button>
+          >
+            Login
+          </button>
+        </div>
       </form>
-    </>
+    </div>
   );
 }
