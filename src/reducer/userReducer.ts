@@ -1,4 +1,3 @@
-// src/reducer/userReducer.ts
 import type { State, Action } from "../components/hooks/types/CurrentUser";
 
 export const initialState: State = {

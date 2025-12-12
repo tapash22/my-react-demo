@@ -1,11 +1,11 @@
 import { Outlet, Link, useNavigate } from "react-router-dom";
 import { logout } from "../../components/auth/useAuth";
-import { loginUser } from "../../components/hooks/types/LoginUser";
+import { useLoginUser } from "../../components/hooks/types/useLoginUser";
 
 export default function DashboardLayout() {
   const navigate = useNavigate();
   // Dashboard
-  const { user } = loginUser();
+  const { user } = useLoginUser();
   console.log(user?.email);
 
   const handleLogout = () => {

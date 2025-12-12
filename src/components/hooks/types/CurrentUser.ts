@@ -1,7 +1,7 @@
 // src/context/user/types.ts
 export interface User {
   email?: string;
-  password: string;
+  password?: string;
 }
 
 export interface State {
