@@ -169,6 +169,79 @@ body {
   @apply ring-1 rounded-lg p-3 ring-gray-400 w-full;
 }
 
+/* Toast container at bottom */
+.toast-container {
+  @apply fixed bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col gap-3 z-50 rounded-lg drop-shadow-xl;
+}
+
+/* Base toast style */
+.toast {
+  @apply relative px-4 py-2 rounded shadow-lg min-w-[180px] text-white overflow-hidden;
+  animation: toastIn 0.3s ease-out;
+}
+
+/* Toast types */
+.toast.success {
+  @apply bg-green-600;
+}
+
+.toast.error {
+  @apply bg-red-600;
+}
+
+.toast.info {
+  @apply bg-blue-600;
+}
+
+/* Fade-out animation */
+.toast.hide {
+  animation: toastOut 0.3s ease-in forwards;
+}
+
+/* Progress bar at bottom */
+.toast-progress {
+  @apply absolute left-0 bottom-0 h-1 bg-white/50;
+  animation: progress linear forwards;
+}
+
+/* Keyframes */
+@keyframes toastIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes toastOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+@keyframes progress {
+  0% {
+    width: 100%;
+  }
+
+  100% {
+    width: 0%;
+  }
+}
+
+
+
+
 @keyframes fadeIn {
   from {
     opacity: 0;

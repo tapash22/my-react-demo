@@ -1,6 +1,6 @@
 import { useReducer, type ReactNode } from "react";
 import { initialState, userReducer } from "../../reducer/userReducer";
-import { UserContext } from "../../components/hooks/useContext/UserContext";
+import { UserContext } from "../../components/hooks/useContext/userContext";
 
 export function UserProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(userReducer, initialState);
