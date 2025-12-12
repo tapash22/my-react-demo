@@ -1,23 +1,19 @@
 import { login } from "../../components/auth/useAuth";
 import { useNavigate } from "react-router-dom";
+import { LoginForm } from "../../components/form/LoginForm";
+import { loginUser } from "../../components/hooks/types/LoginUser";
+import type { User } from "../../components/hooks/types/CurrentUser";
 
 export default function Login() {
   const navigate = useNavigate();
+  const { dispatch } = loginUser();
 
-  const handleLogin = () => {
+  const handleLogin = (data: User) => {
     login();
+    // localStorage.setItem("user", JSON.stringify(data));
+    dispatch({ type: "LOGIN", payload: data });
     navigate("/dashboard");
   };
 
-  return (
-    <div className="p-6">
-      <h1>Login Page</h1>
-      <button
-        onClick={handleLogin}
-        className="px-4 py-2 bg-blue-500 text-white"
-      >
-        Login
-      </button>
-    </div>
-  );
+  return <LoginForm onFormChange={handleLogin} />;
 }

@@ -4,6 +4,7 @@ import Demo from "./Demo";
 import DashboardLayout from "./DashboardLayout";
 import Home from "../Home";
 import Profile from "./Profile";
+import App from "../../App";
 
 import { ProtectedRoute, PublicRoute } from "../../routes/AuthRoutes";
 
@@ -31,6 +32,8 @@ export default function AppRoutes() {
         },
       ],
     },
+    { path: "/app", element: <App /> },
+
     // always accessible
   ];
 

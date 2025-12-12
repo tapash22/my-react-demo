@@ -6,8 +6,13 @@ import {
   type LoginFields,
 } from "../validation/validators";
 import type { ItemTouched } from "./ItemForm";
+import { type User } from "../hooks/types/CurrentUser";
 
-export function LoginForm() {
+interface LoginFormProps {
+  onFormChange: (data: User) => void;
+}
+
+export function LoginForm({ onFormChange }: LoginFormProps) {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
@@ -47,7 +52,8 @@ export function LoginForm() {
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      console.log(form);
+      // console.log(form);
+      onFormChange(form);
     }
   };
 

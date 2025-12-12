@@ -1,8 +1,12 @@
 import { Outlet, Link, useNavigate } from "react-router-dom";
 import { logout } from "../../components/auth/useAuth";
+import { loginUser } from "../../components/hooks/types/LoginUser";
 
 export default function DashboardLayout() {
   const navigate = useNavigate();
+  // Dashboard
+  const { user } = loginUser();
+  console.log(user?.email);
 
   const handleLogout = () => {
     logout();
@@ -16,7 +20,7 @@ export default function DashboardLayout() {
         <Link to="home">Home</Link>
         <Link to="profile">Profile</Link>
       </nav>
-
+      <div>{user?.email}</div>
       <div className="mt-4">
         <button
           onClick={handleLogout}
