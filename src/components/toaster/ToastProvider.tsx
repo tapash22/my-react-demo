@@ -45,7 +45,9 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
         {toasts.map((t) => (
           <div
             key={t.id}
-            className={`toast ${t.type} ${t.hiding ? "hide" : ""}`}
+            className={`toast ${t.type} ${
+              t.hiding ? "hide" : ""
+            } tracking-wider`}
             style={{ animationDuration: `${t.duration}ms` }}
           >
             {t.message}
