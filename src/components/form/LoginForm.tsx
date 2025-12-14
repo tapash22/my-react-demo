@@ -7,6 +7,7 @@ import {
 } from "../validation/validators";
 import type { ItemTouched } from "./ItemForm";
 import { type User } from "../hooks/types/CurrentUser";
+import { useBlurHandler } from "../hooks/useBlurHandler";
 
 interface LoginFormProps {
   onFormChange: (data: User) => void;
@@ -58,18 +59,11 @@ export function LoginForm({ onFormChange }: LoginFormProps) {
   };
 
   // When leaving a field (FIRST time touches)
-  const handleBlur = (
-    e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target as {
-      name: keyof LoginFields;
-      value: string;
-    };
-
-    setTouched((prev) => ({ ...prev, [name]: true }));
-    const error = validateLoginField({ name, value });
-    setErrors((prev) => ({ ...prev, [name]: error }));
-  };
+  const handleBlur = useBlurHandler<
+    LoginFields,
+    ItemTouched,
+    Errors<LoginFields>
+  >(setTouched, setErrors, validateLoginField);
 
   return (
     <div className="block p-10 rounded-xl drop-shadow-2xl bg-white space-y-5">
