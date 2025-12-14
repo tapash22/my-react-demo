@@ -8,6 +8,7 @@ import {
 import type { ItemTouched } from "./ItemForm";
 import { type User } from "../hooks/types/CurrentUser";
 import { useBlurHandler } from "../hooks/useBlurHandler";
+import { useChangeHandler } from "../hooks/useChangeHandler";
 
 interface LoginFormProps {
   onFormChange: (data: User) => void;
@@ -26,25 +27,19 @@ export function LoginForm({ onFormChange }: LoginFormProps) {
     emailRef.current?.focus();
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target as {
-      name: keyof LoginFields;
-      value: string;
-    };
-
-    const newForm = { ...form, [name]: value };
-    setForm(newForm);
-
-    if (touched[name]) {
-      const error = validateLoginField({ name, value });
-      setErrors((prev) => ({ ...prev, [name]: error }));
-    }
-
-    // Enable/disable button based on full form validity
-    const allErrors = validateLoginForm(newForm);
-    const isValid = Object.keys(allErrors).length === 0;
-    setButtonEnable(isValid);
-  };
+  const handleChange = useChangeHandler<
+    LoginFields,
+    ItemTouched,
+    Errors<LoginFields>
+  >(
+    form,
+    setForm,
+    touched,
+    setErrors,
+    validateLoginField,
+    validateLoginForm,
+    setButtonEnable
+  );
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -53,7 +48,6 @@ export function LoginForm({ onFormChange }: LoginFormProps) {
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      // console.log(form);
       onFormChange(form);
     }
   };
