@@ -169,6 +169,10 @@ body {
   @apply ring-1 rounded-lg p-3 ring-gray-400 w-full;
 }
 
+.input-search {
+  @apply ring-1 rounded-lg p-2 ring-gray-300 w-3/4 placeholder: text-gray-600 placeholder:font-medium placeholder:tracking-wider placeholder:text-start placeholder:px-4;
+}
+
 /* Toast container at bottom */
 .toast-container {
   @apply fixed bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col gap-3 z-50 rounded-xl drop-shadow-xl;

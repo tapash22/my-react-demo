@@ -12,7 +12,7 @@ import { ScrollToTop } from "./components/practice/ScrollToTop";
 import { CartProvider } from "./components/practice/CartProvider";
 import { ProductList } from "./components/item/ProductList";
 import { Cart } from "./components/item/Cart";
-import Navbar from "./components/bar/Navbar";
+// import Navbar from "./components/bar/Navbar";
 import { Example } from "./components/hooks/usememo/Example";
 import { FilterExample } from "./components/hooks/usememo/FilterExample";
 import { SearchExample } from "./components/hooks/useTransition/SearchExample";
@@ -100,7 +100,7 @@ function App() {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <div className="my-10">
         <ExampleIcon />
         <AppRoutes />
