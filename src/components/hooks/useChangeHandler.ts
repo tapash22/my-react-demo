@@ -26,7 +26,6 @@ export function useChangeHandler<
 
     setForm(newForm);
 
-    // ✅ SAFE now
     if (touched[fieldName]) {
       const error = validateField({ name: fieldName, value });
       setErrors((prev) => ({ ...prev, [fieldName]: error }));

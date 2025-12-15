@@ -19,22 +19,20 @@ export default function AppRoutes() {
       ],
     },
     {
-      element: <ProtectedRoute />, // only visible when logged IN
+      element: <ProtectedRoute />,
       children: [
         {
           path: "dashboard",
           element: <DashboardLayout />,
           children: [
-            { index: true, element: <Home /> }, // /dashboard
-            { path: "home", element: <Home /> }, // /dashboard/home
-            { path: "profile", element: <Profile /> }, // /dashboard/profile
+            { index: true, element: <Home /> },
+            { path: "home", element: <Home /> },
+            { path: "profile", element: <Profile /> },
           ],
         },
       ],
     },
     { path: "/app", element: <App /> },
-
-    // always accessible
   ];
 
   return useRoutes(routes);

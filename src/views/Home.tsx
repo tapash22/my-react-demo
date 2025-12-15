@@ -1,7 +1,9 @@
 export default function Home() {
   return (
     <>
-      <p>home</p>
+      <div className="w-full">
+        <p>home</p>
+      </div>
     </>
   );
 }
