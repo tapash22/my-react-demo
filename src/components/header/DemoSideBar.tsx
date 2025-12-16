@@ -4,13 +4,13 @@ import image from "../../assets/react.svg";
 import { NavLink, useNavigate } from "react-router-dom";
 import { logout } from "../auth/useAuth";
 
-export interface Page {
+interface Page {
   name: string;
   path: string;
   icon: IconType;
 }
 
-export const pages: Page[] = [
+const pages: Page[] = [
   {
     name: "Home",
     path: "home",
@@ -35,7 +35,7 @@ export function DemoSideBar({ collapsed }: DemoSideBarProps) {
 
   return (
     <aside
-      className={`h-full bg-(--surface) drop-shadow-2xl transition-all duration-300 
+      className={`h-full bg-(--background) drop-shadow-2xl transition-all duration-300 
         ${collapsed ? "w-16" : "w-64"}`}
     >
       {/* Logo + Toggle */}
@@ -73,10 +73,37 @@ export function DemoSideBar({ collapsed }: DemoSideBarProps) {
       <div className="absolute bottom-0 p-2 flex justify-center  w-full">
         <button
           onClick={handleLogout}
-          className="w-full flex justify-center items-center gap-3 p-3 rounded-lg border-2 border-(--card-border)"
+          className="
+            w-full flex justify-center items-center gap-3 p-3
+            rounded-lg ring-1 ring-(--card-border)
+            drop-shadow-xl
+            transition-all duration-300 ease-in-out
+            hover:bg-(--sidebar-hover-bg)
+        "
         >
-          <FaPowerOff className="font-light text-xl text--(--foreground)" />
-          {!collapsed && <span>Logout</span>}
+          <FaPowerOff
+            className={`
+            text-(--foreground)
+            transition-all duration-100 ease-in-out
+            ${collapsed ? "scale-110" : "scale-100"}
+            `}
+          />
+
+          {!collapsed && (
+            <span
+              className={`
+                transition-all duration-300 ease-in-out
+                origin-left
+                ${
+                  collapsed
+                    ? "opacity-0 scale-95 w-0 overflow-hidden"
+                    : "opacity-100 scale-100 w-auto"
+                }
+                `}
+            >
+              Logout
+            </span>
+          )}
         </button>
       </div>
     </aside>

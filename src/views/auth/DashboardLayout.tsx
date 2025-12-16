@@ -22,13 +22,10 @@ export default function DashboardLayout() {
         {/* header end */}
 
         {/* main body with routing */}
-        <main className="flex-1 overflow-y-auto overflow-x-hidden p-5">
+        <main className="flex-1 overflow-y-auto overflow-x-hidden p-5 bg-(--surface)">
           <Outlet />
         </main>
         {/* main body with routing end */}
-        <main className="flex-1 overflow-y-auto overflow-x-hidden p-5">
-          <Outlet />
-        </main>
       </div>
     </div>
   );

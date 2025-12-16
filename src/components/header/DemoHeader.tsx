@@ -15,6 +15,7 @@ import { useTheme } from "../hooks/useTheme";
 import { logout } from "../auth/useAuth";
 import { NavLink, useNavigate } from "react-router-dom";
 import type { IconType } from "react-icons";
+import { DemoIcon } from "../common-property/DemoIcon";
 
 interface DemoHeaderProps {
   onToggleSidebar: () => void;
@@ -74,11 +75,11 @@ export function DemoHeader({ onToggleSidebar }: DemoHeaderProps) {
   };
 
   return (
-    <header className="h-16 w-full flex items-center justify-between p-5 bg-(--surface) ">
+    <header className="h-16 w-full flex items-center justify-between p-5 bg-(--background) ">
       <div className="w-1/3 h-auto flex justify-start items-center gap-5 px-5 ">
-        <PiSidebarSimpleLight
-          size={24}
-          className="text-(--foreground)"
+        <DemoIcon
+          icon={PiSidebarSimpleLight}
+          size={30}
           onClick={onToggleSidebar}
         />
         <InputPrepend
@@ -88,15 +89,15 @@ export function DemoHeader({ onToggleSidebar }: DemoHeaderProps) {
           onChange={(e) => setSearch(e.target.value)}
           className="placeholder:text-(--foreground)"
           placeholder="Search . . ."
-          prepend={<FaSearch className="text-lg text-(--foreground) " />}
+          prepend={<DemoIcon icon={FaSearch} />}
         />
       </div>
-      <div className="w-2/3 h-auto flex justify-end items-center gap-5 px-5 ">
+      <div className="w-2/3 h-auto flex justify-end items-center gap-8 px-5 ">
         <button
           onClick={toggleTheme}
-          className="relative w-8 h-8 ring-2 ring-(--foreground)  rounded-full flex items-center justify-center overflow-hidden"
+          className="relative w-7 h-7 ring-2 ring-(--foreground)  rounded-full flex items-center justify-center overflow-hidden"
         >
-          {theme === "dark" ? (
+          {theme !== "dark" ? (
             <FaMoon
               key="moon"
               className="absolute text-xl text-(--foreground) transition-opacity duration-500"
@@ -109,10 +110,32 @@ export function DemoHeader({ onToggleSidebar }: DemoHeaderProps) {
           )}
         </button>
 
-        <FaRegBell className="text-xl font-light text-(--foreground)" />
+        <div className="relative ">
+          {/* Badge */}
+          <span
+            className="
+                    absolute -top-2 -right-3
+                    min-w-[18px] h-[18px]
+                    px-1
+                    rounded-full
+                    bg-transparent
+                    text-(--foreground)
+                    text-[11px]
+                    font-semibold
+                    flex items-center justify-center
+                    ring-2 ring-(--foreground)
+                    "
+          >
+            3
+          </span>
+
+          {/* Bell Icon */}
+          <FaRegBell size={30} className="text-(--foreground)" />
+        </div>
+
         <div ref={profileRef} className="relative">
           <FaUserCircle
-            size={36}
+            size={30}
             className="text-xl font-light text-(--foreground)"
             onClick={() => setShowProfileCard(!showProfileCard)}
           />
@@ -120,7 +143,7 @@ export function DemoHeader({ onToggleSidebar }: DemoHeaderProps) {
           {showProfileCard && (
             <div
               className="
-                absolute right-0 mt-3 w-56 bg-(--card-bg) border border-(--card-border) shadow-md  flex flex-col gap-2 rounded-lg drop-shadow-xl space-y-2
+                absolute right-0 w-72 mt-3  bg-(--card-bg) border border-(--card-border) shadow-md  flex flex-col gap-2 rounded-lg drop-shadow-xl space-y-2
                 text-(--foreground)
               "
             >
