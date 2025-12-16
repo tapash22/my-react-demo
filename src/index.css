@@ -34,7 +34,7 @@
   /* Dark using */
   --color-background-dark: #020617;
   /* Cosmic Black */
-  --color-surface-dark: #1e293b;
+  --color-surface-dark: #111827;
   /* Twilight Blue */
   --color-foreground-dark: #e2e8f0;
   /* Starlight White */
@@ -61,6 +61,41 @@
 
   --list-dark: #5b82c0;
   --list-possitive-dark: #3177e980;
+
+  /* new theme implement */
+
+  /* Header / Sidebar */
+  --header-sidebar: #e2e8f0;
+  --header-sidebar-dark: #020617;
+  /* very dark navy */
+  /* very dark navy */
+
+  /* Main body */
+  --body: #f8fafc;
+  /* slightly lighter than header */
+  --body-dark: #1e293b;
+  /* slightly lighter than header */
+
+  /* Cards */
+  --card: #ffffff;
+  /* subtle contrast for cards */
+  --card-dark: #111827;
+  /* subtle contrast for cards */
+
+  /* Borders / lines */
+  --border: #cbd5e1;
+  --border-dark: #334155;
+
+  /* Text colors */
+  --text: #1f2937;
+  --text-muted: #6b7280;
+  --text-dark: #e5e7eb;
+  --text-muted-dark: #9ca3af;
+
+  /* Interactive hover */
+  --hover: #f1f5f9;
+  --hover-dark: #334155;
+  /* new theme implemnt declaration done */
 }
 
 @tailwind base;
@@ -70,12 +105,12 @@
 /* ============ Base Theme Variables ============ */
 :root {
   /* Core Colors */
-  --background: var(--color-background);
-  --surface: var(--color-surface);
-  --sidebar-hover-bg: #f1f5f9;
+  --background: var(--header-sidebar);
+  --surface: var(--body);
+  --sidebar-hover-bg: #f1f5f938;
   /* soft light hover */
-  --sidebar-active-bg: #e2e8f0;
-  --foreground: var(--color-foreground);
+  --sidebar-active-bg: #91b5e760;
+  --foreground: var(--text);
   --muted: var(--color-muted);
 
   /* Semantic Colors */
@@ -115,12 +150,12 @@
 }
 
 .dark {
-  --background: var(--color-background-dark);
-  --surface: var(--color-surface-dark);
+  --background: var(--header-sidebar-dark);
+  --surface: var(--body-dark);
   --sidebar-hover-bg: #334155;
   /* soft hover for dark */
   --sidebar-active-bg: #475569;
-  --foreground: var(--color-foreground-dark);
+  --foreground: var(--text-dark);
   --muted: var(--color-muted-dark);
 
   --demo: var(--color-button-dark);
@@ -170,7 +205,11 @@ body {
 }
 
 .input-search {
-  @apply ring-1 rounded-lg p-2 ring-gray-300 w-3/4 placeholder: text-gray-600 placeholder:font-medium placeholder:tracking-wider placeholder:text-start placeholder:px-4;
+  @apply ring-1 rounded-lg p-2 ring-gray-300 w-3/4;
+}
+
+.input-search::placeholder {
+  @apply text-(--foreground) font-medium tracking-wider text-start px-4
 }
 
 /* Toast container at bottom */
