@@ -1,6 +1,6 @@
 import type { IconType } from "react-icons";
 import { DemoIcon } from "../common-property/DemoIcon";
-import { FaCommentDots, FaArrowsAltH } from "react-icons/fa";
+import { FaArrowsAltH } from "react-icons/fa";
 import { GoArrowUpRight, GoArrowDownRight } from "react-icons/go";
 import { HiDotsHorizontal } from "react-icons/hi";
 
