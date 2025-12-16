@@ -96,6 +96,41 @@
   --hover: #f1f5f9;
   --hover-dark: #334155;
   /* new theme implemnt declaration done */
+
+  /* text format and size */
+
+  /* Page Title (Main Heading) */
+  --title-size: 1.875rem;
+  /* 30px */
+  --title-line-height: 2.25rem;
+  /* 36px */
+  --title-weight: 600;
+
+  /* Section Title */
+  --section-title-size: 1.5rem;
+  /* 24px */
+  --section-title-line-height: 2rem;
+  /* 32px */
+  --section-title-weight: 600;
+
+  /* subtitle */
+  --subtitle-size: 1rem;
+  /* 16px */
+  --subtitle-line-height: 1.5rem;
+  /* 24px */
+  --subtitle-weight: 400;
+
+  /* Small Subtitle / Meta Text */
+  --subtitle-small-size: 0.875rem;
+  /* 14px */
+  --subtitle-small-line-height: 1.25rem;
+  /* 20px */
+  --subtitle-small-weight: 400;
+
+
+  /* text format and size end */
+
+
 }
 
 @tailwind base;
@@ -109,10 +144,15 @@
   --surface: var(--body);
   --sidebar-hover-bg: #f1f5f938;
   /* soft light hover */
-  --sidebar-active-bg: #91b5e760;
+  --sidebar-active-bg: #f5f0f0ee;
   --foreground: var(--text);
   --muted: var(--color-muted);
+
+
   --border: #cbd5e1;
+  --title: var(--text);
+  /* Subtitle / Description */
+  --subtitle: var(--text-muted);
 
 
   /* Semantic Colors */
@@ -194,11 +234,16 @@
   /* progress track */
   --progress-track: #334155;
   /* Tailwind slate-700 */
+
+  --title: var(--text-dark);
+  /* Subtitle / Description */
+  --subtitle: var(--text-muted-dark);
+
 }
 
 /* ============ Base Styles ============ */
 body {
-  @apply bg-[var(--background)] text-[var(--foreground)] transition-colors duration-200;
+  @apply bg-(--background) text-(--foreground) transition-colors duration-200;
   font-family: 'Inter', system-ui, sans-serif;
   line-height: 1.5;
 }
@@ -214,6 +259,35 @@ body {
 .input-search::placeholder {
   @apply text-(--foreground) font-medium tracking-wider text-start px-4
 }
+
+/* font declear start */
+
+.page-title {
+  font-size: var(--title-size);
+  line-height: var(--title-line-height);
+  font-weight: var(--title-weight);
+}
+
+.section-title {
+  font-size: var(--section-title-size);
+  line-height: var(--section-title-line-height);
+  font-weight: var(--section-title-weight);
+}
+
+.subtitle-title {
+  font-size: var(--subtitle-size);
+  line-height: var(--subtitle-line-height);
+  font-weight: var(--subtitle-weight);
+}
+
+.subtitle-small-title {
+  font-size: var(--subtitle-small-title-size);
+  line-height: var(--subtitle-small-title-line-height);
+  font-weight: var(--subtitle-small-title-weight);
+}
+
+/* font declear end */
+
 
 /* Toast container at bottom */
 .toast-container {
@@ -249,6 +323,8 @@ body {
   @apply absolute left-0 bottom-0 h-1 bg-(--background);
   animation: progress linear forwards;
 }
+
+
 
 /* Keyframes */
 @keyframes toastIn {
