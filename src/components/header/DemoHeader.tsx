@@ -147,29 +147,31 @@ export function DemoHeader({ onToggleSidebar }: DemoHeaderProps) {
                 text-(--foreground)
               "
             >
-              <div className="w-full  p-3">
+              <div className="w-full px-6 py-5 border-b-[0.5px] opacity-75 border-(--borde)">
                 <p className="font-semibold text-xl tracking-wide">John Doe</p>
-                <p className="text-sm font-normal text-(--muted) tracking-wide">
+                <p className="text-sm font-normal text-(--muted) tracking-wider">
                   johndoe@email.com
                 </p>
               </div>
-              <div className="border-t-1 border-b-1 border-(--muted) w-full h-full flex flex-col p-0">
+              <div className=" border-(--muted) w-full h-full flex flex-col ">
                 {pages.map(({ name, path, icon: Icon }) => (
                   <NavLink
                     onClick={handleNavLinkClick}
                     key={path}
                     to={`/dashboard/${path}`}
-                    className={`flex justify-center items-center gap-5 p-3 text-lg font-semibold transition-colors rounded-sm  hover:bg-(--sidebar-hover-bg)`}
+                    className={`flex items-center space-x-5 px-6 py-3 text-lg font-semibold transition-colors rounded-sm  hover:bg-(--sidebar-hover-bg)`}
                   >
                     <Icon size={20} className="text-(--foreground)" />
-                    {name}
+                    <span className="text-lg font-semibold tracking-wide">
+                      {name}
+                    </span>
                   </NavLink>
                 ))}
               </div>
-              <div className="flex justify-center items-center p-2">
+              <div className="flex justify-center items-center p-4 border-t-[0.5px] opacity-75 border-(--borde)">
                 <button
                   onClick={handleLogout}
-                  className=" w-full flex justify-center items-center gap-3 p-1 rounded-lg border-2 border-(--card-border)"
+                  className=" w-full flex justify-center items-center gap-3 p-2 rounded-lg border-2 border-(--card-border)"
                 >
                   <FaPowerOff size={16} className="text--(--foreground)" />
                   Logout

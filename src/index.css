@@ -112,6 +112,8 @@
   --sidebar-active-bg: #91b5e760;
   --foreground: var(--text);
   --muted: var(--color-muted);
+  --border: #cbd5e1;
+
 
   /* Semantic Colors */
   --demo: var(--color-button);
@@ -157,6 +159,7 @@
   --sidebar-active-bg: #475569;
   --foreground: var(--text-dark);
   --muted: var(--color-muted-dark);
+  --border-dark: #334155;
 
   --demo: var(--color-button-dark);
   --primary: var(--color-primary-dark);
@@ -219,21 +222,21 @@ body {
 
 /* Base toast style */
 .toast {
-  @apply relative px-4 py-2 rounded shadow-lg min-w-[180px] text-white overflow-hidden;
+  @apply relative px-4 py-2 rounded shadow-lg min-w-[180px] text-(--foreground) overflow-hidden;
   animation: toastIn 0.3s ease-out;
 }
 
 /* Toast types */
 .toast.success {
-  @apply bg-green-600;
+  @apply bg-(--success);
 }
 
 .toast.error {
-  @apply bg-red-600;
+  @apply bg-(--danger);
 }
 
 .toast.info {
-  @apply bg-blue-600;
+  @apply bg-(--info);
 }
 
 /* Fade-out animation */
@@ -243,7 +246,7 @@ body {
 
 /* Progress bar at bottom */
 .toast-progress {
-  @apply absolute left-0 bottom-0 h-1 bg-white/50;
+  @apply absolute left-0 bottom-0 h-1 bg-(--background);
   animation: progress linear forwards;
 }
 

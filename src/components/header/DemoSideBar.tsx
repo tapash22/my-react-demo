@@ -57,23 +57,29 @@ export function DemoSideBar({ collapsed }: DemoSideBarProps) {
             to={`/dashboard/${path}`}
             className={({ isActive }) =>
               `flex items-center p-3 rounded-tl-xl rounded-bl-xl text-(--foreground)
-     transition-colors duration-300 ease-in
-     ${isActive ? "bg-(--sidebar-active-bg)" : "hover:bg-(--sidebar-hover-bg)"}`
+           transition-transform duration-300 ease-in
+           ${
+             isActive
+               ? "bg-(--sidebar-active-bg) translate-x-2"
+               : "hover:bg-(--sidebar-hover-bg) translate-x-0"
+           }`
             }
           >
-            {/* Icon wrapper: adjusts width to center icon */}
-            <div
-              className={`flex items-center transition-all duration-300 ease-in-out
-      ${collapsed ? "w-full pl-3" : "w-6 "}`}
-            >
-              <Icon size={20} className="text-(--foreground)" />
-            </div>
+            {/* Icon: always stays in place, no mx-auto */}
+            <Icon
+              size={20}
+              className={`text-(--foreground) flex-shrink-0 transition-transform duration-300 ease-in-out`}
+            />
 
             {/* Text: slides/fades */}
             <span
               className={`ml-3 transition-all duration-300 ease-in-out origin-left
-      whitespace-nowrap overflow-hidden text-ellipsis text-lg font-semibold
-      ${collapsed ? "opacity-0 scale-50 w-0" : "opacity-100 scale-100 w-auto"}`}
+            whitespace-nowrap overflow-hidden text-ellipsis text-lg font-semibold
+            ${
+              collapsed
+                ? "opacity-0 scale-50 w-0"
+                : "opacity-100 scale-100 w-auto"
+            }`}
               title={name}
             >
               {name}
