@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { transactions } from "../components/store/data";
+import { transactions } from "../store/data";
 import { AnimatePresence, motion } from "framer-motion";
 
 const PAGE_SIZE = 3;
