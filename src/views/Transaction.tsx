@@ -6,6 +6,11 @@ const PAGE_SIZE = 3;
 
 export function Transaction() {
   const [page, setPage] = useState(1);
+
+  // Get all unique keys from data
+  const columns = Array.from(
+    new Set(transactions.flatMap((tx) => Object.keys(tx)))
+  );
   const totalPages = Math.ceil(transactions.length / PAGE_SIZE);
   const startIndex = (page - 1) * PAGE_SIZE;
 
@@ -29,12 +34,11 @@ export function Transaction() {
       <table className="w-full border-collapse">
         <thead>
           <tr className="border-b text-left text-gray-500">
-            <th className="py-2">Name</th>
-            <th>Category</th>
-            <th>Date & Time</th>
-            <th>Amount</th>
-            <th>Status</th>
-            <th>Note</th>
+            {columns.map((key) => (
+              <th key={key} className="py-2 text-left">
+                {key.charAt(0).toUpperCase() + key.slice(1)}
+              </th>
+            ))}
             <th className="text-center">Action</th>
           </tr>
         </thead>
@@ -50,12 +54,23 @@ export function Transaction() {
                 transition={{ duration: 0.25 }}
                 className="border-b last:border-none hover:bg-gray-50"
               >
-                <td className="py-2 font-medium">{tx.name}</td>
-                <td>{tx.category}</td>
-                <td>{tx.dateTime}</td>
-                <td>${tx.amount.toFixed(2)}</td>
-                <td className={statusColor(tx.status)}>{tx.status}</td>
-                <td className="truncate max-w-xs">{tx.note}</td>
+                {columns.map((key) => (
+                  <td key={key} className="py-2">
+                    {tx[key] !== undefined ? (
+                      key === "amount" ? (
+                        `$${tx.amount.toFixed(2)}`
+                      ) : key === "status" ? (
+                        <span className={statusColor(tx.status)}>
+                          {tx.status}
+                        </span>
+                      ) : (
+                        tx[key]
+                      )
+                    ) : (
+                      "-"
+                    )}
+                  </td>
+                ))}
                 <td className="text-center cursor-pointer">⋮</td>
               </motion.tr>
             ))}
@@ -64,8 +79,7 @@ export function Transaction() {
       </table>
 
       {/* PAGINATION */}
-      <div className="flex items-center justify-end mt-4 gap-2">
-        {/* Prev */}
+      <div className="flex gap-2 justify-center mt-4">
         <button
           onClick={() => setPage((p) => Math.max(p - 1, 1))}
           disabled={page === 1}
@@ -73,31 +87,18 @@ export function Transaction() {
         >
           Prev
         </button>
+        {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
+          <button
+            key={pageNum}
+            onClick={() => setPage(pageNum)}
+            className={`px-3 py-1 rounded-md border transition-colors duration-200 ${
+              page === pageNum ? "bg-blue-600 text-white" : "hover:bg-gray-100"
+            }`}
+          >
+            {pageNum}
+          </button>
+        ))}
 
-        {/* Page Numbers */}
-        <div className="flex gap-2">
-          {Array.from({ length: totalPages }, (_, i) => i + 1).map(
-            (pageNum) => (
-              <button
-                key={pageNum}
-                onClick={() => setPage(pageNum)}
-                className={`
-                  px-3 py-1 rounded-md border
-                  transition-colors duration-200
-                  ${
-                    page === pageNum
-                      ? "bg-blue-600 text-white"
-                      : "hover:bg-gray-100"
-                  }
-                `}
-              >
-                {pageNum}
-              </button>
-            )
-          )}
-        </div>
-
-        {/* Next */}
         <button
           onClick={() => setPage((p) => Math.min(p + 1, totalPages))}
           disabled={page === totalPages}
