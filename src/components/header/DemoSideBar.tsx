@@ -35,7 +35,7 @@ export function DemoSideBar({ collapsed }: DemoSideBarProps) {
 
   return (
     <aside
-      className={`h-full bg-(--background) drop-shadow-2xl transition-all duration-300 ease-in-out
+      className={`h-full bg-(--background) shadow-lg transition-all duration-300 ease-in-out
     ${collapsed ? "w-16" : "w-64"} overflow-hidden relative`}
     >
       {/* Logo + Toggle */}
@@ -56,30 +56,36 @@ export function DemoSideBar({ collapsed }: DemoSideBarProps) {
             key={path}
             to={`/dashboard/${path}`}
             className={({ isActive }) =>
-              `flex items-center p-3 rounded-tl-xl rounded-bl-xl text-(--foreground)
-           transition-transform duration-300 ease-in
-           ${
-             isActive
-               ? "bg-(--sidebar-active-bg) translate-x-2"
-               : "hover:bg-(--sidebar-hover-bg) translate-x-0"
-           }`
+              `
+                flex items-center
+                px-4 py-3
+                rounded-tl-xl rounded-bl-xl
+                text-(--foreground)
+                transition-all duration-300 ease-in-out
+                ${
+                  isActive
+                    ? "bg-(--sidebar-active-bg) translate-x-2"
+                    : "hover:bg-(--sidebar-hover-bg) translate-x-0"
+                }
+                `
             }
           >
-            {/* Icon: always stays in place, no mx-auto */}
-            <Icon
-              size={20}
-              className={`text-(--foreground) flex-shrink-0 transition-transform duration-300 ease-in-out`}
-            />
+            {/* ICON — fixed, never moves */}
+            <Icon size={20} className="text-(--foreground) shrink-0" />
 
-            {/* Text: slides/fades */}
+            {/* TEXT — animated only */}
             <span
-              className={`ml-3 transition-all duration-300 ease-in-out origin-left
-            whitespace-nowrap overflow-hidden text-ellipsis text-lg font-semibold
-            ${
-              collapsed
-                ? "opacity-0 scale-50 w-0"
-                : "opacity-100 scale-100 w-auto"
-            }`}
+              className={`
+                  ml-3
+                  overflow-hidden whitespace-nowrap
+                  text-lg font-semibold
+                  transition-[opacity,transform,max-width] duration-300 ease-in-out
+                  ${
+                    collapsed
+                      ? "opacity-0 -translate-x-2 max-w-0"
+                      : "opacity-100 translate-x-0 max-w-[160px]"
+                  }
+                `}
               title={name}
             >
               {name}
@@ -89,26 +95,38 @@ export function DemoSideBar({ collapsed }: DemoSideBarProps) {
       </nav>
 
       {/* Logout */}
-      <div className="absolute bottom-0 p-2 flex justify-center w-full">
+      <div className="absolute bottom-0 p-2 w-full">
         <button
           onClick={handleLogout}
-          className="w-full flex justify-center items-center gap-3 p-3
-                 rounded-lg ring-1 ring-(--card-border)
-                 drop-shadow-xl
-                 transition-all duration-300 ease-in-out
-                 hover:bg-(--sidebar-hover-bg)"
+          className="
+              w-full flex justify-center items-center
+              rounded-lg ring-1 ring-(--card-border)
+              drop-shadow-xl
+              transition-colors duration-300
+              hover:bg-(--sidebar-hover-bg)
+              px-4 py-3
+            "
         >
+          {/* ICON — stays fixed */}
           <FaPowerOff
-            className={`text-(--foreground) flex-shrink-0 transition-transform duration-300 ease-in-out`}
+            className="
+                text-(--foreground)
+                shrink-0
+              "
           />
+
+          {/* TEXT CONTAINER — animated */}
           <span
-            className={`ml-3 transition-all duration-300 ease-in-out origin-left inline-block
-          whitespace-nowrap overflow-hidden
-          ${
-            collapsed
-              ? "opacity-0 scale-95 w-0"
-              : "opacity-100 scale-100 w-auto"
-          }`}
+            className={`
+                
+                overflow-hidden
+                transition-all duration-300 ease-in-out
+                ${
+                  collapsed
+                    ? "opacity-0 translate-x-[-8px] max-w-0 m-0"
+                    : "opacity-100 translate-x-0 max-w-[120px] ml-3"
+                }
+              `}
           >
             Logout
           </span>
