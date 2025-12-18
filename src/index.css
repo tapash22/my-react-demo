@@ -194,7 +194,7 @@
 .dark {
   --background: var(--header-sidebar-dark);
   --surface: var(--body-dark);
-  --sidebar-hover-bg: #334155;
+  --sidebar-hover-bg-dark: #334155;
   /* soft hover for dark */
   --sidebar-active-bg: #475569;
   --foreground: var(--text-dark);
