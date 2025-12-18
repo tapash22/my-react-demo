@@ -1,4 +1,5 @@
 import { Democard } from "../components/cards/DemoCard";
+import { Transaction } from "./Transaction";
 
 export default function Home() {
   const date: Date = new Date();
@@ -70,8 +71,13 @@ export default function Home() {
           ))}
         </div>
       </div>
-
       {/* dashboard top component view end */}
+
+      {/* table with pagination */}
+      <div className="block w-full h-auto p-2 space-y-5">
+        <Transaction />
+      </div>
+      {/* table with pagination end */}
     </div>
   );
 }
