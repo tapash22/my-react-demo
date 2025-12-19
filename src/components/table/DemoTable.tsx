@@ -40,71 +40,84 @@ export function DemoTable({ data, pageSize = 3 }: DemoTableProps) {
   };
 
   return (
-    <div className="w-full rounded-xl  bg-(--background) shadow-md p-5">
+    <div className="w-full rounded-xl bg-(--background) shadow-md spacer-y-5">
       {/* Search */}
-      <input
-        type="text"
-        placeholder="Search..."
-        value={search}
-        onChange={(e) => {
-          setSearch(e.target.value);
-          setPage(1); // reset page on search
-        }}
-        className="input-search input-search::placeholder "
-      />
+      <div className="w-full h-auto p-3 grid xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 xs:grid-col-1  ">
+        <input
+          type="text"
+          placeholder="Search..."
+          value={search}
+          onChange={(e) => {
+            setSearch(e.target.value);
+            setPage(1); // reset page on search
+          }}
+          className="input-search input-search::placeholder "
+        />
+      </div>
+      <div className="flex flex-col w-full p-3">
+        {/* Table */}
+        <table className="w-full h-full   ">
+          <thead className="rounded-tl-2xl rounded-tr-2xl ring-2 ring-(--input-border)">
+            <tr>
+              {columns.map((key) => (
+                <th
+                  key={key}
+                  className="py-5 px-5 text-lg uppercase tracking-wider text-(--foreground) text-center font-bold "
+                >
+                  {key.charAt(0).toUpperCase() + key.slice(1)}
+                </th>
+              ))}
+              <th className="text-center subtitle-title">Action</th>
+            </tr>
+          </thead>
 
-      {/* Table */}
-      <table className="w-full border-collapse">
-        <thead>
-          <tr className={`border-b text-left text-(--foreground)`}>
-            {columns.map((key) => (
-              <th key={key} className="py-2 text-left subtitle-title">
-                {key.charAt(0).toUpperCase() + key.slice(1)}
-              </th>
-            ))}
-            <th className="text-center subtitle-title">Action</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <AnimatePresence mode="wait">
-            {currentData.map((tx) => (
-              <motion.tr
-                key={tx.id}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.25 }}
-                className="border-b last:border-none hover:bg-(--shadow-card)"
-              >
-                {columns.map((key) => (
-                  <td key={key} className="py-2 subtitle-small-title">
-                    {tx[key] !== undefined ? (
-                      key === "amount" ? (
-                        `$${tx.amount.toFixed(2)}`
-                      ) : key === "status" ? (
-                        <span className={statusColor(tx.status)}>
-                          {tx.status}
-                        </span>
+          <tbody className="rounded-bl-2xl rounded-br-2xl ring-2 ring-(--input-border)">
+            <AnimatePresence mode="wait">
+              {currentData.map((tx) => (
+                <motion.tr
+                  key={tx.id}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.25 }}
+                  className="border-b border-(--input-border) last:border-none hover:bg-(--sidebar-hover-bg)"
+                >
+                  {columns.map((key) => (
+                    <td
+                      key={key}
+                      className="py-4 subtitle-small-title text-center"
+                    >
+                      {tx[key] !== undefined ? (
+                        key === "amount" ? (
+                          `$${tx.amount.toFixed(2)}`
+                        ) : key === "status" ? (
+                          <span className={statusColor(tx.status)}>
+                            {tx.status}
+                          </span>
+                        ) : (
+                          tx[key]
+                        )
                       ) : (
-                        tx[key]
-                      )
-                    ) : (
-                      "-"
-                    )}
+                        "-"
+                      )}
+                    </td>
+                  ))}
+                  <td className="text-center cursor-pointer subtitle-small-title">
+                    ⋮
                   </td>
-                ))}
-                <td className="text-center cursor-pointer subtitle-small-title">
-                  ⋮
-                </td>
-              </motion.tr>
-            ))}
-          </AnimatePresence>
-        </tbody>
-      </table>
+                </motion.tr>
+              ))}
+            </AnimatePresence>
+          </tbody>
+        </table>
 
-      {/* Pagination */}
-      <Pagination page={page} totalPages={totalPages} onPageChange={setPage} />
+        {/* Pagination */}
+        <Pagination
+          page={page}
+          totalPages={totalPages}
+          onPageChange={setPage}
+        />
+      </div>
     </div>
   );
 }

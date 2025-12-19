@@ -170,7 +170,7 @@
 
   /* card */
   --card-bg: var(--surface);
-  --card-border: rgba(73, 76, 78, 0.301);
+  --card-borde-dark: rgba(73, 76, 78, 0.301);
 
   /* input */
   --input-bg: var(--surface);
@@ -215,7 +215,7 @@
 
   /* card */
   --card-bg: var(--surface);
-  --card-border: rgba(202, 207, 212, 0.301);
+  --card-border: rgba(228, 230, 233, 0.733);
   /* input */
   --input-bg: var(--surface);
   --input-border: rgba(148, 163, 184, 0.24);
@@ -253,11 +253,11 @@ body {
 }
 
 .input-search {
-  @apply ring-1 rounded-lg p-2 ring-gray-300 w-3/4;
+  @apply ring-1 rounded-lg px-5 py-2 ring-gray-300 w-3/4;
 }
 
 .input-search::placeholder {
-  @apply text-(--foreground) font-medium tracking-wider text-start px-4
+  @apply text-(--foreground) font-medium tracking-wider text-start px-0
 }
 
 /* font declear start */

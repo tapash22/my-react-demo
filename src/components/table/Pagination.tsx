@@ -13,7 +13,7 @@ export function Pagination({
       <button
         onClick={() => onPageChange(Math.max(page - 1, 1))}
         disabled={page === 1}
-        className="px-3 py-1 rounded-md border disabled:opacity-40 bg-accent"
+        className="px-3 py-1 rounded-lg ring-1 ring-(--card-border)  subtitle-small-title disabled:opacity-60 text-(--subtitle) bg-(--surface) subtitle-small-title tracking-wider "
       >
         Prev
       </button>
@@ -22,8 +22,10 @@ export function Pagination({
         <button
           key={pageNum}
           onClick={() => onPageChange(pageNum)}
-          className={`px-3 py-1 rounded-md border subtitle-small-title transition-colors duration-200 ${
-            page === pageNum ? "bg-blue-600 text-white" : "hover:bg-gray-100"
+          className={`px-3 py-1 rounded-md border-(--card-border) text-(--foreground) subtitle-small-title transition-colors duration-200 ${
+            page === pageNum
+              ? "bg-(--card-bg) text-(--foreground) ring-1 ring-(--card-border)"
+              : "hover:bg-(--hover) "
           }`}
         >
           {pageNum}
@@ -33,7 +35,7 @@ export function Pagination({
       <button
         onClick={() => onPageChange(Math.min(page + 1, totalPages))}
         disabled={page === totalPages}
-        className="px-3 py-1 rounded-md border subtitle-small-title disabled:opacity-40"
+        className="px-3 py-1 rounded-lg ring-1 ring-(--card-border)  subtitle-small-title disabled:opacity-60 text-(--subtitle) bg-(--surface) subtitle-small-title tracking-wider"
       >
         Next
       </button>
