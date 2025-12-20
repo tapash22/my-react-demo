@@ -1,14 +1,29 @@
 import { useRoutes } from "react-router-dom";
-import Login from "./Login";
-import Demo from "./Demo";
-import DashboardLayout from "./DashboardLayout";
-import Home from "../Home";
-import Profile from "./Profile";
-import App from "../../App";
-
+import Loader from "../../components/loader/Loader";
 import { ProtectedRoute, PublicRoute } from "../../routes/AuthRoutes";
+import { lazy, Suspense, useEffect, useState } from "react";
+// import App from "../../App";
+
+// Lazy pages
+const Login = lazy(() => import("./Login"));
+const Demo = lazy(() => import("./Demo"));
+const DashboardLayout = lazy(() => import("./DashboardLayout"));
+const Home = lazy(() => import("./Home"));
+const Profile = lazy(() => import("./Profile"));
 
 export default function AppRoutes() {
+  //handle route path
+  const [ready, setReady] = useState(false);
+
+  // Initial load (5s splash)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setReady(true);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   const routes = [
     {
       element: <PublicRoute />,
@@ -32,8 +47,12 @@ export default function AppRoutes() {
         },
       ],
     },
-    { path: "/app", element: <App /> },
+    // { path: "/app", element: <App /> },
   ];
 
-  return useRoutes(routes);
+  // Hook ALWAYS runs
+  const element = useRoutes(routes);
+  if (!ready) return <Loader />;
+
+  return <Suspense fallback={<Loader />}>{element}</Suspense>;
 }
