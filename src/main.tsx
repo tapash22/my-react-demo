@@ -9,15 +9,15 @@ import { UserProvider } from "./views/auth/UserProvider.tsx";
 import { ToastProvider } from "./components/toaster/ToastProvider.tsx";
 
 createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <BrowserRouter>
-      <ThemeProvider>
-        <UserProvider>
-          <ToastProvider>
-            <AppRoutes />
-          </ToastProvider>
-        </UserProvider>
-      </ThemeProvider>
-    </BrowserRouter>
-  </StrictMode>
+  // <StrictMode>
+  <BrowserRouter>
+    <ThemeProvider>
+      <UserProvider>
+        <ToastProvider>
+          <AppRoutes />
+        </ToastProvider>
+      </UserProvider>
+    </ThemeProvider>
+  </BrowserRouter>
+  // </StrictMode>
 );

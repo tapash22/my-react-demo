@@ -1,7 +1,7 @@
 import { useRoutes } from "react-router-dom";
 import Loader from "../../components/loader/Loader";
 import { ProtectedRoute, PublicRoute } from "../../routes/AuthRoutes";
-import { lazy, Suspense, useEffect, useState } from "react";
+import { lazy, useEffect, useState } from "react";
 // import App from "../../App";
 
 // Lazy pages
@@ -52,7 +52,7 @@ export default function AppRoutes() {
 
   // Hook ALWAYS runs
   const element = useRoutes(routes);
-  if (!ready) return <Loader />;
+  // if (!ready) return <Loader />;
 
-  return <Suspense fallback={<Loader />}>{element}</Suspense>;
+  return element;
 }

@@ -40,9 +40,9 @@ export default function DashboardLayout() {
               ref={scrollRef}
               className="absolute inset-0 p-5 overflow-y-auto w-full h-full -top-10"
               initial={{ opacity: 0, translateY: 0, transitionDuration: 0.3 }} // Start fully transparent
-              animate={{ opacity: 1, translateY: 50, transitionDuration: 0.5 }} // Fade in to fully visible
-              exit={{ opacity: 1, translateY: 1, transitionDuration: 0.7 }} // Fade out when leaving
-              transition={{ duration: 0.3, ease: "easeOut" }} // Smooth fade
+              animate={{ opacity: 1, translateY: 50, transitionDuration: 0.7 }} // Fade in to fully visible
+              exit={{ opacity: 1, translateY: 1, transitionDuration: 0.3 }} // Fade out when leaving
+              transition={{ duration: 0.2, ease: "easeOut" }} // Smooth fade
             >
               <Suspense fallback={<Loader />}>
                 <Outlet />
