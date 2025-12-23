@@ -2,13 +2,13 @@ interface ProgressBarProps {
   currentAmount: number;
   targetAmount: number;
   height?: string;
-  showLabel?: boolean;
+  showLabel?: string;
 }
 export function ProgressBar({
   currentAmount,
   targetAmount,
   height = "h-2.5",
-  showLabel = true,
+  showLabel = "",
 }: ProgressBarProps) {
   const percentage =
     targetAmount > 0 ? Math.round((currentAmount / targetAmount) * 100) : 0;
@@ -16,25 +16,24 @@ export function ProgressBar({
   const safePercentage = Math.min(100, Math.max(0, percentage));
 
   const getColor = () => {
-    if (safePercentage < 40) return "bg-red-500";
-    if (safePercentage < 70) return "bg-yellow-500";
-    return "bg-green-600";
+    if (safePercentage < 40) return "bg-(--danger)";
+    if (safePercentage < 70) return "bg-(--secondary)";
+    return "bg-(--success)";
   };
 
   return (
     <div className="w-full">
+      {/* Label below the bar */}
+      {showLabel && (
+        <p className="p-2 text-sm text-gray-600 text-left">{showLabel}</p>
+      )}
       <div
-        className={`w-full bg-gray-200 rounded-full overflow-hidden ${height}`}
+        className={`w-full bg-(--input-bg) ring-2 ring-(--input-border) rounded-full overflow-hidden ${height}`}
       >
         <div
-          className={`${height}  ${getColor()} rounded-full transition-all duration-500 ease-out`}
+          className={`${height} ${getColor()} rounded-full transition-all duration-500 ease-out`}
           style={{ width: `${safePercentage}%` }}
         ></div>
-        {showLabel && (
-          <p className="mt-1 text-sm text-gray-600 text-right">
-            {safePercentage}%
-          </p>
-        )}
       </div>
     </div>
   );

@@ -1,6 +1,15 @@
 import { FUNDS_DATA } from "../../store/budget-data";
 import { ProgressBar } from "../progressbar/ProgressBar";
 import { FaPen, FaTrash } from "react-icons/fa";
+import { DemoIcon } from "../common-property/DemoIcon";
+import {
+  FaShieldAlt,
+  FaCar,
+  FaUmbrellaBeach,
+  FaHome,
+  FaGraduationCap,
+  FaGift,
+} from "react-icons/fa";
 
 export function DemoCardWithProgressbar() {
   const onEdit = (id: number) => {
@@ -8,6 +17,25 @@ export function DemoCardWithProgressbar() {
   };
   const onDelete = (id: number) => {
     console.log("delete", id);
+  };
+
+  const getIcon = (name: string) => {
+    switch (name) {
+      case "Emergency Fund":
+        return FaShieldAlt;
+      case "New Car":
+        return FaCar;
+      case "Vacation":
+        return FaUmbrellaBeach;
+      case "Home Down Payment":
+        return FaHome;
+      case "Education Fund":
+        return FaGraduationCap;
+      case "Anniversary Gift":
+        return FaGift;
+      default:
+        return null;
+    }
   };
   return (
     <div className="flex flex-col space-y-3 rounded-xl p-4">
@@ -17,15 +45,27 @@ export function DemoCardWithProgressbar() {
           key={item.id}
         >
           {/* top part of card */}
+
+          {/* left side */}
           <div className="flex justify-between items-center ">
-            <div className="block space-y-1">
-              <p className="text-lg font-semibold text-(--foreground)">
-                {item.name}
-              </p>
-              <span className="text-sm font-light text-(--muted)">
-                {item.targetDate}
-              </span>
+            <div className="flex items-center space-x-2">
+              <div className="p-2 bg-(--surface) h-12 w-12 rounded-lg flex justify-center items-center">
+                <DemoIcon icon={getIcon(item.name)} size={16} />
+              </div>
+              <div className="flex justify-start items-center gap-3">
+                <div className="block p-0">
+                  <p className="text-lg font-semibold text-(--foreground)">
+                    {item.name}
+                  </p>
+                  <span className="text-sm font-light text-(--muted) space-x-1">
+                    Targer: {item.targetDate}
+                  </span>
+                </div>
+              </div>
             </div>
+            {/* left side end */}
+
+            {/* right side */}
             <div className="flex justify-end items-center gap-3">
               <FaTrash
                 size={20}
@@ -38,6 +78,7 @@ export function DemoCardWithProgressbar() {
                 onClick={() => onDelete(item.id)}
               />
             </div>
+            {/* right side end */}
           </div>
           {/* top part of card end */}
 
@@ -45,6 +86,7 @@ export function DemoCardWithProgressbar() {
           <ProgressBar
             currentAmount={item.currentAmount}
             targetAmount={item.targetAmount}
+            showLabel={`$${item.currentAmount} of $${item.targetAmount}`}
           />
           {/* progressbar end */}
         </div>

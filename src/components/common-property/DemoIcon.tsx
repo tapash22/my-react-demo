@@ -1,7 +1,7 @@
 import type { IconType } from "react-icons";
 
 interface DemoIconProps {
-  icon: IconType;
+  icon: IconType | null;
   size?: number;
   onClick?: () => void;
   onMouseEnter?: () => void;
@@ -14,6 +14,7 @@ export function DemoIcon({
   onMouseEnter,
   onMouseLeave,
 }: DemoIconProps) {
+  if (!Icon) return null;
   return (
     <Icon
       size={size}
