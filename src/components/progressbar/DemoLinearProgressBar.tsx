@@ -1,15 +1,15 @@
-interface ProgressBarProps {
+interface DemoLinearProgressBar {
   currentAmount: number;
   targetAmount: number;
   height?: string;
   showLabel?: string;
 }
-export function ProgressBar({
+export function DemoLinearProgressBar({
   currentAmount,
   targetAmount,
   height = "h-2.5",
   showLabel = "",
-}: ProgressBarProps) {
+}: DemoLinearProgressBar) {
   const percentage =
     targetAmount > 0 ? Math.round((currentAmount / targetAmount) * 100) : 0;
 

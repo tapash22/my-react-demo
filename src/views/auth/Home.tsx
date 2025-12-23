@@ -1,5 +1,5 @@
 import { Democard } from "../../components/cards/DemoCard";
-import { DemoCardWithProgressbar } from "../../components/cards/DemoCardWithProgressbar";
+import { SavingGoals } from "./SavingGoals";
 import { Transaction } from "../Transaction";
 
 export default function Home() {
@@ -83,7 +83,7 @@ export default function Home() {
       {/* progress bar */}
 
       <div className="block w-full h-auto p-2 space-y-5">
-        <DemoCardWithProgressbar />
+        <SavingGoals />
       </div>
       {/* progress bar end */}
     </div>

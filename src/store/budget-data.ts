@@ -43,7 +43,7 @@ export const FUNDS_DATA: Fund[] = [
     targetAmount: 10000,
     currency: "USD",
     progressPercentage: 65,
-    status: "Active",
+    status: "active",
   },
   {
     id: 2,
@@ -53,7 +53,7 @@ export const FUNDS_DATA: Fund[] = [
     targetAmount: 25000,
     currency: "USD",
     progressPercentage: 35,
-    status: "Paused",
+    status: "paused",
   },
   {
     id: 3,
@@ -63,7 +63,7 @@ export const FUNDS_DATA: Fund[] = [
     targetAmount: 5000,
     currency: "USD",
     progressPercentage: 65,
-    status: "Active",
+    status: "active",
   },
   {
     id: 4,
@@ -73,7 +73,7 @@ export const FUNDS_DATA: Fund[] = [
     targetAmount: 50000,
     currency: "USD",
     progressPercentage: 25,
-    status: "Active",
+    status: "active",
   },
   {
     id: 5,
@@ -83,7 +83,7 @@ export const FUNDS_DATA: Fund[] = [
     targetAmount: 20000,
     currency: "USD",
     progressPercentage: 25,
-    status: "Completed",
+    status: "completed",
   },
   {
     id: 6,
@@ -93,6 +93,6 @@ export const FUNDS_DATA: Fund[] = [
     targetAmount: 1000,
     currency: "USD",
     progressPercentage: 100,
-    status: "Completed",
+    status: "completed",
   },
 ];
