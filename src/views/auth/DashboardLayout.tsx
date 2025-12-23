@@ -33,7 +33,6 @@ export default function DashboardLayout() {
         {/* header end */}
 
         {/* main body with routing and animation */}
-
         <main className="flex-1 overflow-hidden relative">
           <AnimatePresence mode="popLayout" initial={false}>
             <motion.div
@@ -51,7 +50,6 @@ export default function DashboardLayout() {
             </motion.div>
           </AnimatePresence>
         </main>
-
         {/* main body with routing end */}
       </div>
     </div>

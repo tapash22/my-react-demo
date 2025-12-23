@@ -39,3 +39,15 @@ export interface MonthlyExpense {
   category: string; // Utilities, Rent, Internet
   amount: number;
 }
+export type FundStatus = "Active" | "Paused" | "Completed";
+
+export interface Fund {
+  id: number;
+  name: string;
+  targetDate: string;
+  currentAmount: number;
+  targetAmount: number;
+  currency: string;
+  progressPercentage: number;
+  status: FundStatus;
+}
