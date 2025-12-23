@@ -1,4 +1,5 @@
 import { Democard } from "../../components/cards/DemoCard";
+import { DemoCardWithProgressbar } from "../../components/cards/DemoCardWithProgressbar";
 import { Transaction } from "../Transaction";
 
 export default function Home() {
@@ -78,6 +79,13 @@ export default function Home() {
         <Transaction />
       </div>
       {/* table with pagination end */}
+
+      {/* progress bar */}
+
+      <div className="block w-full h-auto p-2 space-y-5">
+        <DemoCardWithProgressbar />
+      </div>
+      {/* progress bar end */}
     </div>
   );
 }
