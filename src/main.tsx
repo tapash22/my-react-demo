@@ -7,6 +7,7 @@ import { ThemeProvider } from "./components/theme/ThemeProvider.tsx";
 import AppRoutes from "./views/auth/AppRoutes.tsx";
 import { UserProvider } from "./views/auth/UserProvider.tsx";
 import { ToastProvider } from "./components/toaster/ToastProvider.tsx";
+import "./components/chart/chartSetup.ts";
 
 createRoot(document.getElementById("root")!).render(
   // <StrictMode>
