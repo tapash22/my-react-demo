@@ -75,7 +75,7 @@ export function DemoHeader({ onToggleSidebar }: DemoHeaderProps) {
   };
 
   return (
-    <header className="h-16 w-full flex items-center justify-between p-5 bg-(--background) shadow-lg ">
+    <header className="h-16 w-full flex items-center justify-between p-5 bg-(--background) shadow-(--shadow) ">
       <div className="w-1/3 h-auto flex justify-start items-center gap-5 px-5 ">
         <DemoIcon
           icon={PiSidebarSimpleLight}

@@ -35,7 +35,7 @@ export function DemoSideBar({ collapsed }: DemoSideBarProps) {
 
   return (
     <aside
-      className={`h-full bg-(--background) shadow-lg transition-all duration-300 ease-in-out
+      className={`h-full bg-(--background) shadow-(--shadow)  transition-all duration-300 ease-in-out
     ${collapsed ? "w-16" : "w-64"} overflow-hidden relative`}
     >
       {/* Logo + Toggle */}
