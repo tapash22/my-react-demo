@@ -132,9 +132,7 @@
   /* 20px */
   --subtitle-small-weight: 400;
 
-
   /* text format and size end */
-
 
 }
 
@@ -195,10 +193,12 @@
   /* Track background */
   --progress-track: #e5e7eb;
 
-  /* light */
-  --scrollbar-track: #afc0d8;
-  --scrollbar-thumb: #94a3b8;
+  /* scrollbar Light mode  css */
+  --scrollbar-track: #0707072c;
+  --scrollbar-thumb: #735df0a1;
   --scrollbar-thumb-hover: #64748b;
+  /* scrollbar Light mode  css end */
+
 }
 
 .dark {
@@ -249,9 +249,14 @@
   /* Subtitle / Description */
   --subtitle: var(--text-muted-dark);
 
-  --scrollbar-track-dark: #c9c7c7;
-  --scrollbar-thumb-dark: #4dc910;
-  --scrollbar-thumb-hover-dark: #bc0e72;
+  /* scrollbar dark mode css */
+  --scrollbar-track: #ffffff;
+  /* white track */
+  --scrollbar-thumb: #041952e1;
+  /* blue-950 */
+  --scrollbar-thumb-hover: #0d1735e1;
+  /* blue-700 */
+  /* scrollbar dark mode css end */
 
 }
 
@@ -359,6 +364,7 @@ body {
 .scrollbar::-webkit-scrollbar-thumb:hover {
   background-color: var(--scrollbar-thumb-hover);
 }
+
 
 
 /* scrollbar-thin */

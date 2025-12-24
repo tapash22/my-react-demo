@@ -1,6 +1,7 @@
 import { Democard } from "../../components/cards/DemoCard";
 import { SavingGoals } from "./SavingGoals";
 import { Transaction } from "../Transaction";
+import { StatisticDoughnutChart } from "../../components/chart/StatisticDoughnutChart";
 
 export default function Home() {
   const date: Date = new Date();
@@ -41,6 +42,11 @@ export default function Home() {
 
   return (
     <div className="w-full h-full p-2 m-0 flex flex-col">
+      {/* chart start */}
+      <div className="block w-full h-auto p-2 space-y-5">
+        <StatisticDoughnutChart />
+      </div>
+      {/* chart start end */}
       {/* dashboard top component view */}
       <div className="block w-full h-auto p-2 space-y-5">
         {/* header title  */}

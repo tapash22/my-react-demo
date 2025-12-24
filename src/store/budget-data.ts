@@ -1,4 +1,5 @@
 import type { Budget, Fund } from "../assets/type/budget-type";
+import { cssVar } from "../utils/cssVar";
 
 export const myBudget: Budget = {
   personalInfo: {
@@ -96,3 +97,12 @@ export const FUNDS_DATA: Fund[] = [
     status: "completed",
   },
 ];
+
+export const FUND_COLORS: Record<string, string> = {
+  "Emergency Fund": cssVar("--danger"),
+  "New Car": cssVar("--primary"),
+  Vacation: cssVar("--accent"),
+  "Home Down Payment": cssVar("--info"),
+  "Education Fund": cssVar("--secondary"),
+  "Anniversary Gift": cssVar("--success"),
+};
