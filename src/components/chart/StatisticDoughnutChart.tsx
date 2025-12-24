@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { FUND_COLORS, FUNDS_DATA } from "../../store/budget-data";
 import { Doughnut } from "react-chartjs-2";
-import type { ChartOptions } from "chart.js";
+import type { TooltipItem } from "chart.js";
 import { cssVar } from "../../utils/cssVar";
+import { centerTextPlugin } from "./centerTextPlugin";
+import type { DoughnutChartOptions } from "../../assets/type/budget-type";
 
 type Mode = "income" | "expense";
 
@@ -22,6 +24,9 @@ export function StatisticDoughnutChart() {
       ? FUNDS_DATA.map((fund) => fund.currentAmount)
       : FUNDS_DATA.map((fund) => fund.targetAmount - fund.currentAmount);
 
+  //total Calculation
+  const total = values.reduce((sum, v) => sum + v, 0);
+
   //   chart data
   const data = {
     labels,
@@ -39,48 +44,45 @@ export function StatisticDoughnutChart() {
     ],
   };
 
-  const options: ChartOptions<"doughnut"> = {
+  const options: DoughnutChartOptions = {
     responsive: true,
     //start from
     rotation: -180,
     // anti-clockwise
     circumference: -360,
+    //total value income / expense
+    centerTotal: total,
     plugins: {
+      title: {
+        text: mode === "income" ? "Total Income" : "Total Expense",
+      },
       legend: {
         position: "bottom",
-        labels: {
-          color: cssVar("--secondary"),
-          font: {
-            size: 12,
-            weight: "normal",
-          },
-        },
-        display: false,
       },
       tooltip: {
-        enabled: false,
-        // backgroundColor: cssVar("--demo"),
-        // borderColor: cssVar("--primary"),
-        // borderWidth: 1,
-        // cornerRadius: 10,
-        // padding: 12,
+        // enabled: false,
+        backgroundColor: cssVar("--demo"),
+        borderColor: cssVar("--primary"),
+        borderWidth: 1,
+        cornerRadius: 10,
+        padding: 12,
 
-        // titleColor: cssVar("--secondary"),
-        // bodyColor: cssVar("--info"),
+        titleColor: cssVar("--secondary"),
+        bodyColor: cssVar("--info"),
 
-        // titleFont: {
-        //   size: 13,
-        //   weight: "bold",
-        // },
-        // bodyFont: {
-        //   size: 12,
-        // },
-        // callbacks: {
-        //   title: (ctx) => ctx[0].label,
-        //   //type declear for tooltip item
-        //   label: (ctx: TooltipItem<"doughnut">) =>
-        //     `$${Number(ctx.raw).toLocaleString()}`,
-        // },
+        titleFont: {
+          size: 13,
+          weight: "bold",
+        },
+        bodyFont: {
+          size: 12,
+        },
+        callbacks: {
+          title: (ctx) => ctx[0].label,
+          //type declear for tooltip item
+          label: (ctx: TooltipItem<"doughnut">) =>
+            `$${Number(ctx.raw).toLocaleString()}`,
+        },
       },
     },
   };
@@ -116,7 +118,7 @@ export function StatisticDoughnutChart() {
       </div>
 
       {/* Chart */}
-      <Doughnut data={data} options={options} />
+      <Doughnut data={data} options={options} plugins={[centerTextPlugin]} />
     </div>
   );
 }

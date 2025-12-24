@@ -1,3 +1,5 @@
+import type { ChartOptions } from "chart.js";
+
 export interface Budget {
   personalInfo: {
     name: string;
@@ -50,4 +52,8 @@ export interface Fund {
   currency: string;
   progressPercentage: number;
   status: FundStatus;
+}
+
+export interface DoughnutChartOptions extends ChartOptions<"doughnut"> {
+  centerTotal?: number;
 }
