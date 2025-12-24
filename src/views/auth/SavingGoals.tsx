@@ -80,7 +80,7 @@ export function SavingGoals() {
       {/* left side card end */}
 
       {/* right side list */}
-      <div className="shadow-(--shadow-card) p-5 w-full h-[620px] rounded-2xl flex flex-col space-y-3">
+      <div className="shadow-(--shadow-card) p-5 w-full h-[620px] rounded-2xl flex flex-col space-y-3 ">
         <div className="flex justify-between items-center shrink-0">
           <p className="text-(--foreground) subtitle-title p-3">Saving Goals</p>
 
@@ -105,7 +105,7 @@ export function SavingGoals() {
         </div>
 
         {/* Scrollable content */}
-        <div className="flex-1 overflow-y-auto">
+        <div className="flex-1 overflow-y-auto scrollbar">
           <DemoCardWithProgressbar
             status={
               FUND_TABS[activeIndex].value === "all"
