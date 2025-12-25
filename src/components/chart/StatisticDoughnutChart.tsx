@@ -17,6 +17,7 @@ import { DemoToggleTabs } from "../toggle/DemoToggleTabs";
 import { HiDotsHorizontal } from "react-icons/hi";
 import { DemoIcon } from "../common-property/DemoIcon";
 import { AnimatePresence, motion } from "framer-motion";
+import { FinanceList } from "../item/FinanceList";
 // import DemoAnimatedToggle from "../toggle/DemoAnimatedToggle";
 // import { FUND_TABS } from "../../utils/tabData";
 
@@ -112,7 +113,7 @@ export function StatisticDoughnutChart() {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto space-y-4 ring-2 ring-(--input-border) rounded-xl">
+    <div className="w-full max-w-md mx-auto space-y-4 bg-(--background) ring-2 ring-(--input-border) rounded-xl">
       <div className="p-5 flex justify-start items-center gap-2">
         <p className=" tracking-wider font-normal text-lg">Statistic</p>
         <DemoToggleTabs
@@ -130,47 +131,7 @@ export function StatisticDoughnutChart() {
         <Doughnut data={data} options={options} plugins={[centerTextPlugin]} />
       </div>
       <div className="w-full h-auto space-y-3 p-5  overflow-hidden">
-        <ul className="space-y-2 w-full overflow-hidden  ">
-          <AnimatePresence mode="popLayout">
-            {dataList.map((item, index) => (
-              <motion.li
-                key={item.label}
-                initial={{ opacity: 0, x: -100 }}
-                // 2. Animate to (Visible)
-                animate={{ opacity: 1, x: 0 }}
-                // 3. Exit animation (If item is removed)
-                exit={{ opacity: 0, x: 30 }}
-                // 4. Stagger effect based on index
-                transition={{
-                  duration: 0.5,
-                  ease: "easeOut",
-                  delay: index * 0.01,
-                }}
-                layout // Smoothly animates position changes
-                className="flex justify-between rounded-lg p-1 overflow-hidden"
-              >
-                <div className="flex justify-start items-center gap-3">
-                  <div className="px-3 py-1 rounded-lg bg-(--surface) flex justify-center items-center">
-                    <span
-                      className="font-light
-                     text-(--foreground) tracking-wide"
-                    >
-                      {item.percentage}%
-                    </span>
-                  </div>
-                  <span className="font-medium text-sm tracking-wide">
-                    {item.label}
-                  </span>
-                </div>
-                <div className="flex justify-end items-center font-semibold text-sm tracking-wide">
-                  <span className="subtitle-small-title space-x-0.5">
-                    $ {item.amount}
-                  </span>
-                </div>
-              </motion.li>
-            ))}
-          </AnimatePresence>
-        </ul>
+        <FinanceList dataList={dataList} />
       </div>
     </div>
   );
