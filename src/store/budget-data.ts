@@ -1,4 +1,4 @@
-import type { Budget, Fund } from "../assets/type/budget-type";
+import type { Budget, FinanceItem, Fund } from "../assets/type/budget-type";
 import { cssVar } from "../utils/cssVar";
 
 export const myBudget: Budget = {
@@ -106,3 +106,21 @@ export const FUND_COLORS: Record<string, string> = {
   "Education Fund": cssVar("--secondary"),
   "Anniversary Gift": cssVar("--success"),
 };
+
+export const EXPENSE_DATA: FinanceItem[] = [
+  { label: "Housing & Utilities", percentage: 40, amount: 1800 },
+  { label: "Food & Groceries", percentage: 20, amount: 900 },
+  { label: "Education", percentage: 6, amount: 270 },
+  { label: "Healthcare", percentage: 8, amount: 360 },
+  { label: "Transportation", percentage: 10, amount: 450 },
+  { label: "Entertainment", percentage: 6, amount: 270 },
+];
+
+export const INCOME_DATA: FinanceItem[] = [
+  { label: "Salary", percentage: 65, amount: 4000 },
+  { label: "Revenue", percentage: 20, amount: 900 },
+  { label: "Savings & Insurance", percentage: 10, amount: 450 },
+  { label: "Freelance / Side Hustle", percentage: 20, amount: 1200 },
+  { label: "Investments", percentage: 11, amount: 700 },
+  { label: "Rental Income", percentage: 4, amount: 250 },
+];

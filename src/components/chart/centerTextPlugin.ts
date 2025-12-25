@@ -86,6 +86,7 @@ export const centerTextPlugin: Plugin<"doughnut"> = {
     }
 
     /* ---------- UPDATE ANIMATION ---------- */
+    // const opacity = animateTimeline();
     const { alpha, scale } = animateTimeline();
 
     ctx.save();

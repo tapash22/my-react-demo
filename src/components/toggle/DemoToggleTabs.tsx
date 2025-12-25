@@ -51,7 +51,7 @@ export function DemoToggleTabs({
             <button
               key={tab}
               onClick={() => onChange(index)}
-              className="flex-1 z-10 text-center font-bold"
+              className="flex-1 z-10 text-center font-semibold"
               style={{
                 backgroundColor: "transparent",
                 color: isActive ? cssVar("--foreground") : cssVar("--muted"),

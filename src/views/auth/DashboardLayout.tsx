@@ -42,7 +42,7 @@ export default function DashboardLayout() {
               initial={{ opacity: 0, translateY: 0, transitionDuration: 0.3 }} // Start fully transparent
               animate={{ opacity: 1, translateY: 50, transitionDuration: 0.7 }} // Fade in to fully visible
               exit={{ opacity: 1, translateY: 1, transitionDuration: 0.3 }} // Fade out when leaving
-              transition={{ duration: 0.2, ease: "easeOut" }} // Smooth fade
+              transition={{ duration: 0.2, delay: 0.2 }} // Smooth fade
             >
               <Suspense fallback={<Loader />}>
                 <Outlet />

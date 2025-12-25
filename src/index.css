@@ -116,7 +116,7 @@
   /* 24px */
   --section-title-line-height: 2rem;
   /* 32px */
-  --section-title-weight: 600;
+  --section-title-weight: 700;
 
   /* subtitle */
   --subtitle-size: 1rem;
@@ -194,7 +194,7 @@
   --progress-track: #e5e7eb;
 
   /* scrollbar Light mode  css */
-  --scrollbar-track: #0707072c;
+  --scrollbar-track: #07070710;
   --scrollbar-thumb: #735df0a1;
   --scrollbar-thumb-hover: #64748b;
   /* scrollbar Light mode  css end */

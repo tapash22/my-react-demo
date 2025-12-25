@@ -1,15 +1,27 @@
-import { useState } from "react";
-import { FUND_COLORS, FUNDS_DATA } from "../../store/budget-data";
+import { useMemo, useState } from "react";
+import {
+  EXPENSE_DATA,
+  FUND_COLORS,
+  FUNDS_DATA,
+  INCOME_DATA,
+} from "../../store/budget-data";
 import { Doughnut } from "react-chartjs-2";
 import type { TooltipItem } from "chart.js";
 import { cssVar } from "../../utils/cssVar";
 import { centerTextPlugin } from "./centerTextPlugin";
-import type { DoughnutChartOptions } from "../../assets/type/budget-type";
-// import DemoAnimatedToggle from "../toggle/DemoAnimatedToggle";
+import type {
+  DoughnutChartOptions,
+  FinanceItem,
+} from "../../assets/type/budget-type";
 import { DemoToggleTabs } from "../toggle/DemoToggleTabs";
+import { HiDotsHorizontal } from "react-icons/hi";
+import { DemoIcon } from "../common-property/DemoIcon";
+import { AnimatePresence, motion } from "framer-motion";
+// import DemoAnimatedToggle from "../toggle/DemoAnimatedToggle";
 // import { FUND_TABS } from "../../utils/tabData";
 
 type Mode = "income" | "expense";
+// type FinanceView = "income" | "expense";
 
 export function StatisticDoughnutChart() {
   // Use mode directly for two tabs
@@ -18,6 +30,10 @@ export function StatisticDoughnutChart() {
   // Tabs array
   const tabs: Mode[] = ["income", "expense"];
   const activeIndex = tabs.indexOf(mode);
+
+  const dataList: FinanceItem[] = useMemo(() => {
+    return mode === "income" ? INCOME_DATA : EXPENSE_DATA;
+  }, [mode]);
   //   data Labels
   const labels = FUNDS_DATA.map((fund) => fund.name);
 
@@ -46,7 +62,7 @@ export function StatisticDoughnutChart() {
         borderWidth: 0,
         borderColor: "white",
         // hoverOffset: 8,
-        spacing: 4,
+        spacing: 6,
       },
     ],
   };
@@ -59,24 +75,25 @@ export function StatisticDoughnutChart() {
     circumference: -360,
     //total value income / expense
     centerTotal: total,
+    //using for size
+    cutout: "80%",
     plugins: {
       title: {
         text: mode === "income" ? "Total Income" : "Total Expense",
       },
       legend: {
         position: "bottom",
+        display: false,
       },
       tooltip: {
-        // enabled: false,
+        enabled: false,
         backgroundColor: cssVar("--demo"),
         borderColor: cssVar("--primary"),
         borderWidth: 1,
         cornerRadius: 10,
         padding: 12,
-
         titleColor: cssVar("--secondary"),
         bodyColor: cssVar("--info"),
-
         titleFont: {
           size: 13,
           weight: "bold",
@@ -95,17 +112,66 @@ export function StatisticDoughnutChart() {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto space-y-4">
+    <div className="w-full max-w-md mx-auto space-y-4 ring-2 ring-(--input-border) rounded-xl">
+      <div className="p-5 flex justify-start items-center gap-2">
+        <p className=" tracking-wider font-normal text-lg">Statistic</p>
+        <DemoToggleTabs
+          tabs={["Income", "Expense"]}
+          activeIndex={activeIndex}
+          onChange={(index) => setMode(tabs[index])}
+          activeBgColor={cssVar("--surface")}
+        />
+        <DemoIcon icon={HiDotsHorizontal} size={30} />
+      </div>
       {/* <DemoAnimatedToggle /> */}
-      <DemoToggleTabs
-        tabs={["Income", "Expense"]}
-        activeIndex={activeIndex}
-        onChange={(index) => setMode(tabs[index])}
-        activeBgColor={cssVar("--surface")} // green for active tab
-      />
 
       {/* Chart */}
-      <Doughnut data={data} options={options} plugins={[centerTextPlugin]} />
+      <div className="h-[200px] w-full flex justify-center px-5">
+        <Doughnut data={data} options={options} plugins={[centerTextPlugin]} />
+      </div>
+      <div className="w-full h-auto space-y-3 p-5  overflow-hidden">
+        <ul className="space-y-2 w-full overflow-hidden  ">
+          <AnimatePresence mode="popLayout">
+            {dataList.map((item, index) => (
+              <motion.li
+                key={item.label}
+                initial={{ opacity: 0, x: -100 }}
+                // 2. Animate to (Visible)
+                animate={{ opacity: 1, x: 0 }}
+                // 3. Exit animation (If item is removed)
+                exit={{ opacity: 0, x: 30 }}
+                // 4. Stagger effect based on index
+                transition={{
+                  duration: 0.5,
+                  ease: "easeOut",
+                  delay: index * 0.01,
+                }}
+                layout // Smoothly animates position changes
+                className="flex justify-between rounded-lg p-1 overflow-hidden"
+              >
+                <div className="flex justify-start items-center gap-3">
+                  <div className="px-3 py-1 rounded-lg bg-(--surface) flex justify-center items-center">
+                    <span
+                      className="font-light
+                     text-(--foreground) tracking-wide"
+                    >
+                      {item.percentage}%
+                    </span>
+                  </div>
+                  <span className="font-medium text-sm tracking-wide">
+                    {item.label}
+                  </span>
+                </div>
+                <div className="flex justify-end items-center font-semibold text-sm tracking-wide">
+                  <span className="subtitle-small-title space-x-0.5">
+                    $ {item.amount}
+                  </span>
+                </div>
+              </motion.li>
+            ))}
+          </AnimatePresence>
+        </ul>
+      </div>
     </div>
   );
 }

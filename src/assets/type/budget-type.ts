@@ -57,3 +57,9 @@ export interface Fund {
 export interface DoughnutChartOptions extends ChartOptions<"doughnut"> {
   centerTotal?: number;
 }
+
+export interface FinanceItem {
+  label: string;
+  percentage: number;
+  amount: number;
+}
