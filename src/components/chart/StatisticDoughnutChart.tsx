@@ -5,12 +5,19 @@ import type { TooltipItem } from "chart.js";
 import { cssVar } from "../../utils/cssVar";
 import { centerTextPlugin } from "./centerTextPlugin";
 import type { DoughnutChartOptions } from "../../assets/type/budget-type";
+// import DemoAnimatedToggle from "../toggle/DemoAnimatedToggle";
+import { DemoToggleTabs } from "../toggle/DemoToggleTabs";
+// import { FUND_TABS } from "../../utils/tabData";
 
 type Mode = "income" | "expense";
 
 export function StatisticDoughnutChart() {
-  //mode use to show
+  // Use mode directly for two tabs
   const [mode, setMode] = useState<Mode>("income");
+
+  // Tabs array
+  const tabs: Mode[] = ["income", "expense"];
+  const activeIndex = tabs.indexOf(mode);
   //   data Labels
   const labels = FUNDS_DATA.map((fund) => fund.name);
 
@@ -89,33 +96,13 @@ export function StatisticDoughnutChart() {
 
   return (
     <div className="w-full max-w-md mx-auto space-y-4">
-      <div className="flex justify-center">
-        <div className="inline-flex rounded-full bg-(--surface) p-1 ring-1 ring-(--border) ">
-          <button
-            onClick={() => setMode("income")}
-            className={`px-5 py-1 rounded-full text-lg font-normal transition-all tracking-wider cursor-pointer
-        ${
-          mode === "income"
-            ? "bg-(--sidebar-active-bg) text-(--title)  ring-1 ring-(--input-border)"
-            : "text-(--muted) ring-1 ring-transparent  "
-        }`}
-          >
-            Income
-          </button>
-
-          <button
-            onClick={() => setMode("expense")}
-            className={`px-4 py-1 rounded-full text-lg  transition-all font-normal  tracking-wider cursor-pointer
-        ${
-          mode === "expense"
-            ? "bg-(--sidebar-active-bg) text-(--title) ring-1 ring-(--border) "
-            : "text-(--muted) ring-1 ring-transparent  "
-        }`}
-          >
-            Expense
-          </button>
-        </div>
-      </div>
+      {/* <DemoAnimatedToggle /> */}
+      <DemoToggleTabs
+        tabs={["Income", "Expense"]}
+        activeIndex={activeIndex}
+        onChange={(index) => setMode(tabs[index])}
+        activeBgColor={cssVar("--surface")} // green for active tab
+      />
 
       {/* Chart */}
       <Doughnut data={data} options={options} plugins={[centerTextPlugin]} />
