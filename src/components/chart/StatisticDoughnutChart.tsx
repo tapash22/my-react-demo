@@ -16,8 +16,8 @@ import type {
 import { DemoToggleTabs } from "../toggle/DemoToggleTabs";
 import { HiDotsHorizontal } from "react-icons/hi";
 import { DemoIcon } from "../common-property/DemoIcon";
-import { AnimatePresence, motion } from "framer-motion";
 import { FinanceList } from "../item/FinanceList";
+// import { AnimatePresence, motion } from "framer-motion";
 // import DemoAnimatedToggle from "../toggle/DemoAnimatedToggle";
 // import { FUND_TABS } from "../../utils/tabData";
 

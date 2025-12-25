@@ -10,7 +10,7 @@ export function SavingGoals() {
   const {
     totalSaved,
     totalGoals,
-    monthlyProgress,
+    // monthlyProgress,
     overallProgress,
     monthlyTarget,
     remaining,

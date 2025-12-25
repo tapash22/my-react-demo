@@ -54,6 +54,7 @@ export interface Fund {
   status: FundStatus;
 }
 
+//chart type
 export interface DoughnutChartOptions extends ChartOptions<"doughnut"> {
   centerTotal?: number;
 }
@@ -62,4 +63,10 @@ export interface FinanceItem {
   label: string;
   percentage: number;
   amount: number;
+}
+
+export interface MonthlyIncomeExpense {
+  month: string;
+  income: number;
+  expense: number;
 }

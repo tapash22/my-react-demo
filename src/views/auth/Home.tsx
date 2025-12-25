@@ -2,6 +2,7 @@ import { Democard } from "../../components/cards/DemoCard";
 import { SavingGoals } from "./SavingGoals";
 import { Transaction } from "../Transaction";
 import { StatisticDoughnutChart } from "../../components/chart/StatisticDoughnutChart";
+import { MonthlyIncomeExpenseLabelChart } from "../../components/chart/MonthlyIncomeExpenseLabelChart";
 
 export default function Home() {
   const date: Date = new Date();
@@ -47,6 +48,13 @@ export default function Home() {
         <StatisticDoughnutChart />
       </div>
       {/* chart start end */}
+
+      {/* bar start */}
+      <div className="block w-full h-auto p-2 space-y-5">
+        <MonthlyIncomeExpenseLabelChart />
+      </div>
+      {/* bar start */}
+
       {/* dashboard top component view */}
       <div className="block w-full h-auto p-2 space-y-5">
         {/* header title  */}
@@ -87,7 +95,6 @@ export default function Home() {
       {/* table with pagination end */}
 
       {/* progress bar */}
-
       <div className="block w-full h-auto p-2 space-y-5">
         <SavingGoals />
       </div>

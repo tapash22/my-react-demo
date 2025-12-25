@@ -1,4 +1,9 @@
-import type { Budget, FinanceItem, Fund } from "../assets/type/budget-type";
+import type {
+  Budget,
+  FinanceItem,
+  Fund,
+  MonthlyIncomeExpense,
+} from "../assets/type/budget-type";
 import { cssVar } from "../utils/cssVar";
 
 export const myBudget: Budget = {
@@ -123,4 +128,16 @@ export const INCOME_DATA: FinanceItem[] = [
   { label: "Freelance / Side Hustle", percentage: 20, amount: 1200 },
   { label: "Investments", percentage: 11, amount: 700 },
   { label: "Rental Income", percentage: 4, amount: 250 },
+];
+
+export const MONTHLY_INCOME_EXPENSE_DATA: MonthlyIncomeExpense[] = [
+  { month: "Jan", income: 4000, expense: 3200 },
+  { month: "Feb", income: 4200, expense: 3300 },
+  { month: "Mar", income: 4100, expense: 3400 },
+  { month: "Apr", income: 4500, expense: 3500 },
+  { month: "May", income: 4700, expense: 3600 },
+  { month: "Jun", income: 4600, expense: 3700 },
+  { month: "Jul", income: 4800, expense: 3800 },
+  { month: "Aug", income: 5000, expense: 3900 },
+  { month: "Sep", income: 5200, expense: 4000 },
 ];
