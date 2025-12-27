@@ -4,7 +4,11 @@ import { Transaction } from "../Transaction";
 import { StatisticDoughnutChart } from "../../components/chart/StatisticDoughnutChart";
 import { MonthlyIncomeExpenseLabelChart } from "../../components/chart/MonthlyIncomeExpenseLabelChart";
 import { MonthlyIncomeExpenseLineChart } from "../../components/chart/MonthlyIncomeExpenseLineChart";
-import { increment, decrement } from "../../features/counter/counterSlice";
+import {
+  increment,
+  decrement,
+  incrementByAmount,
+} from "../../features/counter/counterSlice";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../store";
 
@@ -65,6 +69,12 @@ export default function Home() {
           onClick={() => dispatch(decrement())}
         >
           -
+        </button>
+        <button
+          className="px-5 py-1 bg-accent"
+          onClick={() => dispatch(incrementByAmount(5))}
+        >
+          value
         </button>
       </div>
       {/* store end */}
