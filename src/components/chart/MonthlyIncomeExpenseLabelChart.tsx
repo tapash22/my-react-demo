@@ -1,6 +1,7 @@
 import { Bar } from "react-chartjs-2";
 import { MONTHLY_INCOME_EXPENSE_DATA } from "../../store/budget-data";
 import type { ChartOptions } from "chart.js";
+import { cssVar } from "../../utils/cssVar";
 
 export function MonthlyIncomeExpenseLabelChart() {
   //data
@@ -12,18 +13,20 @@ export function MonthlyIncomeExpenseLabelChart() {
         data: MONTHLY_INCOME_EXPENSE_DATA.map((item) => item.income),
         borderRadius: 999,
         borderSkipped: false,
-        barThickness: 20,
+        backgroundColor: cssVar("--surface"),
+        // barThickness: 20,
         barPercentage: 0.8, // width of individual bar → leaves gap
-        categoryPercentage: 0.5, // total category width → bars closer but padded
+        categoryPercentage: 0.4, // total category width → bars closer but padded
       },
       {
         label: "Expense",
         data: MONTHLY_INCOME_EXPENSE_DATA.map((item) => item.expense),
         borderRadius: 999,
         borderSkipped: false,
-        barThickness: 20,
+        backgroundColor: cssVar("--surface"),
+        // barThickness: 20,
         barPercentage: 0.8,
-        categoryPercentage: 0.5,
+        categoryPercentage: 0.4,
       },
     ],
   };
@@ -47,6 +50,13 @@ export function MonthlyIncomeExpenseLabelChart() {
         align: "start",
       },
       tooltip: {
+        backgroundColor: cssVar("--surface"),
+        displayColors: false,
+        titleMarginBottom: 6,
+        titleColor: cssVar("--foreground"),
+        bodyColor: cssVar("--foreground"),
+        titleAlign: "center",
+        bodySpacing: 6,
         callbacks: {
           title: (tooltipItems) => {
             return tooltipItems[0].label;

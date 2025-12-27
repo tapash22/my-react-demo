@@ -87,14 +87,17 @@ export function StatisticDoughnutChart() {
         display: false,
       },
       tooltip: {
-        enabled: false,
-        backgroundColor: cssVar("--demo"),
-        borderColor: cssVar("--primary"),
+        enabled: true,
+        displayColors: false,
+        boxPadding: 10,
+        backgroundColor: cssVar("--surface"),
+        borderColor: cssVar("--input-border"),
         borderWidth: 1,
         cornerRadius: 10,
         padding: 12,
+
         titleColor: cssVar("--secondary"),
-        bodyColor: cssVar("--info"),
+        bodyColor: cssVar("--secondary"),
         titleFont: {
           size: 13,
           weight: "bold",
