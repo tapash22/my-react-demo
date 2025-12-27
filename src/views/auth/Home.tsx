@@ -4,9 +4,16 @@ import { Transaction } from "../Transaction";
 import { StatisticDoughnutChart } from "../../components/chart/StatisticDoughnutChart";
 import { MonthlyIncomeExpenseLabelChart } from "../../components/chart/MonthlyIncomeExpenseLabelChart";
 import { MonthlyIncomeExpenseLineChart } from "../../components/chart/MonthlyIncomeExpenseLineChart";
+import { increment, decrement } from "../../features/counter/counterSlice";
+import { useDispatch, useSelector } from "react-redux";
+import type { RootState } from "../../store";
 
 export default function Home() {
   const date: Date = new Date();
+
+  //using store
+  const count = useSelector((state: RootState) => state.counter.value);
+  const dispatch = useDispatch();
 
   const formatteddate: string = date.toLocaleDateString("en-US", {
     weekday: "long",
@@ -44,6 +51,23 @@ export default function Home() {
 
   return (
     <div className="w-full h-full p-2 m-0 flex flex-col">
+      {/* store use */}
+      <div className="block w-full h-auto p-2 space-y-5">
+        <h1>Count: {count}</h1>
+        <button
+          className="px-5 py-1 bg-accent"
+          onClick={() => dispatch(increment())}
+        >
+          +
+        </button>
+        <button
+          className="px-5 py-1 bg-accent"
+          onClick={() => dispatch(decrement())}
+        >
+          -
+        </button>
+      </div>
+      {/* store end */}
       {/* chart start */}
       <div className="block w-full h-auto p-2 space-y-5">
         <StatisticDoughnutChart />
