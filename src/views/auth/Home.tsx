@@ -3,6 +3,7 @@ import { SavingGoals } from "./SavingGoals";
 import { Transaction } from "../Transaction";
 import { StatisticDoughnutChart } from "../../components/chart/StatisticDoughnutChart";
 import { MonthlyIncomeExpenseLabelChart } from "../../components/chart/MonthlyIncomeExpenseLabelChart";
+import { MonthlyIncomeExpenseLineChart } from "../../components/chart/MonthlyIncomeExpenseLineChart";
 
 export default function Home() {
   const date: Date = new Date();
@@ -54,6 +55,10 @@ export default function Home() {
         <MonthlyIncomeExpenseLabelChart />
       </div>
       {/* bar start */}
+
+      <div className="block w-full h-auto p-2 space-y-5">
+        <MonthlyIncomeExpenseLineChart />
+      </div>
 
       {/* dashboard top component view */}
       <div className="block w-full h-auto p-2 space-y-5">

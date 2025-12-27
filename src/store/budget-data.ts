@@ -131,13 +131,13 @@ export const INCOME_DATA: FinanceItem[] = [
 ];
 
 export const MONTHLY_INCOME_EXPENSE_DATA: MonthlyIncomeExpense[] = [
-  { month: "Jan", income: 4000, expense: 3200 },
-  { month: "Feb", income: 4200, expense: 3300 },
-  { month: "Mar", income: 4100, expense: 3400 },
-  { month: "Apr", income: 4500, expense: 3500 },
-  { month: "May", income: 4700, expense: 3600 },
-  { month: "Jun", income: 4600, expense: 3700 },
-  { month: "Jul", income: 4800, expense: 3800 },
-  { month: "Aug", income: 5000, expense: 3900 },
+  { month: "Jan", income: 5000, expense: 2200 },
+  { month: "Feb", income: 2200, expense: 3300 },
+  { month: "Mar", income: 4100, expense: 4400 },
+  { month: "Apr", income: 3500, expense: 3500 },
+  { month: "May", income: 4700, expense: 4600 },
+  { month: "Jun", income: 3600, expense: 3700 },
+  { month: "Jul", income: 4800, expense: 4800 },
+  { month: "Aug", income: 3000, expense: 3900 },
   { month: "Sep", income: 5200, expense: 4000 },
 ];
