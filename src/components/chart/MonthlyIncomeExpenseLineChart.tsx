@@ -11,22 +11,33 @@ export function MonthlyIncomeExpenseLineChart() {
         label: "Income",
         data: MONTHLY_INCOME_EXPENSE_DATA.map((item) => item.income),
         borderColor: cssVar("--foreground"),
-        // Use a semi-transparent version for the fill
         backgroundColor: cssVar("--foreground"),
-        fill: true, // 🟢 Enable the area fill
-        tension: 0.4, // 3. Keep/Add tension for curves
-        pointRadius: 0, // 4. Remove points
-        pointHoverRadius: 0, // 5. Remove points on hover
+        fill: "start",
+        tension: 0.4,
+        clip: false,
+        pointRadius: 0, // 🟢 Hide by default
+        pointHoverRadius: 6, // 🟢 Show on hover (was 0)
+        pointBackgroundColor: cssVar("--primary"),
+        pointBorderColor: "#fff",
+        pointBorderWidth: 5,
       },
       {
         label: "Expense",
         data: MONTHLY_INCOME_EXPENSE_DATA.map((item) => item.expense),
-        borderColor: cssVar("--muted"), // Darker green like your image
+        borderColor: cssVar("--muted"),
         backgroundColor: cssVar("--muted"),
-        fill: true, // 🟢 Enable the area fill
-        tension: 0.4, // 3. Enable curves
-        pointRadius: 0, // 4. Remove points
-        pointHoverRadius: 0, // 5. Remove points on hover
+        fill: "start",
+        tension: 0.4,
+        clip: false,
+
+        borderCapStyle: "round",
+        borderJoinStyle: "round",
+
+        pointRadius: 0, // 🟢 Hide by default
+        pointHoverRadius: 6, // 🟢 Show on hover
+        pointHoverBackgroundColor: "red",
+        pointBorderColor: "#fff",
+        pointBorderWidth: 5,
       },
     ],
   };
@@ -34,6 +45,26 @@ export function MonthlyIncomeExpenseLineChart() {
   const options: ChartOptions<"line"> = {
     responsive: true,
     maintainAspectRatio: false,
+    // 1. ADD PADDING TO PREVENT CUT EDGES
+    layout: {
+      padding: {
+        left: 20,
+        right: 20,
+        top: 10,
+        bottom: 0,
+      },
+    },
+
+    // 2. REMOVE HOVER DELAY (INSTANT POINTS)
+    hover: {
+      mode: "index",
+      intersect: false,
+    },
+
+    // Global animation override for responsiveness/transitions
+    animation: {
+      duration: 400, // standard chart load animation
+    },
 
     plugins: {
       title: {
@@ -47,11 +78,14 @@ export function MonthlyIncomeExpenseLineChart() {
       tooltip: {
         mode: "index",
         intersect: false,
+        animation: {
+          duration: 300,
+        },
       },
     },
     scales: {
       y: {
-        stacked: true,
+        // stacked: true,
         beginAtZero: true,
         ticks: { display: false },
         grid: {
