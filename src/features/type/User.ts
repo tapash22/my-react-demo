@@ -30,6 +30,8 @@ export interface User {
 
 export interface UsersState {
   users: User[];
-  loading: boolean;
+  loadingUsers: boolean; // for fetching all users
+  loadingUserDetails: boolean; // for fetching single user
   error: string | null;
+  selectedUser: User | null;
 }
