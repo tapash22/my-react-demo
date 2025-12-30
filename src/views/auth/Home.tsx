@@ -12,6 +12,8 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../store";
 import { UsersList } from "./UsersList";
+import { DemoSelect, type Option } from "../../components/select/DemoSelect";
+import { useState } from "react";
 
 export default function Home() {
   const date: Date = new Date();
@@ -54,8 +56,29 @@ export default function Home() {
     },
   ];
 
+  const [selectedCountry, setSelectedCountry] = useState<Option | null>(null);
+
+  const countries = [
+    { id: 1, label: "Bangladesh", value: "BD" },
+    { id: 2, label: "India", value: "IN" },
+    { id: 3, label: "USA", value: "US" },
+  ];
+
+  const handleCountryChange = (selected: Option | null) => {
+    setSelectedCountry(selected);
+    console.log("Selected country:", selected);
+  };
+
   return (
     <div className="w-full h-full p-2 m-0 flex flex-col">
+      <div className="block w-full h-auto p-2 space-y-5">
+        country is: {selectedCountry?.label}
+        <DemoSelect
+          label="Country"
+          onChange={handleCountryChange}
+          options={countries}
+        />
+      </div>
       {/* fetch user list from api */}
       <div className="block w-full h-auto p-2 space-y-5">
         <UsersList />
