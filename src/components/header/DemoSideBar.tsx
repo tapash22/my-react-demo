@@ -95,12 +95,12 @@ export function DemoSideBar({ collapsed }: DemoSideBarProps) {
       </nav>
 
       {/* Logout */}
-      <div className="absolute bottom-0 p-2 w-full">
+      <div className="absolute bottom-0 p-3 w-full">
         <button
           onClick={handleLogout}
           className="
               w-full flex justify-center items-center
-              rounded-lg ring-1 ring-(--card-border)
+              rounded-lg shadow-(--shadow)
               drop-shadow-xl
               transition-colors duration-300
               hover:bg-(--sidebar-hover-bg)

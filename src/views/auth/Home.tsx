@@ -11,6 +11,7 @@ import {
 } from "../../features/counter/counterSlice";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../store";
+import { UsersList } from "./UsersList";
 
 export default function Home() {
   const date: Date = new Date();
@@ -55,6 +56,12 @@ export default function Home() {
 
   return (
     <div className="w-full h-full p-2 m-0 flex flex-col">
+      {/* fetch user list from api */}
+      <div className="block w-full h-auto p-2 space-y-5">
+        <UsersList />
+      </div>
+      {/* fetch user list end from api */}
+
       {/* store use */}
       <div className="block w-full h-auto p-2 space-y-5">
         <h1>Count: {count}</h1>
