@@ -1,5 +1,5 @@
-import { useRoutes } from "react-router-dom";
-import Loader from "../../components/loader/Loader";
+import { Navigate, useRoutes } from "react-router-dom";
+// import Loader from "../../components/loader/Loader";
 import { ProtectedRoute, PublicRoute } from "../../routes/AuthRoutes";
 import { lazy, useEffect, useState } from "react";
 // import App from "../../App";
@@ -40,7 +40,7 @@ export default function AppRoutes() {
           path: "dashboard",
           element: <DashboardLayout />,
           children: [
-            { index: true, element: <Home /> },
+            { index: true, element: <Navigate to="home" replace /> },
             { path: "home", element: <Home /> },
             { path: "profile", element: <Profile /> },
           ],
