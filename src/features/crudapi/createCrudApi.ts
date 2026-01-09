@@ -1,0 +1,68 @@
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+
+// Generic CRUD options
+interface CrudOptions<T> {
+  reducerPath: string;
+  tagName: string;
+  endpoint: string; // e.g., "users", "posts"
+  type: T; // TypeScript type of the resource
+}
+
+export function createCrudApi<T extends { id: number }>({
+  reducerPath,
+  tagName,
+  endpoint,
+}: Omit<CrudOptions<T>, "type">) {
+  return createApi({
+    reducerPath,
+    baseQuery: fetchBaseQuery({
+      baseUrl: "https://jsonplaceholder.typicode.com/",
+    }),
+    tagTypes: [tagName],
+    endpoints: (builder) => ({
+      getAll: builder.query<[T], void>({
+        query: () => endpoint,
+        providesTags: (result) =>
+          result
+            ? [
+                ...result.map(({ id }) => ({ type: tagName, id })),
+                { type: tagName, id: "LIST" },
+              ]
+            : [{ type: tagName, id: "LIST" }],
+      }),
+
+      getById: builder.query<T, number>({
+        query: (id) => `${endpoint}/${id}`,
+        providesTags: (result, error, id) => [{ type: tagName, id }],
+      }),
+
+      create: builder.mutation<T, Partial<T>>({
+        query: (body) => ({
+          url: endpoint,
+          method: "POST",
+          body,
+        }),
+        invalidatesTags: [{ type: tagName, id: "LIST" }],
+      }),
+      update: builder.mutation<T, Partial<T> & Pick<T, "id">>({
+        query: ({ id, ...body }) => ({
+          url: `${endpoint}/${id}`,
+          method: "PUT", // or PATCH
+          body,
+        }),
+        invalidatesTags: (result, error, { id }) => [{ type: tagName, id }],
+      }),
+
+      delete: builder.mutation<{ success: boolean; id: number }, number>({
+        query: (id) => ({
+          url: `${endpoint}/${id}`,
+          method: "DELETE",
+        }),
+        invalidatesTags: (result, error, id) => [
+          { type: tagName, id },
+          { type: tagName, id: "LIST" },
+        ],
+      }),
+    }),
+  });
+}
