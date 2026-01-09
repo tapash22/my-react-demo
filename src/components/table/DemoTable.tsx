@@ -2,47 +2,91 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { Pagination } from "./Pagination";
 
-interface DemoTableProps {
+interface DemoTableProps<T> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data: any[];
   pageSize?: number;
+  hideColumns?: (keyof T)[];
+  onDelete?: (id: number) => void;
+  onEdit?: (row: T) => void;
+  disabled?: boolean;
 }
 
-export function DemoTable({ data, pageSize = 3 }: DemoTableProps) {
+export function DemoTable<T extends { id: number }>({
+  data,
+  pageSize = 3,
+  hideColumns = [],
+  onDelete,
+  onEdit,
+  disabled,
+}: DemoTableProps<T>) {
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
+  const [filterColumn, setFilterColumn] = useState("");
 
   //   Creates an array from an iterable object.
-  const columns = Array.from(new Set(data.flatMap((tx) => Object.keys(tx))));
+  const columns = Array.from(
+    new Set(data.flatMap((row) => Object.keys(row)))
+  ).filter((col) => !hideColumns.includes(col as keyof T));
+
+  // Filtered columns for dropdown (hide those in hideColumns)
+  const filterableColumns = columns;
 
   //   Returns an array of values of the enumerable own properties of an object
-  const filteredData = data.filter((tx) =>
-    Object.values(tx).some((val) =>
-      String(val).toLowerCase().includes(search.toLowerCase())
-    )
-  );
+  const filteredData = data.filter((tx) => {
+    if (!search) return true;
+
+    if (filterColumn) {
+      const val = tx[filterColumn as keyof T];
+      return (
+        val !== undefined &&
+        String(val).toLowerCase().includes(search.toLowerCase())
+      );
+    }
+    {
+      Object.values(tx).some((val) =>
+        String(val).toLowerCase().includes(search.toLowerCase())
+      );
+    }
+  });
 
   const totalPages = Math.ceil(filteredData.length / pageSize);
   const startIndex = (page - 1) * pageSize;
   const currentData = filteredData.slice(startIndex, startIndex + pageSize);
 
-  const statusColor = (status: string) => {
-    switch (status) {
-      case "Completed":
-        return "text-green-600";
-      case "Pending":
-        return "text-yellow-600";
-      case "Failed":
-        return "text-red-600";
-      default:
-        return "";
-    }
-  };
+  // const statusColor = (status: string) => {
+  //   switch (status) {
+  //     case "Completed":
+  //       return "text-green-600";
+  //     case "Pending":
+  //       return "text-yellow-600";
+  //     case "Failed":
+  //       return "text-red-600";
+  //     default:
+  //       return "";
+  //   }
+  // };
 
   return (
     <div className="w-full rounded-xl bg-(--background) shadow-md spacer-y-5">
       {/* Search */}
-      <div className="w-full h-auto p-3 grid xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 xs:grid-col-1  ">
+      <div className="w-1/3 h-auto p-3 flex justify-center align-bottom  ">
+        <select
+          value={filterColumn}
+          onChange={(e) => {
+            setFilterColumn(e.target.value);
+            setPage(1);
+          }}
+          className="select-search h-10 space-y-2"
+        >
+          {filterableColumns.map((col) => (
+            <option key={col} value={col}>
+              <p className="px-5 py-2 h-10">
+                {col.charAt(0).toUpperCase() + col.slice(1)}
+              </p>
+            </option>
+          ))}
+        </select>
         <input
           type="text"
           placeholder="Search..."
@@ -60,14 +104,11 @@ export function DemoTable({ data, pageSize = 3 }: DemoTableProps) {
           <thead className="rounded-tl-2xl rounded-tr-2xl ring-2 ring-(--input-border)">
             <tr>
               {columns.map((key) => (
-                <th
-                  key={key}
-                  className="py-5 px-5 text-lg uppercase tracking-wider text-(--foreground) text-center font-bold "
-                >
-                  {key.charAt(0).toUpperCase() + key.slice(1)}
+                <th key={key} className="py-4 text-center">
+                  {key}
                 </th>
               ))}
-              <th className="text-center subtitle-title">Action</th>
+              {(onEdit || onDelete) && <th>Action</th>}
             </tr>
           </thead>
 
@@ -79,32 +120,40 @@ export function DemoTable({ data, pageSize = 3 }: DemoTableProps) {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.25 }}
-                  className="border-b border-(--input-border) last:border-none hover:bg-(--sidebar-hover-bg)"
+                  className="rounded-bl-2xl rounded-br-2xl ring-2 ring-(--input-border)"
                 >
                   {columns.map((key) => (
                     <td
                       key={key}
                       className="py-4 subtitle-small-title text-center"
                     >
-                      {tx[key] !== undefined ? (
-                        key === "amount" ? (
-                          `$${tx.amount.toFixed(2)}`
-                        ) : key === "status" ? (
-                          <span className={statusColor(tx.status)}>
-                            {tx.status}
-                          </span>
-                        ) : (
-                          tx[key]
-                        )
-                      ) : (
-                        "-"
-                      )}
+                      {String(tx[key as keyof T] ?? "-")}
                     </td>
                   ))}
-                  <td className="text-center cursor-pointer subtitle-small-title">
-                    ⋮
-                  </td>
+
+                  {(onEdit || onDelete) && (
+                    <td className="text-center">
+                      <div className="flex justify-center gap-3">
+                        {onEdit && (
+                          <button
+                            onClick={() => onEdit(tx)}
+                            className="text-blue-600"
+                          >
+                            Edit
+                          </button>
+                        )}
+                        {onDelete && (
+                          <button
+                            disabled={disabled}
+                            onClick={() => onDelete(tx.id)}
+                            className="text-red-600"
+                          >
+                            Delete
+                          </button>
+                        )}
+                      </div>
+                    </td>
+                  )}
                 </motion.tr>
               ))}
             </AnimatePresence>

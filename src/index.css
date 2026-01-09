@@ -279,6 +279,13 @@ body {
   @apply text-(--foreground) font-medium tracking-wider text-start px-0
 }
 
+/* Make select match input styles */
+.select-search {
+  @apply ring-1 rounded-lg px-5 py-2 ring-gray-300 w-3/4 text-(--foreground) font-medium tracking-wider;
+  /* Remove default arrow if needed */
+  /* @apply appearance-none; */
+}
+
 /* font declear start */
 
 .page-title {
