@@ -2,16 +2,20 @@ import { configureStore } from "@reduxjs/toolkit";
 import counterReducer from "../src/features/counter/counterSlice";
 import usersReducer from "../src/features/users/usersSlice";
 import { usersApi } from "./features/advance_redux_uses/demoAdvanceSlice";
+import { postsApi } from "./features/advance_redux_uses/postsSlice";
 
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
     users: usersReducer,
     [usersApi.reducerPath]: usersApi.reducer,
+    [postsApi.reducerPath]: postsApi.reducer,
     // Add other reducers here as your app grows
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(usersApi.middleware),
+    getDefaultMiddleware()
+      .concat(usersApi.middleware)
+      .concat(postsApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

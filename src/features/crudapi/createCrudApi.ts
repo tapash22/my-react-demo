@@ -20,7 +20,7 @@ export function createCrudApi<T extends { id: number }>({
     }),
     tagTypes: [tagName],
     endpoints: (builder) => ({
-      getAll: builder.query<[T], void>({
+      getAll: builder.query<T[], void>({
         query: () => endpoint,
         providesTags: (result) =>
           result
@@ -50,7 +50,10 @@ export function createCrudApi<T extends { id: number }>({
           method: "PUT", // or PATCH
           body,
         }),
-        invalidatesTags: (result, error, { id }) => [{ type: tagName, id }],
+        invalidatesTags: (result, error, { id }) => [
+          { type: tagName, id },
+          { type: tagName, id: "LIST" },
+        ],
       }),
 
       delete: builder.mutation<{ success: boolean; id: number }, number>({

@@ -35,3 +35,10 @@ export interface UsersState {
   error: string | null;
   selectedUser: User | null;
 }
+
+export interface Post {
+  userId: number;
+  id: number;
+  title: string;
+  body: string;
+}
