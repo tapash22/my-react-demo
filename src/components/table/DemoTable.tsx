@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Pagination } from "./Pagination";
+import { DemoDropdownSelect } from "../dropdown/DemoDropdownSelect";
 
 interface DemoTableProps<T> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -22,71 +23,67 @@ export function DemoTable<T extends { id: number }>({
 }: DemoTableProps<T>) {
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
-  const [filterColumn, setFilterColumn] = useState("");
 
-  //   Creates an array from an iterable object.
-  const columns = Array.from(
-    new Set(data.flatMap((row) => Object.keys(row)))
-  ).filter((col) => !hideColumns.includes(col as keyof T));
+  const columns = useMemo(
+    () =>
+      Array.from(new Set(data.flatMap((row) => Object.keys(row)))).filter(
+        (col) => !hideColumns.includes(col as keyof T)
+      ),
+    [data, hideColumns]
+  );
 
-  // Filtered columns for dropdown (hide those in hideColumns)
   const filterableColumns = columns;
 
-  //   Returns an array of values of the enumerable own properties of an object
-  const filteredData = data.filter((tx) => {
-    if (!search) return true;
+  const [filterColumn, setFilterColumn] = useState<string>(
+    () => filterableColumns[0] ?? ""
+  );
 
-    if (filterColumn) {
-      const val = tx[filterColumn as keyof T];
-      return (
-        val !== undefined &&
+  /* --------------------------------------------
+   * Ensure selected column is valid if data changes
+   * (SAFE effect — not derived from render)
+   * -------------------------------------------- */
+  useEffect(() => {
+    if (filterableColumns.length && !filterableColumns.includes(filterColumn)) {
+      setFilterColumn(filterableColumns[0]);
+    }
+  }, [filterableColumns, filterColumn]);
+
+  const filteredData = useMemo(() => {
+    if (!search) return data;
+
+    return data.filter((row) => {
+      // Filter by selected column
+      if (filterColumn) {
+        const value = row[filterColumn as keyof T];
+        return (
+          value !== undefined &&
+          String(value).toLowerCase().includes(search.toLowerCase())
+        );
+      }
+
+      // Global search fallback
+      return Object.values(row).some((val) =>
         String(val).toLowerCase().includes(search.toLowerCase())
       );
-    }
-    {
-      Object.values(tx).some((val) =>
-        String(val).toLowerCase().includes(search.toLowerCase())
-      );
-    }
-  });
+    });
+  }, [data, search, filterColumn]);
 
   const totalPages = Math.ceil(filteredData.length / pageSize);
   const startIndex = (page - 1) * pageSize;
   const currentData = filteredData.slice(startIndex, startIndex + pageSize);
 
-  // const statusColor = (status: string) => {
-  //   switch (status) {
-  //     case "Completed":
-  //       return "text-green-600";
-  //     case "Pending":
-  //       return "text-yellow-600";
-  //     case "Failed":
-  //       return "text-red-600";
-  //     default:
-  //       return "";
-  //   }
-  // };
-
   return (
     <div className="w-full rounded-xl bg-(--background) shadow-md spacer-y-5">
       {/* Search */}
       <div className="w-1/3 h-auto p-3 flex justify-center align-bottom  ">
-        <select
+        <DemoDropdownSelect
           value={filterColumn}
-          onChange={(e) => {
-            setFilterColumn(e.target.value);
+          options={filterableColumns}
+          onChange={(col) => {
+            setFilterColumn(col);
             setPage(1);
           }}
-          className="select-search h-10 space-y-2"
-        >
-          {filterableColumns.map((col) => (
-            <option key={col} value={col}>
-              <p className="px-5 py-2 h-10">
-                {col.charAt(0).toUpperCase() + col.slice(1)}
-              </p>
-            </option>
-          ))}
-        </select>
+        />
         <input
           type="text"
           placeholder="Search..."

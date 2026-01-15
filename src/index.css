@@ -145,7 +145,7 @@
   /* Core Colors */
   --background: var(--header-sidebar);
   --surface: var(--body);
-  --sidebar-hover-bg: #f1f5f938;
+  --sidebar-hover-bg: #bbbec2cd;
   /* soft light hover */
   --sidebar-active-bg: #f5f0f0ee;
   --foreground: var(--text);
@@ -204,7 +204,7 @@
 .dark {
   --background: var(--header-sidebar-dark);
   --surface: var(--body-dark);
-  --sidebar-hover-bg-dark: #334155;
+  --sidebar-hover-bg-dark: #f00bd9;
   /* soft hover for dark */
   --sidebar-active-bg: #475569;
   --foreground: var(--text-dark);
