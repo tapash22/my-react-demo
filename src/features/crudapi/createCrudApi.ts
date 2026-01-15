@@ -16,7 +16,7 @@ export function createCrudApi<T extends { id: number }>({
   return createApi({
     reducerPath,
     baseQuery: fetchBaseQuery({
-      baseUrl: "https://jsonplaceholder.typicode.com/",
+      baseUrl: "http://localhost:3001/",
     }),
     tagTypes: [tagName],
     endpoints: (builder) => ({
