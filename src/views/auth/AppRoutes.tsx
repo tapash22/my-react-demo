@@ -10,6 +10,7 @@ const Demo = lazy(() => import("./Demo"));
 const DashboardLayout = lazy(() => import("./DashboardLayout"));
 const Home = lazy(() => import("./Home"));
 const Profile = lazy(() => import("./Profile"));
+const Gallery = lazy(() => import("./Gallery"));
 
 export default function AppRoutes() {
   //handle route path
@@ -43,6 +44,7 @@ export default function AppRoutes() {
             { index: true, element: <Navigate to="home" replace /> },
             { path: "home", element: <Home /> },
             { path: "profile", element: <Profile /> },
+            { path: "gallery", element: <Gallery /> },
           ],
         },
       ],

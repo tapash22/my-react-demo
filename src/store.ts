@@ -3,6 +3,7 @@ import counterReducer from "../src/features/counter/counterSlice";
 import usersReducer from "../src/features/users/usersSlice";
 import { usersApi } from "./features/advance_redux_uses/demoAdvanceSlice";
 import { postsApi } from "./features/advance_redux_uses/postsSlice";
+import { photosApi } from "./features/advance_redux_uses/photosSlice";
 
 export const store = configureStore({
   reducer: {
@@ -10,12 +11,14 @@ export const store = configureStore({
     users: usersReducer,
     [usersApi.reducerPath]: usersApi.reducer,
     [postsApi.reducerPath]: postsApi.reducer,
+    [photosApi.reducerPath]: photosApi.reducer,
     // Add other reducers here as your app grows
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
       .concat(usersApi.middleware)
-      .concat(postsApi.middleware),
+      .concat(postsApi.middleware)
+      .concat(photosApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

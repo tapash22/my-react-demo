@@ -1,4 +1,5 @@
 import { FaHome, FaUser, FaPowerOff } from "react-icons/fa";
+import { FaPhotoFilm } from "react-icons/fa6";
 import type { IconType } from "react-icons";
 import image from "../../assets/react.svg";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -20,6 +21,11 @@ const pages: Page[] = [
     name: "Profile",
     path: "profile",
     icon: FaUser,
+  },
+  {
+    name: "Gallery",
+    path: "gallery",
+    icon: FaPhotoFilm,
   },
 ];
 interface DemoSideBarProps {
