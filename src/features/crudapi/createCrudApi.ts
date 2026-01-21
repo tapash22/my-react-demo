@@ -33,7 +33,12 @@ export function createCrudApi<T extends { id: number }>({
 
       getById: builder.query<T, number>({
         query: (id) => `${endpoint}/${id}`,
-        providesTags: (result, error, id) => [{ type: tagName, id }],
+        //if use as params
+        //   query: (id) => ({
+        //   url: endpoint,
+        //   params: { id },
+        // }),
+        providesTags: (_result, _error, id) => [{ type: tagName, id }],
       }),
 
       create: builder.mutation<T, Partial<T>>({
@@ -50,7 +55,7 @@ export function createCrudApi<T extends { id: number }>({
           method: "PUT", // or PATCH
           body,
         }),
-        invalidatesTags: (result, error, { id }) => [
+        invalidatesTags: (_result, _error, { id }) => [
           { type: tagName, id },
           { type: tagName, id: "LIST" },
         ],
@@ -61,7 +66,7 @@ export function createCrudApi<T extends { id: number }>({
           url: `${endpoint}/${id}`,
           method: "DELETE",
         }),
-        invalidatesTags: (result, error, id) => [
+        invalidatesTags: (_result, _error, id) => [
           { type: tagName, id },
           { type: tagName, id: "LIST" },
         ],
