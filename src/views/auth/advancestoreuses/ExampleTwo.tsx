@@ -122,8 +122,8 @@ export function ExampleTwo() {
               ? "Updating..."
               : "Update"
             : creating
-            ? "Creating..."
-            : "Create"}
+              ? "Creating..."
+              : "Create"}
         </button>
         <button onClick={() => setEditPost(null)}>Cancel</button>
       </div>

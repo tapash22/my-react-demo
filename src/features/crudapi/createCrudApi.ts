@@ -20,12 +20,22 @@ export function createCrudApi<T extends { id: number }>({
     }),
     tagTypes: [tagName],
     endpoints: (builder) => ({
-      getAll: builder.query<T[], void>({
-        query: () => endpoint,
+      getAll: builder.query<{ data: T[]; total: number }, void>({
+        query: () => "photos",
+        transformResponse: (response: T[]) => {
+          const data = response.map((item: any) => ({
+            ...item,
+            id: Number(item.id),
+            thumbnailUrl: item.thumbnailUrl.startsWith("/")
+              ? `${window.location.origin}${item.thumbnailUrl}`
+              : item.thumbnailUrl,
+          }));
+          return { data, total: data.length };
+        },
         providesTags: (result) =>
           result
             ? [
-                ...result.map(({ id }) => ({ type: tagName, id })),
+                ...result.data.map(({ id }) => ({ type: tagName, id })),
                 { type: tagName, id: "LIST" },
               ]
             : [{ type: tagName, id: "LIST" }],

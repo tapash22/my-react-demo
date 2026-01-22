@@ -1,5 +1,4 @@
 import { Outlet, useLocation } from "react-router-dom";
-import { useLoginUser } from "../../components/hooks/types/useLoginUser";
 import { Suspense, useEffect, useRef, useState } from "react";
 import { DemoHeader } from "../../components/header/DemoHeader";
 import { DemoSideBar } from "../../components/header/DemoSideBar";
@@ -9,7 +8,6 @@ import Loader from "../../components/loader/Loader";
 export default function DashboardLayout() {
   // Dashboard
   const location = useLocation();
-  const { user } = useLoginUser();
   const [collapsed, setCollapsed] = useState(false);
   // Create a reference to the scrollable area
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -19,8 +17,6 @@ export default function DashboardLayout() {
       scrollRef.current.scrollTo(0, 0);
     }
   }, [location.pathname]);
-
-  console.log(user?.email);
 
   return (
     <div className="h-screen w-full flex overflow-hidden ">
