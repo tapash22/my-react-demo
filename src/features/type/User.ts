@@ -50,3 +50,9 @@ export interface Photo {
   url: string;
   thumbnailUrl: string;
 }
+
+// this is image type declear
+export interface BaseEntity {
+  id: number;
+  thumbnailUrl?: string;
+}

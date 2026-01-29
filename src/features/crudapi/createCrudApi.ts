@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { type BaseEntity } from "../type/User";
 
 // Generic CRUD options
 interface CrudOptions<T> {
@@ -8,7 +9,7 @@ interface CrudOptions<T> {
   type: T; // TypeScript type of the resource
 }
 
-export function createCrudApi<T extends { id: number }>({
+export function createCrudApi<T extends BaseEntity>({
   reducerPath,
   tagName,
   endpoint,
@@ -21,15 +22,17 @@ export function createCrudApi<T extends { id: number }>({
     tagTypes: [tagName],
     endpoints: (builder) => ({
       getAll: builder.query<{ data: T[]; total: number }, void>({
-        query: () => "photos",
+        query: () => endpoint,
         transformResponse: (response: T[]) => {
-          const data = response.map((item: any) => ({
+          const data = response.map((item) => ({
             ...item,
             id: Number(item.id),
-            thumbnailUrl: item.thumbnailUrl.startsWith("/")
-              ? `${window.location.origin}${item.thumbnailUrl}`
-              : item.thumbnailUrl,
-          }));
+            ...(item.thumbnailUrl && {
+              thumbnailUrl: item.thumbnailUrl.startsWith("/")
+                ? `${window.location.origin}${item.thumbnailUrl}`
+                : item.thumbnailUrl,
+            }),
+          })) as T[];
           return { data, total: data.length };
         },
         providesTags: (result) =>
@@ -80,6 +83,19 @@ export function createCrudApi<T extends { id: number }>({
           { type: tagName, id },
           { type: tagName, id: "LIST" },
         ],
+      }),
+
+      ///handle image with base64
+      uploadImage: builder.mutation<
+        T,
+        { id?: number; image: string } & Partial<T>
+      >({
+        query: ({ id, ...body }) => ({
+          url: id ? `${endpoint}/${id}` : endpoint,
+          method: id ? "PATCH" : "POST",
+          body,
+        }),
+        invalidatesTags: [{ type: tagName, id: "LIST" }],
       }),
     }),
   });

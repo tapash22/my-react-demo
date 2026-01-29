@@ -2,12 +2,15 @@ import { useMemo, useState } from "react";
 import Loader from "../../../components/loader/Loader";
 import { Pagination } from "../../../components/table/Pagination";
 import {
+  useCreatePhotoMutation,
   useDeletePhotoMutation,
   useGetPhotosQuery,
+  useUplatePhotoMutation,
 } from "../../../features/advance_redux_uses/photosSlice";
-import { FaPen, FaTrash } from "react-icons/fa";
+import { FaPen, FaPlus, FaTrash } from "react-icons/fa";
 import { useToaste } from "../../../components/toaster/useToast";
 import { useDebounce } from "../../../features/hook/useDebounce";
+import { fileToBase64 } from "../../../utils/file";
 //If want to skip anything
 // import { skipToken } from "@reduxjs/toolkit/query";
 
@@ -18,6 +21,15 @@ type EditPhoto = {
   thumbnailUrl: string;
   albumId: number;
 };
+
+//this is emtry form
+const emptyForm: Partial<EditPhoto> = {
+  title: "",
+  url: "",
+  thumbnailUrl: "",
+  albumId: 1,
+};
+
 export function ExampleThree() {
   const [page, setPage] = useState(1);
   const pageSize = 15;
@@ -27,22 +39,29 @@ export function ExampleThree() {
 
   // fetch all photos (from local JSON)
   const { data, isLoading, error } = useGetPhotosQuery();
+  const [createPhoto] = useCreatePhotoMutation();
+  const [updatePhoto] = useUplatePhotoMutation();
   const [deletePhoto] = useDeletePhotoMutation();
-  const [selectedPhotoId, setSelectedPhotoId] = useState<number | null>(null);
+  // const [selectedPhotoId, setSelectedPhotoId] = useState<number | null>(null);
 
   const { showToast } = useToaste();
+
+  // form state
+  const [isOpen, setIsOpen] = useState(false);
+  const [form, setForm] = useState<Partial<EditPhoto>>(emptyForm);
+  const isEdit = Boolean(form.id);
 
   // Handle search filtering
   const filteredPhotos = useMemo(() => {
     if (!data?.data) return [];
     if (!debouncedSearch) return data.data;
     return data.data.filter((p: EditPhoto) =>
-      p.title.toLowerCase().includes(debouncedSearch.toLowerCase())
+      p.title.toLowerCase().includes(debouncedSearch.toLowerCase()),
     );
   }, [data, debouncedSearch]);
 
   const totalItems = filteredPhotos.length;
-  const totalPages = Math.ceil(totalItems / pageSize);
+  const totalPages = Math.ceil(filteredPhotos.length / pageSize);
 
   // Slice for current page
   const currentPhotos = useMemo(() => {
@@ -51,19 +70,70 @@ export function ExampleThree() {
     return filteredPhotos.slice(start, end);
   }, [filteredPhotos, page]);
 
-  const singlePhoto = currentPhotos.find((p) => p.id === selectedPhotoId);
+  /* ------------------ handlers ------------------ */
 
-  const onEdit = (row: EditPhoto) => {
-    showToast(`Selected id: ${row.id}`, "success");
-    setSelectedPhotoId(row.id);
+  const openCreate = () => {
+    setForm(emptyForm);
+    setIsOpen(true);
+  };
+
+  const openEdit = (photo: EditPhoto) => {
+    setForm(photo);
+    setIsOpen(true);
+  };
+
+  // const onEdit = (row: EditPhoto) => {
+  //   showToast(`Selected id: ${row.id}`, "success");
+  //   setSelectedPhotoId(row.id);
+  // };
+  const closeForm = () => {
+    setIsOpen(false);
+    setForm(emptyForm);
+  };
+
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const base64 = await fileToBase64(file);
+    setForm((p) => ({ ...p, thumbnailUrl: base64 }));
+  };
+
+  const handleSubmit = async () => {
+    try {
+      if (!form.title || !form.thumbnailUrl) {
+        showToast("Title & Image are required", "error");
+        return;
+      }
+
+      if (isEdit) {
+        await updatePhoto(form as EditPhoto).unwrap();
+        showToast("Photo updated", "success");
+      } else {
+        await createPhoto(form).unwrap();
+        showToast("Photo created", "success");
+      }
+
+      closeForm();
+    } catch (error: unknown) {
+      // Safe type narrowing
+      if (error instanceof Error) {
+        showToast(error.message, "error");
+      } else {
+        showToast("Action failed", "error");
+      }
+    }
   };
 
   const handleDelete = async (row: EditPhoto) => {
     try {
       await deletePhoto(row.id).unwrap();
       showToast("Photo deleted successfully", "success");
-    } catch (e: any) {
-      showToast(`Delete failed: ${e.message}`, "error");
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        showToast(`Delete failed: ${e.message}`, "error");
+      } else {
+        showToast("Action failed", "error");
+      }
     }
   };
 
@@ -76,6 +146,8 @@ export function ExampleThree() {
     setPage(1); // reset to first page
   };
 
+  /* ------------------ render ------------------ */
+
   if (isLoading) return <Loader />;
   if (error) return <p className="text-red-500">Error loading photos</p>;
 
@@ -85,6 +157,12 @@ export function ExampleThree() {
         <h1 className="text-xl font-bold">
           Photo Gallery: {totalItems} items, Page {page}/{totalPages || 1}
         </h1>
+        <button
+          onClick={openCreate}
+          className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded"
+        >
+          <FaPlus /> Add Photo
+        </button>
       </div>
 
       <div className="flex justify-between items-center mb-4 gap-4">
@@ -95,7 +173,6 @@ export function ExampleThree() {
           onChange={handleSearch}
           className="input-search w-full"
         />
-        <span className="font-bold text-lg">{singlePhoto?.id ?? 0}</span>
       </div>
 
       <div className="grid grid-cols-4 gap-4">
@@ -121,7 +198,7 @@ export function ExampleThree() {
               <FaPen
                 size={20}
                 className="text-(--muted)"
-                onClick={() => onEdit(photo)}
+                onClick={() => openEdit(photo)}
               />
               <FaTrash
                 size={20}
@@ -139,6 +216,49 @@ export function ExampleThree() {
           totalPages={totalPages}
           onPageChange={handlePageChange}
         />
+      )}
+
+      {/* -------- Modal Form -------- */}
+      {isOpen && (
+        <div className="fixed inset-0 bg-black/40 flex items-center justify-center">
+          <div className="bg-white p-6 rounded w-96 space-y-3">
+            <h2 className="text-lg font-bold">
+              {isEdit ? "Edit Photo" : "Create Photo"}
+            </h2>
+
+            <input
+              placeholder="Title"
+              value={form.title || ""}
+              onChange={(e) =>
+                setForm((p) => ({ ...p, title: e.target.value }))
+              }
+              className="w-full border p-2"
+            />
+
+            <input
+              placeholder="URL"
+              value={form.url || ""}
+              onChange={(e) => setForm((p) => ({ ...p, url: e.target.value }))}
+              className="w-full border p-2"
+            />
+
+            <input type="file" onChange={handleFileChange} />
+
+            {form.thumbnailUrl && (
+              <img src={form.thumbnailUrl} className="h-32 mx-auto rounded" />
+            )}
+
+            <div className="flex justify-end gap-2">
+              <button onClick={closeForm}>Cancel</button>
+              <button
+                onClick={handleSubmit}
+                className="bg-blue-600 text-white px-4 py-1 rounded"
+              >
+                {isEdit ? "Update" : "Create"}
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
