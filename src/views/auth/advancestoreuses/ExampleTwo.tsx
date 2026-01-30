@@ -65,7 +65,7 @@ export function ExampleTwo() {
           </tr>
         </thead>
         <tbody>
-          {posts?.map((post) => (
+          {posts?.data?.map((post) => (
             <tr key={post.id}>
               <td>{post.id}</td>
               <td>{post.title}</td>

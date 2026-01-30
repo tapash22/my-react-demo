@@ -24,7 +24,7 @@ export function ExampleOne() {
   const [editUser, setEditUser] = useState<EditUser | null>(null);
 
   const tableData =
-    users?.map((u) => ({
+    users?.data?.map((u) => ({
       id: u.id,
       name: u.name,
       username: u.username,
@@ -42,7 +42,7 @@ export function ExampleOne() {
   const handleUpdate = async () => {
     if (!editUser || !users) return;
 
-    const originalUser = users.find((u) => u.id === editUser.id);
+    const originalUser = users?.data?.find((u) => u.id === editUser.id);
     if (!originalUser) return;
 
     await updateUser({

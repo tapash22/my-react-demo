@@ -44,8 +44,7 @@ export function DemoDropdownSelect<T extends string>({
         </span>
         <span className="ml-2 font-bold text-xl">▾</span>
       </button>
-
-      {/* Dropdown */}
+      l{/* Dropdown */}
       {open && (
         <ul className="absolute z-10 mt-1 w-full rounded-md border bg-(--background) shadow">
           {options.map((option) => (

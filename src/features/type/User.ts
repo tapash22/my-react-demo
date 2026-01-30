@@ -56,3 +56,5 @@ export interface BaseEntity {
   id: number;
   thumbnailUrl?: string;
 }
+
+export type SizeType = "tiny" | "small" | "medium" | "large";

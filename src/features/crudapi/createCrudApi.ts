@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { type BaseEntity } from "../type/User";
+import { store } from "../../store";
 
 // Generic CRUD options
 interface CrudOptions<T> {
@@ -21,6 +22,7 @@ export function createCrudApi<T extends BaseEntity>({
     }),
     tagTypes: [tagName],
     endpoints: (builder) => ({
+      //Get All DATA
       getAll: builder.query<{ data: T[]; total: number }, void>({
         query: () => endpoint,
         transformResponse: (response: T[]) => {
@@ -44,6 +46,22 @@ export function createCrudApi<T extends BaseEntity>({
             : [{ type: tagName, id: "LIST" }],
       }),
 
+      //       getAll: builder.query<{ data: T[]; total: number }, void>({
+      //   query: () => endpoint,
+      //   transformResponse: (response: T[]) => ({
+      //     data: response,
+      //     total: response.length,
+      //   }),
+      //   providesTags: (result) =>
+      //     result
+      //       ? [
+      //           ...result.data.map(({ id }) => ({ type: tagName, id })),
+      //           { type: tagName, id: "LIST" },
+      //         ]
+      //       : [{ type: tagName, id: "LIST" }],
+      // }),
+
+      //get by ID
       getById: builder.query<T, number>({
         query: (id) => `${endpoint}/${id}`,
         //if use as params
@@ -54,18 +72,50 @@ export function createCrudApi<T extends BaseEntity>({
         providesTags: (_result, _error, id) => [{ type: tagName, id }],
       }),
 
-      create: builder.mutation<T, Partial<T>>({
-        query: (body) => ({
-          url: endpoint,
-          method: "POST",
-          body,
-        }),
+      // CREATE with auto ID
+      create: builder.mutation<T, Partial<T> & { id?: number }>({
+        query: (body) => {
+          const newBody = { ...body };
+
+          if (!newBody.id) {
+            const rootState = store.getState();
+
+            // Narrow reducer slice safely
+            const apiState = rootState[
+              reducerPath as keyof typeof rootState
+            ] as {
+              queries?: Record<string, { data?: { data: T[]; total: number } }>;
+            };
+
+            const cacheKey = "getAll(undefined)";
+            const cachedData = apiState?.queries?.[cacheKey]?.data?.data;
+
+            newBody.id = cachedData ? cachedData.length + 1 : 1;
+          }
+
+          return {
+            url: endpoint,
+            method: "POST",
+            body: newBody,
+          };
+        },
         invalidatesTags: [{ type: tagName, id: "LIST" }],
       }),
+
+      // create: builder.mutation<T, Partial<T>>({
+      //   query: (body) => ({
+      //     url: endpoint,
+      //     method: "POST",
+      //     body,
+      //   }),
+      //   invalidatesTags: [{ type: tagName, id: "LIST" }],
+      // }),
+
+      //update
       update: builder.mutation<T, Partial<T> & Pick<T, "id">>({
         query: ({ id, ...body }) => ({
           url: `${endpoint}/${id}`,
-          method: "PUT", // or PATCH
+          method: "PATCH", // or PATCH
           body,
         }),
         invalidatesTags: (_result, _error, { id }) => [
@@ -74,12 +124,13 @@ export function createCrudApi<T extends BaseEntity>({
         ],
       }),
 
-      delete: builder.mutation<{ success: boolean; id: number }, number>({
+      //delete
+      delete: builder.mutation<void, number>({
         query: (id) => ({
           url: `${endpoint}/${id}`,
           method: "DELETE",
         }),
-        invalidatesTags: (_result, _error, id) => [
+        invalidatesTags: (_r, _e, id) => [
           { type: tagName, id },
           { type: tagName, id: "LIST" },
         ],
