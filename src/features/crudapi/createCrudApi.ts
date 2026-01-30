@@ -46,21 +46,6 @@ export function createCrudApi<T extends BaseEntity>({
             : [{ type: tagName, id: "LIST" }],
       }),
 
-      //       getAll: builder.query<{ data: T[]; total: number }, void>({
-      //   query: () => endpoint,
-      //   transformResponse: (response: T[]) => ({
-      //     data: response,
-      //     total: response.length,
-      //   }),
-      //   providesTags: (result) =>
-      //     result
-      //       ? [
-      //           ...result.data.map(({ id }) => ({ type: tagName, id })),
-      //           { type: tagName, id: "LIST" },
-      //         ]
-      //       : [{ type: tagName, id: "LIST" }],
-      // }),
-
       //get by ID
       getById: builder.query<T, number>({
         query: (id) => `${endpoint}/${id}`,
