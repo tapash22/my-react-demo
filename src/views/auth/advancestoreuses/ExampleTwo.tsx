@@ -53,7 +53,6 @@ export function ExampleTwo() {
   return (
     <div>
       <h1>Posts List</h1>
-
       {/* Posts Table */}
       <table border={1} cellPadding={5}>
         <thead>
@@ -79,7 +78,6 @@ export function ExampleTwo() {
           ))}
         </tbody>
       </table>
-
       {/* Create / Edit Form */}
       <div style={{ marginTop: "20px" }}>
         <h3>{editPost?.id ? "Edit Post" : "Create New Post"}</h3>
@@ -127,7 +125,6 @@ export function ExampleTwo() {
         </button>
         <button onClick={() => setEditPost(null)}>Cancel</button>
       </div>
-
       {/* Display single post by ID */}
       {singlePost && (
         <div style={{ marginTop: "20px" }}>
@@ -137,7 +134,6 @@ export function ExampleTwo() {
           <p>User ID: {singlePost.userId}</p>
         </div>
       )}
-
       {/* Input to fetch post by ID */}
       <div style={{ marginTop: "20px" }}>
         <input

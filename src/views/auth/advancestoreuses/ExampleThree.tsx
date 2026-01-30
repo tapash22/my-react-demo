@@ -140,10 +140,10 @@ export function ExampleThree() {
     }
   };
 
-  const handleDelete = async (row: EditPhoto) => {
+  const handleDelete = async (id: number) => {
     try {
-      console.log(row);
-      await deletePhoto(row.id).unwrap();
+      console.log(id);
+      await deletePhoto(id);
       showToast("Photo deleted successfully", "success");
     } catch (e: unknown) {
       if (e instanceof Error) {
@@ -223,7 +223,7 @@ export function ExampleThree() {
               <FaTrash
                 size={20}
                 className="text-(--muted)"
-                onClick={() => handleDelete(photo)}
+                onClick={() => handleDelete(photo.id)}
               />
             </div>
           </div>
