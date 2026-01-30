@@ -104,31 +104,6 @@ export function ExampleThree() {
     setForm((p) => ({ ...p, thumbnailUrl: base64 }));
   };
 
-  // const handleSubmit = async () => {
-  //   try {
-  //     if (!form.title || !form.thumbnailUrl) {
-  //       showToast("Title & Image are required", "error");
-  //       return;
-  //     }
-
-  //     if (isEdit) {
-  //       await updatePhoto(form as EditPhoto).unwrap();
-  //       showToast("Photo updated", "success");
-  //     } else {
-  //       await createPhoto(form).unwrap();
-  //       showToast("Photo created", "success");
-  //     }
-
-  //     closeForm();
-  //   } catch (error: unknown) {
-  //     // Safe type narrowing
-  //     if (error instanceof Error) {
-  //       showToast(error.message, "error");
-  //     } else {
-  //       showToast("Action failed", "error");
-  //     }
-  //   }
-  // };
   const handleSubmit = async () => {
     try {
       if (!form.title || !form.thumbnailUrl) {
@@ -165,24 +140,18 @@ export function ExampleThree() {
     }
   };
 
-  // const handleDelete = async (row: EditPhoto) => {
-  //   try {
-  //     console.log(row);
-  //     await deletePhoto(row.id).unwrap();
-  //     showToast("Photo deleted successfully", "success");
-  //   } catch (e: unknown) {
-  //     if (e instanceof Error) {
-  //       showToast(`Delete failed: ${e.message}`, "error");
-  //     } else {
-  //       showToast("Action failed", "error");
-  //     }
-  //   }
-  // };
-
   const handleDelete = async (row: EditPhoto) => {
-    console.log("Deleting ID:", row.id); // ✅ debug
-    await deletePhoto(row.id).unwrap();
-    refetch();
+    try {
+      console.log(row);
+      await deletePhoto(row.id).unwrap();
+      showToast("Photo deleted successfully", "success");
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        showToast(`Delete failed: ${e.message}`, "error");
+      } else {
+        showToast("Action failed", "error");
+      }
+    }
   };
 
   const handlePageChange = (newPage: number) => {
@@ -191,7 +160,7 @@ export function ExampleThree() {
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
-    setPage(1); // reset to first page
+    setPage(1);
   };
 
   /* ------------------ render ------------------ */
