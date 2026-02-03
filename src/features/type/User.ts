@@ -1,3 +1,5 @@
+import type { IconType } from "react-icons";
+
 export interface Geo {
   lat: string;
   lng: string;
@@ -58,3 +60,11 @@ export interface BaseEntity {
 }
 
 export type SizeType = "tiny" | "small" | "medium" | "large";
+
+export type EmptyStatus = "search" | "file" | "notification";
+
+export interface StateConfig {
+  icon: IconType;
+  title: string;
+  description: string;
+}

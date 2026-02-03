@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import Loader from "../../../components/loader/Loader";
 import { Pagination } from "../../../components/table/Pagination";
 import {
@@ -12,6 +12,7 @@ import { useToaste } from "../../../components/toaster/useToast";
 import { useDebounce } from "../../../features/hook/useDebounce";
 import { fileToBase64 } from "../../../utils/file";
 import FormDialog from "../../../components/dialog/FormDialog";
+import { EmptyState } from "../../../components/empty-state/EmptyState";
 //If want to skip anything
 // import { skipToken } from "@reduxjs/toolkit/query";
 
@@ -66,6 +67,11 @@ export function ExampleThree() {
     );
   }, [data, debouncedSearch]);
 
+  // Determine if the lack of data is due to a Search or just an Empty Gallery
+  // const isEmptySearch =
+  //   debouncedSearch.length > 0 && filteredPhotos.length === 0;
+  // const isGalleryEmpty = !isLoading && (!data?.data || data.data.length === 0);
+
   const totalItems = filteredPhotos.length;
   const totalPages = Math.ceil(filteredPhotos.length / pageSize);
 
@@ -78,24 +84,21 @@ export function ExampleThree() {
 
   /* ------------------ handlers ------------------ */
 
-  const openCreate = () => {
+  // 1. Wrap openCreate in useCallback
+  const openCreate = useCallback(() => {
     setForm(emptyForm);
     setIsOpen(true);
-  };
+  }, []);
 
-  const openEdit = (photo: EditPhoto) => {
+  const openEdit = useCallback((photo: EditPhoto) => {
     setForm(photo);
     setIsOpen(true);
-  };
+  }, []);
 
-  // const onEdit = (row: EditPhoto) => {
-  //   showToast(`Selected id: ${row.id}`, "success");
-  //   setSelectedPhotoId(row.id);
-  // };
-  const closeForm = () => {
+  const closeForm = useCallback(() => {
     setIsOpen(false);
     setForm(emptyForm);
-  };
+  }, []);
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -103,6 +106,37 @@ export function ExampleThree() {
     const base64 = await fileToBase64(file);
     setForm((p) => ({ ...p, thumbnailUrl: base64 }));
   };
+
+  // 1. Determine the status and action based on the app state
+  const emptyStateProps = useMemo(() => {
+    if (debouncedSearch) {
+      return {
+        status: "search" as const,
+        action: (
+          <button
+            onClick={() => {
+              setSearch("");
+              setPage(1);
+            }}
+            className="px-6 py-2 bg-blue-600 text-white rounded-lg cursor-pointer"
+          >
+            Clear search query
+          </button>
+        ),
+      };
+    }
+    return {
+      status: "file" as const,
+      action: (
+        <button
+          onClick={openCreate}
+          className="px-6 py-2 bg-blue-600 text-white rounded-lg cursor-pointer"
+        >
+          Upload Your First Photo
+        </button>
+      ),
+    };
+  }, [debouncedSearch, openCreate]);
 
   const handleSubmit = async () => {
     try {
@@ -192,50 +226,62 @@ export function ExampleThree() {
         />
       </div>
 
-      <div className="grid grid-cols-4 gap-4">
-        {currentPhotos.map((photo) => (
-          <div
-            key={photo.id}
-            className="bg-(--card-bg) ring-2 ring-(--card-borde-dark) p-3 relative rounded-xl"
-          >
-            <div className="flex justify-center p-2">
-              <img
-                src={photo.thumbnailUrl}
-                alt={photo.title}
-                className="max-h-52"
-              />
-            </div>
-            <div className="p-2">
-              <h2 className="text-(--foreground) font-semibold">
-                {photo.title.charAt(0).toUpperCase() + photo.title.slice(1)}
-              </h2>
-              <p className="text-(--foreground) text-sm">
-                {photo.url}
-                {photo.id}
-              </p>
-            </div>
-            <div className="absolute top-0 right-0 p-2 flex gap-2">
-              <FaPen
-                size={20}
-                className="text-(--muted)"
-                onClick={() => openEdit(photo)}
-              />
-              <FaTrash
-                size={20}
-                className="text-(--muted)"
-                onClick={() => handleDelete(photo.id)}
-              />
-            </div>
+      {/* 1. Check if there are photos to display */}
+      {currentPhotos.length > 0 ? (
+        <>
+          <div className="grid grid-cols-4 gap-4">
+            {currentPhotos.map((photo) => (
+              <div
+                key={photo.id}
+                className="bg-(--card-bg) ring-2 ring-(--card-borde-dark) p-3 relative rounded-xl"
+              >
+                <div className="flex justify-center p-2">
+                  <img
+                    src={photo.thumbnailUrl}
+                    alt={photo.title}
+                    className="max-h-52"
+                  />
+                </div>
+                <div className="p-2">
+                  <h2 className="text-(--foreground) font-semibold">
+                    {photo.title.charAt(0).toUpperCase() + photo.title.slice(1)}
+                  </h2>
+                  <p className="text-(--foreground) text-sm">
+                    {photo.url}
+                    {photo.id}
+                  </p>
+                </div>
+                <div className="absolute top-0 right-0 p-2 flex gap-2">
+                  <FaPen
+                    size={20}
+                    className="text-(--muted)"
+                    onClick={() => openEdit(photo)}
+                  />
+                  <FaTrash
+                    size={20}
+                    className="text-(--muted)"
+                    onClick={() => handleDelete(photo.id)}
+                  />
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
 
-      {totalPages > 1 && (
-        <Pagination
-          page={page}
-          totalPages={totalPages}
-          onPageChange={handlePageChange}
-        />
+          {totalPages > 1 && (
+            <Pagination
+              page={page}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+            />
+          )}
+        </>
+      ) : (
+        /* 2. Show EmptyState when currentPhotos is empty */
+        <div className="py-20">
+          {" "}
+          {/* Add padding to center it vertically in your layout */}
+          <EmptyState {...emptyStateProps} />
+        </div>
       )}
 
       {/* -------- Modal Form -------- */}
