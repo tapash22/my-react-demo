@@ -13,6 +13,7 @@ import { useDebounce } from "../../../features/hook/useDebounce";
 import { fileToBase64 } from "../../../utils/file";
 import FormDialog from "../../../components/dialog/FormDialog";
 import { EmptyState } from "../../../components/empty-state/EmptyState";
+import { DemoButton } from "../../../components/button/DemoButton";
 //If want to skip anything
 // import { skipToken } from "@reduxjs/toolkit/query";
 
@@ -113,27 +114,24 @@ export function ExampleThree() {
       return {
         status: "search" as const,
         action: (
-          <button
+          <DemoButton
+            title="Clear search query"
             onClick={() => {
               setSearch("");
               setPage(1);
             }}
-            className="px-6 py-2 bg-blue-600 text-white rounded-lg cursor-pointer"
-          >
-            Clear search query
-          </button>
+          />
         ),
       };
     }
     return {
       status: "file" as const,
       action: (
-        <button
+        <DemoButton
+          title="Upload Your First Photo"
           onClick={openCreate}
-          className="px-6 py-2 bg-blue-600 text-white rounded-lg cursor-pointer"
-        >
-          Upload Your First Photo
-        </button>
+          buttonColor="bg-(--surface)"
+        />
       ),
     };
   }, [debouncedSearch, openCreate]);
@@ -208,12 +206,7 @@ export function ExampleThree() {
         <h1 className="text-xl font-bold">
           Photo Gallery: {totalItems} items, Page {page}/{totalPages || 1}
         </h1>
-        <button
-          onClick={openCreate}
-          className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded"
-        >
-          <FaPlus /> Add Photo
-        </button>
+        <DemoButton title="Add Photo" onClick={openCreate} icon={FaPlus} />
       </div>
 
       <div className="flex justify-between items-center mb-4 gap-4">
@@ -292,18 +285,11 @@ export function ExampleThree() {
         columns={2}
         footer={
           <>
-            <button
-              onClick={closeForm}
-              className="px-4 py-2 bg-gray-300 rounded"
-            >
-              Cancel
-            </button>
-            <button
+            <DemoButton title="Cancel" onClick={closeForm} />
+            <DemoButton
+              title={isEdit ? "Update" : "Create"}
               onClick={handleSubmit}
-              className="px-4 py-2 bg-red-500 text-white rounded"
-            >
-              {isEdit ? "Update" : "Create"}
-            </button>
+            />
           </>
         }
       >

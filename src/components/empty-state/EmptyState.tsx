@@ -7,7 +7,7 @@ interface EmptyStateProps {
   action?: React.ReactNode;
 }
 
-export const EmptyState: React.FC<EmptyStateProps> = ({ status, action }) => {
+export const EmptyState = ({ status, action }: EmptyStateProps) => {
   const { icon: Icon, title, description } = STATUS_CONFIG[status];
 
   return (
