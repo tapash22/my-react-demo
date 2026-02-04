@@ -39,8 +39,11 @@ export const DemoChip = ({
       <span className="text-sm font-normal tracking-wider w-2/3 ">{label}</span>
       {onDelete && (
         <button
-          onClick={() => onDelete(label)}
-          className="hover:opacity-70 transition-opacity w-1/3 flex justify-end items-center"
+          onClick={(e) => {
+            e.stopPropagation();
+            onDelete(label);
+          }}
+          className="hover:opacity-70 transition-opacity w-1/3 flex justify-end items-center z-40"
         >
           <DemoIcon icon={FaTimes} size={12} color="--background" />
         </button>
