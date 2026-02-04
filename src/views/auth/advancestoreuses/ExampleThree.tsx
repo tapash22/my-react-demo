@@ -14,6 +14,8 @@ import { fileToBase64 } from "../../../utils/file";
 import FormDialog from "../../../components/dialog/FormDialog";
 import { EmptyState } from "../../../components/empty-state/EmptyState";
 import { DemoButton } from "../../../components/button/DemoButton";
+import { DemoChip } from "../../../components/chip/DemoChip";
+import { DemoChipGroup } from "../../../components/chip/DemoChipGroup";
 //If want to skip anything
 // import { skipToken } from "@reduxjs/toolkit/query";
 
@@ -218,6 +220,15 @@ export function ExampleThree() {
           className="input-search w-full"
         />
       </div>
+      {debouncedSearch && currentPhotos && (
+        <div className="mt-2 flex flex-col justify-start items-center gap-2">
+          <p className="text-sm text-(--muted) bg-accent">Active Filter:</p>
+          <DemoChipGroup
+            data={currentPhotos?.flatMap((i) => i.title.slice(0, 5))}
+            direction="col"
+          />
+        </div>
+      )}
 
       {/* 1. Check if there are photos to display */}
       {currentPhotos.length > 0 ? (
@@ -239,6 +250,8 @@ export function ExampleThree() {
                   <h2 className="text-(--foreground) font-semibold">
                     {photo.title.charAt(0).toUpperCase() + photo.title.slice(1)}
                   </h2>
+                  {/* using chips */}
+
                   <p className="text-(--foreground) text-sm">
                     {photo.url}
                     {photo.id}
