@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { startTransition, useEffect, useMemo, useState } from "react";
 import { Pagination } from "./Pagination";
 import { DemoDropdownSelect } from "../dropdown/DemoDropdownSelect";
 
@@ -27,15 +27,15 @@ export function DemoTable<T extends { id: number }>({
   const columns = useMemo(
     () =>
       Array.from(new Set(data.flatMap((row) => Object.keys(row)))).filter(
-        (col) => !hideColumns.includes(col as keyof T)
+        (col) => !hideColumns.includes(col as keyof T),
       ),
-    [data, hideColumns]
+    [data, hideColumns],
   );
 
   const filterableColumns = columns;
 
   const [filterColumn, setFilterColumn] = useState<string>(
-    () => filterableColumns[0] ?? ""
+    () => filterableColumns[0] ?? "",
   );
 
   /* --------------------------------------------
@@ -43,9 +43,14 @@ export function DemoTable<T extends { id: number }>({
    * (SAFE effect — not derived from render)
    * -------------------------------------------- */
   useEffect(() => {
-    if (filterableColumns.length && !filterableColumns.includes(filterColumn)) {
-      setFilterColumn(filterableColumns[0]);
-    }
+    startTransition(() => {
+      if (
+        filterableColumns.length &&
+        !filterableColumns.includes(filterColumn)
+      ) {
+        setFilterColumn(filterableColumns[0]);
+      }
+    });
   }, [filterableColumns, filterColumn]);
 
   const filteredData = useMemo(() => {
@@ -63,7 +68,7 @@ export function DemoTable<T extends { id: number }>({
 
       // Global search fallback
       return Object.values(row).some((val) =>
-        String(val).toLowerCase().includes(search.toLowerCase())
+        String(val).toLowerCase().includes(search.toLowerCase()),
       );
     });
   }, [data, search, filterColumn]);

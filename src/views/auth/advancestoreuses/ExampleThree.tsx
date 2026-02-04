@@ -1,4 +1,10 @@
-import { useCallback, useMemo, useState } from "react";
+import {
+  startTransition,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import Loader from "../../../components/loader/Loader";
 import { Pagination } from "../../../components/table/Pagination";
 import {
@@ -14,7 +20,6 @@ import { fileToBase64 } from "../../../utils/file";
 import FormDialog from "../../../components/dialog/FormDialog";
 import { EmptyState } from "../../../components/empty-state/EmptyState";
 import { DemoButton } from "../../../components/button/DemoButton";
-import { DemoChip } from "../../../components/chip/DemoChip";
 import { DemoChipGroup } from "../../../components/chip/DemoChipGroup";
 //If want to skip anything
 // import { skipToken } from "@reduxjs/toolkit/query";
@@ -40,6 +45,7 @@ export function ExampleThree() {
   const pageSize = 15;
 
   const [search, setSearch] = useState("");
+  const [chips, setChips] = useState<string[]>([]);
   const debouncedSearch = useDebounce(search, 500);
 
   // fetch all photos (from local JSON)
@@ -86,6 +92,20 @@ export function ExampleThree() {
   }, [filteredPhotos, page]);
 
   /* ------------------ handlers ------------------ */
+
+  useEffect(() => {
+    startTransition(() => {
+      setChips(currentPhotos?.flatMap((i) => i.title.slice(0, 5)) || []);
+    });
+  }, [currentPhotos]);
+
+  useEffect(() => {
+    startTransition(() => {
+      if (chips.length === 0) {
+        setSearch("");
+      }
+    });
+  }, [chips]);
 
   // 1. Wrap openCreate in useCallback
   const openCreate = useCallback(() => {
@@ -192,6 +212,11 @@ export function ExampleThree() {
     setPage(newPage);
   };
 
+  const handleChipDelete = (label: string) => {
+    if (label.length === 0) return setSearch("");
+    setChips((prev) => prev.filter((item) => item !== label));
+  };
+
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
     setPage(1);
@@ -211,7 +236,7 @@ export function ExampleThree() {
         <DemoButton title="Add Photo" onClick={openCreate} icon={FaPlus} />
       </div>
 
-      <div className="flex justify-between items-center mb-4 gap-4">
+      <div className="block items-center mb-4 gap-4 space-y-3 p-3">
         <input
           type="text"
           placeholder="Search..."
@@ -219,16 +244,17 @@ export function ExampleThree() {
           onChange={handleSearch}
           className="input-search w-full"
         />
+        {debouncedSearch && chips.length > 0 && (
+          <div className="flex flex-col justify-start items-center gap-2 w-3/4">
+            <DemoChipGroup
+              data={chips}
+              variant="outlined"
+              onClick={(v) => setSearch(v)}
+              onDelete={handleChipDelete}
+            />
+          </div>
+        )}
       </div>
-      {debouncedSearch && currentPhotos && (
-        <div className="mt-2 flex flex-col justify-start items-center gap-2">
-          <p className="text-sm text-(--muted) bg-accent">Active Filter:</p>
-          <DemoChipGroup
-            data={currentPhotos?.flatMap((i) => i.title.slice(0, 5))}
-            direction="col"
-          />
-        </div>
-      )}
 
       {/* 1. Check if there are photos to display */}
       {currentPhotos.length > 0 ? (
