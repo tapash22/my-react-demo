@@ -13,7 +13,7 @@ import {
   useGetPhotosQuery,
   useUplatePhotoMutation,
 } from "../../../features/advance_redux_uses/photosSlice";
-import { FaPen, FaPlus, FaTrash } from "react-icons/fa";
+import { FaPlus } from "react-icons/fa";
 import { useToaste } from "../../../components/toaster/useToast";
 import { useDebounce } from "../../../features/hook/useDebounce";
 import { fileToBase64 } from "../../../utils/file";
@@ -21,6 +21,7 @@ import FormDialog from "../../../components/dialog/FormDialog";
 import { EmptyState } from "../../../components/empty-state/EmptyState";
 import { DemoButton } from "../../../components/button/DemoButton";
 import { DemoChipGroup } from "../../../components/chip/DemoChipGroup";
+import { Photocard } from "../../../components/cards/PhotoCard";
 //If want to skip anything
 // import { skipToken } from "@reduxjs/toolkit/query";
 
@@ -263,41 +264,11 @@ export function ExampleThree() {
         <>
           <div className="grid grid-cols-4 gap-4">
             {currentPhotos.map((photo) => (
-              <div
-                key={photo.id}
-                className="bg-(--card-bg) ring-2 ring-(--card-borde-dark) p-3 relative rounded-xl"
-              >
-                <div className="flex justify-center p-2">
-                  <img
-                    src={photo.thumbnailUrl}
-                    alt={photo.title}
-                    className="max-h-52"
-                  />
-                </div>
-                <div className="p-2">
-                  <h2 className="text-(--foreground) font-semibold">
-                    {photo.title.charAt(0).toUpperCase() + photo.title.slice(1)}
-                  </h2>
-                  {/* using chips */}
-
-                  <p className="text-(--foreground) text-sm">
-                    {photo.url}
-                    {photo.id}
-                  </p>
-                </div>
-                <div className="absolute top-0 right-0 p-2 flex gap-2">
-                  <FaPen
-                    size={20}
-                    className="text-(--muted)"
-                    onClick={() => openEdit(photo)}
-                  />
-                  <FaTrash
-                    size={20}
-                    className="text-(--muted)"
-                    onClick={() => handleDelete(photo.id)}
-                  />
-                </div>
-              </div>
+              <Photocard
+                photo={photo}
+                onEdit={openEdit}
+                onDelete={handleDelete}
+              />
             ))}
           </div>
 

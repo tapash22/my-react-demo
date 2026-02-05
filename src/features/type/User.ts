@@ -68,3 +68,9 @@ export interface StateConfig {
   title: string;
   description: string;
 }
+
+export interface Page {
+  name: string;
+  path: string;
+  icon: IconType;
+}
