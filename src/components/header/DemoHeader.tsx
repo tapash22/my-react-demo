@@ -16,6 +16,7 @@ import { logout } from "../auth/useAuth";
 import { NavLink, useNavigate } from "react-router-dom";
 import type { IconType } from "react-icons";
 import { DemoIcon } from "../common-property/DemoIcon";
+import Breadcrumbs from "../Breadcrumb/Breadcrumbs";
 
 interface DemoHeaderProps {
   onToggleSidebar: () => void;
@@ -76,12 +77,15 @@ export function DemoHeader({ onToggleSidebar }: DemoHeaderProps) {
 
   return (
     <header className="h-16 w-full flex items-center justify-between p-5 bg-(--background) shadow-(--shadow) ">
-      <div className="w-1/3 h-auto flex justify-start items-center gap-5 px-5 ">
-        <DemoIcon
-          icon={PiSidebarSimpleLight}
-          size={30}
-          onClick={onToggleSidebar}
-        />
+      <div className="w-2/3 h-auto flex justify-between items-center gap-5 px-2 ">
+        <div className="flex justify-start w-1/2 gap-4">
+          <DemoIcon
+            icon={PiSidebarSimpleLight}
+            size={30}
+            onClick={onToggleSidebar}
+          />
+          <Breadcrumbs />
+        </div>
         <InputPrepend
           type="search"
           name="search"
@@ -92,7 +96,7 @@ export function DemoHeader({ onToggleSidebar }: DemoHeaderProps) {
           prepend={<DemoIcon icon={FaSearch} />}
         />
       </div>
-      <div className="w-2/3 h-auto flex justify-end items-center gap-8 px-5 ">
+      <div className="w-1/3 h-auto flex justify-end items-center gap-8 px-5 ">
         <button
           onClick={toggleTheme}
           className="relative w-7 h-7 ring-2 ring-(--foreground)  rounded-full flex items-center justify-center overflow-hidden"

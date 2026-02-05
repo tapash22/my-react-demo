@@ -23,6 +23,6 @@ createRoot(document.getElementById("root")!).render(
         </UserProvider>
       </ThemeProvider>
     </BrowserRouter>
-  </Provider>
+  </Provider>,
   // </StrictMode>
 );

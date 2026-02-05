@@ -24,6 +24,8 @@ import { DemoChipGroup } from "../../../components/chip/DemoChipGroup";
 //If want to skip anything
 // import { skipToken } from "@reduxjs/toolkit/query";
 
+//use breadcrumb
+
 type EditPhoto = {
   id: number;
   title: string;

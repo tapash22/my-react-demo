@@ -29,9 +29,21 @@ export default function AppRoutes() {
     {
       element: <PublicRoute />,
       children: [
-        { index: true, element: <Login /> },
-        { path: "/login", element: <Login /> },
-        { path: "/demo", element: <Demo /> },
+        {
+          index: true,
+          element: <Login />,
+          handle: { breadcrumb: "Login" },
+        },
+        {
+          path: "login",
+          element: <Login />,
+          handle: { breadcrumb: "Login" },
+        },
+        {
+          path: "demo",
+          element: <Demo />,
+          handle: { breadcrumb: "Demo" },
+        },
       ],
     },
     {
@@ -40,16 +52,31 @@ export default function AppRoutes() {
         {
           path: "dashboard",
           element: <DashboardLayout />,
+          handle: { breadcrumb: "Dashboard" },
           children: [
-            { index: true, element: <Navigate to="home" replace /> },
-            { path: "home", element: <Home /> },
-            { path: "profile", element: <Profile /> },
-            { path: "gallery", element: <Gallery /> },
+            {
+              index: true,
+              element: <Navigate to="home" replace />,
+            },
+            {
+              path: "home",
+              element: <Home />,
+              handle: { breadcrumb: "Home" },
+            },
+            {
+              path: "profile",
+              element: <Profile />,
+              handle: { breadcrumb: "Profile" },
+            },
+            {
+              path: "gallery",
+              element: <Gallery />,
+              handle: { breadcrumb: "Gallery" },
+            },
           ],
         },
       ],
     },
-    // { path: "/app", element: <App /> },
   ];
 
   // Hook ALWAYS runs
