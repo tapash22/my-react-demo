@@ -22,6 +22,7 @@ import { EmptyState } from "../../../components/empty-state/EmptyState";
 import { DemoButton } from "../../../components/button/DemoButton";
 import { DemoChipGroup } from "../../../components/chip/DemoChipGroup";
 import { Photocard } from "../../../components/cards/PhotoCard";
+import { DemoList } from "../../../components/list/DemoList";
 //If want to skip anything
 // import { skipToken } from "@reduxjs/toolkit/query";
 
@@ -46,6 +47,17 @@ const emptyForm: Partial<EditPhoto> = {
 export function ExampleThree() {
   const [page, setPage] = useState(1);
   const pageSize = 15;
+
+  const fruits = [
+    "Apple",
+    "Banana",
+    "Cherry",
+    "Date",
+    "Elderberry",
+    "Fig",
+    "Grapes",
+    "Honeydew",
+  ];
 
   const [search, setSearch] = useState("");
   const [chips, setChips] = useState<string[]>([]);
@@ -237,6 +249,9 @@ export function ExampleThree() {
           Photo Gallery: {totalItems} items, Page {page}/{totalPages || 1}
         </h1>
         <DemoButton title="Add Photo" onClick={openCreate} icon={FaPlus} />
+      </div>
+      <div>
+        <DemoList items={fruits} initialCount={3} />
       </div>
 
       <div className="block items-center mb-4 gap-4 space-y-3 p-3">

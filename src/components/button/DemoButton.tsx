@@ -2,11 +2,12 @@ import type { IconType } from "react-icons";
 import { DemoIcon } from "../common-property/DemoIcon";
 
 interface DemoButtonProps {
-  title: string;
+  title?: string;
   icon?: IconType;
   buttonColor?: string;
   onClick?: () => void;
   widthSize?: string;
+  children?: React.ReactNode;
 }
 export function DemoButton({
   title,
@@ -14,6 +15,7 @@ export function DemoButton({
   buttonColor = "bg-(--muted)",
   onClick,
   widthSize = "auto",
+  children,
 }: DemoButtonProps) {
   return (
     <button
@@ -21,7 +23,7 @@ export function DemoButton({
       onClick={onClick}
     >
       <DemoIcon size={16} icon={icon ? icon : null} />
-      <span className="">{title}</span>
+      <span className="">{children ?? title}</span>
     </button>
   );
 }
