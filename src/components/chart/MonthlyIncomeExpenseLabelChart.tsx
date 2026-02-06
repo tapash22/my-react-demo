@@ -6,7 +6,7 @@ import { cssVar } from "../../utils/cssVar";
 export function MonthlyIncomeExpenseLabelChart() {
   //data
   const data = {
-    labels: MONTHLY_INCOME_EXPENSE_DATA.map((item) => item.month),
+    labels: MONTHLY_INCOME_EXPENSE_DATA.map((item) => item.label),
     datasets: [
       {
         label: "Income",

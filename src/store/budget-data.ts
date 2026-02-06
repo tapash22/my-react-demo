@@ -2,7 +2,8 @@ import type {
   Budget,
   FinanceItem,
   Fund,
-  MonthlyIncomeExpense,
+  IncomeExpense,
+  PeriodType,
 } from "../assets/type/budget-type";
 import { cssVar } from "../utils/cssVar";
 
@@ -130,14 +131,44 @@ export const INCOME_DATA: FinanceItem[] = [
   { label: "Rental Income", percentage: 4, amount: 250 },
 ];
 
-export const MONTHLY_INCOME_EXPENSE_DATA: MonthlyIncomeExpense[] = [
-  { month: "Jan", income: 5000, expense: 2200 },
-  { month: "Feb", income: 2200, expense: 3300 },
-  { month: "Mar", income: 4100, expense: 4400 },
-  { month: "Apr", income: 3500, expense: 3500 },
-  { month: "May", income: 4700, expense: 4600 },
-  { month: "Jun", income: 3600, expense: 3700 },
-  { month: "Jul", income: 4800, expense: 4800 },
-  { month: "Aug", income: 3000, expense: 3900 },
-  { month: "Sep", income: 5200, expense: 4000 },
+export const MONTHLY_INCOME_EXPENSE_DATA: IncomeExpense[] = [
+  { label: "Jan", income: 5000, expense: 2200 },
+  { label: "Feb", income: 2200, expense: 3300 },
+  { label: "Mar", income: 4100, expense: 4400 },
+  { label: "Apr", income: 3500, expense: 3500 },
+  { label: "May", income: 4700, expense: 4600 },
+  { label: "Jun", income: 3600, expense: 3700 },
+  { label: "Jul", income: 4800, expense: 4800 },
+  { label: "Aug", income: 3000, expense: 3900 },
+  { label: "Sep", income: 5200, expense: 4000 },
 ];
+
+export const WEEKLY_INCOME_EXPENSE_DATA: IncomeExpense[] = [
+  { label: "Week 1", income: 1200, expense: 800 },
+  { label: "Week 2", income: 1500, expense: 1100 },
+  { label: "Week 3", income: 1300, expense: 900 },
+  { label: "Week 4", income: 1000, expense: 700 },
+];
+
+export function getIncomeExpenseData(type: PeriodType): IncomeExpense[] {
+  switch (type) {
+    case "weekly":
+      return WEEKLY_INCOME_EXPENSE_DATA;
+    case "last3Months":
+      return MONTHLY_INCOME_EXPENSE_DATA.slice(-3);
+    case "monthly":
+    default:
+      return MONTHLY_INCOME_EXPENSE_DATA;
+  }
+}
+export const PERIOD_OPTIONS: PeriodType[] = [
+  "weekly",
+  "monthly",
+  "last3Months",
+];
+
+export const PERIOD_LABEL_MAP: Record<PeriodType, string> = {
+  weekly: "Weekly",
+  monthly: "Monthly",
+  last3Months: "Last 3 Months",
+};

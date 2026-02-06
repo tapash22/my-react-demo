@@ -65,8 +65,10 @@ export interface FinanceItem {
   amount: number;
 }
 
-export interface MonthlyIncomeExpense {
-  month: string;
+export interface IncomeExpense {
+  label: string;
   income: number;
   expense: number;
 }
+
+export type PeriodType = "weekly" | "monthly" | "last3Months";

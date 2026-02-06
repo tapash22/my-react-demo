@@ -1,15 +1,26 @@
 import { Line } from "react-chartjs-2";
-import type { ChartOptions } from "chart.js";
-import { MONTHLY_INCOME_EXPENSE_DATA } from "../../store/budget-data";
+import type { ChartData, ChartOptions } from "chart.js";
+import {
+  getIncomeExpenseData,
+  PERIOD_LABEL_MAP,
+  PERIOD_OPTIONS,
+} from "../../store/budget-data";
 import { cssVar } from "../../utils/cssVar";
+import type { PeriodType } from "../../assets/type/budget-type";
+import { useMemo, useState } from "react";
+import { DemoDropdownSelect } from "../dropdown/DemoDropdownSelect";
 
 export function MonthlyIncomeExpenseLineChart() {
-  const data = {
-    labels: MONTHLY_INCOME_EXPENSE_DATA.map((item) => item.month),
+  const [period, setPeriod] = useState<PeriodType>("monthly");
+
+  const sourceData = useMemo(() => getIncomeExpenseData(period), [period]);
+
+  const data: ChartData<"line", number[], string> = {
+    labels: sourceData.map((item) => item.label),
     datasets: [
       {
         label: "Income",
-        data: MONTHLY_INCOME_EXPENSE_DATA.map((item) => item.income),
+        data: sourceData.map((item) => item.income),
         borderColor: cssVar("--foreground"),
         backgroundColor: cssVar("--foreground"),
         fill: "start",
@@ -23,7 +34,7 @@ export function MonthlyIncomeExpenseLineChart() {
       },
       {
         label: "Expense",
-        data: MONTHLY_INCOME_EXPENSE_DATA.map((item) => item.expense),
+        data: sourceData.map((item) => item.expense),
         borderColor: cssVar("--muted"),
         backgroundColor: cssVar("--muted"),
         fill: "start",
@@ -69,7 +80,7 @@ export function MonthlyIncomeExpenseLineChart() {
     plugins: {
       title: {
         display: true,
-        text: "Line Chart Income vs Expense",
+        text: `${PERIOD_LABEL_MAP[period]} Income vs Expense`,
         align: "start",
       },
       legend: {
@@ -92,7 +103,7 @@ export function MonthlyIncomeExpenseLineChart() {
           display: false,
         },
         border: {
-          display: false, // ❌ hide x-axis line
+          display: false,
         },
       },
       x: {
@@ -100,7 +111,7 @@ export function MonthlyIncomeExpenseLineChart() {
           display: false,
         },
         border: {
-          display: false, // ❌ hide x-axis line
+          display: false,
         },
       },
     },
@@ -108,6 +119,12 @@ export function MonthlyIncomeExpenseLineChart() {
 
   return (
     <div style={{ height: "400px" }}>
+      <DemoDropdownSelect
+        value={period}
+        options={PERIOD_OPTIONS}
+        onChange={setPeriod}
+        getLabel={(v) => PERIOD_LABEL_MAP[v]}
+      />
       <Line data={data} options={options} />
     </div>
   );

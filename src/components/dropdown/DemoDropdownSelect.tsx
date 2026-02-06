@@ -5,6 +5,7 @@ interface DemoDropdownSelectProps<T extends string> {
   options: T[];
   onChange: (value: T) => void;
   width?: string; // tailwind width class, e.g. "w-56"
+  getLabel?: (value: T) => string;
 }
 
 export function DemoDropdownSelect<T extends string>({
@@ -12,6 +13,7 @@ export function DemoDropdownSelect<T extends string>({
   options,
   onChange,
   width = "w-56",
+  getLabel,
 }: DemoDropdownSelectProps<T>) {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -40,8 +42,13 @@ export function DemoDropdownSelect<T extends string>({
         className="h-10 w-full rounded-md border px-3 text-left text-(--foreground) flex items-center justify-between"
       >
         <span className="truncate">
-          {value ? value.charAt(0).toUpperCase() + value.slice(1) : "Select"}
+          {getLabel
+            ? getLabel(value)
+            : value
+              ? value.charAt(0).toUpperCase() + value.slice(1)
+              : "Select"}
         </span>
+
         <span className="ml-2 font-bold text-xl">▾</span>
       </button>
       {open && (
@@ -55,7 +62,9 @@ export function DemoDropdownSelect<T extends string>({
               }}
               className="cursor-pointer px-4 py-2 hover:bg-(--sidebar-hover-bg)"
             >
-              {option.charAt(0).toUpperCase() + option.slice(1)}
+              {getLabel
+                ? getLabel(option)
+                : option.charAt(0).toUpperCase() + option.slice(1)}
             </li>
           ))}
         </ul>
