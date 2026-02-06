@@ -10,6 +10,13 @@ const Demo = lazy(() => import("./Demo"));
 const DashboardLayout = lazy(() => import("./DashboardLayout"));
 const Home = lazy(() => import("./Home"));
 const Profile = lazy(() => import("./Profile"));
+const BudgetPlanning = lazy(() => import("./BudgetPlanning"));
+const Expenses = lazy(() => import("./Expenses"));
+const SavingGoals = lazy(() => import("./SavingGoals"));
+const AccountCard = lazy(() => import("./AccountCard"));
+const Reports = lazy(() => import("./Reports"));
+const Settings = lazy(() => import("./Settings"));
+
 const Gallery = lazy(() => import("./Gallery"));
 
 export default function AppRoutes() {
@@ -62,6 +69,36 @@ export default function AppRoutes() {
               path: "home",
               element: <Home />,
               handle: { breadcrumb: "Home" },
+            },
+            {
+              path: "budget-planning",
+              element: <BudgetPlanning />,
+              handle: { breadcrumb: "Budget Planning" },
+            },
+            {
+              path: "expenses",
+              element: <Expenses />,
+              handle: { breadcrumb: "Expenses" },
+            },
+            {
+              path: "saving-goals",
+              element: <SavingGoals />,
+              handle: { breadcrumb: "Saving Goals" },
+            },
+            {
+              path: "account-card",
+              element: <AccountCard />,
+              handle: { breadcrumb: "Account card" },
+            },
+            {
+              path: "reports",
+              element: <Reports />,
+              handle: { breadcrumb: "Reports" },
+            },
+            {
+              path: "settings",
+              element: <Settings />,
+              handle: { breadcrumb: "Settings" },
             },
             {
               path: "profile",

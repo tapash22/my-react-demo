@@ -5,6 +5,7 @@ interface DemoButtonProps {
   title?: string;
   icon?: IconType;
   buttonColor?: string;
+  textColor?: string;
   onClick?: () => void;
   widthSize?: string;
   children?: React.ReactNode;
@@ -13,13 +14,14 @@ export function DemoButton({
   title,
   icon,
   buttonColor = "bg-(--muted)",
+  textColor = "text-(--foreground)",
   onClick,
   widthSize = "auto",
   children,
 }: DemoButtonProps) {
   return (
     <button
-      className={`${buttonColor}  bg-(--surface) px-4 py-3 dark:bg-slate-800 text-(--foreground) font-semibold text-center transition-colors duration-300 w-${widthSize} rounded-xl  shadow-(--shadow-default) flex justify-evenly items-center gap-2`}
+      className={`${buttonColor}  bg-(--surface) px-4 py-3 dark:bg-slate-800 ${textColor} font-semibold text-center transition-colors duration-300 w-${widthSize} rounded-xl  shadow-(--shadow-default) flex justify-evenly items-center gap-2`}
       onClick={onClick}
     >
       <DemoIcon size={16} icon={icon ? icon : null} />

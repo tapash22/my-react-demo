@@ -84,7 +84,8 @@ export function MonthlyIncomeExpenseLineChart() {
         align: "start",
       },
       legend: {
-        position: "bottom",
+        position: "top",
+        display: false,
       },
       tooltip: {
         mode: "index",
@@ -119,13 +120,15 @@ export function MonthlyIncomeExpenseLineChart() {
 
   return (
     <div style={{ height: "400px" }}>
-      <DemoDropdownSelect
-        value={period}
-        options={PERIOD_OPTIONS}
-        onChange={setPeriod}
-        getLabel={(v) => PERIOD_LABEL_MAP[v]}
-      />
-      <Line data={data} options={options} />
+      <div className="w-full flex justify-end items-center">
+        <DemoDropdownSelect
+          value={period}
+          options={PERIOD_OPTIONS}
+          onChange={setPeriod}
+          getLabel={(v) => PERIOD_LABEL_MAP[v]}
+        />
+      </div>
+      <Line data={data} options={options} style={{ height: "250px " }} />
     </div>
   );
 }

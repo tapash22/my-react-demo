@@ -1,33 +1,10 @@
-import { FaHome, FaUser, FaPowerOff } from "react-icons/fa";
-import { FaPhotoFilm } from "react-icons/fa6";
-import type { IconType } from "react-icons";
+import { FaPowerOff } from "react-icons/fa";
 import image from "../../assets/react.svg";
 import { NavLink, useNavigate } from "react-router-dom";
 import { logout } from "../auth/useAuth";
+import { ROUTING_PAGES } from "../../store/budget-data";
+import { DemoIcon } from "../common-property/DemoIcon";
 
-interface Page {
-  name: string;
-  path: string;
-  icon: IconType;
-}
-
-const pages: Page[] = [
-  {
-    name: "Home",
-    path: "home",
-    icon: FaHome,
-  },
-  {
-    name: "Profile",
-    path: "profile",
-    icon: FaUser,
-  },
-  {
-    name: "Gallery",
-    path: "gallery",
-    icon: FaPhotoFilm,
-  },
-];
 interface DemoSideBarProps {
   collapsed?: boolean;
 }
@@ -57,12 +34,13 @@ export function DemoSideBar({ collapsed }: DemoSideBarProps) {
 
       {/* Nav items */}
       <nav className="flex flex-col gap-2 px-0 overflow-hidden">
-        {pages.map(({ name, path, icon: Icon }) => (
-          <NavLink
-            key={path}
-            to={`/dashboard/${path}`}
-            className={({ isActive }) =>
-              `
+        {ROUTING_PAGES &&
+          ROUTING_PAGES.map(({ name, path, icon }) => (
+            <NavLink
+              key={path}
+              to={`/dashboard/${path}`}
+              className={({ isActive }) =>
+                `
                 flex items-center
                 px-4 py-3
                 rounded-tl-xl rounded-bl-xl
@@ -74,14 +52,15 @@ export function DemoSideBar({ collapsed }: DemoSideBarProps) {
                     : "hover:bg-(--sidebar-hover-bg) translate-x-0"
                 }
                 `
-            }
-          >
-            {/* ICON — fixed, never moves */}
-            <Icon size={20} className="text-(--foreground) shrink-0" />
+              }
+            >
+              {/* ICON — fixed, never moves */}
+              <DemoIcon size={20} icon={icon} />
+              {/* <Icon size={20} className="text-(--foreground) shrink-0" /> */}
 
-            {/* TEXT — animated only */}
-            <span
-              className={`
+              {/* TEXT — animated only */}
+              <span
+                className={`
                   ml-3
                   overflow-hidden whitespace-nowrap
                   text-lg font-semibold
@@ -89,15 +68,15 @@ export function DemoSideBar({ collapsed }: DemoSideBarProps) {
                   ${
                     collapsed
                       ? "opacity-0 -translate-x-2 max-w-0"
-                      : "opacity-100 translate-x-0 max-w-[160px]"
+                      : "opacity-100 translate-x-0 `max-w-[160px]`"
                   }
                 `}
-              title={name}
-            >
-              {name}
-            </span>
-          </NavLink>
-        ))}
+                title={name}
+              >
+                {name}
+              </span>
+            </NavLink>
+          ))}
       </nav>
 
       {/* Logout */}
@@ -129,7 +108,7 @@ export function DemoSideBar({ collapsed }: DemoSideBarProps) {
                 transition-all duration-300 ease-in-out
                 ${
                   collapsed
-                    ? "opacity-0 translate-x-[-8px] max-w-0 m-0"
+                    ? "opacity-0 `translate-x-[-8px]` max-w-0 m-0"
                     : "opacity-100 translate-x-0 max-w-[120px] ml-3"
                 }
               `}

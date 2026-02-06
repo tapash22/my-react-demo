@@ -3,9 +3,25 @@ import type {
   FinanceItem,
   Fund,
   IncomeExpense,
+  Page,
   PeriodType,
 } from "../assets/type/budget-type";
 import { cssVar } from "../utils/cssVar";
+import {
+  FaUser,
+  FaHome,
+  FaHandHoldingMedical,
+  FaRegChartBar,
+  FaShieldAlt,
+  FaCar,
+  FaUmbrellaBeach,
+  FaGraduationCap,
+  FaGift,
+} from "react-icons/fa";
+import { FaPhotoFilm, FaArrowTrendUp } from "react-icons/fa6";
+import { FiCreditCard } from "react-icons/fi";
+import { TbCardsFilled } from "react-icons/tb";
+import { IoMdSettings } from "react-icons/io";
 
 export const myBudget: Budget = {
   personalInfo: {
@@ -40,6 +56,77 @@ export const myBudget: Budget = {
   ],
   savings: 20000,
 };
+
+export const QUICK_ROUTING_PAGES: Page[] = [
+  {
+    name: "Expenses",
+    path: "expenses",
+    icon: TbCardsFilled,
+  },
+  {
+    name: "Budget Planning",
+    path: "budget-planning",
+    icon: FaArrowTrendUp,
+  },
+  {
+    name: "Saving Goals",
+    path: "saving-goals",
+    icon: FaHandHoldingMedical,
+  },
+  {
+    name: "Reports",
+    path: "reports",
+    icon: FaRegChartBar,
+  },
+];
+
+export const ROUTING_PAGES: Page[] = [
+  {
+    name: "Home",
+    path: "home",
+    icon: FaHome,
+  },
+  {
+    name: "Budget Planning",
+    path: "budget-planning",
+    icon: FaArrowTrendUp,
+  },
+  {
+    name: "Expenses",
+    path: "expenses",
+    icon: TbCardsFilled,
+  },
+  {
+    name: "Saving Goals",
+    path: "saving-goals",
+    icon: FaHandHoldingMedical,
+  },
+  {
+    name: "Account card",
+    path: "account-card",
+    icon: FiCreditCard,
+  },
+  {
+    name: "Reports",
+    path: "reports",
+    icon: FaRegChartBar,
+  },
+  {
+    name: "Settings",
+    path: "settings",
+    icon: IoMdSettings,
+  },
+  {
+    name: "Profile",
+    path: "profile",
+    icon: FaUser,
+  },
+  {
+    name: "Gallery",
+    path: "gallery",
+    icon: FaPhotoFilm,
+  },
+];
 
 export const FUNDS_DATA: Fund[] = [
   {
@@ -171,4 +258,23 @@ export const PERIOD_LABEL_MAP: Record<PeriodType, string> = {
   weekly: "Weekly",
   monthly: "Monthly",
   last3Months: "Last 3 Months",
+};
+
+export const getIcon = (name: string) => {
+  switch (name) {
+    case "Emergency Fund":
+      return FaShieldAlt;
+    case "New Car":
+      return FaCar;
+    case "Vacation":
+      return FaUmbrellaBeach;
+    case "Home Down Payment":
+      return FaHome;
+    case "Education Fund":
+      return FaGraduationCap;
+    case "Anniversary Gift":
+      return FaGift;
+    default:
+      return null;
+  }
 };

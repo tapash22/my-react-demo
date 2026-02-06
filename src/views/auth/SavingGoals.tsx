@@ -7,7 +7,7 @@ import { DemoLinearProgressBar } from "../../components/progressbar/DemoLinearPr
 import { DemoTabs } from "../../components/tabs/DemoTabs";
 import { useState } from "react";
 
-export function SavingGoals() {
+export default function SavingGoals() {
   const {
     totalSaved,
     totalGoals,

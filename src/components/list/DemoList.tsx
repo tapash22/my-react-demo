@@ -7,6 +7,7 @@ interface DemoListProps<T> {
   initialCount?: number;
   children?: (item: T, index: number) => React.ReactNode;
   haveBorder?: boolean;
+  direction?: boolean;
 }
 
 export function DemoList<T>({
@@ -14,13 +15,16 @@ export function DemoList<T>({
   initialCount = 5,
   children,
   haveBorder = false,
+  direction = true,
 }: DemoListProps<T>) {
   const [showAll, setShowAll] = useState(false);
   const visibleItems = showAll ? items : items?.slice(0, initialCount);
 
   return (
-    <motion.div layout className="rounded-sm px-0 py-0 w-full">
-      <ul className="">
+    <motion.div layout className="rounded-sm px-0 py-0 w-full h-full">
+      <ul
+        className={`${direction === true ? "block" : "flex gap-0 rounded-xl h-full bg-(--surface) "}`}
+      >
         <AnimatePresence>
           {visibleItems &&
             visibleItems.map((item, index) => (
@@ -30,7 +34,7 @@ export function DemoList<T>({
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -12 }}
                 transition={{ duration: 0.3 }}
-                className={`${haveBorder ? "ring-1 ring-(--forground) p-2" : "ring-0 p-1"}`}
+                className={`${haveBorder ? "ring-1 ring-(--forground) p-2" : "ring-0"} `}
               >
                 {children && children(item, index)}
                 {haveBorder}
