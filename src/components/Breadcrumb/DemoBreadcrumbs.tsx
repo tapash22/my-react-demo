@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import { useBreadcrumbs } from "../hooks/useBreadcrumbs";
 
-export default function Breadcrumbs() {
+export default function DemoBreadcrumbs() {
   const breadcrumbs = useBreadcrumbs();
 
   if (!breadcrumbs.length) return null;
 
   return (
-    <nav className="flex items-center text-sm text-gray-600">
+    <nav className="flex items-center text-lg text-(--forground)">
       {breadcrumbs &&
         breadcrumbs.map((crumb, index) => {
           const isLast = index === breadcrumbs.length - 1;
@@ -17,15 +17,19 @@ export default function Breadcrumbs() {
               {!isLast ? (
                 <Link
                   to={crumb.path}
-                  className="hover:text-blue-600 transition-colors"
+                  className="hover:text-(--surface) transition-colors tracking-wide"
                 >
                   {crumb.label}
                 </Link>
               ) : (
-                <span className="font-medium text-gray-900">{crumb.label}</span>
+                <span className=" text-(--forground) tracking-wide">
+                  {crumb.label}
+                </span>
               )}
 
-              {!isLast && <span className="mx-2 text-gray-400">/</span>}
+              {!isLast && (
+                <span className="mx-2 text-(--forground) tracking-wide">/</span>
+              )}
             </span>
           );
         })}

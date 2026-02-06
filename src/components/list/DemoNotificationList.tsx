@@ -5,7 +5,7 @@ interface DemoNotificationListProps {
 
 export function DemoNotificationList({ fund }: DemoNotificationListProps) {
   return (
-    <div className="w-full px-2 py-2  opacity-75 ">
+    <div className="w-full p-2">
       <div className="rounded-lg p-2 bg-(--surface) spacr-y-3">
         <div className="flex justify-between items-center">
           <h3 className="font-semibold text-(--foreground)">{fund.name}</h3>

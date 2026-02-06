@@ -14,7 +14,7 @@ import { useTheme } from "../hooks/useTheme";
 import { logout } from "../auth/useAuth";
 import { useNavigate } from "react-router-dom";
 import { DemoIcon } from "../common-property/DemoIcon";
-import Breadcrumbs from "../Breadcrumb/Breadcrumbs";
+import DemoBreadcrumbs from "../Breadcrumb/DemoBreadcrumbs";
 import type { Page } from "../../features/type/User";
 import { DropdownProfileCard } from "../cards/DropdownProfileCard";
 import { DemoNotificationList } from "../list/DemoNotificationList";
@@ -22,6 +22,7 @@ import { FUNDS_DATA } from "../../store/budget-data";
 import { DemoList } from "../list/DemoList";
 
 import { useOutsideClick } from "../hooks/useOutsideClick";
+import { DemoBadge } from "../Badge/DemoBadge";
 
 interface DemoHeaderProps {
   onToggleSidebar: () => void;
@@ -70,7 +71,7 @@ export function DemoHeader({ onToggleSidebar }: DemoHeaderProps) {
             size={30}
             onClick={onToggleSidebar}
           />
-          <Breadcrumbs />
+          <DemoBreadcrumbs />
         </div>
         <InputPrepend
           type="search"
@@ -102,34 +103,18 @@ export function DemoHeader({ onToggleSidebar }: DemoHeaderProps) {
 
         <div ref={notificationRef} className="relative ">
           {/* Badge */}
-          <span
-            className="
-                    absolute -top-2 -right-3 
-                    min-w-[18px] h-[18px]
-                    px-1
-                    rounded-full
-                    bg-transparent
-                    text-(--foreground)
-                    text-[11px]
-                    font-semibold
-                    flex items-center justify-center
-                    ring-2 ring-(--foreground)
-                    "
-          >
-            3
-          </span>
 
-          {/* Bell Icon */}
-          <FaRegBell
-            size={30}
-            className="text-(--foreground)"
+          <DemoBadge
             onClick={() => setShowNotification(!showNotification)}
+            badgeLengthCount={FUNDS_DATA.length}
+            icon={FaRegBell}
           />
           {showNotification && (
-            <div className="absolute right-0 w-72 mt-3  bg-(--card-bg) border border-(--card-border) shadow-md  flex flex-col gap-2 rounded-lg drop-shadow-xl space-y-2 z-50 text-(--foreground) h-[50vh] overflow-y-scroll">
+            <div className="absolute right-0 px-0 w-72 bg-(--surface) mt-3  shadow-md  flex flex-col gap-2 rounded-lg drop-shadow-xl space-y-2 z-50 text-(--foreground) h-min-[30vh] h-max-[50vh] overflow-y-scroll">
               <DemoList
                 items={FUNDS_DATA}
                 initialCount={3}
+                haveBorder={true}
                 children={(fund) => <DemoNotificationList fund={fund} />}
               />
             </div>

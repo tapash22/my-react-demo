@@ -52,8 +52,8 @@ export function DemoTabs({
             ref={(el) => {
               tabRefs.current[i] = el;
             }}
-            className={`px-4 py-2 font-semibold text-center transition-colors duration-300 ${
-              isActive ? "text-(--foreground) font-bold" : "text-gray-500"
+            className={`px-4 py-3 font-semibold text-center transition-colors duration-300 ${
+              isActive ? "text-(--foreground) font-bold" : "text-(--muted)"
             } relative z-10`}
             onClick={() => onChange(i)}
           >

@@ -23,13 +23,8 @@ import { DemoButton } from "../../../components/button/DemoButton";
 import { DemoChipGroup } from "../../../components/chip/DemoChipGroup";
 import { Photocard } from "../../../components/cards/PhotoCard";
 import { DemoList } from "../../../components/list/DemoList";
-import { FUNDS_DATA } from "../../../store/budget-data";
-// import type { Fund } from "../../../assets/type/budget-type";
-import { DemoNotificationList } from "../../../components/list/DemoNotificationList";
 //If want to skip anything
 // import { skipToken } from "@reduxjs/toolkit/query";
-
-//use breadcrumb
 
 type EditPhoto = {
   id: number;
