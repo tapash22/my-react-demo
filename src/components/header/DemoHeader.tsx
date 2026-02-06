@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { PiSidebarSimpleLight } from "react-icons/pi";
 import { InputPrepend } from "../Input/InputPrepend";
 import {
@@ -17,6 +17,11 @@ import { DemoIcon } from "../common-property/DemoIcon";
 import Breadcrumbs from "../Breadcrumb/Breadcrumbs";
 import type { Page } from "../../features/type/User";
 import { DropdownProfileCard } from "../cards/DropdownProfileCard";
+import { DemoNotificationList } from "../list/DemoNotificationList";
+import { FUNDS_DATA } from "../../store/budget-data";
+import { DemoList } from "../list/DemoList";
+
+import { useOutsideClick } from "../hooks/useOutsideClick";
 
 interface DemoHeaderProps {
   onToggleSidebar: () => void;
@@ -41,24 +46,11 @@ export function DemoHeader({ onToggleSidebar }: DemoHeaderProps) {
   const [search, setSearch] = useState<string>("");
   const { theme, toggleTheme } = useTheme();
   const [showProfileCard, setShowProfileCard] = useState<boolean>(false);
-  const profileRef = useRef<HTMLDivElement>(null);
+  const [showNotification, setShowNotification] = useState<boolean>(false);
 
   // Close profile card if click outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        profileRef.current &&
-        !profileRef.current.contains(event.target as Node)
-      ) {
-        setShowProfileCard(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+  const profileRef = useOutsideClick(() => setShowProfileCard(false));
+  const notificationRef = useOutsideClick(() => setShowNotification(false));
 
   const handleLogout = () => {
     logout();
@@ -108,7 +100,7 @@ export function DemoHeader({ onToggleSidebar }: DemoHeaderProps) {
           )}
         </button>
 
-        <div className="relative ">
+        <div ref={notificationRef} className="relative ">
           {/* Badge */}
           <span
             className="
@@ -128,7 +120,20 @@ export function DemoHeader({ onToggleSidebar }: DemoHeaderProps) {
           </span>
 
           {/* Bell Icon */}
-          <FaRegBell size={30} className="text-(--foreground)" />
+          <FaRegBell
+            size={30}
+            className="text-(--foreground)"
+            onClick={() => setShowNotification(!showNotification)}
+          />
+          {showNotification && (
+            <div className="absolute right-0 w-72 mt-3  bg-(--card-bg) border border-(--card-border) shadow-md  flex flex-col gap-2 rounded-lg drop-shadow-xl space-y-2 z-50 text-(--foreground) h-[50vh] overflow-y-scroll">
+              <DemoList
+                items={FUNDS_DATA}
+                initialCount={3}
+                children={(fund) => <DemoNotificationList fund={fund} />}
+              />
+            </div>
+          )}
         </div>
 
         <div ref={profileRef} className="relative">

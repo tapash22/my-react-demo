@@ -24,7 +24,8 @@ import { DemoChipGroup } from "../../../components/chip/DemoChipGroup";
 import { Photocard } from "../../../components/cards/PhotoCard";
 import { DemoList } from "../../../components/list/DemoList";
 import { FUNDS_DATA } from "../../../store/budget-data";
-import type { Fund } from "../../../assets/type/budget-type";
+// import type { Fund } from "../../../assets/type/budget-type";
+import { DemoNotificationList } from "../../../components/list/DemoNotificationList";
 //If want to skip anything
 // import { skipToken } from "@reduxjs/toolkit/query";
 
@@ -51,12 +52,12 @@ export function ExampleThree() {
   const pageSize = 15;
 
   //using local data
-  const dataList = FUNDS_DATA.map((data: Fund) => ({
-    ...data,
-    id: data.id,
-    name: data.name,
-    status: data.status,
-  }));
+  // const dataList = FUNDS_DATA.map((data: Fund) => ({
+  //   ...data,
+  //   id: data.id,
+  //   name: data.name,
+  //   status: data.status,
+  // }));
 
   const fruits = [
     "Apple",
@@ -266,42 +267,6 @@ export function ExampleThree() {
         initialCount={3}
         children={(item) => <span>{item}</span>}
       />
-      <div>
-        <DemoList
-          items={dataList}
-          initialCount={3}
-          children={(fund) => (
-            <div className="rounded-lg border p-4 bg-(--surface)">
-              <div className="flex justify-between items-start mb-2">
-                <h3 className="font-semibold text-(--foreground)">
-                  {fund.name}
-                </h3>
-                <span className="text-xs text-(--muted)">
-                  {fund.targetDate}
-                </span>
-              </div>
-
-              <div className="text-sm text-(--muted) mb-2">
-                {fund.currency} {fund.currentAmount.toLocaleString()} /{" "}
-                {fund.targetAmount.toLocaleString()}
-              </div>
-
-              {/* Progress bar */}
-              <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-                <div
-                  className="h-full bg-blue-600 transition-all"
-                  style={{ width: `${fund.progressPercentage}%` }}
-                />
-              </div>
-
-              <div className="flex justify-between text-xs mt-2">
-                <span>{fund.progressPercentage}% completed</span>
-                <span className="capitalize">{fund.status}</span>
-              </div>
-            </div>
-          )}
-        ></DemoList>
-      </div>
 
       <div className="block items-center mb-4 gap-4 space-y-3 p-3">
         <input

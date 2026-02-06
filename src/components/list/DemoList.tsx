@@ -17,8 +17,8 @@ export function DemoList<T>({
   const visibleItems = showAll ? items : items?.slice(0, initialCount);
 
   return (
-    <motion.div layout className="max-w-md mx-auto border rounded-lg p-4">
-      <ul className="space-y-3">
+    <motion.div layout className="max-w-md  rounded-sm px-0 py-0">
+      <ul className="space-y-3 ">
         <AnimatePresence>
           {visibleItems &&
             visibleItems.map((item, index) => (
@@ -28,6 +28,7 @@ export function DemoList<T>({
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -12 }}
                 transition={{ duration: 0.3 }}
+                className="border-b-2"
               >
                 {children && children(item, index)}
               </motion.li>
