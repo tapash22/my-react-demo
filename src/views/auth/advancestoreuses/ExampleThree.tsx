@@ -23,6 +23,8 @@ import { DemoButton } from "../../../components/button/DemoButton";
 import { DemoChipGroup } from "../../../components/chip/DemoChipGroup";
 import { Photocard } from "../../../components/cards/PhotoCard";
 import { DemoList } from "../../../components/list/DemoList";
+import { FUNDS_DATA } from "../../../store/budget-data";
+import type { Fund } from "../../../assets/type/budget-type";
 //If want to skip anything
 // import { skipToken } from "@reduxjs/toolkit/query";
 
@@ -47,6 +49,14 @@ const emptyForm: Partial<EditPhoto> = {
 export function ExampleThree() {
   const [page, setPage] = useState(1);
   const pageSize = 15;
+
+  //using local data
+  const dataList = FUNDS_DATA.map((data: Fund) => ({
+    ...data,
+    id: data.id,
+    name: data.name,
+    status: data.status,
+  }));
 
   const fruits = [
     "Apple",
@@ -250,8 +260,47 @@ export function ExampleThree() {
         </h1>
         <DemoButton title="Add Photo" onClick={openCreate} icon={FaPlus} />
       </div>
+
+      <DemoList
+        items={fruits}
+        initialCount={3}
+        children={(item) => <span>{item}</span>}
+      />
       <div>
-        <DemoList items={fruits} initialCount={3} />
+        <DemoList
+          items={dataList}
+          initialCount={3}
+          children={(fund) => (
+            <div className="rounded-lg border p-4 bg-(--surface)">
+              <div className="flex justify-between items-start mb-2">
+                <h3 className="font-semibold text-(--foreground)">
+                  {fund.name}
+                </h3>
+                <span className="text-xs text-(--muted)">
+                  {fund.targetDate}
+                </span>
+              </div>
+
+              <div className="text-sm text-(--muted) mb-2">
+                {fund.currency} {fund.currentAmount.toLocaleString()} /{" "}
+                {fund.targetAmount.toLocaleString()}
+              </div>
+
+              {/* Progress bar */}
+              <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-blue-600 transition-all"
+                  style={{ width: `${fund.progressPercentage}%` }}
+                />
+              </div>
+
+              <div className="flex justify-between text-xs mt-2">
+                <span>{fund.progressPercentage}% completed</span>
+                <span className="capitalize">{fund.status}</span>
+              </div>
+            </div>
+          )}
+        ></DemoList>
       </div>
 
       <div className="block items-center mb-4 gap-4 space-y-3 p-3">

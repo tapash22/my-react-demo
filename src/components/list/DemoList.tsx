@@ -1,36 +1,41 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { DemoButton } from "../button/DemoButton";
 import { motion, AnimatePresence } from "framer-motion";
 
-interface DemoListProps {
-  items: string[];
+interface DemoListProps<T> {
+  items?: T[];
   initialCount?: number;
+  children?: (item: T, index: number) => React.ReactNode;
 }
 
-export function DemoList({ items, initialCount = 5 }: DemoListProps) {
+export function DemoList<T>({
+  items,
+  initialCount = 5,
+  children,
+}: DemoListProps<T>) {
   const [showAll, setShowAll] = useState(false);
-  const visibleItems = showAll ? items : items.slice(0, initialCount);
+  const visibleItems = showAll ? items : items?.slice(0, initialCount);
 
   return (
     <motion.div layout className="max-w-md mx-auto border rounded-lg p-4">
-      <ul className="list-disc pl-5 space-y-1">
+      <ul className="space-y-3">
         <AnimatePresence>
-          {visibleItems.map((item, index) => (
-            <motion.li
-              key={item}
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.3, delay: index * 0.05 }}
-              className="text-gray-800"
-            >
-              {item}
-            </motion.li>
-          ))}
+          {visibleItems &&
+            visibleItems.map((item, index) => (
+              <motion.li
+                key={index}
+                initial={{ opacity: 0, y: -12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.3 }}
+              >
+                {children && children(item, index)}
+              </motion.li>
+            ))}
         </AnimatePresence>
       </ul>
 
-      {items.length > initialCount && (
+      {items && items.length > initialCount && (
         <motion.div layout className="mt-3">
           <DemoButton onClick={() => setShowAll(!showAll)}>
             <AnimatePresence mode="wait">
