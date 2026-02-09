@@ -17,6 +17,7 @@ import { DemoAvatar } from "../../components/avatar/DemoAvatar";
 // import { FaHome, FaTimes, FaUser } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
 import avatoar from "../../assets/images/avatar.jpg";
+import { formatRelativeDate } from "../../utils/formatDate";
 
 export default function Home() {
   const [openMenu, setOpenMenu] = useState(false);
@@ -127,6 +128,7 @@ export default function Home() {
               <div className="w-10 h-10 ">
                 <DemoAvatar image={avatoar} />
                 <DemoAvatar icon={FaUser} />
+                {formatRelativeDate(new Date())}
               </div>
             )}
             <DemoCardWithProgressbar direction={false} haveAction={false} />
