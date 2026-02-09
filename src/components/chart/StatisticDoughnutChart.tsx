@@ -40,7 +40,7 @@ export function StatisticDoughnutChart() {
 
   //data object color
   const backgroundColor = FUNDS_DATA.map(
-    (fund) => FUND_COLORS[fund.name] ?? "#94a3b8"
+    (fund) => FUND_COLORS[fund.name] ?? "#94a3b8",
   );
   //   data values
   const values =

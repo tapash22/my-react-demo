@@ -3,7 +3,7 @@ import { DemoTable } from "../components/table/DemoTable";
 
 export function Transaction() {
   return (
-    <div className="w-full rounded-xl bg-(--background) shadow-md p-2">
+    <div className="w-full rounded-xl bg-(--background) shadow-md">
       <DemoTable data={transactions} pageSize={3} />
     </div>
   );

@@ -11,11 +11,13 @@ interface DemoCardHeaderProps<T extends BaseItem> {
   itemData: T;
   onEdit: (id: number) => void;
   onDelete: (id: number) => void;
+  haveAction?: boolean;
   direction?: boolean;
 }
 export function DemoCardHeader<T extends BaseItem>({
   itemData,
   onEdit,
+  haveAction = true,
   onDelete,
   direction = true,
 }: DemoCardHeaderProps<T>) {
@@ -50,7 +52,7 @@ export function DemoCardHeader<T extends BaseItem>({
       {/* left side end */}
 
       {/* right side */}
-      {direction === true && (
+      {haveAction === true && (
         <div className="flex justify-end items-center gap-3">
           <DemoIcon
             icon={FaTrash}

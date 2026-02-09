@@ -7,12 +7,14 @@ interface DemoCardWithProgressbarProps {
   status?: string;
   fundsData?: typeof FUNDS_DATA;
   direction?: boolean;
+  haveAction?: boolean;
 }
 
 export function DemoCardWithProgressbar({
   status,
   fundsData = FUNDS_DATA,
   direction = true,
+  haveAction = true,
 }: DemoCardWithProgressbarProps) {
   const onEdit = (id: number) => {
     console.log("edit", id);
@@ -53,6 +55,7 @@ export function DemoCardWithProgressbar({
                 onEdit={onEdit}
                 onDelete={onDelete}
                 direction={direction}
+                haveAction={haveAction}
               />
               {/* top part of card end */}
 

@@ -113,7 +113,7 @@ export default function Home() {
               path="/dashboard/budget-planning"
               pathTitle="View All"
             />
-            <DemoCardWithProgressbar direction={false} />
+            <DemoCardWithProgressbar direction={false} haveAction={false} />
           </div>
         </div>
         {/* right side end */}
@@ -123,25 +123,18 @@ export default function Home() {
       <div className="flex gap-3 items-start w-full h-auto p-2">
         <div className="w-1/4 h-auto p-2 block space-y-5">
           <div className="block w-full h-auto ring-2 ring-(--input-border) rounded-xl ">
-            <div className="flex justify-between items-center p-4 w-full">
-              <p className="text-lg font-medium tracking-wide text-wrap text-(--forground)">
-                Budget Performance
-              </p>
-              <NavLink
-                to={`/dashboard/budget-planning`}
-                className="underline tracking-wide text-sm font-semibold text-(--forground)"
-              >
-                View All
-              </NavLink>
-            </div>
-            <DemoCardWithProgressbar direction={false} />
+            <GoalTrackerCard
+              title="Budget Performance"
+              path="/dashboard/budget-planning"
+              pathTitle="View All"
+            />
+            <DemoCardWithProgressbar direction={false} haveAction={false} />
           </div>
         </div>
         <div className="w-2/4 h-auto p-2 block space-y-5">
           {/* table with pagination */}
-          <div className="block w-full h-full rounded-xl p-2 ">
-            <Transaction />
-          </div>
+
+          <Transaction />
           {/* table with pagination end */}
         </div>
         <div className="w-1/4 h-auto p-2 block space-y-5">
@@ -151,7 +144,7 @@ export default function Home() {
               path="/dashboard/saving-goals"
               pathTitle="Add Plans"
             />
-            <DemoCardWithProgressbar direction={false} />
+            <DemoCardWithProgressbar haveAction={false} />
           </div>
         </div>
       </div>

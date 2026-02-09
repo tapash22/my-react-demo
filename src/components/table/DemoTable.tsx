@@ -2,6 +2,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import { startTransition, useEffect, useMemo, useState } from "react";
 import { Pagination } from "./Pagination";
 import { DemoDropdownSelect } from "../dropdown/DemoDropdownSelect";
+import { DemoButton } from "../button/DemoButton";
+import { FaPen, FaTrash } from "react-icons/fa";
 
 interface DemoTableProps<T> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -38,10 +40,6 @@ export function DemoTable<T extends { id: number }>({
     () => filterableColumns[0] ?? "",
   );
 
-  /* --------------------------------------------
-   * Ensure selected column is valid if data changes
-   * (SAFE effect — not derived from render)
-   * -------------------------------------------- */
   useEffect(() => {
     startTransition(() => {
       if (
@@ -80,6 +78,7 @@ export function DemoTable<T extends { id: number }>({
   return (
     <div className="w-full rounded-xl bg-(--background) shadow-md spacer-y-5">
       {/* Search */}
+      {currentData.length}
       <div className="w-1/3 h-auto p-3 flex justify-center align-bottom  ">
         <DemoDropdownSelect
           value={filterColumn}
@@ -102,11 +101,11 @@ export function DemoTable<T extends { id: number }>({
       </div>
       <div className="flex flex-col w-full p-3">
         {/* Table */}
-        <table className="w-full h-full   ">
-          <thead className="rounded-tl-2xl rounded-tr-2xl ring-2 ring-(--input-border)">
+        <table className="w-full h-full  rounded-2xl  ">
+          <thead className="rounded-tl-2xl rounded-tr-2xl ring-2 ring-(--input-border) ">
             <tr>
               {columns.map((key) => (
-                <th key={key} className="py-4 text-center">
+                <th key={key} className="py-4 px-4  text-center">
                   {key}
                 </th>
               ))}
@@ -114,50 +113,55 @@ export function DemoTable<T extends { id: number }>({
             </tr>
           </thead>
 
-          <tbody className="rounded-bl-2xl rounded-br-2xl ring-2 ring-(--input-border)">
+          <tbody className="ring-2 ring-(--input-border) rounded-bl-2xl rounded-br-2xl  ">
             <AnimatePresence mode="wait">
-              {currentData.map((tx) => (
-                <motion.tr
-                  key={tx.id}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  className="rounded-bl-2xl rounded-br-2xl ring-2 ring-(--input-border)"
-                >
-                  {columns.map((key) => (
-                    <td
-                      key={key}
-                      className="py-4 subtitle-small-title text-center"
-                    >
-                      {String(tx[key as keyof T] ?? "-")}
-                    </td>
-                  ))}
+              {currentData.map((tx, rowIndex) => {
+                const isLastRow = rowIndex === currentData.length - 1;
 
-                  {(onEdit || onDelete) && (
-                    <td className="text-center">
-                      <div className="flex justify-center gap-3">
-                        {onEdit && (
-                          <button
-                            onClick={() => onEdit(tx)}
-                            className="text-blue-600"
-                          >
-                            Edit
-                          </button>
-                        )}
-                        {onDelete && (
-                          <button
-                            disabled={disabled}
-                            onClick={() => onDelete(tx.id)}
-                            className="text-red-600"
-                          >
-                            Delete
-                          </button>
-                        )}
-                      </div>
-                    </td>
-                  )}
-                </motion.tr>
-              ))}
+                return (
+                  <motion.tr
+                    key={tx.id}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    className={`ring-1 ring-(--input-border)
+                              ${isLastRow ? "rounded-bl-2xl rounded-br-2xl" : ""}
+                            `}
+                  >
+                    {columns.map((key) => (
+                      <td
+                        key={key}
+                        className={`py-4 subtitle-small-title text-center
+                        `}
+                      >
+                        {String(tx[key as keyof T] ?? "-")}
+                      </td>
+                    ))}
+
+                    {(onEdit || onDelete) && (
+                      <td className="text-center">
+                        <div className="flex justify-center gap-3">
+                          {onEdit && (
+                            <DemoButton
+                              title="Edit"
+                              icon={FaPen}
+                              onClick={() => onEdit(tx)}
+                            />
+                          )}
+                          {onDelete && (
+                            <DemoButton
+                              isDisabled={disabled}
+                              title="Delete"
+                              icon={FaTrash}
+                              onClick={() => onDelete(tx.id)}
+                            />
+                          )}
+                        </div>
+                      </td>
+                    )}
+                  </motion.tr>
+                );
+              })}
             </AnimatePresence>
           </tbody>
         </table>
