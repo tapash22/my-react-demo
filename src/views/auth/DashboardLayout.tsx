@@ -2,7 +2,6 @@ import { Outlet, useLocation } from "react-router-dom";
 import { Suspense, useEffect, useRef, useState } from "react";
 import { DemoHeader } from "../../components/header/DemoHeader";
 import { DemoSideBar } from "../../components/header/DemoSideBar";
-import { AnimatePresence, motion } from "framer-motion";
 import Loader from "../../components/loader/Loader";
 
 export default function DashboardLayout() {
