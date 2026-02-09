@@ -1,73 +1,78 @@
-import { FUNDS_DATA } from "../../store/budget-data";
 import { DemoLinearProgressBar } from "../progressbar/DemoLinearProgressBar";
 import { AnimatePresence, motion } from "framer-motion";
-import { DemoCardHeader } from "./DemoCardHeader";
+import { DemoCardHeader, type DemoCardHeaderKeys } from "./DemoCardHeader";
 
-interface DemoCardWithProgressbarProps {
-  status?: string;
-  fundsData?: typeof FUNDS_DATA;
+export type FundKeyMap<T> = DemoCardHeaderKeys<T> & {
+  status: keyof T;
+  currentAmount: keyof T;
+  targetAmount: keyof T;
+};
+
+interface DemoCardWithProgressbarProps<T> {
+  fundsData: T[];
+  keys: FundKeyMap<T>;
+  status?: "completed" | "active" | "paused" | "all";
   direction?: boolean;
   haveAction?: boolean;
 }
 
-export function DemoCardWithProgressbar({
+export function DemoCardWithProgressbar<T>({
+  fundsData,
+  keys,
   status,
-  fundsData = FUNDS_DATA,
   direction = true,
   haveAction = true,
-}: DemoCardWithProgressbarProps) {
-  const onEdit = (id: number) => {
-    console.log("edit", id);
-  };
-  const onDelete = (id: number) => {
-    console.log("delete", id);
-  };
+}: DemoCardWithProgressbarProps<T>) {
+  const onEdit = (id: string | number) => console.log("edit", id);
+  const onDelete = (id: string | number) => console.log("delete", id);
 
-  // Filter data based on status
-  const filteredData = fundsData.filter((item) => {
-    if (!item) return true;
-    if (status === "completed") return item.status === "completed";
-    if (status === "active") return item.status === "active";
-    if (status === "paused") return item.status === "paused";
-    return true;
-  });
+  const filteredData = fundsData.filter((item) =>
+    status ? item[keys.status] === status : true,
+  );
+
   return (
     <div className="flex flex-col space-y-2 rounded-xl p-3 h-[50vh] overflow-y-scroll scrollbar-thin">
-      {/* {status} */}
       <AnimatePresence mode="wait">
         {filteredData.length === 0 ? (
-          <p>No Data foundes</p>
+          <p>No data found</p>
         ) : (
-          filteredData.map((item) => (
-            <motion.div
-              key={item.id}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.25 }}
-              className={`p-2 rounded-xl flex flex-col space-y-2 w-full h-full ${direction === true ? "ring-1 ring-(--input-border)" : "ring-0"}`}
-            >
-              {/* top part of card */}
+          filteredData.map((item, index) => {
+            const id = item[keys.id];
+            const currentAmount = Number(item[keys.currentAmount]);
+            const targetAmount = Number(item[keys.targetAmount]);
 
-              {/* left side */}
-              <DemoCardHeader
-                itemData={item}
-                onEdit={onEdit}
-                onDelete={onDelete}
-                direction={direction}
-                haveAction={haveAction}
-              />
-              {/* top part of card end */}
+            return (
+              <motion.div
+                key={String(id ?? index)}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.25 }}
+                className={`p-2 rounded-xl flex flex-col space-y-2 w-full ${
+                  direction ? "ring-1 ring-(--input-border)" : ""
+                }`}
+              >
+                <DemoCardHeader
+                  itemData={item}
+                  keys={{
+                    id: keys.id,
+                    name: keys.name,
+                    targetDate: keys.targetDate,
+                  }}
+                  onEdit={onEdit}
+                  onDelete={onDelete}
+                  direction={direction}
+                  haveAction={haveAction}
+                />
 
-              {/* progressbar */}
-              <DemoLinearProgressBar
-                currentAmount={item.currentAmount}
-                targetAmount={item.targetAmount}
-                showLabel={`$${item.currentAmount} of $${item.targetAmount}`}
-              />
-              {/* progressbar end */}
-            </motion.div>
-          ))
+                <DemoLinearProgressBar
+                  currentAmount={currentAmount}
+                  targetAmount={targetAmount}
+                  showLabel={`$${currentAmount} of $${targetAmount}`}
+                />
+              </motion.div>
+            );
+          })
         )}
       </AnimatePresence>
     </div>

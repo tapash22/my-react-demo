@@ -19,6 +19,15 @@ export default function SavingGoals() {
     savingsRate,
   } = useSavingsOverview(FUNDS_DATA, 1200, 1500, 6667);
 
+  const keys = {
+    id: "id",
+    name: "name",
+    targetDate: "targetDate",
+    status: "status",
+    currentAmount: "currentAmount",
+    targetAmount: "targetAmount",
+  } as const;
+
   // default active tab
   const [activeIndex, setActiveIndex] = useState(0);
   const activeTab = FUND_TABS[activeIndex];
@@ -101,7 +110,13 @@ export default function SavingGoals() {
         {/* Scrollable content */}
         <div className="flex-1 overflow-y-auto scrollbar">
           <DemoCardWithProgressbar
-            status={activeTab.value === "all" ? undefined : activeTab.value}
+            fundsData={FUNDS_DATA}
+            keys={keys}
+            status={
+              activeTab.value === "all"
+                ? undefined
+                : (activeTab.value as "active" | "paused" | "completed")
+            }
           />
         </div>
       </div>
