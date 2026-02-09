@@ -10,6 +10,7 @@ import { DemoList } from "../../components/list/DemoList";
 import { DemoIcon } from "../../components/common-property/DemoIcon";
 import { NavLink } from "react-router-dom";
 import { DemoCardWithProgressbar } from "../../components/cards/DemoCardWithProgressbar";
+import { GoalTrackerCard } from "../../components/cards/GoalTrackerCard";
 
 export default function Home() {
   const date: Date = new Date();
@@ -102,7 +103,7 @@ export default function Home() {
                     to={`/dashboard/${page.path}`}
                     className="h-full"
                   >
-                    <div className="flex flex-col justify-center items-center bg-transparent hover:bg-(--background) hover:opacity-50  px-3 py-4 h-full space-y-2 ">
+                    <div className="flex flex-col justify-center items-center bg-transparent hover:bg-(--background) hover:text-(--muted) hover:opacity-80  px-3 py-4 h-full space-y-2 ">
                       <DemoIcon size={16} icon={page.icon} />
                       <span className="tracking-wide text-sm text-center font-normal text-(--forground) ">
                         {page.name}
@@ -143,17 +144,11 @@ export default function Home() {
           </div>
 
           <div className="block w-full h-auto ring-2 ring-(--input-border) rounded-xl ">
-            <div className="flex justify-between items-center p-4 w-full">
-              <p className="text-lg font-medium tracking-wide text-wrap text-(--forground)">
-                Saving Plans
-              </p>
-              <NavLink
-                to={`/dashboard/saving-goals`}
-                className="underline tracking-wide text-sm font-semibold text-(--forground)"
-              >
-                View All
-              </NavLink>
-            </div>
+            <GoalTrackerCard
+              title="Budget Performance"
+              path="/dashboard/budget-planning"
+              pathTitle="View All"
+            />
             <DemoCardWithProgressbar direction={false} />
           </div>
         </div>
@@ -187,17 +182,11 @@ export default function Home() {
         </div>
         <div className="w-1/4 h-auto p-2 block space-y-5">
           <div className="block w-full h-auto ring-2 ring-(--input-border) rounded-xl ">
-            <div className="flex justify-between items-center p-4 w-full">
-              <p className="text-lg font-medium tracking-wide text-wrap text-(--forground)">
-                Saving Plans
-              </p>
-              <NavLink
-                to={`/dashboard/saving-goals`}
-                className="underline tracking-wide text-sm font-semibold text-(--forground)"
-              >
-                View All
-              </NavLink>
-            </div>
+            <GoalTrackerCard
+              title="Saving Plans"
+              path="/dashboard/saving-goals"
+              pathTitle="Add Plan"
+            />
             <DemoCardWithProgressbar direction={false} />
           </div>
         </div>

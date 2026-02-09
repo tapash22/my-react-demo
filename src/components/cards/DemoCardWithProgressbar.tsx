@@ -30,7 +30,7 @@ export function DemoCardWithProgressbar({
     return true;
   });
   return (
-    <div className="flex flex-col space-y-2 rounded-xl p-2 h-[50vh] overflow-y-scroll scrollbar-thin">
+    <div className="flex flex-col space-y-2 rounded-xl p-3 h-[50vh] overflow-y-scroll scrollbar-thin">
       {/* {status} */}
       <AnimatePresence mode="wait">
         {filteredData.length === 0 ? (
