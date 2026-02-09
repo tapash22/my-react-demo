@@ -11,32 +11,29 @@ import { DemoIcon } from "../../components/common-property/DemoIcon";
 import { NavLink } from "react-router-dom";
 import { DemoCardWithProgressbar } from "../../components/cards/DemoCardWithProgressbar";
 import { GoalTrackerCard } from "../../components/cards/GoalTrackerCard";
-import { formatDate } from "../../utils/formatDate";
+import { PageHeaderCard } from "../../components/cards/PageHeaderCard";
 
 export default function Home() {
-  const today = new Date();
-
   return (
     <div className="w-full h-full p-2 m-0 flex flex-col scrollbar-thin">
       {/* dashboard top component view */}
       <div className="block w-full h-auto p-2 space-y-5">
-        {/* header title  */}
-        <div className="flex justify-between w-full h-auto items-center p-2 ">
-          <h2 className="flex flex-col">
-            <span className="section-title text-(--title)">Dashboard</span>
-            <span className="subtitle-small-title text-(--subtitle)">
-              {formatDate(today)}
-            </span>
-          </h2>
-          <div className="flex justify-end items-center gap-5">
-            <DemoButton title="Export Data" />
-            <DemoButton
-              title="View Reports"
-              buttonColor="bg-blue-950"
-              textColor="text-gray-200"
-            />
-          </div>
-        </div>
+        {/* header  */}
+        <PageHeaderCard
+          title="Dashboard"
+          children={
+            <div className="flex justify-end items-center gap-5">
+              <DemoButton title="Export Data" />
+              <DemoButton
+                title="View Reports"
+                buttonColor="bg-blue-950"
+                textColor="text-gray-200"
+              />
+            </div>
+          }
+        />
+        {/* header end  */}
+
         <div className="grid grid-cols-4 gap-3 p-2">
           {status.map((item, i) => (
             <Democard
