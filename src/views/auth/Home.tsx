@@ -13,10 +13,7 @@ import { DemoCardWithProgressbar } from "../../components/cards/DemoCardWithProg
 import { GoalTrackerCard } from "../../components/cards/GoalTrackerCard";
 import { PageHeaderCard } from "../../components/cards/PageHeaderCard";
 import { useState } from "react";
-import { DemoAvatar } from "../../components/avatar/DemoAvatar";
-import { FaUser } from "react-icons/fa";
 import { FUNDS_DATA } from "../../store/budget-data";
-import { formatRelativeDate } from "../../utils/formatDate";
 import { activities } from "../../store/budget-data";
 import { DemoDetailsCard } from "../../components/cards/DemoDetailsCard";
 
@@ -143,7 +140,15 @@ export default function Home() {
             )}
             {/* //using for dropdown menu end */}
 
-            <DemoDetailsCard items={activities} />
+            <DemoDetailsCard
+              items={activities}
+              keys={{
+                name: "name",
+                action: "action",
+                amount: "amount",
+                time: "time",
+              }}
+            />
           </div>
         </div>
         {/* right side end */}
