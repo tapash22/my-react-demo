@@ -3,16 +3,6 @@ import { Transaction } from "../Transaction";
 import { StatisticDoughnutChart } from "../../components/chart/StatisticDoughnutChart";
 import { MonthlyIncomeExpenseLabelChart } from "../../components/chart/MonthlyIncomeExpenseLabelChart";
 import { MonthlyIncomeExpenseLineChart } from "../../components/chart/MonthlyIncomeExpenseLineChart";
-import {
-  increment,
-  decrement,
-  incrementByAmount,
-} from "../../features/counter/counterSlice";
-import { useDispatch, useSelector } from "react-redux";
-import type { RootState } from "../../store";
-import { UsersList } from "./UsersList";
-import { DemoSelect, type Option } from "../../components/select/DemoSelect";
-import { useState } from "react";
 import { DemoButton } from "../../components/button/DemoButton";
 import card from "../../assets/images/card.jpg";
 import { QUICK_ROUTING_PAGES } from "../../store/budget-data";
@@ -23,10 +13,6 @@ import { DemoCardWithProgressbar } from "../../components/cards/DemoCardWithProg
 
 export default function Home() {
   const date: Date = new Date();
-
-  //using store
-  const count = useSelector((state: RootState) => state.counter.value);
-  const dispatch = useDispatch();
 
   const formatteddate: string = date.toLocaleDateString("en-US", {
     weekday: "long",
@@ -61,19 +47,6 @@ export default function Home() {
       trend: "up",
     },
   ];
-
-  const [selectedCountry, setSelectedCountry] = useState<Option | null>(null);
-
-  const countries = [
-    { id: 1, label: "Bangladesh", value: "BD" },
-    { id: 2, label: "India", value: "IN" },
-    { id: 3, label: "USA", value: "US" },
-  ];
-
-  const handleCountryChange = (selected: Option | null) => {
-    setSelectedCountry(selected);
-    console.log("Selected country:", selected);
-  };
 
   return (
     <div className="w-full h-full p-2 m-0 flex flex-col">
@@ -212,6 +185,7 @@ export default function Home() {
           </div>
           {/* table with pagination end */}
         </div>
+
         <div className="w-1/4 h-auto p-2 block space-y-5">
           <div className="block w-full h-auto ring-2 ring-(--input-border) rounded-xl ">
             <div className="flex justify-between items-center p-4 w-full">
@@ -229,48 +203,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-
-      {/* dashboard top component view end */}
-      {/* <div className="block w-full h-auto p-2 space-y-5">
-        country is: {selectedCountry?.label}
-        <DemoSelect
-          label="Country"
-          onChange={handleCountryChange}
-          options={countries}
-        />
-      </div> */}
-      {/* fetch user list from api */}
-      {/* <div className="block w-full h-auto p-2 space-y-5">
-        <UsersList />
-      </div> */}
-      {/* fetch user list end from api */}
-
-      {/* store use */}
-      {/* <div className="block w-full h-auto p-2 space-y-5">
-        <h1>Count: {count}</h1>
-        <button
-          className="px-5 py-1 bg-accent"
-          onClick={() => dispatch(increment())}
-        >
-          +
-        </button>
-        <button
-          className="px-5 py-1 bg-accent"
-          onClick={() => dispatch(decrement())}
-        >
-          -
-        </button>
-        <button
-          className="px-5 py-1 bg-accent"
-          onClick={() => dispatch(incrementByAmount(5))}
-        >
-          value
-        </button>
-      </div> */}
-      {/* store end */}
-      {/* chart start */}
-
-      {/* chart start end */}
     </div>
   );
 }
