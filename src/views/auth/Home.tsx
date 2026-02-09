@@ -5,49 +5,16 @@ import { MonthlyIncomeExpenseLabelChart } from "../../components/chart/MonthlyIn
 import { MonthlyIncomeExpenseLineChart } from "../../components/chart/MonthlyIncomeExpenseLineChart";
 import { DemoButton } from "../../components/button/DemoButton";
 import card from "../../assets/images/card.jpg";
-import { QUICK_ROUTING_PAGES } from "../../store/budget-data";
+import { QUICK_ROUTING_PAGES, status } from "../../store/budget-data";
 import { DemoList } from "../../components/list/DemoList";
 import { DemoIcon } from "../../components/common-property/DemoIcon";
 import { NavLink } from "react-router-dom";
 import { DemoCardWithProgressbar } from "../../components/cards/DemoCardWithProgressbar";
 import { GoalTrackerCard } from "../../components/cards/GoalTrackerCard";
+import { formatDate } from "../../utils/formatDate";
 
 export default function Home() {
-  const date: Date = new Date();
-
-  const formatteddate: string = date.toLocaleDateString("en-US", {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-
-  const stats = [
-    {
-      title: "Total Income",
-      amount: "$7.8k",
-      change: "+1.78%",
-      trend: "up",
-    },
-    {
-      title: "Total Expense",
-      amount: "$4.3k",
-      change: "-1.78%",
-      trend: "down",
-    },
-    {
-      title: "Total Savings",
-      amount: "$5.6k",
-      change: "+1.24%",
-      trend: "up",
-    },
-    {
-      title: "Total Investment",
-      amount: "$3.75k",
-      change: "+66.95%",
-      trend: "up",
-    },
-  ];
+  const today = new Date();
 
   return (
     <div className="w-full h-full p-2 m-0 flex flex-col scrollbar-thin">
@@ -58,7 +25,7 @@ export default function Home() {
           <h2 className="flex flex-col">
             <span className="section-title text-(--title)">Dashboard</span>
             <span className="subtitle-small-title text-(--subtitle)">
-              {formatteddate}
+              {formatDate(today)}
             </span>
           </h2>
           <div className="flex justify-end items-center gap-5">
@@ -71,7 +38,7 @@ export default function Home() {
           </div>
         </div>
         <div className="grid grid-cols-4 gap-3 p-2">
-          {stats.map((item, i) => (
+          {status.map((item, i) => (
             <Democard
               key={i}
               amount={item.amount}
@@ -185,7 +152,7 @@ export default function Home() {
             <GoalTrackerCard
               title="Saving Plans"
               path="/dashboard/saving-goals"
-              pathTitle="Add Plan"
+              pathTitle="Add Plans"
             />
             <DemoCardWithProgressbar direction={false} />
           </div>

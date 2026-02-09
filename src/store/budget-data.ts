@@ -278,3 +278,30 @@ export const getIcon = (name: string) => {
       return null;
   }
 };
+
+export const status = [
+  {
+    title: "Total Income",
+    amount: "$7.8k",
+    change: "+1.78%",
+    trend: "up",
+  },
+  {
+    title: "Total Expense",
+    amount: "$4.3k",
+    change: "-1.78%",
+    trend: "down",
+  },
+  {
+    title: "Total Savings",
+    amount: "$5.6k",
+    change: "+1.24%",
+    trend: "up",
+  },
+  {
+    title: "Total Investment",
+    amount: "$3.75k",
+    change: "+66.95%",
+    trend: "up",
+  },
+];

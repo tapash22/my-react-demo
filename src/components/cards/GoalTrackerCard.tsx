@@ -18,7 +18,7 @@ export function GoalTrackerCard({
       </p>
       <NavLink
         to={path}
-        className="underline tracking-wide text-sm font-semibold text-(--forground)"
+        className="underline tracking-wide text-sm font-bold text-(--forground)"
       >
         {pathTitle}
       </NavLink>
