@@ -49,7 +49,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="w-full h-full p-2 m-0 flex flex-col">
+    <div className="w-full h-full p-2 m-0 flex flex-col scrollbar-thin">
       {/* dashboard top component view */}
       <div className="block w-full h-auto p-2 space-y-5">
         {/* header title  */}
@@ -185,7 +185,6 @@ export default function Home() {
           </div>
           {/* table with pagination end */}
         </div>
-
         <div className="w-1/4 h-auto p-2 block space-y-5">
           <div className="block w-full h-auto ring-2 ring-(--input-border) rounded-xl ">
             <div className="flex justify-between items-center p-4 w-full">

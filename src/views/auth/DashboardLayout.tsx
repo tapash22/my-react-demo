@@ -18,7 +18,7 @@ export default function DashboardLayout() {
   }, [location.pathname]);
 
   return (
-    <div className="h-screen w-full flex overflow-hidden ">
+    <div className="h-screen w-full flex overflow-hidden  ">
       {/* Navbar */}
       <DemoSideBar collapsed={collapsed} />
 
@@ -28,7 +28,7 @@ export default function DashboardLayout() {
         {/* header end */}
 
         {/* main body with routing and animation */}
-        <main className="flex-1 overflow-hidden relative">
+        <main className="flex-1 overflow-hidden relative ">
           <Suspense fallback={<Loader />}>
             <Outlet />
           </Suspense>
