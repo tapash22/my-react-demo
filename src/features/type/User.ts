@@ -74,3 +74,11 @@ export interface Page {
   path: string;
   icon: IconType;
 }
+
+export interface Activity {
+  name: string;
+  action: string;
+  category?: string; // optional, e.g., for "Food & Drink"
+  amount?: string; // optional, e.g., "$200"
+  time: string;
+}

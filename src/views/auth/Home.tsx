@@ -18,6 +18,7 @@ import { DemoAvatar } from "../../components/avatar/DemoAvatar";
 import { FaUser } from "react-icons/fa";
 import avatoar from "../../assets/images/avatar.jpg";
 import { formatRelativeDate } from "../../utils/formatDate";
+import { activities } from "../../store/budget-data";
 
 export default function Home() {
   const [openMenu, setOpenMenu] = useState(false);
@@ -126,12 +127,42 @@ export default function Home() {
             />
             {openMenu && (
               <div className="w-10 h-10 ">
-                <DemoAvatar image={avatoar} />
-                <DemoAvatar icon={FaUser} />
-                {formatRelativeDate(new Date())}
+                <p>hi</p>
               </div>
             )}
-            <DemoCardWithProgressbar direction={false} haveAction={false} />
+            <div className="w-full h-auto p-2 block">
+              <h2 className="text-sm font-bold tracking-wider p-2 text-(--forground)">
+                {formatRelativeDate(new Date())}
+              </h2>
+              <div className="flex flex-col space-y-1 rounded-xl h-[50vh] overflow-y-scroll scrollbar-thin">
+                {activities &&
+                  activities.map((item, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className="flex justify-start items-center p-2 gap-3 opacity-80 hover:opacity-100 hover:bg-(--surface)"
+                      >
+                        <div className="w-12 h-10 flex justify-center items-center ">
+                          <DemoAvatar icon={FaUser} />
+                        </div>
+
+                        <div className="block w-full h-auto">
+                          <p className="text-sm font-medium text-wrap tracking-wide text-(--forground) space-x-2">
+                            <span className="tracking-wider font-medium text-sm">
+                              {item.name}
+                            </span>
+                            <span>{item.action}</span>{" "}
+                            <span>{item.amount}</span>
+                          </p>
+                          <p className="text-sm font-medium tracking-wider  py-1 text-(--forground) ">
+                            {item.time}
+                          </p>
+                        </div>
+                      </div>
+                    );
+                  })}
+              </div>
+            </div>
           </div>
         </div>
         {/* right side end */}

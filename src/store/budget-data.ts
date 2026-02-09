@@ -22,6 +22,7 @@ import { FaPhotoFilm, FaArrowTrendUp } from "react-icons/fa6";
 import { FiCreditCard } from "react-icons/fi";
 import { TbCardsFilled } from "react-icons/tb";
 import { IoMdSettings } from "react-icons/io";
+import type { Activity } from "../features/type/User";
 
 export const myBudget: Budget = {
   personalInfo: {
@@ -303,5 +304,65 @@ export const status = [
     amount: "$3.75k",
     change: "+66.95%",
     trend: "up",
+  },
+];
+
+export const activities: Activity[] = [
+  {
+    name: "Sarah Parker",
+    action: "added a new expense",
+    category: "Food & Drink",
+    time: "15:30",
+  },
+  {
+    name: "David Miller",
+    action: "created a monthly savings goal",
+    amount: "$500",
+    time: "11:20",
+  },
+  {
+    name: "Emma Wilson",
+    action: "transferred",
+    amount: "$200",
+    category: "Investment account",
+    time: "09:10",
+  },
+  {
+    name: "Sarah Parker",
+    action: "added a new expense",
+    category: "Food & Drink",
+    time: "15:30",
+  },
+  {
+    name: "David Miller",
+    action: "created a monthly savings goal",
+    amount: "$500",
+    time: "11:20",
+  },
+  {
+    name: "Emma Wilson",
+    action: "transferred",
+    amount: "$200",
+    category: "Investment account",
+    time: "09:10",
+  },
+  {
+    name: "Sarah Parker",
+    action: "added a new expense",
+    category: "Food & Drink",
+    time: "15:30",
+  },
+  {
+    name: "David Miller",
+    action: "created a monthly savings goal",
+    amount: "$500",
+    time: "11:20",
+  },
+  {
+    name: "Emma Wilson",
+    action: "transferred",
+    amount: "$200",
+    category: "Investment account",
+    time: "09:10",
   },
 ];
