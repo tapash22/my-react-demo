@@ -366,3 +366,43 @@ export const activities: Activity[] = [
     time: "09:10",
   },
 ];
+
+export const budgetData = {
+  title: "Budget Summary",
+  month: "May 2024",
+  stats: {
+    totalBudget: 3000,
+    totalSpent: 2230,
+    remaining: 770,
+  },
+  dailyInsight: {
+    amount: 77,
+    daysRemaining: 10,
+  },
+  categories: [
+    {
+      id: 1,
+      name: "Housing",
+      currentAmount: 40,
+      targetAmount: 100,
+      icon: FaHome,
+      color: "bg-green-600",
+    },
+    {
+      id: 2,
+      name: "Food & Dining",
+      currentAmount: 12,
+      targetAmount: 100,
+      icon: FaCar,
+      color: "bg-green-600",
+    },
+    {
+      id: 3,
+      name: "Shopping",
+      currentAmount: 7,
+      targetAmount: 100,
+      icon: FaGift,
+      color: "bg-green-600",
+    },
+  ],
+};

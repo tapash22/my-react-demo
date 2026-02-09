@@ -3,12 +3,14 @@ interface DemoLinearProgressBar {
   targetAmount: number;
   height?: string;
   showLabel?: string;
+  children?: React.ReactNode;
 }
 export function DemoLinearProgressBar({
   currentAmount,
   targetAmount,
   height = "h-2.5",
   showLabel = "",
+  children,
 }: DemoLinearProgressBar) {
   const percentage =
     targetAmount > 0 ? Math.round((currentAmount / targetAmount) * 100) : 0;
@@ -24,8 +26,15 @@ export function DemoLinearProgressBar({
   return (
     <div className="w-full">
       {/* Label below the bar */}
-      {showLabel && (
-        <p className="p-2 text-sm text-gray-600 text-left">{showLabel}</p>
+      {showLabel.length > 0 && showLabel ? (
+        <p className="p-2 text-sm text-(--forground) text-left flex justify-between ">
+          {showLabel}
+          <span className="text-sm text-(--forground) text-right">
+            {safePercentage} %
+          </span>
+        </p>
+      ) : (
+        children
       )}
       <div
         className={`w-full bg-(--input-bg) ring-2 ring-(--input-border) rounded-full overflow-hidden ${height}`}
