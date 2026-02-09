@@ -78,7 +78,6 @@ export function DemoTable<T extends { id: number }>({
   return (
     <div className="w-full rounded-xl bg-(--background) shadow-md spacer-y-5">
       {/* Search */}
-      {currentData.length}
       <div className="w-1/3 h-auto p-3 flex justify-center align-bottom  ">
         <DemoDropdownSelect
           value={filterColumn}

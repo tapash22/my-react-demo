@@ -12,8 +12,19 @@ import { NavLink } from "react-router-dom";
 import { DemoCardWithProgressbar } from "../../components/cards/DemoCardWithProgressbar";
 import { GoalTrackerCard } from "../../components/cards/GoalTrackerCard";
 import { PageHeaderCard } from "../../components/cards/PageHeaderCard";
+import { useState } from "react";
+import { DemoAvatar } from "../../components/avatar/DemoAvatar";
+// import { FaHome, FaTimes, FaUser } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
+import avatoar from "../../assets/images/avatar.jpg";
 
 export default function Home() {
+  const [openMenu, setOpenMenu] = useState(false);
+
+  const handleRecentActivityAction = () => {
+    console.log("click");
+    setOpenMenu(true);
+  };
   return (
     <div className="w-full h-full p-2 m-0 flex flex-col scrollbar-thin">
       {/* dashboard top component view */}
@@ -109,10 +120,15 @@ export default function Home() {
 
           <div className="block w-full h-auto ring-2 ring-(--input-border) rounded-xl ">
             <GoalTrackerCard
-              title="Budget Performance"
-              path="/dashboard/budget-planning"
-              pathTitle="View All"
+              title="Recent Activity"
+              onClick={handleRecentActivityAction}
             />
+            {openMenu && (
+              <div className="w-10 h-10 ">
+                <DemoAvatar image={avatoar} />
+                <DemoAvatar icon={FaUser} />
+              </div>
+            )}
             <DemoCardWithProgressbar direction={false} haveAction={false} />
           </div>
         </div>
@@ -120,6 +136,7 @@ export default function Home() {
       </div>
       {/* dashboard body component view end*/}
 
+      {/* dashboard bottom component view */}
       <div className="flex gap-3 items-start w-full h-auto p-2">
         <div className="w-1/4 h-auto p-2 block space-y-5">
           <div className="block w-full h-auto ring-2 ring-(--input-border) rounded-xl ">
@@ -148,6 +165,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      {/* dashboard bottom component view end */}
     </div>
   );
 }
