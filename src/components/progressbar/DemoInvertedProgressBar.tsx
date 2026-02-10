@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { DemoLinearProgressBar } from "./DemoLinearProgressBar";
 import { FaUser } from "react-icons/fa";
+import { DemoAvatar } from "../avatar/DemoAvatar";
 
 interface DemoInvertedProgressBarProps {
   currentAmount: number;
@@ -38,10 +39,10 @@ export function DemoInvertedProgressBar({
     <div className="w-full p-6 bg-(--surface) rounded-xl">
       {/* Top Bar: Visual feedback of the inverse value */}
       <div className="space-y-4">
-        <div className="flex justify-between text-xs font-semibold text-(--foreground) opacity-70">
-          <div className="flex justify-start items-center gap-2">
-            <div className=" bg-(--surface) text-(--forground) rounded-xl">
-              <FaUser size={22} />
+        <div className="flex justify-between items-center text-xs font-semibold text-(--foreground) opacity-70 w-full">
+          <div className="flex justify-start items-center gap-3 w-1/2 h-auto ">
+            <div className=" bg-(--surface)  text-(--forground) rounded-xl h-auto  ">
+              <DemoAvatar size={10} icon={FaUser} />
             </div>
             <h2 className="text-lg font-semibold text-(--forground)">
               {title && title}

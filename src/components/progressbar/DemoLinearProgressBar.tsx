@@ -20,7 +20,7 @@ export function DemoLinearProgressBar({
   const getColor = () => {
     if (safePercentage < 40) return "bg-(--danger)";
     if (safePercentage < 70) return "bg-(--secondary)";
-    return "bg-(--success)";
+    return "bg-(--muted)";
   };
 
   return (
