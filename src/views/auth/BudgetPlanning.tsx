@@ -4,8 +4,13 @@ import { PageHeaderCard } from "../../components/cards/PageHeaderCard";
 import { budgetData } from "../../store/budget-data";
 import { DemoLinearProgressBar } from "../../components/progressbar/DemoLinearProgressBar";
 import { DemoAvatar } from "../../components/avatar/DemoAvatar";
+import { categories } from "../../store/budget-data";
+import { useState } from "react";
+import { DemoCardExpansion } from "../../components/cards/demoCardExpansion";
 
 export default function BudgetPlanning() {
+  const [budget, setBudget] = useState("");
+
   const { totalBudget, totalSpent, remaining } = budgetData.stats;
   const { amount, daysRemaining } = budgetData.dailyInsight;
 
@@ -17,6 +22,11 @@ export default function BudgetPlanning() {
 
   const handleClick = () => {
     console.log("click");
+  };
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setBudget(e.target.value);
+    console.log(budget);
   };
 
   return (
@@ -108,7 +118,40 @@ export default function BudgetPlanning() {
           </div>
         </div>
         <div className="w-2/3 h-auto p-2 block space-y-5">
-          <div className="block w-full h-auto ring-2 ring-(--input-border) rounded-xl p-3 "></div>
+          <div className="block w-full h-auto ring-2 ring-(--input-border) rounded-xl p-3 ">
+            <PageHeaderCard title="Budget Categories " visibleDate={false} />
+            <div className="flex justify-between items-center p-2 w-full h-auto">
+              <div className="w-1/2 h-auto flex justify-start items-center gap-3 ">
+                <p className="text-wrap text-lg font-medium tracking-wider ">
+                  Total budget: $3000
+                </p>
+                |
+                <p className="text-wrap text-lg font-medium tracking-wider ">
+                  Allocated: $2800
+                </p>
+              </div>
+              <div className="w-1/2 h-auto flex justify-end items-center gap-3 ">
+                <p className="text-sm font-normal text-wrap ">Manage Budget:</p>
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  value={budget}
+                  onChange={handleSearch}
+                  className="input-search "
+                />
+                <DemoButton
+                  title="update"
+                  icon={FaPlus}
+                  onClick={() => handleClick}
+                />
+              </div>
+            </div>
+            <div className="flex flex-col w-full space-y-2">
+              {categories.map((category) => (
+                <DemoCardExpansion data={category} />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>

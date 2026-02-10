@@ -22,7 +22,7 @@ import { FaPhotoFilm, FaArrowTrendUp } from "react-icons/fa6";
 import { FiCreditCard } from "react-icons/fi";
 import { TbCardsFilled } from "react-icons/tb";
 import { IoMdSettings } from "react-icons/io";
-import type { Activity } from "../features/type/User";
+import type { Activity, CategoryData } from "../features/type/User";
 
 export const myBudget: Budget = {
   personalInfo: {
@@ -406,3 +406,63 @@ export const budgetData = {
     },
   ],
 };
+
+// Array of objects
+export const categories: CategoryData[] = [
+  {
+    category: "Food & Dining",
+    spent: 350,
+    budget: 500,
+    percentage: 70,
+    recentTransactions: [
+      { title: "Grocery Store", date: "May 20, 2024", amount: 85 },
+      { title: "Restaurant Dinner", date: "May 18, 2024", amount: 65 },
+      { title: "Coffee Shop", date: "May 15, 2024", amount: 25 },
+      { title: "Lunch", date: "May 12, 2024", amount: 35 },
+      { title: "Grocery Store", date: "May 8, 2024", amount: 140 },
+    ],
+  },
+  {
+    category: "Entertainment",
+    spent: 120,
+    budget: 200,
+    percentage: 60,
+    recentTransactions: [
+      { title: "Movie Night", date: "May 19, 2024", amount: 50 },
+      { title: "Concert", date: "May 10, 2024", amount: 70 },
+    ],
+  },
+  {
+    category: "Transport",
+    spent: 80,
+    budget: 150,
+    percentage: 53,
+    recentTransactions: [
+      { title: "Gas", date: "May 18, 2024", amount: 40 },
+      { title: "Taxi", date: "May 15, 2024", amount: 20 },
+      { title: "Bus Pass", date: "May 10, 2024", amount: 20 },
+    ],
+  },
+  {
+    category: "Utilities",
+    spent: 200,
+    budget: 250,
+    percentage: 80,
+    recentTransactions: [
+      { title: "Electricity Bill", date: "May 20, 2024", amount: 100 },
+      { title: "Water Bill", date: "May 15, 2024", amount: 50 },
+      { title: "Internet", date: "May 10, 2024", amount: 50 },
+    ],
+  },
+  {
+    category: "Shopping",
+    spent: 300,
+    budget: 400,
+    percentage: 75,
+    recentTransactions: [
+      { title: "Clothes", date: "May 18, 2024", amount: 120 },
+      { title: "Shoes", date: "May 15, 2024", amount: 80 },
+      { title: "Accessories", date: "May 12, 2024", amount: 100 },
+    ],
+  },
+];

@@ -82,3 +82,17 @@ export interface Activity {
   amount?: string; // optional, e.g., "$200"
   time: string;
 }
+
+export interface BudgetTransaction {
+  title: string;
+  date: string;
+  amount: number;
+}
+
+export interface CategoryData {
+  category: string;
+  spent: number;
+  budget: number;
+  percentage: number;
+  recentTransactions: BudgetTransaction[];
+}
