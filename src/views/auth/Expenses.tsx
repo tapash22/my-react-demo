@@ -9,6 +9,7 @@ import { Doughnut } from "react-chartjs-2";
 import { centerTextPlugin } from "../../components/chart/centerTextPlugin";
 import type { DoughnutChartOptions } from "../../features/type/User";
 import { cssVar } from "../../utils/cssVar";
+import { FinanceList } from "../../components/item/FinanceList";
 
 export default function Expenses() {
   const handleClick = () => {
@@ -19,7 +20,7 @@ export default function Expenses() {
   const total = values.reduce((sum, i) => sum + i, 0);
 
   const data = {
-    labels: categoryExpenses.map((item) => item.category),
+    labels: categoryExpenses.map((item) => item.label),
     datasets: [
       {
         data: values,
@@ -42,7 +43,7 @@ export default function Expenses() {
   const options: DoughnutChartOptions = {
     responsive: true,
     //start from
-    rotation: -180,
+    rotation: 90,
 
     // anti-clockwise
     circumference: -360,
@@ -54,7 +55,7 @@ export default function Expenses() {
       animateRotate: true,
       animateScale: true, // optional smooth scale
       duration: 1000,
-      easing: "easeOutQuart",
+      easing: "easeInOutCirc",
     },
     centerText: {
       valueColor: cssVar("--demo"), // total number color
@@ -123,6 +124,9 @@ export default function Expenses() {
                 options={options}
                 plugins={[centerTextPlugin]}
               />
+            </div>
+            <div className="w-full h-auto space-y-3 p-5  overflow-hidden">
+              <FinanceList dataList={categoryExpenses} direction={false} />
             </div>
           </div>
         </div>

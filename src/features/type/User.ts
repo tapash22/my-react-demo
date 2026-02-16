@@ -98,13 +98,6 @@ export interface CategoryData {
   recentTransactions: BudgetTransaction[];
 }
 
-export interface CategoryExpense {
-  category: string;
-  amount: number;
-}
-
-// src/assets/type/budget-type.ts
-
 export interface CenterTextOptions {
   valueColor?: string; // color of total value
   labelColor?: string; // color of title text

@@ -3,8 +3,9 @@ import type { FinanceItem } from "../../assets/type/budget-type";
 
 interface FinanceListProps {
   dataList: FinanceItem[];
+  direction?: boolean;
 }
-export function FinanceList({ dataList }: FinanceListProps) {
+export function FinanceList({ dataList, direction = true }: FinanceListProps) {
   return (
     <>
       <ul className="space-y-2 w-full overflow-hidden relative  ">
@@ -27,23 +28,39 @@ export function FinanceList({ dataList }: FinanceListProps) {
                 layout // Smoothly animates position changes
                 className="flex justify-between rounded-lg p-1 overflow-hidden"
               >
-                <div className="flex justify-start items-center gap-3">
-                  <div className="px-3 py-1 max-w-[50px] rounded-sm bg-(--surface) flex justify-center items-center">
+                <div
+                  className={`flex justify-start items-center ${direction === true ? "gap-3" : "gap-2"}`}
+                >
+                  {/* <div className="px-3 py-1 max-w-[50px] rounded-sm bg-(--surface) flex justify-center items-center">
+                  </div> */}
+                  {direction === true ? (
                     <span
                       className="font-normal
                      text-(--foreground) tracking-wide"
                     >
                       {item.percentage}%
                     </span>
-                  </div>
-                  <span className="font-medium text-sm tracking-wide text-(--muted)">
+                  ) : (
+                    <span className="w-2 h-2 rounded-full bg-(--primary)"></span>
+                  )}
+
+                  <span className="subtitle-small-title font-semibold">
                     {item.label}
                   </span>
                 </div>
-                <div className="flex justify-end items-center font-semibold text-sm tracking-wide">
+                <div className="flex justify-end items-center font-semibold text-sm tracking-wide space-x-1">
                   <span className="subtitle-small-title space-x-0.5">
                     $ {item.amount}
                   </span>
+
+                  {direction === false && (
+                    <span
+                      className="font-normal
+                     text-(--foreground) tracking-wide"
+                    >
+                      ({item.percentage}%)
+                    </span>
+                  )}
                 </div>
               </motion.li>
             ))}
