@@ -16,8 +16,15 @@ export default function Expenses() {
     console.log("click");
   };
 
+  const lastMonth = 2350;
   const values = categoryExpenses.map((expense) => expense.amount);
   const total = values.reduce((sum, i) => sum + i, 0);
+
+  const difference = total - lastMonth;
+  const percentageChange = (difference / lastMonth) * 100;
+
+  // Determine sign for display
+  const sign = difference >= 0 ? "+" : "-";
 
   const data = {
     labels: categoryExpenses.map((item) => item.label),
@@ -82,7 +89,7 @@ export default function Expenses() {
   return (
     <div className="w-full h-full p-2 m-0 flex flex-col scrollbar-thin">
       {/* header  */}
-      <div className="block w-full h-auto p-2 space-y-5">
+      <div className="block w-full h-auto p-2 space-y-5 ">
         <PageHeaderCard
           title="Expenses"
           visibleDate={false}
@@ -109,7 +116,7 @@ export default function Expenses() {
 
         {/* right side */}
         <div className="w-1/3 p-2 sticky top-2 ">
-          <div className="block w-full h-auto ring-2 ring-(--input-border) rounded-xl p-3 space-y-3 py-5 bg-(--surface)">
+          <div className="block w-full h-auto ring-2 ring-(--input-border) rounded-xl p-3 space-y-3 py-5 bg-(--surface) ">
             <PageHeaderCard
               title="Expense Breakdown"
               subtitle="Current month spending by category"
@@ -125,8 +132,44 @@ export default function Expenses() {
                 plugins={[centerTextPlugin]}
               />
             </div>
-            <div className="w-full h-auto space-y-3 p-5  overflow-hidden">
+            <div className="w-full h-auto space-y-3 p-2  overflow-hidden">
               <FinanceList dataList={categoryExpenses} direction={false} />
+            </div>
+            {/* <p className="text-xl font-bold text-(--foreground)">
+                    ${stat.value.toLocaleString()}
+                  </p> */}
+            <div className="w-full p-3 flex flex-col space-y-3">
+              <p className="text-sm font-medium text-(--forground) text-left ">
+                Monthly Comparison
+              </p>
+              {/* Last Month */}
+              <div className="bg-(--surface) rounded-lg space-y-1 flex justify-between items-center">
+                <p className="text-sm text-(--foreground)">Last Month</p>
+                <p className="font-medium text-sm text-(--foreground) ">
+                  ${lastMonth}
+                </p>
+              </div>
+              {/* Last Month end*/}
+
+              {/* This Month */}
+              <div className="bg-(--surface) rounded-lg space-y-1 flex justify-between items-center">
+                <p className="text-sm text-(--foreground)">This Month</p>
+                <p className="font-medium text-sm text-(--foreground)">
+                  ${total}
+                </p>
+              </div>
+              {/* This Month end */}
+
+              {/* Difference*/}
+              <div className="bg-(--surface) rounded-lg space-y-1 flex justify-between items-center">
+                <p className="text-sm text-(--foreground)">Difference</p>
+                <p
+                  className={`font-medium text-sm ${difference >= 0 ? "text-(--danger)" : "text-(--success)"}`}
+                >
+                  {sign}${difference} ({Math.abs(percentageChange).toFixed(1)}%)
+                </p>
+              </div>
+              {/* Difference end */}
             </div>
           </div>
         </div>
