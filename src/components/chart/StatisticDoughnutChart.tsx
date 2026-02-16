@@ -9,10 +9,8 @@ import { Doughnut } from "react-chartjs-2";
 import type { TooltipItem } from "chart.js";
 import { cssVar } from "../../utils/cssVar";
 import { centerTextPlugin } from "./centerTextPlugin";
-import type {
-  DoughnutChartOptions,
-  FinanceItem,
-} from "../../assets/type/budget-type";
+import type { FinanceItem } from "../../assets/type/budget-type";
+import type { DoughnutChartOptions } from "../../features/type/User";
 import { DemoToggleTabs } from "../toggle/DemoToggleTabs";
 import { HiDotsHorizontal } from "react-icons/hi";
 import { DemoIcon } from "../common-property/DemoIcon";

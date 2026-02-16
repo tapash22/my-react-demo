@@ -1,3 +1,4 @@
+import type { ChartOptions } from "chart.js";
 import type { IconType } from "react-icons";
 
 export interface Geo {
@@ -95,4 +96,21 @@ export interface CategoryData {
   budget: number;
   percentage: number;
   recentTransactions: BudgetTransaction[];
+}
+
+export interface CategoryExpense {
+  category: string;
+  amount: number;
+}
+
+// src/assets/type/budget-type.ts
+
+export interface CenterTextOptions {
+  valueColor?: string; // color of total value
+  labelColor?: string; // color of title text
+}
+
+export interface DoughnutChartOptions extends ChartOptions<"doughnut"> {
+  centerTotal?: number;
+  centerText?: CenterTextOptions;
 }

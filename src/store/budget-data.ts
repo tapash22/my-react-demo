@@ -22,7 +22,11 @@ import { FaPhotoFilm, FaArrowTrendUp } from "react-icons/fa6";
 import { FiCreditCard } from "react-icons/fi";
 import { TbCardsFilled } from "react-icons/tb";
 import { IoMdSettings } from "react-icons/io";
-import type { Activity, CategoryData } from "../features/type/User";
+import type {
+  Activity,
+  CategoryData,
+  CategoryExpense,
+} from "../features/type/User";
 
 export const myBudget: Budget = {
   personalInfo: {
@@ -407,7 +411,12 @@ export const budgetData = {
   ],
 };
 
-// Array of objects
+export const statsArray = [
+  { label: "Total Budget", value: budgetData.stats.totalBudget },
+  { label: "Total Spent", value: budgetData.stats.totalSpent },
+  { label: "Remaining", value: budgetData.stats.remaining },
+];
+
 export const categories: CategoryData[] = [
   {
     category: "Food & Dining",
@@ -465,4 +474,13 @@ export const categories: CategoryData[] = [
       { title: "Accessories", date: "May 12, 2024", amount: 100 },
     ],
   },
+];
+
+export const categoryExpenses: CategoryExpense[] = [
+  { category: "Food & Dining", amount: 350 },
+  { category: "Housing", amount: 1200 },
+  { category: "Transportation", amount: 180 },
+  { category: "Entertainment", amount: 150 },
+  { category: "Utilities", amount: 120 },
+  { category: "Other", amount: 200 },
 ];

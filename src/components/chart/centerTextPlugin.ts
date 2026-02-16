@@ -1,6 +1,6 @@
 import type { Plugin } from "chart.js";
 import { cssVar } from "../../utils/cssVar";
-import type { DoughnutChartOptions } from "../../assets/type/budget-type";
+import type { DoughnutChartOptions } from "../../features/type/User";
 
 type FadePhase = "idle" | "fadeOut" | "delay" | "fadeIn";
 
@@ -26,7 +26,7 @@ const animateTimeline = () => {
   switch (phase) {
     case "fadeOut":
       alpha = Math.max(1 - elapsed / FADE_OUT_DURATION, 0);
-      scale = SCALE_MIN + alpha * (SCALE_MAX - SCALE_MIN); // shrink
+      scale = SCALE_MIN + alpha * (SCALE_MAX - SCALE_MIN);
       if (elapsed >= FADE_OUT_DURATION) {
         phase = "delay";
         startTime = now;
@@ -44,7 +44,7 @@ const animateTimeline = () => {
 
     case "fadeIn":
       alpha = Math.min(elapsed / FADE_IN_DURATION, 1);
-      scale = SCALE_MIN + alpha * (SCALE_MAX - SCALE_MIN); // grow
+      scale = SCALE_MIN + alpha * (SCALE_MAX - SCALE_MIN);
       if (elapsed >= FADE_IN_DURATION) {
         alpha = 1;
         scale = SCALE_MAX;
@@ -66,46 +66,48 @@ export const centerTextPlugin: Plugin<"doughnut"> = {
     const centerX = (left + right) / 2;
     const centerY = (top + bottom) / 2;
 
-    // Read total
     const opts = options as DoughnutChartOptions;
-    const total = opts.centerTotal ?? 0;
 
-    // Read title text safely
+    // Total and title
+    const total = opts.centerTotal ?? 0;
     const titleText =
       typeof options.plugins?.title?.text === "string"
         ? options.plugins.title.text
         : "";
 
+    // CenterText Colors from options
+    const valueColor = opts.centerText?.valueColor ?? cssVar("--muted");
+    const labelColor = opts.centerText?.labelColor ?? cssVar("--muted");
+
     /* ---------- DETECT CHANGE ---------- */
     if (total !== prevTotal || titleText !== prevTitle) {
       prevTotal = total;
       prevTitle = titleText;
-
       phase = "fadeOut";
       startTime = performance.now();
     }
 
     /* ---------- UPDATE ANIMATION ---------- */
-    // const opacity = animateTimeline();
     const { alpha, scale } = animateTimeline();
 
     ctx.save();
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
 
-    /* ---------- TITLE (TOP) ---------- */
+    // ---------- TITLE (TOP) ----------
     ctx.globalAlpha = alpha;
     ctx.font = `${18 * scale}px sans-serif`;
-    ctx.fillStyle = cssVar("--muted");
+    ctx.fillStyle = labelColor; // use labelColor or default
     ctx.letterSpacing = "1px";
     ctx.fillText(titleText, centerX, centerY - 22);
 
-    /* ---------- TOTAL (CENTER) ---------- */
+    // ---------- TOTAL (CENTER) ----------
     ctx.font = `bold ${24 * scale}px sans-serif`;
-    ctx.fillStyle = cssVar("--muted");
+    ctx.fillStyle = valueColor; // use valueColor or default
     ctx.fillText(`$${total.toLocaleString()}`, centerX, centerY + 12);
 
     ctx.restore();
+
     if (phase !== "idle") {
       requestAnimationFrame(() => chart.draw());
     }

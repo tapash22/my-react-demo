@@ -1,4 +1,3 @@
-import type { ChartOptions } from "chart.js";
 import type { IconType } from "react-icons";
 
 export interface Page {
@@ -59,11 +58,6 @@ export interface Fund {
   currency: string;
   progressPercentage: number;
   status: FundStatus;
-}
-
-//chart type
-export interface DoughnutChartOptions extends ChartOptions<"doughnut"> {
-  centerTotal?: number;
 }
 
 export interface FinanceItem {

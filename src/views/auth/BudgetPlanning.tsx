@@ -1,7 +1,7 @@
 import { FaPlus } from "react-icons/fa";
 import { DemoButton } from "../../components/button/DemoButton";
 import { PageHeaderCard } from "../../components/cards/PageHeaderCard";
-import { budgetData } from "../../store/budget-data";
+import { budgetData, statsArray } from "../../store/budget-data";
 import { DemoLinearProgressBar } from "../../components/progressbar/DemoLinearProgressBar";
 import { DemoAvatar } from "../../components/avatar/DemoAvatar";
 import { categories } from "../../store/budget-data";
@@ -11,14 +11,7 @@ import { DemoCardExpansion } from "../../components/cards/DemoCardExpansion";
 export default function BudgetPlanning() {
   const [budget, setBudget] = useState("");
 
-  const { totalBudget, totalSpent, remaining } = budgetData.stats;
   const { amount, daysRemaining } = budgetData.dailyInsight;
-
-  const statsArray = [
-    { label: "Total Budget", value: totalBudget },
-    { label: "Total Spent", value: totalSpent },
-    { label: "Remaining", value: remaining },
-  ];
 
   const handleClick = () => {
     console.log("click");
@@ -47,9 +40,12 @@ export default function BudgetPlanning() {
             </div>
           }
         />
+        {/* header end */}
       </div>
 
       <div className="flex gap-3 items-start w-full h-auto p-2">
+        {/* left side */}
+
         <div className="w-1/3 p-2 sticky top-2 h-fit">
           <div className="block w-full h-auto ring-2 ring-(--input-border) rounded-xl p-3 space-y-3 py-5 bg-(--surface)">
             <PageHeaderCard title="Budget " />
@@ -58,7 +54,7 @@ export default function BudgetPlanning() {
               {statsArray.map((stat) => (
                 <div
                   key={stat.label}
-                  className="px-2 py-2 bg-(--background) rounded-lg mx-1 flex-1"
+                  className="px-2 py-2 bg-(--surface) rounded-lg mx-1 space-y-1"
                 >
                   <p className="text-sm text-(--muted)">{stat.label}</p>
                   <p className="text-xl font-bold text-(--foreground)">
@@ -70,13 +66,13 @@ export default function BudgetPlanning() {
 
             <div className="p-2">
               <DemoLinearProgressBar
-                targetAmount={totalBudget}
-                currentAmount={totalSpent}
+                targetAmount={budgetData.stats.totalBudget}
+                currentAmount={budgetData.stats.totalSpent}
                 showLabel="Budget Used"
               />
             </div>
 
-            <div className="p-4 rounded-2xl bg-(--surface) flex justify-between items-center w-full border border-(--input-border)">
+            <div className="p-4 my-4 rounded-2xl bg-(--background) flex justify-between items-center w-full border border-(--input-border) ">
               <div className="block w-auto p-2 space-y-1">
                 <p className="text-sm text-(--muted) font-medium">
                   Daily Budget
@@ -90,7 +86,7 @@ export default function BudgetPlanning() {
               </p>
             </div>
 
-            <div className="flex flex-col w-full space-y-2 ">
+            <div className="flex flex-col w-full space-y-2 p-2 ">
               <p className="text-sm text-(--forground) text-left">
                 Top Spending Categories
               </p>
@@ -118,9 +114,11 @@ export default function BudgetPlanning() {
             </div>
           </div>
         </div>
+        {/* left side end */}
 
+        {/* right side */}
         <div className="w-2/3 h-auto p-2 block space-y-5">
-          <div className="block w-full h-auto ring-2 ring-(--input-border) rounded-xl p-3 ">
+          <div className="block w-full h-auto ring-2 ring-(--input-border) rounded-xl p-5 ">
             <PageHeaderCard title="Budget Categories " visibleDate={false} />
             <div className="flex justify-between items-center p-2 w-full h-auto">
               <div className="w-1/2 h-auto flex justify-start items-center gap-3 ">
@@ -155,6 +153,7 @@ export default function BudgetPlanning() {
             </div>
           </div>
         </div>
+        {/* right side end */}
       </div>
     </div>
   );
