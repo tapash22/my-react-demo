@@ -6,7 +6,7 @@ import { DemoLinearProgressBar } from "../../components/progressbar/DemoLinearPr
 import { DemoAvatar } from "../../components/avatar/DemoAvatar";
 import { categories } from "../../store/budget-data";
 import { useState } from "react";
-import { DemoCardExpansion } from "../../components/cards/demoCardExpansion";
+import { DemoCardExpansion } from "../../components/cards/DemoCardExpansion";
 
 export default function BudgetPlanning() {
   const [budget, setBudget] = useState("");
@@ -50,24 +50,24 @@ export default function BudgetPlanning() {
       </div>
 
       <div className="flex gap-3 items-start w-full h-auto p-2">
-        <div className="w-1/3 h-auto p-2 block ">
-          <div className="block w-full h-auto ring-2 ring-(--input-border) rounded-xl p-3 space-y-3 py-5 ">
+        <div className="w-1/3 p-2 sticky top-2 h-fit">
+          <div className="block w-full h-auto ring-2 ring-(--input-border) rounded-xl p-3 space-y-3 py-5 bg-(--surface)">
             <PageHeaderCard title="Budget " />
+
             <div className="flex justify-between ">
-              {statsArray.map((stat) => {
-                return (
-                  <div
-                    key={stat.label}
-                    className={`px-2 py-2 bg-(--background) rounded-lg mx-1 `}
-                  >
-                    <p className="text-sm text-(--muted)">{stat.label}</p>
-                    <p className="text-xl font-bold text-(--foreground)">
-                      ${stat.value.toLocaleString()}
-                    </p>
-                  </div>
-                );
-              })}
+              {statsArray.map((stat) => (
+                <div
+                  key={stat.label}
+                  className="px-2 py-2 bg-(--background) rounded-lg mx-1 flex-1"
+                >
+                  <p className="text-sm text-(--muted)">{stat.label}</p>
+                  <p className="text-xl font-bold text-(--foreground)">
+                    ${stat.value.toLocaleString()}
+                  </p>
+                </div>
+              ))}
             </div>
+
             <div className="p-2">
               <DemoLinearProgressBar
                 targetAmount={totalBudget}
@@ -76,7 +76,7 @@ export default function BudgetPlanning() {
               />
             </div>
 
-            <div className="p-4 rounded-2xl bg-(--surface) flex justify-between items-center w-full">
+            <div className="p-4 rounded-2xl bg-(--surface) flex justify-between items-center w-full border border-(--input-border)">
               <div className="block w-auto p-2 space-y-1">
                 <p className="text-sm text-(--muted) font-medium">
                   Daily Budget
@@ -89,6 +89,7 @@ export default function BudgetPlanning() {
                 for the next {daysRemaining} days
               </p>
             </div>
+
             <div className="flex flex-col w-full space-y-2 ">
               <p className="text-sm text-(--forground) text-left">
                 Top Spending Categories
@@ -103,7 +104,7 @@ export default function BudgetPlanning() {
                       <div className="flex justify-between items-center py-3 px-2">
                         <div className="w-2/6 flex items-center gap-4">
                           <DemoAvatar icon={budget.icon} size={10} />
-                          <span className=" text-sm text-(--forground) text-left">
+                          <span className="text-sm text-(--forground) text-left">
                             {budget.name}
                           </span>
                         </div>
@@ -117,6 +118,7 @@ export default function BudgetPlanning() {
             </div>
           </div>
         </div>
+
         <div className="w-2/3 h-auto p-2 block space-y-5">
           <div className="block w-full h-auto ring-2 ring-(--input-border) rounded-xl p-3 ">
             <PageHeaderCard title="Budget Categories " visibleDate={false} />
