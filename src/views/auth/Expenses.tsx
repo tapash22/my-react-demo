@@ -10,6 +10,7 @@ import { centerTextPlugin } from "../../components/chart/centerTextPlugin";
 import type { DoughnutChartOptions } from "../../features/type/User";
 import { cssVar } from "../../utils/cssVar";
 import { FinanceList } from "../../components/item/FinanceList";
+import { BillCard } from "../../components/cards/BillCard";
 
 export default function Expenses() {
   const handleClick = () => {
@@ -110,13 +111,31 @@ export default function Expenses() {
       <div className="flex gap-3 items-start w-full h-auto p-2">
         {/* left side */}
         <div className="w-2/3 h-auto p-2 block space-y-5">
-          <Transaction />
+          <div className="w-full h-full ">
+            <Transaction />
+          </div>
+          <div className="flex flex-col space-y-3 ring-2 ring-(--input-border) rounded-xl p-3">
+            <PageHeaderCard
+              title="Upcoming Payments"
+              subtitle="Bills due in the next 2 weeks"
+              visibleDate={false}
+            />
+            <BillCard />
+            <BillCard />
+            <BillCard />
+            <BillCard />
+            <BillCard />
+            <BillCard />
+            <BillCard />
+            <BillCard />
+            <BillCard />
+          </div>
         </div>
         {/* left side end */}
 
         {/* right side */}
-        <div className="w-1/3 p-2 sticky top-2 ">
-          <div className="block w-full h-auto ring-2 ring-(--input-border) rounded-xl p-3 space-y-3 py-5 bg-(--surface) ">
+        <div className="w-1/3 p-2 sticky top-2  ">
+          <div className="block w-full h-auto ring-2 ring-(--input-border) rounded-xl p-3 space-y-3  bg-(--surface) ">
             <PageHeaderCard
               title="Expense Breakdown"
               subtitle="Current month spending by category"

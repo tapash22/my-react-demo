@@ -4,7 +4,7 @@ import { DemoIcon } from "../common-property/DemoIcon";
 interface DemoChipProps {
   label: string;
   onDelete?: (label: string) => void;
-  onClick: (label: string) => void;
+  onClick?: (label: string) => void;
   color?: "primary" | "secondary" | "success" | "error";
   variant?: "filled" | "outlined";
   className?: string;
@@ -33,10 +33,14 @@ export const DemoChip = ({
       : colorStyles[color];
   return (
     <div
-      className={`${baseClasses} ${variantClasses} ${className} opacity-80 cursor-pointer `}
-      onClick={() => onClick(label)}
+      className={`${baseClasses} ${variantClasses} ${className} opacity-80 cursor-pointer  `}
+      onClick={() => onClick?.(label)}
     >
-      <span className="text-sm font-normal tracking-wider w-2/3 ">{label}</span>
+      <span
+        className={`text-sm font-normal tracking-wider  ${onDelete ? "w-2/3" : "w-full"} `}
+      >
+        {label}
+      </span>
       {onDelete && (
         <button
           onClick={(e) => {
