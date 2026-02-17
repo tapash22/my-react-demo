@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { Canvas, useThree } from "@react-three/fiber";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { syncCameraWithScroll } from "../../animations";
 import * as THREE from "three";
 import { PageLayout } from "../../components/layout/PageLayout";
@@ -12,11 +12,30 @@ function SceneContent({
 }: {
   containerRef: React.RefObject<HTMLDivElement | null>;
 }) {
-  const { camera } = useThree();
+  // const { camera } = useThree();
 
+  // useEffect(() => {
+  //   const container = containerRef.current;
+  //   if (!container) return; // safety check
+
+  //   const tween = syncCameraWithScroll(
+  //     camera as THREE.PerspectiveCamera,
+  //     container,
+  //   );
+
+  //   return () => {
+  //     tween.scrollTrigger?.kill();
+  //     tween.kill();
+  //   };
+  // }, [camera, containerRef]);
+
+  const { camera } = useThree();
+  const meshRef = useRef<THREE.Mesh>(null);
+
+  // Animate camera with scroll
   useEffect(() => {
     const container = containerRef.current;
-    if (!container) return; // safety check
+    if (!container) return;
 
     const tween = syncCameraWithScroll(
       camera as THREE.PerspectiveCamera,
@@ -29,8 +48,15 @@ function SceneContent({
     };
   }, [camera, containerRef]);
 
+  useFrame(() => {
+    if (meshRef.current) {
+      meshRef.current.rotation.y += 0.01;
+      meshRef.current.rotation.x += 0.005;
+    }
+  });
+
   return (
-    <mesh position={[0, 0, 0]}>
+    <mesh ref={meshRef} position={[0, 0, 0]}>
       <boxGeometry args={[1, 1, 1]} />
       <meshStandardMaterial color="orange" />
     </mesh>
@@ -62,13 +88,17 @@ export default function Reports() {
         </PageHeaderCard>
       }
     >
-      <div ref={containerRef} className="h-[200vh] w-full relative">
-        <div className="sticky top-0 w-full h-screen flex items-center justify-center">
-          <Canvas camera={{ position: [0, 0, 5] }} className="w-full h-full">
-            <ambientLight />
-            <SceneContent containerRef={containerRef} />
-          </Canvas>
-        </div>
+      <div ref={containerRef} className="h-screen w-full relative">
+        <Canvas
+          camera={{ position: [0, 0, 5] }}
+          className="fixed top-0 left-0 w-full h-screen "
+        >
+          <ambientLight />
+          <SceneContent containerRef={containerRef} />
+        </Canvas>
+
+        {/* Scrollable space */}
+        <div className="relative z-10 w-full h-screen" />
       </div>
     </PageLayout>
   );
