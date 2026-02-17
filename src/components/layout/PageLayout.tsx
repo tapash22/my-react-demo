@@ -10,7 +10,7 @@ export function PageLayout({ header, children }: PageLayoutProps) {
       <div className="block w-full h-auto p-2 space-y-5">{header}</div>
 
       {/* Body */}
-      <div className="flex gap-3 items-start w-full h-auto p-2">{children}</div>
+      <div className="flex gap-3 items-start w-full h-auto p-4">{children}</div>
     </div>
   );
 }

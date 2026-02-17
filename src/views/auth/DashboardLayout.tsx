@@ -3,6 +3,8 @@ import { Suspense, useEffect, useRef, useState } from "react";
 import { DemoHeader } from "../../components/header/DemoHeader";
 import { DemoSideBar } from "../../components/header/DemoSideBar";
 import Loader from "../../components/loader/Loader";
+import { animatePageIn, animatePageOut } from "../../animations";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default function DashboardLayout() {
   // Dashboard
@@ -10,11 +12,28 @@ export default function DashboardLayout() {
   const [collapsed, setCollapsed] = useState(false);
   // Create a reference to the scrollable area
   const scrollRef = useRef<HTMLDivElement>(null);
-  // FIX: Force the scroll to the top immediately when the URL changes
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  // Scroll to top
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTo(0, 0);
     }
+  }, [location.pathname]);
+
+  // Page animation (only ONE useEffect)
+  useEffect(() => {
+    if (!contentRef.current) return;
+
+    animatePageIn(contentRef.current);
+
+    ScrollTrigger.refresh();
+
+    return () => {
+      if (contentRef.current) {
+        animatePageOut(contentRef.current);
+      }
+    };
   }, [location.pathname]);
 
   return (
@@ -28,9 +47,11 @@ export default function DashboardLayout() {
         {/* header end */}
 
         {/* main body with routing and animation */}
-        <main className="flex-1 overflow-hidden relative ">
+        <main ref={scrollRef} className="flex-1 overflow-hidden relative ">
           <Suspense fallback={<Loader />}>
-            <Outlet />
+            <div ref={contentRef}>
+              <Outlet />
+            </div>
           </Suspense>
         </main>
         {/* main body with routing end */}
