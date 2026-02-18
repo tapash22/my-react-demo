@@ -1,8 +1,4 @@
 import { Canvas } from "@react-three/fiber";
-// import { PageLayout } from "../../components/layout/PageLayout";
-// import { PageHeaderCard } from "../../components/cards/PageHeaderCard";
-// import { DemoButton } from "../../components/button/DemoButton";
-// import { FaPlus } from "react-icons/fa";
 import { useLayoutEffect, useRef } from "react";
 import { ScrollCameraScene } from "../../components/3D/ScrollCameraScene";
 import gsap from "gsap";

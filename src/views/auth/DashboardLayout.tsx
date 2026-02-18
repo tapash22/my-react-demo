@@ -3,8 +3,6 @@ import { Suspense, useEffect, useRef, useState } from "react";
 import { DemoHeader } from "../../components/header/DemoHeader";
 import { DemoSideBar } from "../../components/header/DemoSideBar";
 import Loader from "../../components/loader/Loader";
-// import { animatePageIn, animatePageOut } from "../../animations";
-// import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default function DashboardLayout() {
   // Dashboard
@@ -20,36 +18,6 @@ export default function DashboardLayout() {
       scrollRef.current.scrollTo(0, 0);
     }
   }, [location.pathname]);
-
-  // Page animation (only ONE useEffect)
-  // useEffect(() => {
-  //   const contentEl = contentRef.current;
-  //   if (!contentEl) return;
-
-  //   // Wait one animation frame so Suspense content mounts
-  //   requestAnimationFrame(() => {
-  //     animatePageIn(contentEl);
-  //     ScrollTrigger.refresh();
-  //   });
-
-  //   return () => {
-  //     if (contentEl) {
-  //       animatePageOut(contentEl);
-  //     }
-  //   };
-  // }, [location.pathname]);
-
-  // useLayoutEffect(() => {
-  //   const contentEl = contentRef.current;
-  //   if (!contentEl) return;
-
-  //   animatePageIn(contentEl);
-  //   ScrollTrigger.refresh();
-
-  //   return () => {
-  //     animatePageOut(contentEl);
-  //   };
-  // }, [location.pathname]);
 
   return (
     <div className="h-screen w-full flex overflow-hidden  ">
