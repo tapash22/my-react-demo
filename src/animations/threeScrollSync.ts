@@ -8,8 +8,7 @@ export const syncCameraWithScroll = (
   camera: THREE.PerspectiveCamera,
   container: HTMLElement,
 ) => {
-  return gsap.to(camera.position, {
-    z: 2,
+  const tl = gsap.timeline({
     scrollTrigger: {
       trigger: container,
       start: "top top",
@@ -17,4 +16,11 @@ export const syncCameraWithScroll = (
       scrub: true,
     },
   });
+
+  tl.to(camera.position, { z: 3 }) // Section 1
+    .to(camera.position, { x: 2 }) // Section 2
+    .to(camera.position, { y: 2 }) // Section 3
+    .to(camera.position, { z: 1 }); // Section 4
+
+  return tl;
 };
