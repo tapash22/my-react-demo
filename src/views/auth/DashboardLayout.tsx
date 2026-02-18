@@ -3,8 +3,8 @@ import { Suspense, useEffect, useRef, useState } from "react";
 import { DemoHeader } from "../../components/header/DemoHeader";
 import { DemoSideBar } from "../../components/header/DemoSideBar";
 import Loader from "../../components/loader/Loader";
-import { animatePageIn, animatePageOut } from "../../animations";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+// import { animatePageIn, animatePageOut } from "../../animations";
+// import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default function DashboardLayout() {
   // Dashboard
@@ -22,19 +22,34 @@ export default function DashboardLayout() {
   }, [location.pathname]);
 
   // Page animation (only ONE useEffect)
-  useEffect(() => {
-    if (!contentRef.current) return;
+  // useEffect(() => {
+  //   const contentEl = contentRef.current;
+  //   if (!contentEl) return;
 
-    animatePageIn(contentRef.current);
+  //   // Wait one animation frame so Suspense content mounts
+  //   requestAnimationFrame(() => {
+  //     animatePageIn(contentEl);
+  //     ScrollTrigger.refresh();
+  //   });
 
-    ScrollTrigger.refresh();
+  //   return () => {
+  //     if (contentEl) {
+  //       animatePageOut(contentEl);
+  //     }
+  //   };
+  // }, [location.pathname]);
 
-    return () => {
-      if (contentRef.current) {
-        animatePageOut(contentRef.current);
-      }
-    };
-  }, [location.pathname]);
+  // useLayoutEffect(() => {
+  //   const contentEl = contentRef.current;
+  //   if (!contentEl) return;
+
+  //   animatePageIn(contentEl);
+  //   ScrollTrigger.refresh();
+
+  //   return () => {
+  //     animatePageOut(contentEl);
+  //   };
+  // }, [location.pathname]);
 
   return (
     <div className="h-screen w-full flex overflow-hidden  ">
@@ -47,10 +62,15 @@ export default function DashboardLayout() {
         {/* header end */}
 
         {/* main body with routing and animation */}
-        <main ref={scrollRef} className="flex-1 overflow-hidden relative ">
+        <main
+          ref={scrollRef}
+          className="flex-1 relative overflow-y-auto overflow-x-hidden scrollbar-thin"
+          style={{ scrollBehavior: "smooth" }}
+        >
           <Suspense fallback={<Loader />}>
             <div ref={contentRef}>
-              <Outlet />
+              {/* Pass scrollRef to routed components */}
+              <Outlet context={{ scrollContainerRef: scrollRef }} />
             </div>
           </Suspense>
         </main>
@@ -59,3 +79,5 @@ export default function DashboardLayout() {
     </div>
   );
 }
+
+export type DashboardScrollRef = HTMLDivElement | null;
