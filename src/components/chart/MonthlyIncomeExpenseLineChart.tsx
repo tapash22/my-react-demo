@@ -9,11 +9,14 @@ import { cssVar } from "../../utils/cssVar";
 import type { PeriodType } from "../../assets/type/budget-type";
 import { useMemo, useState } from "react";
 import { DemoDropdownSelect } from "../dropdown/DemoDropdownSelect";
+import { useLeftToRightAnimation } from "../hooks/useLeftToRightAnimation";
 
 export function MonthlyIncomeExpenseLineChart() {
   const [period, setPeriod] = useState<PeriodType>("monthly");
 
   const sourceData = useMemo(() => getIncomeExpenseData(period), [period]);
+
+  const plugin = useLeftToRightAnimation(12);
 
   const data: ChartData<"line", number[], string> = {
     labels: sourceData.map((item) => item.label),
@@ -25,6 +28,7 @@ export function MonthlyIncomeExpenseLineChart() {
         backgroundColor: cssVar("--foreground"),
         fill: "start",
         tension: 0.4,
+        cubicInterpolationMode: "monotone",
         clip: false,
         pointRadius: 0, // 🟢 Hide by default
         pointHoverRadius: 6, // 🟢 Show on hover (was 0)
@@ -39,6 +43,7 @@ export function MonthlyIncomeExpenseLineChart() {
         backgroundColor: cssVar("--muted"),
         fill: "start",
         tension: 0.4,
+        cubicInterpolationMode: "monotone",
         clip: false,
 
         borderCapStyle: "round",
@@ -72,9 +77,9 @@ export function MonthlyIncomeExpenseLineChart() {
       intersect: false,
     },
 
-    // Global animation override for responsiveness/transitions
-    animation: {
-      duration: 400, // standard chart load animation
+    interaction: {
+      mode: "index",
+      intersect: false,
     },
 
     plugins: {
@@ -128,7 +133,12 @@ export function MonthlyIncomeExpenseLineChart() {
           getLabel={(v) => PERIOD_LABEL_MAP[v]}
         />
       </div>
-      <Line data={data} options={options} style={{ height: "250px " }} />
+      <Line
+        data={data}
+        options={options}
+        plugins={[plugin]}
+        style={{ height: "250px " }}
+      />
     </div>
   );
 }

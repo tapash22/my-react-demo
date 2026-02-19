@@ -102,17 +102,16 @@ export default function Home() {
 
         {/* middle side */}
         <div className="w-2/4 h-auto p-2 block space-y-5">
+          {/* Line chart */}
+          <div className="block w-[780px] h-full rounded-xl p-2">
+            <MonthlyIncomeExpenseLineChart />
+          </div>
+          {/* Line chart end */}
           {/* bar chart */}
           <div className="block w-full h-auto ring-2 ring-(--input-border) rounded-xl p-2 ">
             <MonthlyIncomeExpenseLabelChart />
           </div>
           {/* bar chart end */}
-
-          {/* Line chart */}
-          <div className="block w-full h-full rounded-xl p-2">
-            <MonthlyIncomeExpenseLineChart />
-          </div>
-          {/* Line chart end */}
         </div>
         {/* middle side end */}
 
