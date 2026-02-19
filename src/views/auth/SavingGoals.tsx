@@ -5,9 +5,16 @@ import { FUND_TABS } from "../../utils/tabData";
 import { DemoCircleProgressbar } from "../../components/progressbar/DemoCircleProgressBar";
 import { DemoLinearProgressBar } from "../../components/progressbar/DemoLinearProgressBar";
 import { DemoTabs } from "../../components/tabs/DemoTabs";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
+// import FlipList from "../../components/gsap/FlipList";
+import MorphExample from "../../components/gsap/MorphExample";
+import MorphImageBlob from "../../components/gsap/MorphImageBlob";
 
 export default function SavingGoals() {
+  // const menuRef = useRef<HTMLLIElement[]>([]);
+  const containerRef = useRef<HTMLUListElement>(null);
+
   const {
     totalSaved,
     totalGoals,
@@ -32,6 +39,33 @@ export default function SavingGoals() {
   const [activeIndex, setActiveIndex] = useState(0);
   const activeTab = FUND_TABS[activeIndex];
 
+  // useEffect(() => {
+  //   // Animate menu items with stagger
+  //   gsap.from(menuRef.current, {
+  //     y: -20,
+  //     opacity: 0,
+  //     duration: 0.5,
+  //     stagger: 0.1,
+  //     ease: "power2.out",
+  //   });
+  // }, []);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from(".menu-item", {
+        y: -20,
+        opacity: 0,
+        stagger: 0.1,
+        duration: 0.5,
+        ease: "elastic.out",
+      });
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  const menuItems = ["Home", "About", "Services", "Contact"];
+
   return (
     <div className="flex justify-evenly items-center gap-5 p-3 bg-(--background) ">
       {/* left side card */}
@@ -39,6 +73,15 @@ export default function SavingGoals() {
         <h3 className="font-bold subtitle-title text-start text-(--foreground) w-full p-3">
           Savings Overview
         </h3>
+        {/* <div className="p-5 w-full h-full">
+          <FlipList />
+        </div> */}
+        <div className="p-5 w-full h-full">
+          <MorphImageBlob />
+        </div>
+        <div className="p-5 w-full h-full">
+          <MorphExample />
+        </div>
         <div className="flex justify-center items-center">
           <DemoCircleProgressbar percentage={overallProgress} />
         </div>
@@ -86,6 +129,20 @@ export default function SavingGoals() {
           </div>
           <div className="text-2xl font-bold my-1">{savingsRate}%</div>
           <div className="text-xs text-(--muted)">of monthly income</div>
+        </div>
+
+        <div className="p-5 w-full h-full">
+          <ul ref={containerRef}>
+            {menuItems.map((item, index) => (
+              <li
+                className="menu-item"
+                key={index}
+                style={{ listStyle: "none", marginBottom: "10px" }}
+              >
+                {item}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
       {/* left side card end */}
