@@ -136,8 +136,6 @@
 
 }
 
-@tailwind base;
-@tailwind components;
 @tailwind utilities;
 
 /* ============ Base Theme Variables ============ */

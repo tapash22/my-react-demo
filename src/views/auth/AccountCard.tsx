@@ -10,14 +10,6 @@ import { useGsapContext } from "../../components/hooks/useGsapContext";
 export default function Accountcard() {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // useEffect(() => {
-  //   if (!containerRef.current) return;
-
-  //   const ctx = createParallax(containerRef.current);
-
-  //   return () => ctx.revert();
-  // }, []);
-
   const animation = useCallback(() => {
     if (!containerRef.current) return;
     createParallax(containerRef.current);

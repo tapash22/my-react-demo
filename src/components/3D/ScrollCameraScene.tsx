@@ -52,9 +52,5 @@ export function ScrollCameraScene({ containerRef }: ScrollCameraSceneProps) {
         <meshStandardMaterial color="purple" />
       </mesh>
     </>
-    // <mesh ref={meshRef} position={[0, 0, 0]}>
-    //   <boxGeometry args={[1, 1, 1]} />
-    //   <meshStandardMaterial color="orange" />
-    // </mesh>
   );
 }
