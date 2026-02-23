@@ -3,19 +3,24 @@ import { DemoButton } from "../../components/button/DemoButton";
 import { PageHeaderCard } from "../../components/cards/PageHeaderCard";
 import { PageLayout } from "../../components/layout/PageLayout";
 import GsapBox from "../../components/gsap/GsapBox";
-import { useCallback, useRef } from "react";
-import { createParallax } from "../../animations";
-import { useGsapContext } from "../../components/hooks/useGsapContext";
+import { useLayoutEffect, useRef } from "react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { animatePageIn, animatePageOut } from "../../animations";
 
 export default function Accountcard() {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const animation = useCallback(() => {
-    if (!containerRef.current) return;
-    createParallax(containerRef.current);
-  }, []);
+  useLayoutEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
 
-  useGsapContext(containerRef, animation);
+    animatePageIn(el);
+    ScrollTrigger.refresh();
+
+    return () => {
+      animatePageOut(el);
+    };
+  }, []);
 
   const handleClick = () => {
     console.log("click");

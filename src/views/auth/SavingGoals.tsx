@@ -10,6 +10,7 @@ import gsap from "gsap";
 // import FlipList from "../../components/gsap/FlipList";
 import MorphExample from "../../components/gsap/MorphExample";
 import MorphImageBlob from "../../components/gsap/MorphImageBlob";
+import FlipList from "../../components/gsap/FlipList";
 
 export default function SavingGoals() {
   // const menuRef = useRef<HTMLLIElement[]>([]);
@@ -73,9 +74,9 @@ export default function SavingGoals() {
         <h3 className="font-bold subtitle-title text-start text-(--foreground) w-full p-3">
           Savings Overview
         </h3>
-        {/* <div className="p-5 w-full h-full">
+        <div className="p-5 w-full h-full">
           <FlipList />
-        </div> */}
+        </div>
         <div className="p-5 w-full h-full">
           <MorphImageBlob />
         </div>

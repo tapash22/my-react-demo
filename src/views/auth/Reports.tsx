@@ -5,7 +5,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useOutletContext } from "react-router-dom";
 import { animatePageIn, animatePageOut } from "../../animations";
-import { usePageAnimation } from "../../components/hooks/usePageAnimation";
 import { PageLayout } from "../../components/layout/PageLayout";
 import { PageHeaderCard } from "../../components/cards/PageHeaderCard";
 import { DemoButton } from "../../components/button/DemoButton";
@@ -20,8 +19,6 @@ type DashboardOutletContext = {
 export default function Reports() {
   const { scrollContainerRef } = useOutletContext<DashboardOutletContext>();
   const containerRef = useRef<HTMLDivElement>(null);
-
-  usePageAnimation();
 
   const handleClick = () => {
     console.log("click");
@@ -72,18 +69,18 @@ export default function Reports() {
         containerRef.current!.querySelectorAll(".hero-text span");
       if (heroSpans.length) {
         gsap.from(heroSpans, {
-          y: 80,
-          opacity: 0,
-          stagger: 0.15,
-          duration: 1.2,
+          x: -100, // start from left (-100px)
+          opacity: 0, // start invisible
+          stagger: 0.2, // delay each span by 0.2s
+          duration: 1, // 1s per span
           ease: "power3.out",
           scrollTrigger: {
             trigger: ".section-1",
             scroller: scroller,
-            start: "top 90%",
-            end: "top 60%",
-            scrub: 1.5,
+            start: "top 80%",
+            end: "bottom top",
             invalidateOnRefresh: true,
+            // remove 'scrub' if you want animation to play on enter
           },
         });
       }
