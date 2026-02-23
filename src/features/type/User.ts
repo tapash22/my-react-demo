@@ -107,3 +107,9 @@ export interface DoughnutChartOptions extends ChartOptions<"doughnut"> {
   centerTotal?: number;
   centerText?: CenterTextOptions;
 }
+
+export interface MyConditions {
+  desktop: boolean;
+  tablet: boolean;
+  mobile: boolean;
+}

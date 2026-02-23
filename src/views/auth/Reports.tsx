@@ -8,6 +8,7 @@ import { PageLayout } from "../../components/layout/PageLayout";
 import { PageHeaderCard } from "../../components/cards/PageHeaderCard";
 import { DemoButton } from "../../components/button/DemoButton";
 import { FaPlus } from "react-icons/fa";
+import { responsiveAnimations } from "../../utils/responsiveAnimations";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -85,7 +86,39 @@ export default function Reports() {
       }
     }, containerRef);
 
-    return () => ctx.revert();
+    // Use reusable responsiveAnimations utility
+
+    const mm = responsiveAnimations({
+      selector: ".hero-text span",
+      desktop: {
+        x: -100,
+        opacity: 1,
+        duration: 1,
+        stagger: 0.2,
+        delay: 0.5, // start after 0.5s
+        color: "#FF0000", // gold text color
+      },
+      tablet: {
+        x: -50,
+        opacity: 1,
+        duration: 1,
+        stagger: 0.1,
+        delay: 0.3,
+        color: "#FFA500", // orange text color
+      },
+      mobile: {
+        x: -20,
+        opacity: 1,
+        duration: 0.8,
+        stagger: 0.05,
+        delay: 0.1,
+        color: "#FFFFFF", // white text color
+      },
+    });
+    return () => {
+      ctx.revert();
+      mm.revert();
+    };
   }, [scrollContainerRef]);
 
   return (
