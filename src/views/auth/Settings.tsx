@@ -4,7 +4,6 @@ import { PageHeaderCard } from "../../components/cards/PageHeaderCard";
 import { PageLayout } from "../../components/layout/PageLayout";
 import { ScrollCameraScene } from "../../components/3D/ScrollCameraScene";
 import { useLayoutEffect, useRef } from "react";
-import { animatePageIn, animatePageOut } from "../../animations";
 import { useOutletContext } from "react-router-dom";
 import { FaPlus } from "react-icons/fa";
 import gsap from "gsap";
@@ -23,18 +22,6 @@ export default function Settings() {
   const handleClick = () => console.log("click");
 
   const images = ["/image/first.jpg", "/image/second.jpg", "/image/four.jpg"];
-
-  useLayoutEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-
-    animatePageIn(el);
-    ScrollTrigger.refresh();
-
-    return () => {
-      animatePageOut(el);
-    };
-  }, []);
 
   useLayoutEffect(() => {
     if (!containerRef.current || !scrollContainerRef.current) return;

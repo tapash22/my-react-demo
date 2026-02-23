@@ -3,24 +3,10 @@ import { DemoButton } from "../../components/button/DemoButton";
 import { PageHeaderCard } from "../../components/cards/PageHeaderCard";
 import { PageLayout } from "../../components/layout/PageLayout";
 import GsapBox from "../../components/gsap/GsapBox";
-import { useLayoutEffect, useRef } from "react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { animatePageIn, animatePageOut } from "../../animations";
+import { useRef } from "react";
 
 export default function Accountcard() {
   const containerRef = useRef<HTMLDivElement>(null);
-
-  useLayoutEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-
-    animatePageIn(el);
-    ScrollTrigger.refresh();
-
-    return () => {
-      animatePageOut(el);
-    };
-  }, []);
 
   const handleClick = () => {
     console.log("click");

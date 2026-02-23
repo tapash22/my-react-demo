@@ -3,6 +3,7 @@ import { Suspense, useEffect, useRef, useState } from "react";
 import { DemoHeader } from "../../components/header/DemoHeader";
 import { DemoSideBar } from "../../components/header/DemoSideBar";
 import Loader from "../../components/loader/Loader";
+import { usePageAnimation } from "../../components/hooks/usePageAnimation";
 
 export default function DashboardLayout() {
   // Dashboard
@@ -10,7 +11,7 @@ export default function DashboardLayout() {
   const [collapsed, setCollapsed] = useState(false);
   // Create a reference to the scrollable area
   const scrollRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
+  const contentRef = usePageAnimation<HTMLDivElement>();
 
   // Scroll to top
   useEffect(() => {

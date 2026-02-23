@@ -4,7 +4,6 @@ import { ScrollCameraScene } from "../../components/3D/ScrollCameraScene";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useOutletContext } from "react-router-dom";
-import { animatePageIn, animatePageOut } from "../../animations";
 import { PageLayout } from "../../components/layout/PageLayout";
 import { PageHeaderCard } from "../../components/cards/PageHeaderCard";
 import { DemoButton } from "../../components/button/DemoButton";
@@ -88,18 +87,6 @@ export default function Reports() {
 
     return () => ctx.revert();
   }, [scrollContainerRef]);
-
-  useLayoutEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-
-    animatePageIn(el);
-    ScrollTrigger.refresh();
-
-    return () => {
-      animatePageOut(el);
-    };
-  }, []);
 
   return (
     <PageLayout
