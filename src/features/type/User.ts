@@ -1,9 +1,16 @@
 import type { ChartOptions } from "chart.js";
+import type { RefObject } from "react";
 import type { IconType } from "react-icons";
 
 export interface Geo {
   lat: string;
   lng: string;
+}
+
+export interface Step {
+  title: string;
+  content: string;
+  targetRef: RefObject<HTMLElement | null>;
 }
 
 export interface Address {

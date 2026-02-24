@@ -2,11 +2,29 @@ import { FaPlus } from "react-icons/fa";
 import { DemoButton } from "../../components/button/DemoButton";
 import { PageHeaderCard } from "../../components/cards/PageHeaderCard";
 import { PageLayout } from "../../components/layout/PageLayout";
-import GsapBox from "../../components/gsap/GsapBox";
+// import GsapBox from "../../components/gsap/GsapBox";
 import { useRef } from "react";
+//use for onbording tour
+import { Onboarding } from "../../features/onboarding/Onboarding";
 
 export default function Accountcard() {
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const dashboardRef = useRef<HTMLHeadingElement>(null);
+  const addProjectRef = useRef<HTMLButtonElement>(null);
+
+  const steps = [
+    {
+      title: "Welcome to your dashboard!",
+      content: "This is where you can see your stats.",
+      targetRef: dashboardRef,
+    },
+    {
+      title: "Add Project",
+      content: "Click here to add a new project.",
+      targetRef: addProjectRef,
+    },
+  ];
 
   const handleClick = () => {
     console.log("click");
@@ -31,7 +49,23 @@ export default function Accountcard() {
     >
       {/* IMPORTANT: attach containerRef */}
       <div ref={containerRef} className="py-40 space-y-40">
-        <div className="parallax text-5xl font-bold" data-speed="0.2">
+        <div className="space-y-8">
+          <h1 ref={dashboardRef} className="text-2xl font-bold">
+            Dashboard
+          </h1>
+
+          <button
+            ref={addProjectRef}
+            className="mt-5 px-4 py-2 bg-blue-500 text-white rounded"
+            onClick={() => console.log("Add Project clicked")}
+          >
+            Add Project
+          </button>
+
+          {/* Onboarding badge */}
+          <Onboarding steps={steps} />
+        </div>
+        {/* <div className="parallax text-5xl font-bold" data-speed="0.2">
           Slow Layer
         </div>
 
@@ -41,7 +75,7 @@ export default function Accountcard() {
 
         <div className="h-screen flex items-center justify-center">
           <GsapBox />
-        </div>
+        </div> */}
       </div>
     </PageLayout>
   );
