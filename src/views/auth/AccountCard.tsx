@@ -3,26 +3,35 @@ import { DemoButton } from "../../components/button/DemoButton";
 import { PageHeaderCard } from "../../components/cards/PageHeaderCard";
 import { PageLayout } from "../../components/layout/PageLayout";
 // import GsapBox from "../../components/gsap/GsapBox";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import Joyride, { type Step } from "react-joyride";
 //use for onbording tour
-import { Onboarding } from "../../features/onboarding/Onboarding";
+// import { Onboarding } from "../../features/onboarding/Onboarding";
 
 export default function Accountcard() {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const dashboardRef = useRef<HTMLHeadingElement>(null);
-  const addProjectRef = useRef<HTMLButtonElement>(null);
+  // const dashboardRef = useRef<HTMLHeadingElement>(null);
+  // const addProjectRef = useRef<HTMLButtonElement>(null);
 
-  const steps = [
+  // const [steps, setSteps] = useState<Step[]>([]);
+  // const [run, setRun] = useState(false); // control Joyride
+
+  const [run] = useState(true);
+
+  const steps: Step[] = [
     {
-      title: "Welcome to your dashboard!",
-      content: "This is where you can see your stats.",
-      targetRef: dashboardRef,
+      target: ".dashboard-step",
+      content:
+        "Welcome to your dashboard! This is where you can see your stats.",
+      placement: "bottom",
+      disableBeacon: true, // 👈 IMPORTANT
     },
     {
-      title: "Add Project",
+      target: ".add-project-step",
       content: "Click here to add a new project.",
-      targetRef: addProjectRef,
+      placement: "bottom",
+      disableBeacon: true, // 👈 IMPORTANT
     },
   ];
 
@@ -50,7 +59,7 @@ export default function Accountcard() {
       {/* IMPORTANT: attach containerRef */}
       <div ref={containerRef} className="py-40 space-y-40">
         <div className="space-y-8">
-          <h1 ref={dashboardRef} className="text-2xl font-bold">
+          {/* <h1 ref={dashboardRef} className="text-2xl font-bold">
             Dashboard
           </h1>
 
@@ -60,10 +69,35 @@ export default function Accountcard() {
             onClick={() => console.log("Add Project clicked")}
           >
             Add Project
+          </button> */}
+
+          {/* Onboarding component */}
+          {/* <Onboarding steps={steps} /> */}
+
+          {/* using Joyride */}
+
+          <h1 className="dashboard-step text-2xl font-bold">Dashboard</h1>
+
+          <button className="add-project-step mt-5 px-4 py-2 bg-blue-500 text-white rounded">
+            Add Project
           </button>
 
-          {/* Onboarding badge */}
-          <Onboarding steps={steps} />
+          {steps.length > 0 && (
+            <Joyride
+              steps={steps}
+              run={run}
+              continuous
+              scrollToFirstStep
+              showSkipButton
+              showProgress
+              styles={{
+                options: {
+                  zIndex: 10000,
+                  primaryColor: "#1D4ED8",
+                },
+              }}
+            />
+          )}
         </div>
         {/* <div className="parallax text-5xl font-bold" data-speed="0.2">
           Slow Layer
