@@ -5,10 +5,13 @@ import { budgetData, statsArray } from "../../store/budget-data";
 import { DemoLinearProgressBar } from "../../components/progressbar/DemoLinearProgressBar";
 import { DemoAvatar } from "../../components/avatar/DemoAvatar";
 import { categories } from "../../store/budget-data";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { DemoCardExpansion } from "../../components/cards/DemoCardExpansion";
+import { PageLayout } from "../../components/layout/PageLayout";
 
 export default function BudgetPlanning() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
   const [budget, setBudget] = useState("");
 
   const { amount, daysRemaining } = budgetData.dailyInsight;
@@ -23,27 +26,24 @@ export default function BudgetPlanning() {
   };
 
   return (
-    <div className="w-full h-full p-2 m-0 flex flex-col scrollbar-thin">
-      <div className="block w-full h-auto p-2 space-y-5">
-        {/* header  */}
-        <PageHeaderCard
-          title="Budget Planning"
-          visibleDate={false}
-          children={
-            <div className="flex justify-end items-center gap-5">
-              <DemoButton title="Export Data" />
-              <DemoButton
-                title="Add Category"
-                icon={FaPlus}
-                onClick={() => handleClick}
-              />
-            </div>
-          }
-        />
-        {/* header end */}
-      </div>
-
-      <div className="flex gap-3 items-start w-full h-auto p-2">
+    <PageLayout
+      header={
+        <PageHeaderCard title="Budget Planning" visibleDate={false}>
+          <div className="flex justify-end items-center gap-5">
+            <DemoButton title="Export Data" />
+            <DemoButton
+              title="Add Category"
+              icon={FaPlus}
+              onClick={() => handleClick}
+            />
+          </div>
+        </PageHeaderCard>
+      }
+    >
+      <div
+        ref={containerRef}
+        className="flex gap-3 items-start w-full h-auto p-2"
+      >
         {/* left side */}
 
         <div className="w-1/3 p-2 sticky top-2 h-fit">
@@ -155,6 +155,6 @@ export default function BudgetPlanning() {
         </div>
         {/* right side end */}
       </div>
-    </div>
+    </PageLayout>
   );
 }

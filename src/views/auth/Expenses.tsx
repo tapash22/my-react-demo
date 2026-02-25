@@ -11,8 +11,12 @@ import type { DoughnutChartOptions } from "../../features/type/User";
 import { cssVar } from "../../utils/cssVar";
 import { FinanceList } from "../../components/item/FinanceList";
 import { BillCard } from "../../components/cards/BillCard";
+import { PageLayout } from "../../components/layout/PageLayout";
+import { useRef } from "react";
 
 export default function Expenses() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
   const handleClick = () => {
     console.log("click");
   };
@@ -88,27 +92,23 @@ export default function Expenses() {
   };
 
   return (
-    <div className="w-full h-full p-2 m-0 flex flex-col scrollbar-thin">
-      {/* header  */}
-      <div className="block w-full h-auto p-2 space-y-5 ">
-        <PageHeaderCard
-          title="Expenses"
-          visibleDate={false}
-          children={
-            <div className="flex justify-end items-center gap-5">
-              <DemoButton
-                title="Add Transaction"
-                icon={FaPlus}
-                onClick={() => handleClick}
-              />
-            </div>
-          }
-        />
-      </div>
-      {/* header end */}
-
-      {/* body */}
-      <div className="flex gap-3 items-start w-full h-auto p-2">
+    <PageLayout
+      header={
+        <PageHeaderCard title="Expenses" visibleDate={false}>
+          <div className="flex justify-end items-center gap-5">
+            <DemoButton
+              title="Add Transaction"
+              icon={FaPlus}
+              onClick={() => handleClick}
+            />
+          </div>
+        </PageHeaderCard>
+      }
+    >
+      <div
+        ref={containerRef}
+        className="flex gap-3 items-start w-full h-auto p-2"
+      >
         {/* left side */}
         <div className="w-2/3 h-auto p-2 block space-y-5">
           <div className="w-full h-full ">
@@ -195,8 +195,7 @@ export default function Expenses() {
 
         {/* right side end */}
       </div>
-      {/* body end */}
-    </div>
+    </PageLayout>
   );
 }
 
