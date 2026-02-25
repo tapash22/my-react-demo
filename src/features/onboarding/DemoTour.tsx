@@ -22,6 +22,7 @@ export function DemoTour({ steps }: DemoTourProps) {
   });
 
   const [run, setRun] = useState<boolean>(true);
+
   const handleCallback = (data: CallBackProps) => {
     const { status, type, action, index } = data;
     // ✅ Save progress after each step

@@ -37,10 +37,10 @@ export default function Accountcard() {
         <div className="space-y-8">
           <DemoTour steps={steps} />
 
-          <div style={{ marginTop: 100 }}>
-            <button className="step-1">Button 1</button>
-            <button className="step-2">Button 2</button>
-            <button className="step-3">Button 3</button>
+          <div className="flex flex-col space-y-40" style={{ marginTop: 100 }}>
+            <DemoButton classTag="step-1" title="Button 1" />
+            <DemoButton classTag="step-2" title="Button 2" />
+            <DemoButton classTag="step-3" title="Button 3" />
           </div>
         </div>
       </div>

@@ -498,7 +498,22 @@ export const categoryExpenses: FinanceItem[] = [
 // ];
 
 export const steps: Step[] = [
-  { target: ".step-1", content: "This is step 1", disableBeacon: true },
-  { target: ".step-2", content: "This is step 2", disableBeacon: true },
-  { target: ".step-3", content: "This is step 3", disableBeacon: true },
+  {
+    target: ".step-1",
+    content: "This is step 1",
+    disableBeacon: true,
+    placement: "top-start",
+  },
+  {
+    target: ".step-2",
+    content: "This is step 2",
+    disableBeacon: true,
+    placement: "top-start",
+  },
+  {
+    target: ".step-3",
+    content: "This is step 3",
+    disableBeacon: true,
+    placement: "top-start",
+  },
 ];

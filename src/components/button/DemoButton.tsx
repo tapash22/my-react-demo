@@ -8,6 +8,7 @@ interface DemoButtonProps {
   textColor?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   widthSize?: string;
+  classTag?: string;
   children?: React.ReactNode;
   isDisabled?: boolean;
 }
@@ -19,11 +20,12 @@ export function DemoButton({
   onClick,
   widthSize = "auto",
   children,
+  classTag,
   isDisabled = false,
 }: DemoButtonProps) {
   return (
     <button
-      className={`${buttonColor}  bg-(--surface) px-4 py-3 dark:bg-slate-800 ${textColor} font-semibold text-center transition-colors duration-300 w-${widthSize} rounded-xl  shadow-(--shadow-default) flex justify-evenly items-center gap-2`}
+      className={`${buttonColor} ${classTag}  bg-(--surface) px-4 py-3 dark:bg-slate-800 ${textColor} font-semibold text-center transition-colors duration-300 w-${widthSize} rounded-xl  shadow-(--shadow-default) flex justify-evenly items-center gap-2`}
       onClick={onClick}
       disabled={isDisabled}
     >
