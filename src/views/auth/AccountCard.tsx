@@ -15,24 +15,6 @@ import Joyride, {
 // import { Onboarding } from "../../features/onboarding/Onboarding";
 
 const TOUR_STORAGE_KEY = "app-tour-step";
-// const TOUR_CLOSED_KEY = "app-tour-closed";
-
-//using for onbording tour
-
-// const steps: Step[] = [
-//   {
-//     target: ".dashboard-step",
-//     content: "Welcome to your dashboard! This is where you can see your stats.",
-//     placement: "bottom",
-//     disableBeacon: true, // 👈 IMPORTANT
-//   },
-//   {
-//     target: ".add-project-step",
-//     content: "Click here to add a new project.",
-//     placement: "bottom",
-//     disableBeacon: true, // 👈 IMPORTANT
-//   },
-// ];
 
 //with react-joyride tour
 const steps: Step[] = [
@@ -43,13 +25,6 @@ const steps: Step[] = [
 
 export default function Accountcard() {
   const containerRef = useRef<HTMLDivElement>(null);
-
-  // const dashboardRef = useRef<HTMLHeadingElement>(null);
-  // const addProjectRef = useRef<HTMLButtonElement>(null);
-
-  // const [steps, setSteps] = useState<Step[]>([]);
-  // const [run, setRun] = useState(false); // control Joyride
-
   // ✅ Initialize from localStorage directly
   const [stepIndex, setStepIndex] = useState<number>(() => {
     const saved = localStorage.getItem(TOUR_STORAGE_KEY);
@@ -121,49 +96,8 @@ export default function Accountcard() {
         </PageHeaderCard>
       }
     >
-      {/* IMPORTANT: attach containerRef */}
       <div ref={containerRef} className="py-40 space-y-40">
         <div className="space-y-8">
-          {/* <h1 ref={dashboardRef} className="text-2xl font-bold">
-            Dashboard
-          </h1>
-
-          <button
-            ref={addProjectRef}
-            className="mt-5 px-4 py-2 bg-blue-500 text-white rounded"
-            onClick={() => console.log("Add Project clicked")}
-          >
-            Add Project
-          </button> */}
-
-          {/* Onboarding component */}
-          {/* <Onboarding steps={steps} /> */}
-
-          {/* using Joyride */}
-
-          {/* <h1 className="dashboard-step text-2xl font-bold">Dashboard</h1>
-
-          <button className="add-project-step mt-5 px-4 py-2 bg-blue-500 text-white rounded">
-            Add Project
-          </button>
-
-          {steps.length > 0 && (
-            <Joyride
-              steps={steps}
-              run={run}
-              stepIndex={stepIndex}
-              continuous
-              showSkipButton
-              showProgress
-              callback={handleJoyrideCallback}
-              styles={{
-                options: {
-                  zIndex: 10000,
-                  primaryColor: "#1D4ED8",
-                },
-              }}
-            />
-          )} */}
           <Joyride
             steps={steps}
             run={run}
@@ -180,17 +114,6 @@ export default function Accountcard() {
             <button className="step-3">Button 3</button>
           </div>
         </div>
-        {/* <div className="parallax text-5xl font-bold" data-speed="0.2">
-          Slow Layer
-        </div>
-
-        <div className="parallax text-5xl font-bold" data-speed="0.2">
-          Fast Layer
-        </div>
-
-        <div className="h-screen flex items-center justify-center">
-          <GsapBox />
-        </div> */}
       </div>
     </PageLayout>
   );

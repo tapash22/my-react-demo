@@ -480,3 +480,18 @@ export const categoryExpenses: FinanceItem[] = [
   { label: "Utilities", amount: 120, percentage: 5 },
   { label: "Other", amount: 200, percentage: 9 },
 ];
+
+// const steps: Step[] = [
+//   {
+//     target: ".dashboard-step",
+//     content: "Welcome to your dashboard! This is where you can see your stats.",
+//     placement: "bottom",
+//     disableBeacon: true, // 👈 IMPORTANT
+//   },
+//   {
+//     target: ".add-project-step",
+//     content: "Click here to add a new project.",
+//     placement: "bottom",
+//     disableBeacon: true, // 👈 IMPORTANT
+//   },
+// ];
