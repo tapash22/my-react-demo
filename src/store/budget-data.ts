@@ -22,7 +22,8 @@ import { FaPhotoFilm, FaArrowTrendUp } from "react-icons/fa6";
 import { FiCreditCard } from "react-icons/fi";
 import { TbCardsFilled } from "react-icons/tb";
 import { IoMdSettings } from "react-icons/io";
-import type { Activity, CategoryData, Step } from "../features/type/User";
+import type { Activity, CategoryData } from "../features/type/User";
+import { type Step } from "react-joyride";
 
 export const myBudget: Budget = {
   personalInfo: {
@@ -495,3 +496,9 @@ export const categoryExpenses: FinanceItem[] = [
 //     disableBeacon: true, // 👈 IMPORTANT
 //   },
 // ];
+
+export const steps: Step[] = [
+  { target: ".step-1", content: "This is step 1", disableBeacon: true },
+  { target: ".step-2", content: "This is step 2", disableBeacon: true },
+  { target: ".step-3", content: "This is step 3", disableBeacon: true },
+];
