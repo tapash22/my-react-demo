@@ -6,7 +6,7 @@ interface DemoButtonProps {
   icon?: IconType;
   buttonColor?: string;
   textColor?: string;
-  onClick?: () => void;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
   widthSize?: string;
   children?: React.ReactNode;
   isDisabled?: boolean;

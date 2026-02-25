@@ -6,6 +6,7 @@ import Joyride, {
   type CallBackProps,
   type Step,
 } from "react-joyride";
+import { GlassTooltip } from "./GlassTooltip";
 
 const TOUR_STORAGE_KEY = "app-tour-step";
 
@@ -67,8 +68,15 @@ export function DemoTour({ steps }: DemoTourProps) {
       stepIndex={stepIndex}
       continuous
       showSkipButton
-      showProgress
+      showProgress={false}
       callback={handleCallback}
+      tooltipComponent={GlassTooltip}
+      styles={{
+        options: {
+          overlayColor: "rgba(0,0,0,0.7)",
+          zIndex: 10000,
+        },
+      }}
     />
   );
 }
