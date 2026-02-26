@@ -155,6 +155,7 @@ export interface BankAccount {
   last4: string;
   lastSync: string; // Can also use Date if you parse it
   type: AccountType;
+  amount: number;
 }
 
 export const getFontSize = (sizeType: SizeType): string => {

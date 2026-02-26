@@ -23,7 +23,7 @@ export function DemoCurrency({
   return (
     <div className="w-auto h-auto p-2 flex justify-evenly items-center ">
       {currencyLabel && (
-        <p className="text-sm font-bold tracking-wider text-(--foreground)">
+        <p className="text-sm font-medium tracking-wider text-(--foreground)">
           {currencyLabel}:
         </p>
       )}

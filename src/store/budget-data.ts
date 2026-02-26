@@ -566,6 +566,7 @@ export const bankAccounts: BankAccount[] = [
     last4: "1234",
     lastSync: "2 minutes ago",
     type: "checking account",
+    amount: 300,
   },
   {
     name: "Savings Account",
@@ -574,6 +575,7 @@ export const bankAccounts: BankAccount[] = [
     last4: "5678",
     lastSync: "5 minutes ago",
     type: "savings account",
+    amount: 300,
   },
   {
     name: "Chase Freedom",
@@ -582,6 +584,7 @@ export const bankAccounts: BankAccount[] = [
     last4: "9012",
     lastSync: "1 hour ago",
     type: "credit balance",
+    amount: 300,
   },
   {
     name: "Business Checking",
@@ -590,5 +593,6 @@ export const bankAccounts: BankAccount[] = [
     last4: "3456",
     lastSync: "Failed",
     type: "checking account",
+    amount: 300,
   },
 ];

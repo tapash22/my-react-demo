@@ -1,15 +1,23 @@
 import { FaHome, FaUser } from "react-icons/fa";
 import { DemoAvatar } from "../avatar/DemoAvatar";
 import { useState } from "react";
-import type { Page } from "../../features/type/User";
+import type { BankAccount, Page } from "../../features/type/User";
 import { useOutsideClick } from "../hooks/useOutsideClick";
 import { DropdownProfileCard } from "./DropdownProfileCard";
 import { DemoChip } from "../chip/DemoChip";
 import { HiDotsHorizontal } from "react-icons/hi";
 import { DemoIcon } from "../common-property/DemoIcon";
+import { DemoCurrency } from "./DemoCurrency";
 
-export function AccountDetailsCard() {
-  const [show, setShow] = useState(false);
+interface AccountDetailsCardProps {
+  showBalance?: boolean;
+  accountData: BankAccount;
+}
+
+export function AccountDetailsCard({
+  showBalance = false,
+  accountData,
+}: AccountDetailsCardProps) {
   const [showProfileCard, setShowProfileCard] = useState<boolean>(false);
 
   const profileRef = useOutsideClick(() => setShowProfileCard(false));
@@ -32,50 +40,49 @@ export function AccountDetailsCard() {
   };
 
   return (
-    <div className="flex flex-col w-full h-auto">
-      <div className="flex justify-end items-center p-3">
-        <button onClick={() => setShow(!show)}>
-          {show ? "Hide Balances" : "Show Balances"}
-        </button>
-      </div>
-
-      <div className="flex justify-between items-center text-xs font-semibold text-(--foreground) opacity-80 w-full ring-2 ring-(--input-border) p-3 rounded-xl">
-        <div className="flex justify-start items-center gap-3 w-2/3 px-3 h-auto ">
-          <DemoAvatar icon={FaUser} />
-          <div className="flex flex-col justify-start items-center space-y-1">
-            <h2 className="text-lg font-semibold text-(--forground) flex gap-2">
-              {/* {title && title} */}
-              <span>title</span>
-              <DemoChip label="account" labelSize="tiny" />
-            </h2>
-            <p className="text-start  w-full">demo text</p>
-            <p className="text-start  w-full">demo text</p>
-          </div>
+    <div className="flex justify-between items-center text-xs font-semibold text-(--foreground) opacity-80 w-full ring-2 ring-(--input-border) p-2 rounded-xl hover:bg-(--surface) cursor-pointer">
+      <div className="flex justify-start items-center gap-3 w-2/3 px-1 h-auto ">
+        <DemoAvatar size={12} icon={FaUser} />
+        <div className="flex flex-col justify-start items-center">
+          <h2 className="text-lg font-semibold text-(--forground) flex gap-3 py-2">
+            {/* {title && title} */}
+            <span className="text-sm font-medium tracking-wide text-(--foreground)">
+              {accountData.name}
+            </span>
+            <DemoChip label={accountData.status} labelSize="tiny" />
+          </h2>
+          <p className="text-start text-sm font-normal tracking-wide w-full text-wrap ">
+            <span className="">{accountData.bank}.</span>
+            <span> ****{accountData.last4}</span>
+          </p>
+          <p className="text-start text-sm font-normal tracking-wide w-full text-wrap ">
+            Last Sync: {accountData.lastSync}
+          </p>
         </div>
-
-        <div className="flex justify-end items-center gap-2 px-3 py-2 space-y-1 w-1/3">
-          <div className="flex flex-col items-center p-2 space-y-1">
-            <span className="text-sm font-bold tracking-wider  text-(--forground)">
-              {show ? "9000" : <DemoIcon icon={HiDotsHorizontal} size={20} />}
-            </span>
-            <span className="text-sm tracking-wide text-(--forground)">
-              checking account
-            </span>
-          </div>
-          <div ref={profileRef} className="relative">
-            <DemoIcon
-              icon={HiDotsHorizontal}
-              size={20}
-              onClick={() => setShowProfileCard(!showProfileCard)}
-            />
-            {/* Card Dropdown */}
-            {showProfileCard && (
-              <DropdownProfileCard
-                pages={pages}
-                navClick={handleNavLinkClick}
-              />
+      </div>
+      <div className="flex justify-end items-center gap-5 p-2  w-1/3">
+        <div className="flex flex-col items-center ">
+          <span className="text-sm font-bold tracking-wider transition-all duration-200 text-(--forground)">
+            {showBalance ? (
+              <DemoCurrency amount={accountData.amount} currency="TK" />
+            ) : (
+              <DemoIcon icon={HiDotsHorizontal} size={20} />
             )}
-          </div>
+          </span>
+          <span className="text-sm font-normal tracking-wide text-(--forground)">
+            {accountData.type}
+          </span>
+        </div>
+        <div ref={profileRef} className="relative">
+          <DemoIcon
+            icon={HiDotsHorizontal}
+            size={16}
+            onClick={() => setShowProfileCard(!showProfileCard)}
+          />
+          {/* Card Dropdown */}
+          {showProfileCard && (
+            <DropdownProfileCard pages={pages} navClick={handleNavLinkClick} />
+          )}
         </div>
       </div>
     </div>
