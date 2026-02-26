@@ -1,5 +1,6 @@
 import { FaTimes } from "react-icons/fa";
 import { DemoIcon } from "../common-property/DemoIcon";
+import { getFontSize, type SizeType } from "../../features/type/User";
 
 interface DemoChipProps {
   label: string;
@@ -8,6 +9,7 @@ interface DemoChipProps {
   color?: "primary" | "secondary" | "success" | "error";
   variant?: "filled" | "outlined";
   className?: string;
+  labelSize?: SizeType;
 }
 
 const colorStyles = {
@@ -24,20 +26,20 @@ export const DemoChip = ({
   color = "secondary",
   variant = "filled",
   className = "",
+  labelSize = "small",
 }: DemoChipProps) => {
+  const fontSizeClass = getFontSize(labelSize);
   const baseClasses =
-    "inline-flex justify-between items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium border transition-all";
+    "inline-flex justify-between items-center ring-2 ring-(--input-border) gap-1.5 px-2 py-1 rounded-lg text-xs font-medium transition-all";
   const variantClasses =
-    variant === "outlined"
-      ? "bg-(--list-bg) border-(--input-border)"
-      : colorStyles[color];
+    variant === "outlined" ? "bg-transparent " : colorStyles[color];
   return (
     <div
-      className={`${baseClasses} ${variantClasses} ${className} opacity-80 cursor-pointer  `}
+      className={`${baseClasses} ${variantClasses} ${className} cursor-pointer`}
       onClick={() => onClick?.(label)}
     >
       <span
-        className={`text-sm font-normal tracking-wider  ${onDelete ? "w-2/3" : "w-full"} `}
+        className={` ${fontSizeClass} tracking-wider text-(--foreground)  ${onDelete ? "w-2/3" : "w-full"} `}
       >
         {label}
       </span>

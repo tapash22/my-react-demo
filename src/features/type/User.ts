@@ -1,6 +1,8 @@
 import type { ChartOptions } from "chart.js";
 import type { RefObject } from "react";
 import type { IconType } from "react-icons";
+import { FaDollarSign, FaEuroSign, FaPoundSign } from "react-icons/fa";
+import { TbCurrencyTaka } from "react-icons/tb";
 
 export interface Geo {
   lat: string;
@@ -120,3 +122,57 @@ export interface MyConditions {
   tablet: boolean;
   mobile: boolean;
 }
+
+//report
+export type ReportCardStatus =
+  | "On Track"
+  | "Under Budget"
+  | "Over Budget"
+  | "Warning";
+export type ReportTrendType = "increasing" | "decreasing" | "stable";
+
+export interface ReportCard {
+  category: string;
+  status: ReportCardStatus;
+  spent: number;
+  budget: number;
+  projected: number;
+  trend: ReportTrendType;
+}
+
+//account
+export type AccountStatus = "Connected" | "Pending" | "Connection Error";
+
+export type AccountType =
+  | "checking account"
+  | "savings account"
+  | "credit balance";
+
+export interface BankAccount {
+  name: string;
+  status: AccountStatus;
+  bank: string;
+  last4: string;
+  lastSync: string; // Can also use Date if you parse it
+  type: AccountType;
+}
+
+export const getFontSize = (sizeType: SizeType): string => {
+  const textSizeMap: Record<SizeType, string> = {
+    tiny: "text-xs font-normal",
+    small: "text-sm font-medium",
+    medium: "text-lg font-medium",
+    large: "text-xl font-bold",
+  };
+  return textSizeMap[sizeType];
+};
+
+export const currencyIcons: Record<string, IconType> = {
+  USD: FaDollarSign,
+  EUR: FaEuroSign,
+  GBP: FaPoundSign,
+  TK: TbCurrencyTaka,
+};
+
+// Optional: export individual icons if needed
+export { FaDollarSign, FaEuroSign, FaPoundSign, TbCurrencyTaka };

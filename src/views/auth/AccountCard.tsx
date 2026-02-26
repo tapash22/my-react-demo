@@ -4,6 +4,7 @@ import { PageHeaderCard } from "../../components/cards/PageHeaderCard";
 import { PageLayout } from "../../components/layout/PageLayout";
 import { useRef } from "react";
 import { AccountDetailsCard } from "../../components/cards/AccountDetailsCard";
+import { CategoryCard } from "../../components/cards/CategoryCard";
 // using tour gide
 // import { TourExample } from "../../practice/TourExample";
 
@@ -33,9 +34,10 @@ export default function Accountcard() {
     >
       <div
         ref={containerRef}
-        className="flex gap-3 items-start w-full h-auto p-2"
+        className="flex flex-col gap-3 items-start w-full h-auto p-2"
       >
         <AccountDetailsCard />
+        <CategoryCard />
       </div>
     </PageLayout>
   );

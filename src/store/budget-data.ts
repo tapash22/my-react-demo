@@ -22,7 +22,12 @@ import { FaPhotoFilm, FaArrowTrendUp } from "react-icons/fa6";
 import { FiCreditCard } from "react-icons/fi";
 import { TbCardsFilled } from "react-icons/tb";
 import { IoMdSettings } from "react-icons/io";
-import type { Activity, CategoryData } from "../features/type/User";
+import type {
+  Activity,
+  BankAccount,
+  CategoryData,
+  ReportCard,
+} from "../features/type/User";
 import { type Step } from "react-joyride";
 
 export const myBudget: Budget = {
@@ -515,5 +520,75 @@ export const steps: Step[] = [
     content: "This is step 3",
     disableBeacon: true,
     placement: "top-start",
+  },
+];
+
+export const reportCards: ReportCard[] = [
+  {
+    category: "Housing",
+    status: "On Track",
+    spent: 1200,
+    budget: 1500,
+    projected: 1450,
+    trend: "stable",
+  },
+  {
+    category: "Food & Dining",
+    status: "Under Budget",
+    spent: 350,
+    budget: 500,
+    projected: 480,
+    trend: "decreasing",
+  },
+  {
+    category: "Transportation",
+    status: "Warning",
+    spent: 180,
+    budget: 200,
+    projected: 220,
+    trend: "increasing",
+  },
+  {
+    category: "Entertainment",
+    status: "Over Budget",
+    spent: 150,
+    budget: 120,
+    projected: 180,
+    trend: "increasing",
+  },
+];
+
+export const bankAccounts: BankAccount[] = [
+  {
+    name: "Chase Checking",
+    status: "Connected",
+    bank: "Chase Bank",
+    last4: "1234",
+    lastSync: "2 minutes ago",
+    type: "checking account",
+  },
+  {
+    name: "Savings Account",
+    status: "Pending",
+    bank: "Bank of America",
+    last4: "5678",
+    lastSync: "5 minutes ago",
+    type: "savings account",
+  },
+  {
+    name: "Chase Freedom",
+    status: "Connected",
+    bank: "Chase Bank",
+    last4: "9012",
+    lastSync: "1 hour ago",
+    type: "credit balance",
+  },
+  {
+    name: "Business Checking",
+    status: "Connection Error",
+    bank: "Wells Fargo",
+    last4: "3456",
+    lastSync: "Failed",
+    type: "checking account",
   },
 ];

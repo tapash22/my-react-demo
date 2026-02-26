@@ -4,6 +4,7 @@ interface DemoLinearProgressBar {
   height?: string;
   showLabel?: string;
   children?: React.ReactNode;
+  childrenBottom?: React.ReactNode;
 }
 export function DemoLinearProgressBar({
   currentAmount,
@@ -11,6 +12,7 @@ export function DemoLinearProgressBar({
   height = "h-2.5",
   showLabel = "",
   children,
+  childrenBottom,
 }: DemoLinearProgressBar) {
   const percentage =
     targetAmount > 0 ? Math.round((currentAmount / targetAmount) * 100) : 0;
@@ -44,6 +46,7 @@ export function DemoLinearProgressBar({
           style={{ width: `${safePercentage}%` }}
         ></div>
       </div>
+      {childrenBottom && childrenBottom}
     </div>
   );
 }
