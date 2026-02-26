@@ -1,5 +1,5 @@
 import { FaPowerOff } from "react-icons/fa";
-import image from "../../assets/react.svg";
+import image from "../../../public/image/side_bar.png";
 import { NavLink, useNavigate } from "react-router-dom";
 import { logout } from "../auth/useAuth";
 import { ROUTING_PAGES } from "../../store/budget-data";
@@ -22,12 +22,14 @@ export function DemoSideBar({ collapsed }: DemoSideBarProps) {
     ${collapsed ? "w-16" : "w-64"} overflow-hidden relative`}
     >
       {/* Logo + Toggle */}
-      <div className="h-24 flex items-center justify-center px-2 my-4 transition-all duration-300 ease-in-out">
+      <div className="h-24 flex items-center justify-center px-2 my-4 transition-all duration-500 ease-in-out">
         <img
           src={image}
           alt="logo"
-          className={`transition-transform duration-300 ease-in-out ${
-            collapsed ? "scale-100" : "scale-150"
+          className={`transition-transform duration-500 ease-in-out logo-image object-contain h-full w-auto ${
+            collapsed
+              ? "scale-100 dark:brightness-200 logo-image"
+              : "scale-100 shadow-(--shadow) rounded-full p-2  "
           }`}
         />
       </div>

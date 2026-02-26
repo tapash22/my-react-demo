@@ -310,8 +310,17 @@ body {
   font-weight: var(--subtitle-small-title-weight);
 }
 
-/* font declear end */
+/* logo image */
+.logo-image {
+  @apply transition-all duration-500;
+  filter: none;
+  /* normal in light mode */
+}
 
+/* Dark mode logo */
+.dark .logo-image {
+  filter: invert(1) drop-shadow(0 4px 8px rgba(255, 255, 255, 0.5));
+}
 
 /* Toast container at bottom */
 .toast-container {
