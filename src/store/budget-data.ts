@@ -17,6 +17,7 @@ import {
   FaUmbrellaBeach,
   FaGraduationCap,
   FaGift,
+  FaUsers,
 } from "react-icons/fa";
 import { FaPhotoFilm, FaArrowTrendUp } from "react-icons/fa6";
 import { FiCreditCard } from "react-icons/fi";
@@ -119,9 +120,9 @@ export const ROUTING_PAGES: Page[] = [
     icon: IoMdSettings,
   },
   {
-    name: "Profile",
-    path: "profile",
-    icon: FaUser,
+    name: "Referrals",
+    path: "referrals",
+    icon: FaUsers,
   },
   {
     name: "Gallery",

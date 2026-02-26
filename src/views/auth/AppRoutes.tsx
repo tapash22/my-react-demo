@@ -9,12 +9,12 @@ const Login = lazy(() => import("./Login"));
 const Demo = lazy(() => import("./Demo"));
 const DashboardLayout = lazy(() => import("./DashboardLayout"));
 const Home = lazy(() => import("./Home"));
-const Profile = lazy(() => import("./Profile"));
 const BudgetPlanning = lazy(() => import("./BudgetPlanning"));
 const Expenses = lazy(() => import("./Expenses"));
 const SavingGoals = lazy(() => import("./SavingGoals"));
 const AccountCard = lazy(() => import("./AccountCard"));
 const Reports = lazy(() => import("./Reports"));
+const Referrals = lazy(() => import("./Referrals"));
 const Settings = lazy(() => import("./Settings"));
 
 const Gallery = lazy(() => import("./Gallery"));
@@ -101,9 +101,9 @@ export default function AppRoutes() {
               handle: { breadcrumb: "Settings" },
             },
             {
-              path: "profile",
-              element: <Profile />,
-              handle: { breadcrumb: "Profile" },
+              path: "referrals",
+              element: <Referrals />,
+              handle: { breadcrumb: "Referrals" },
             },
             {
               path: "gallery",
