@@ -5,7 +5,7 @@ import { DemoButton } from "../button/DemoButton";
 interface PagesProps {
   pages: Page[];
   navClick: () => void;
-  logout: () => void;
+  logout?: () => void;
 }
 
 export function DropdownProfileCard({ pages, navClick, logout }: PagesProps) {

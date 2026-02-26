@@ -4,6 +4,7 @@ import { PageHeaderCard } from "../../components/cards/PageHeaderCard";
 import { PageLayout } from "../../components/layout/PageLayout";
 
 import { FaPlus } from "react-icons/fa";
+import { BillCard } from "../../components/cards/BillCard";
 
 export default function Settings() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -28,7 +29,9 @@ export default function Settings() {
         </PageHeaderCard>
       }
     >
-      <div ref={containerRef} className="relative w-full overflow-hidden"></div>
+      <div ref={containerRef} className="relative w-full overflow-hidden">
+        <BillCard />
+      </div>
     </PageLayout>
   );
 }

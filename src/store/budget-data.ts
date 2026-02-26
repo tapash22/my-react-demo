@@ -8,7 +8,6 @@ import type {
 } from "../assets/type/budget-type";
 import { cssVar } from "../utils/cssVar";
 import {
-  FaUser,
   FaHome,
   FaHandHoldingMedical,
   FaRegChartBar,

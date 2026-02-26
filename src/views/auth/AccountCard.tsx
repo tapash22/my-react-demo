@@ -3,6 +3,7 @@ import { DemoButton } from "../../components/button/DemoButton";
 import { PageHeaderCard } from "../../components/cards/PageHeaderCard";
 import { PageLayout } from "../../components/layout/PageLayout";
 import { useRef } from "react";
+import { AccountDetailsCard } from "../../components/cards/AccountDetailsCard";
 // using tour gide
 // import { TourExample } from "../../practice/TourExample";
 
@@ -30,7 +31,12 @@ export default function Accountcard() {
         </PageHeaderCard>
       }
     >
-      <div ref={containerRef} className="py-40 space-y-40"></div>
+      <div
+        ref={containerRef}
+        className="flex gap-3 items-start w-full h-auto p-2"
+      >
+        <AccountDetailsCard />
+      </div>
     </PageLayout>
   );
 }
