@@ -53,11 +53,11 @@ export default function Home() {
     >
       <div
         ref={containerRef}
-        className="flex flex-col gap-3 items-start w-full h-auto p-2 space-y-5"
+        className="flex flex-col gap-3 items-start w-full h-auto p-2 space-y-2"
       >
         {/* dashboard top component view */}
 
-        <div className="grid grid-cols-4 gap-3 p-2">
+        <div className="grid grid-cols-4 gap-3 p-2 w-full">
           {status.map((item, i) => (
             <Democard
               key={i}
@@ -71,13 +71,13 @@ export default function Home() {
         {/* dashboard top component view end */}
 
         {/* dashboard body component view */}
-        <div className="flex gap-3 items-start w-full h-auto p-2">
+        <div className="flex gap-3 items-start w-full h-auto p-2 ">
           {/* left side */}
           <div className="w-1/4 h-auto p-2 block space-y-5">
             <div className="block w-full h-auto ring-2 ring-(--input-border) rounded-xl ">
               <StatisticDoughnutChart />
             </div>
-            <div className="w-full  grid shadow-2xl">
+            <div className="w-full  grid shadow-2xl bg-(--surface) rounded-lg ">
               {QUICK_ROUTING_PAGES.length && (
                 <DemoList
                   items={QUICK_ROUTING_PAGES}
@@ -104,14 +104,14 @@ export default function Home() {
           {/* left side end */}
 
           {/* middle side */}
-          <div className="w-2/4 h-auto p-2 block space-y-5">
+          <div className="w-2/4 h-full  p-2 block space-y-5">
             {/* Line chart */}
-            <div className="block w-[780px] h-full rounded-xl p-2">
+            <div className="block w-auto rounded-xl p-4 h-96  ring-2 ring-(--input-border)">
               <MonthlyIncomeExpenseLineChart />
             </div>
             {/* Line chart end */}
             {/* bar chart */}
-            <div className="block w-full h-auto ring-2 ring-(--input-border) rounded-xl p-2 ">
+            <div className="block w-full h-80 ring-2 ring-(--input-border) rounded-xl p-2 ">
               <MonthlyIncomeExpenseLabelChart />
             </div>
             {/* bar chart end */}
@@ -128,18 +128,18 @@ export default function Home() {
               />
             </div>
 
-            <div className="block w-full h-auto ring-2 ring-(--input-border) rounded-xl ">
+            <div className="block w-full h-auto ring-2 p-2 ring-(--input-border) rounded-xl ">
               <GoalTrackerCard
                 title="Recent Activity"
                 onClick={handleRecentActivityAction}
               />
 
               {/* //using for dropdown menu */}
-              {openMenu && (
+              {/* {openMenu && (
                 <div className="w-10 h-10 ">
                   <p>hi</p>
                 </div>
-              )}
+              )} */}
               {/* //using for dropdown menu end */}
 
               <DemoDetailsCard
@@ -158,7 +158,7 @@ export default function Home() {
         {/* dashboard body component view end*/}
 
         {/* dashboard bottom component view */}
-        <div className="flex gap-3 items-start w-full h-auto p-2">
+        <div className="flex gap-3 items-start w-full h-auto p-2 ">
           <div className="w-1/4 h-auto p-2 block space-y-5">
             <div className="block w-full h-auto ring-2 ring-(--input-border) rounded-xl ">
               <GoalTrackerCard

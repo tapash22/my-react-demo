@@ -20,7 +20,7 @@ export function DemoDetailsCard<T>({ items, keys }: DemoDetailsCardProps<T>) {
       <h2 className="text-sm font-bold tracking-wider p-2 text-(--forground)">
         {formatRelativeDate(new Date())}
       </h2>
-      <div className="flex flex-col space-y-1 rounded-xl h-[50vh] overflow-y-scroll scrollbar-thin">
+      <div className="flex flex-col space-y-1 rounded-xl h-[40vh] overflow-y-scroll scrollbar-thin">
         {items?.map((item, index) => {
           const name = String(item[keys.name] ?? "");
           const action = String(item[keys.action] ?? "");
@@ -34,8 +34,8 @@ export function DemoDetailsCard<T>({ items, keys }: DemoDetailsCardProps<T>) {
               key={index}
               className="flex justify-start items-center p-2 gap-3 opacity-80 hover:opacity-100 hover:bg-(--surface)"
             >
-              <div className="w-12 h-10 flex justify-center items-center">
-                <DemoAvatar icon={FaUser} />
+              <div className="w-auto h-10 flex justify-center items-center">
+                <DemoAvatar size={10} icon={FaUser} />
               </div>
 
               <div className="block w-full h-auto">

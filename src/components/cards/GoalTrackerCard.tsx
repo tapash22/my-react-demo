@@ -16,7 +16,7 @@ export function GoalTrackerCard({
   onClick,
 }: GoalTrackerCardProps) {
   return (
-    <div className="flex justify-between items-center px-5 py-5 w-full">
+    <div className="flex justify-between items-center px-2 py-2 w-full">
       <p className="text-lg font-medium tracking-wide text-wrap text-(--forground)">
         {title}
       </p>

@@ -76,7 +76,7 @@ export function DemoTable<T extends { id: number }>({
   const currentData = filteredData.slice(startIndex, startIndex + pageSize);
 
   return (
-    <div className="w-full rounded-xl bg-(--background) shadow-md spacer-y-5">
+    <div className="w-full rounded-xl bg-(--background) shadow-2xl spacer-y-5">
       {/* Search */}
       <div className="w-1/3 h-auto p-3 flex justify-center align-bottom  ">
         <DemoDropdownSelect
