@@ -18,7 +18,7 @@ export default function Accountcard() {
   const lastMonth = 20350;
   const total = 3050;
   const difference = lastMonth - total;
-  const percentageChange = (difference / lastMonth) * 100;
+  // const percentageChange = (difference / lastMonth) * 100;
   const sign = difference >= 0 ? "+" : "-";
 
   const handleClick = () => {
@@ -98,7 +98,7 @@ export default function Accountcard() {
             title="Account Summary"
             visibleDate={false}
           ></PageHeaderCard>
-          <div className="w-full p-3 flex flex-col space-y-3">
+          <div className="w-full px-3 py-1 flex flex-col space-y-3">
             <p className="text-sm font-medium text-(--forground) text-left ">
               Monthly Comparison
             </p>
@@ -126,14 +126,36 @@ export default function Accountcard() {
               <p
                 className={`font-medium text-sm ${difference >= 0 ? "text-(--danger)" : "text-(--success)"}`}
               >
-                {sign}${difference} ({Math.abs(percentageChange).toFixed(1)}%)
+                {sign}${difference}
               </p>
             </div>
+
             {/* Difference end */}
+          </div>
+          <div className="w-full">
+            <PageHeaderCard
+              subtitle="Monthly Change"
+              visibleDate={false}
+              children={
+                <p
+                  className={`text-sm font-medium flex justify-end ${difference >= 0 ? "text-(--danger)" : "text-(--success)"}`}
+                >
+                  {sign}${Math.abs(difference)}
+                </p>
+              }
+            ></PageHeaderCard>
+            <div className="px-2">
+              <DemoLinearProgressBar
+                showLabel={String(difference)}
+                currentAmount={200}
+                targetAmount={250}
+                height="h-1"
+              />
+            </div>
           </div>
           <div className="">
             <PageHeaderCard
-              title="Account Distribution"
+              subtitle="Account Distribution"
               visibleDate={false}
             ></PageHeaderCard>
             <div className="px-2 space-y-1">

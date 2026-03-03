@@ -1,7 +1,7 @@
 import { formatDate } from "../../utils/formatDate";
 
 interface PageHeaderCardProps {
-  title: string;
+  title?: string;
   subtitle?: string;
   visibleDate?: boolean;
   data?: Date;
@@ -20,7 +20,7 @@ export function PageHeaderCard({
   return (
     <div className="flex justify-between w-full h-auto items-center p-4">
       <h2 className="flex flex-col space-y-1 w-2/3">
-        <span className="section-title text-(--title)">{title}</span>
+        {title && <span className="section-title text-(--title)">{title}</span>}
         {subtitle && (
           <span className="subtitle-small-title text-(--subtitle)">
             {subtitle}
