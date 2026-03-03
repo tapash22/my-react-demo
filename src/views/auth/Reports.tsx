@@ -133,39 +133,6 @@ export default function Reports() {
             {/* <p className="text-xl font-bold text-(--foreground)">
                     ${stat.value.toLocaleString()}
                   </p> */}
-            <div className="w-full p-3 flex flex-col space-y-3">
-              <p className="text-sm font-medium text-(--forground) text-left ">
-                Monthly Comparison
-              </p>
-              {/* Last Month */}
-              <div className="bg-(--surface) rounded-lg space-y-1 flex justify-between items-center">
-                <p className="text-sm text-(--foreground)">Last Month</p>
-                <p className="font-medium text-sm text-(--foreground) ">
-                  ${lastMonth}
-                </p>
-              </div>
-              {/* Last Month end*/}
-
-              {/* This Month */}
-              <div className="bg-(--surface) rounded-lg space-y-1 flex justify-between items-center">
-                <p className="text-sm text-(--foreground)">This Month</p>
-                <p className="font-medium text-sm text-(--foreground)">
-                  ${total}
-                </p>
-              </div>
-              {/* This Month end */}
-
-              {/* Difference*/}
-              <div className="bg-(--surface) rounded-lg space-y-1 flex justify-between items-center">
-                <p className="text-sm text-(--foreground)">Difference</p>
-                <p
-                  className={`font-medium text-sm ${difference >= 0 ? "text-(--danger)" : "text-(--success)"}`}
-                >
-                  {sign}${difference} ({Math.abs(percentageChange).toFixed(1)}%)
-                </p>
-              </div>
-              {/* Difference end */}
-            </div>
           </div>
         </div>
         <div className="w-2/3 h-auto p-2 block space-y-5"></div>
