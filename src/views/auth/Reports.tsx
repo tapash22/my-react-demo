@@ -9,6 +9,11 @@ import { FinanceList } from "../../components/item/FinanceList";
 import { cssVar } from "../../utils/cssVar";
 import type { DoughnutChartOptions } from "../../features/type/User";
 import { centerTextPlugin } from "../../components/chart/centerTextPlugin";
+import { MonthlyIncomeExpenseLineChart } from "../../components/chart/MonthlyIncomeExpenseLineChart";
+import { MonthlyIncomeExpenseLabelChart } from "../../components/chart/MonthlyIncomeExpenseLabelChart";
+import { CategoryCard } from "../../components/cards/CategoryCard";
+import { DemoLinearProgressBar } from "../../components/progressbar/DemoLinearProgressBar";
+import { DemoChip } from "../../components/chip/DemoChip";
 // practice gsap with BsThreeDots.js
 // import { GsapWithThreeExample } from "../../practice/GsapWithThreeExample";
 
@@ -111,7 +116,7 @@ export default function Reports() {
         ref={containerRef}
         className="relative min-h-screen flex gap-3 items-start w-full h-auto p-2"
       >
-        <div className="w-1/3 p-2 sticky top-2  ">
+        <div className="w-2/5 p-2 space-y-5">
           <div className="block w-full h-auto ring-2 ring-(--input-border) rounded-xl p-3 space-y-3  bg-(--surface) ">
             <PageHeaderCard
               subtitle="Expenses by Category"
@@ -134,8 +139,46 @@ export default function Reports() {
                     ${stat.value.toLocaleString()}
                   </p> */}
           </div>
+          <div className="w-full h-auto p-4 space-y-2 flex flex-col justify-center items-center bg-(--surface) opacity-80 rounded-2xl">
+            <div className="flex justify-between items-center p-2 w-full">
+              <p className="text-lg font-semibold tracking-wide text-(--muted) ">
+                Credit Utilization
+              </p>
+              <DemoChip label="95%" />
+            </div>
+            <DemoLinearProgressBar
+              showLabel="Current Spending"
+              height="h-1"
+              currentAmount={200}
+              targetAmount={300}
+            />
+            <DemoLinearProgressBar
+              showLabel="Projected Total"
+              height="h-1"
+              currentAmount={200}
+              targetAmount={300}
+            />
+          </div>
+          <div className="block w-full h-auto ring-2 ring-(--input-border) rounded-xl p-3 space-y-3  bg-(--surface) ">
+            <PageHeaderCard
+              title="Budget Analysis"
+              subtitle="AI-powered insights and projections for your spending"
+              visibleDate={false}
+            />
+            <CategoryCard />
+            <CategoryCard />
+            <CategoryCard />
+            <CategoryCard />
+          </div>
         </div>
-        <div className="w-2/3 h-auto p-2 block space-y-5"></div>
+        <div className="w-3/5 h-auto p-2 block space-y-5">
+          <div className="block w-full rounded-xl p-4 h-96  ring-2 ring-(--input-border)">
+            <MonthlyIncomeExpenseLineChart />
+          </div>
+          <div className="block w-full h-80 ring-2 ring-(--input-border) rounded-xl p-2 ">
+            <MonthlyIncomeExpenseLabelChart />
+          </div>
+        </div>
       </div>
     </PageLayout>
   );
