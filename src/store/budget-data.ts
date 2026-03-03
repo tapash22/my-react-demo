@@ -198,6 +198,14 @@ export const FUNDS_DATA: Fund[] = [
   },
 ];
 
+export const menuItems = [
+  { label: "Profile", value: "profile" },
+  { label: "App", value: "app" },
+  { label: "Security", value: "security" },
+  { label: "Help", value: "help" },
+  { label: "Resources", value: "resources" },
+];
+
 export const FUND_COLORS: Record<string, string> = {
   "Emergency Fund": cssVar("--danger"),
   "New Car": cssVar("--primary"),

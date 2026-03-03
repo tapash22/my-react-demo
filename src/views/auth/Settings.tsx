@@ -1,13 +1,26 @@
-import { useRef } from "react";
-import { DemoButton } from "../../components/button/DemoButton";
+import { useRef, useState } from "react";
 import { PageHeaderCard } from "../../components/cards/PageHeaderCard";
 import { PageLayout } from "../../components/layout/PageLayout";
-
-import { FaPlus } from "react-icons/fa";
-import { BillCard } from "../../components/cards/BillCard";
+import { DemoTabs } from "../../components/tabs/DemoTabs";
+import { menuItems } from "../../store/budget-data";
+import { ProfileSettings } from "./settings/ProfileSettings";
+import { AppSettings } from "./settings/AppSettings";
+import { SecuritySettings } from "./settings/SecuritySettings";
+import { HelpSettings } from "./settings/HelpSettings";
+import { ResourcesSettings } from "./settings/ResourcesSettings";
 
 export default function Settings() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const activeTab = menuItems[activeIndex];
+
+  const tabComponents = {
+    profile: <ProfileSettings />,
+    app: <AppSettings />,
+    security: <SecuritySettings />,
+    help: <HelpSettings />,
+    resources: <ResourcesSettings />,
+  };
 
   const handleClick = () => console.log("click");
 
@@ -15,22 +28,24 @@ export default function Settings() {
     <PageLayout
       header={
         <PageHeaderCard
-          title="Bank Accounts & Cards"
-          subtitle="Securely connect your financial accounts"
+          title="Settings"
+          subtitle="Manage your account settings and preferences"
           visibleDate={false}
-        >
-          <div className="flex justify-end items-center gap-5">
-            <DemoButton
-              title="Add Account or Card"
-              icon={FaPlus}
-              onClick={handleClick}
-            />
-          </div>
-        </PageHeaderCard>
+        ></PageHeaderCard>
       }
     >
       <div ref={containerRef} className="relative w-full overflow-hidden">
-        <BillCard />
+        <DemoTabs
+          tabs={menuItems}
+          activeIndex={activeIndex}
+          onChange={setActiveIndex}
+          delay={50}
+          duration={300}
+          activeBgClass="bg-(--surface)"
+        />
+        <div className="mt-6">
+          {tabComponents[activeTab.value as keyof typeof tabComponents]}
+        </div>
       </div>
     </PageLayout>
   );

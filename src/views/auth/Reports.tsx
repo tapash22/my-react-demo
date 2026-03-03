@@ -20,15 +20,14 @@ import { DemoChip } from "../../components/chip/DemoChip";
 export default function Reports() {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const lastMonth = 2350;
+  // const lastMonth = 2350;
   const values = categoryExpenses.map((expense) => expense.amount);
   const total = values.reduce((sum, i) => sum + i, 0);
 
-  const difference = total - lastMonth;
-  const percentageChange = (difference / lastMonth) * 100;
+  // const difference = total - lastMonth;
 
   // Determine sign for display
-  const sign = difference >= 0 ? "+" : "-";
+  // const sign = difference >= 0 ? "+" : "-";
 
   const data = {
     labels: categoryExpenses.map((item) => item.label),
@@ -139,32 +138,33 @@ export default function Reports() {
                     ${stat.value.toLocaleString()}
                   </p> */}
           </div>
-          <div className="w-full h-auto p-4 space-y-2 flex flex-col justify-center items-center bg-(--surface) opacity-80 rounded-2xl">
-            <div className="flex justify-between items-center p-2 w-full">
-              <p className="text-lg font-semibold tracking-wide text-(--muted) ">
-                Credit Utilization
-              </p>
-              <DemoChip label="95%" />
-            </div>
-            <DemoLinearProgressBar
-              showLabel="Current Spending"
-              height="h-1"
-              currentAmount={200}
-              targetAmount={300}
-            />
-            <DemoLinearProgressBar
-              showLabel="Projected Total"
-              height="h-1"
-              currentAmount={200}
-              targetAmount={300}
-            />
-          </div>
+
           <div className="block w-full h-auto ring-2 ring-(--input-border) rounded-xl p-3 space-y-3  bg-(--surface) ">
             <PageHeaderCard
               title="Budget Analysis"
               subtitle="AI-powered insights and projections for your spending"
               visibleDate={false}
             />
+            <div className="w-full h-auto p-5 space-y-2 flex flex-col justify-center items-center bg-(--background) opacity-80 rounded-2xl">
+              <div className="flex justify-between items-center  w-full">
+                <p className="text-lg font-semibold tracking-wide text-(--muted) ">
+                  Credit Utilization
+                </p>
+                <DemoChip label="95%" />
+              </div>
+              <DemoLinearProgressBar
+                showLabel="Current Spending"
+                height="h-1"
+                currentAmount={200}
+                targetAmount={300}
+              />
+              <DemoLinearProgressBar
+                showLabel="Projected Total"
+                height="h-1"
+                currentAmount={200}
+                targetAmount={300}
+              />
+            </div>
             <CategoryCard />
             <CategoryCard />
             <CategoryCard />
