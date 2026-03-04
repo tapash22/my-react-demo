@@ -205,39 +205,41 @@ export interface referralStep {
   notificationCount?: number;
   icon: IconType;
 }
-
-export interface Referral {
-  name: string;
-  status: "Completed" | "Pending";
-  amount?: number;
+export interface referralTerm {
+  id: number;
+  description: string;
 }
 
-export interface ReferralBudgetCategory {
+export type ReferralStatus = "completed" | "pending";
+
+export interface EarningsOverview {
+  totalEarned: number;
+  pendingEarnings: number;
+  availableBalance: number;
+}
+
+export interface ReferralUsage {
+  used: number;
+  limit: number;
+  remainingMessage: string;
+}
+
+export interface WithdrawSection {
+  availableBalance: number;
+  actionText: string;
+}
+
+export interface RecentReferral {
+  id: number;
   name: string;
-  percentage: number;
-  estimatedValue: number;
+  status: ReferralStatus;
+  reward: number | null;
 }
 
 export interface ReferralUserFinancialData {
-  month: string;
-  budget: {
-    total: number;
-    spent: number;
-    remaining: number;
-    percentUsed: number;
-    dailyAllowance: number;
-    daysRemaining: number;
-  };
-  spendingCategories: ReferralBudgetCategory[];
-  earnings: {
-    totalEarned: number;
-    pending: number;
-    availableBalance: number;
-  };
-  referrals: {
-    used: number;
-    totalLimit: number;
-    remainingSlots: number;
-    history: Referral[];
-  };
+  earningsOverview: EarningsOverview;
+  referralUsage: ReferralUsage;
+  withdrawSection: WithdrawSection;
+  recentReferrals: RecentReferral[];
+  viewAllText: string;
 }

@@ -5,28 +5,26 @@ import { DemoIcon } from "../common-property/DemoIcon";
 interface DemoBadgeProps {
   icon?: IconType;
   badgeLengthCount?: number;
+  isAvatorbadge?: boolean;
+  badgeColor?: string;
   onClick?: () => void;
 }
 export function DemoBadge({
   icon = FaRegBell,
   badgeLengthCount,
   onClick,
+  isAvatorbadge = false,
+  badgeColor = "--foreground",
 }: DemoBadgeProps) {
+  const computedColor = `var(${badgeColor})`;
   return (
     <>
       <span
-        className="
-                    absolute -top-2 -right-3 
-                    min-w-[18px] h-[18px]
-                    px-1
-                    rounded-full
-                    bg-transparent
-                    text-(--foreground)
-                    text-[11px]
-                    font-semibold
-                    flex items-center justify-center
-                    ring-2 ring-(--foreground)
-                    "
+        className={`absolute ${isAvatorbadge ? "top-1 -right-1 bg-(--surface) text-(--mute) ring-2 ring-(${badgeColor}) min-w-5 min-h-5 text-sm font-semibold tracking-wide " : "-top-2 -right-2 bg-transparent ring-1  ring-(--card-border) min-w-[18px] h-[18px] text-sm font-normal tracking-wide text-(--foreground)"}  px-1 rounded-full  flex items-center justify-center object-contain `}
+        style={{
+          color: computedColor,
+          boxShadow: `0 0 0 2px ${computedColor}`,
+        }}
       >
         {badgeLengthCount}
       </span>

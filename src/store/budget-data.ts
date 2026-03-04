@@ -33,6 +33,7 @@ import type {
   CategoryData,
   FaqData,
   referralStep,
+  referralTerm,
   ReferralUserFinancialData,
   ReportCard,
   Resource,
@@ -716,36 +717,82 @@ export const referralSteps: referralStep[] = [
 /**
  * The Referral User Financial Data Object
  */
-export const userData: ReferralUserFinancialData = {
-  month: "May 2024",
-  budget: {
-    total: 3000,
-    spent: 2230,
-    remaining: 770,
-    percentUsed: 74,
-    dailyAllowance: 77,
-    daysRemaining: 10,
-  },
-  spendingCategories: [
-    { name: "Housing", percentage: 40, estimatedValue: 1200 },
-    { name: "Food & Dining", percentage: 12, estimatedValue: 360 },
-    { name: "Shopping", percentage: 7, estimatedValue: 210 },
-  ],
-  earnings: {
+export const referralUserData: ReferralUserFinancialData = {
+  earningsOverview: {
     totalEarned: 50,
-    pending: 20,
+    pendingEarnings: 20,
     availableBalance: 30,
   },
-  referrals: {
+
+  referralUsage: {
     used: 5,
-    totalLimit: 10,
-    remainingSlots: 5,
-    history: [
-      { name: "Sarah Johnson", status: "Completed", amount: 10 },
-      { name: "Michael Chen", status: "Pending" },
-      { name: "Emily Davis", status: "Completed", amount: 10 },
-      { name: "James Wilson", status: "Pending" },
-      { name: "Olivia Brown", status: "Completed", amount: 10 },
-    ],
+    limit: 10,
+    remainingMessage: "You can refer up to 5 more friends this year",
   },
+
+  withdrawSection: {
+    availableBalance: 30,
+    actionText: "Withdraw Funds",
+  },
+
+  recentReferrals: [
+    {
+      id: 1,
+      name: "Sarah Johnson",
+      status: "completed",
+      reward: 10,
+    },
+    {
+      id: 2,
+      name: "Michael Chen",
+      status: "pending",
+      reward: null,
+    },
+    {
+      id: 3,
+      name: "Emily Davis",
+      status: "completed",
+      reward: 10,
+    },
+    {
+      id: 4,
+      name: "James Wilson",
+      status: "pending",
+      reward: null,
+    },
+    {
+      id: 5,
+      name: "Olivia Brown",
+      status: "completed",
+      reward: 10,
+    },
+  ],
+
+  viewAllText: "View All Referrals",
 };
+
+export const referralTerms: referralTerm[] = [
+  {
+    id: 1,
+    description:
+      "Referral rewards are credited after your friend has been active for 30 days",
+  },
+  {
+    id: 2,
+    description: "Maximum of 10 successful referrals per calendar year",
+  },
+  {
+    id: 3,
+    description: "Both you and your friend must have active accounts",
+  },
+  {
+    id: 4,
+    description:
+      "Credits can be used towards premium features or withdrawn to your bank account",
+  },
+  {
+    id: 5,
+    description:
+      "FinTrack reserves the right to modify or terminate the referral program at any time",
+  },
+];
