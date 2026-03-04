@@ -197,3 +197,47 @@ export interface FaqData {
   question: string;
   answer: string;
 }
+
+export interface referralStep {
+  id: number;
+  title: string;
+  description: string;
+  notificationCount?: number;
+  icon: IconType;
+}
+
+export interface Referral {
+  name: string;
+  status: "Completed" | "Pending";
+  amount?: number;
+}
+
+export interface ReferralBudgetCategory {
+  name: string;
+  percentage: number;
+  estimatedValue: number;
+}
+
+export interface ReferralUserFinancialData {
+  month: string;
+  budget: {
+    total: number;
+    spent: number;
+    remaining: number;
+    percentUsed: number;
+    dailyAllowance: number;
+    daysRemaining: number;
+  };
+  spendingCategories: ReferralBudgetCategory[];
+  earnings: {
+    totalEarned: number;
+    pending: number;
+    availableBalance: number;
+  };
+  referrals: {
+    used: number;
+    totalLimit: number;
+    remainingSlots: number;
+    history: Referral[];
+  };
+}

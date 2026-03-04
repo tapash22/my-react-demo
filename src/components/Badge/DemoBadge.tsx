@@ -5,7 +5,7 @@ import { DemoIcon } from "../common-property/DemoIcon";
 interface DemoBadgeProps {
   icon?: IconType;
   badgeLengthCount?: number;
-  onClick: () => void;
+  onClick?: () => void;
 }
 export function DemoBadge({
   icon = FaRegBell,

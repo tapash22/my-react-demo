@@ -18,6 +18,8 @@ import {
   FaGift,
   FaUsers,
 } from "react-icons/fa";
+import { FiUserPlus } from "react-icons/fi";
+import { IoGiftOutline } from "react-icons/io5";
 import { FaPhotoFilm, FaArrowTrendUp } from "react-icons/fa6";
 import { FiCreditCard, FiBookOpen } from "react-icons/fi";
 import { TbCardsFilled } from "react-icons/tb";
@@ -30,6 +32,8 @@ import type {
   CalculatorData,
   CategoryData,
   FaqData,
+  referralStep,
+  ReferralUserFinancialData,
   ReportCard,
   Resource,
 } from "../features/type/User";
@@ -682,3 +686,66 @@ export const faqs: FaqData[] = [
       "Go to Settings → Profile, scroll to the Password section, and enter your current and new passwords to update.",
   },
 ];
+
+export const referralSteps: referralStep[] = [
+  {
+    id: 1,
+    title: "Invite Friends",
+    description: "Share your unique referral link with friends and family",
+    notificationCount: 3,
+    icon: FiUserPlus,
+  },
+  {
+    id: 2,
+    title: "They Sign Up",
+    description:
+      "When they create an account using your link, you both qualify for rewards",
+    notificationCount: 1,
+    icon: FiCreditCard,
+  },
+  {
+    id: 3,
+    title: "Earn Rewards",
+    description:
+      "You'll receive $10 credit for each friend who signs up and uses the app",
+    notificationCount: 2,
+    icon: IoGiftOutline,
+  },
+];
+
+/**
+ * The Referral User Financial Data Object
+ */
+export const userData: ReferralUserFinancialData = {
+  month: "May 2024",
+  budget: {
+    total: 3000,
+    spent: 2230,
+    remaining: 770,
+    percentUsed: 74,
+    dailyAllowance: 77,
+    daysRemaining: 10,
+  },
+  spendingCategories: [
+    { name: "Housing", percentage: 40, estimatedValue: 1200 },
+    { name: "Food & Dining", percentage: 12, estimatedValue: 360 },
+    { name: "Shopping", percentage: 7, estimatedValue: 210 },
+  ],
+  earnings: {
+    totalEarned: 50,
+    pending: 20,
+    availableBalance: 30,
+  },
+  referrals: {
+    used: 5,
+    totalLimit: 10,
+    remainingSlots: 5,
+    history: [
+      { name: "Sarah Johnson", status: "Completed", amount: 10 },
+      { name: "Michael Chen", status: "Pending" },
+      { name: "Emily Davis", status: "Completed", amount: 10 },
+      { name: "James Wilson", status: "Pending" },
+      { name: "Olivia Brown", status: "Completed", amount: 10 },
+    ],
+  },
+};
