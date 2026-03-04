@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { PageHeaderCard } from "../../../components/cards/PageHeaderCard";
 import { DemoButton } from "../../../components/button/DemoButton";
 import { FaUser } from "react-icons/fa";
 import { DemoAvatar } from "../../../components/avatar/DemoAvatar";
 import type { Errors } from "../../../components/validation/validators";
+import { DemoPageSectionCard } from "../../../components/cards/DemoPageSectionCard";
 
 interface PasswordFields {
   currentPassword: string;
@@ -57,12 +57,12 @@ export function ProfileSettings() {
   };
 
   return (
-    <div className="p-3 w-full h-auto bg-(--background) flex gap-3">
+    <div className="p-1 w-full h-auto bg-(--background) flex gap-3">
       <div className="w-1/2 h-auto shadow-(--shadow-card) rounded-xl p-3">
-        <PageHeaderCard
+        <DemoPageSectionCard
           title="Profile Information"
           subtitle="Update your personal information"
-          visibleDate={false}
+          haveBorder={false}
         />
         <form
           onSubmit={handleProfile}
@@ -122,10 +122,10 @@ export function ProfileSettings() {
         </form>
       </div>
       <div className="w-1/2 h-auto shadow-(--shadow-card) rounded-xl p-3">
-        <PageHeaderCard
+        <DemoPageSectionCard
           title="Password"
           subtitle="Update your password"
-          visibleDate={false}
+          haveBorder={false}
         />
         <form
           onSubmit={handleSubmit}

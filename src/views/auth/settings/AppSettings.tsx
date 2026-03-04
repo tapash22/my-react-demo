@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { PageHeaderCard } from "../../../components/cards/PageHeaderCard";
 import { DemoDropdownSelect } from "../../../components/dropdown/DemoDropdownSelect";
 import { DemoBooleanToggle } from "../../../components/toggle/DemoBooleanToggle";
+import { DemoPageSectionCard } from "../../../components/cards/DemoPageSectionCard";
 
 type ThemeType = "light" | "dark" | "system";
 
@@ -12,20 +12,20 @@ export function AppSettings() {
   const [isEnabled, setIsEnabled] = useState(false);
 
   return (
-    <div className="p-3 w-full h-auto bg-(--background) flex flex-col space-y-5">
+    <div className="p-1 w-full h-auto bg-(--background) flex flex-col space-y-5">
       <div className="w-full h-auto ring-1 ring-(--input-border) rounded-xl ">
         <div className="p-2">
-          <PageHeaderCard
+          <DemoPageSectionCard
             title="Appearance"
             subtitle="Customize how the app looks and feels"
-            visibleDate={false}
+            haveBorder={false}
           />
         </div>
-        <div className="w-full border-t-1 border-(--input-border) p-2">
-          <PageHeaderCard
+        <div className="w-full border-t border-(--input-border) p-2">
+          <DemoPageSectionCard
             title="Theme"
             subtitle="Select your preferred theme"
-            visibleDate={false}
+            haveBorder={false}
             children={
               <div className="flex justify-end">
                 <DemoDropdownSelect
@@ -36,10 +36,11 @@ export function AppSettings() {
               </div>
             }
           />
-          <PageHeaderCard
+
+          <DemoPageSectionCard
             title="Animations"
             subtitle="Enable or disable animations"
-            visibleDate={false}
+            haveBorder={false}
             children={
               <div className="flex justify-end">
                 <DemoBooleanToggle
@@ -55,17 +56,17 @@ export function AppSettings() {
       </div>
       <div className="w-full h-auto ring-1 ring-(--input-border) rounded-xl ">
         <div className="p-2">
-          <PageHeaderCard
+          <DemoPageSectionCard
             title="Notifications"
             subtitle="Configure your notification preferences"
-            visibleDate={false}
+            haveBorder={false}
           />
         </div>
         <div className="w-full border-t-1 border-(--input-border) p-2">
-          <PageHeaderCard
+          <DemoPageSectionCard
             title="Email Notifications"
             subtitle="Receive notifications via email"
-            visibleDate={false}
+            haveBorder={false}
             children={
               <div className="flex justify-end">
                 <DemoBooleanToggle
@@ -77,10 +78,10 @@ export function AppSettings() {
               </div>
             }
           />
-          <PageHeaderCard
+          <DemoPageSectionCard
             title="Push Notifications"
             subtitle="Receive notifications on your device"
-            visibleDate={false}
+            haveBorder={false}
             children={
               <div className="flex justify-end">
                 <DemoBooleanToggle
@@ -92,10 +93,10 @@ export function AppSettings() {
               </div>
             }
           />
-          <PageHeaderCard
+          <DemoPageSectionCard
             title="Budget Alerts"
             subtitle="Get notified when you're close to budget limits"
-            visibleDate={false}
+            haveBorder={false}
             children={
               <div className="flex justify-end">
                 <DemoBooleanToggle
@@ -107,10 +108,10 @@ export function AppSettings() {
               </div>
             }
           />
-          <PageHeaderCard
+          <DemoPageSectionCard
             title="Savings Goal"
             subtitle="Receive reminders to contribute to savings goals"
-            visibleDate={false}
+            haveBorder={false}
             children={
               <div className="flex justify-end">
                 <DemoBooleanToggle
@@ -126,17 +127,17 @@ export function AppSettings() {
       </div>
       <div className="w-full h-auto ring-1 ring-(--input-border) rounded-xl ">
         <div className="p-2">
-          <PageHeaderCard
+          <DemoPageSectionCard
             title="Data & Privacy"
             subtitle="Manage your data and privacy settings"
-            visibleDate={false}
+            haveBorder={false}
           />
         </div>
         <div className="w-full border-t-1 border-(--input-border) p-2">
-          <PageHeaderCard
+          <DemoPageSectionCard
             title="Data Sharing"
             subtitle="Share anonymous usage data to improve the app"
-            visibleDate={false}
+            haveBorder={false}
             children={
               <div className="flex justify-end">
                 <DemoBooleanToggle
@@ -148,10 +149,10 @@ export function AppSettings() {
               </div>
             }
           />
-          <PageHeaderCard
+          <DemoPageSectionCard
             title="Marketing Emails"
             subtitle="Receive marketing and promotional emails"
-            visibleDate={false}
+            haveBorder={false}
             children={
               <div className="flex justify-end ">
                 <DemoBooleanToggle

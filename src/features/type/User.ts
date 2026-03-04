@@ -177,3 +177,23 @@ export const currencyIcons: Record<string, IconType> = {
 
 // Optional: export individual icons if needed
 export { FaDollarSign, FaEuroSign, FaPoundSign, TbCurrencyTaka };
+
+export interface Resource {
+  id: number;
+  title: string;
+  description: string;
+  actionText: string;
+  link: string;
+  icon: IconType;
+}
+
+export interface CalculatorData {
+  title: string;
+  subtitle?: string;
+}
+
+export interface FaqData {
+  id: number;
+  question: string;
+  answer: string;
+}
