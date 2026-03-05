@@ -4,6 +4,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { logout } from "../auth/useAuth";
 import { ROUTING_PAGES } from "../../store/budget-data";
 import { DemoIcon } from "../common-property/DemoIcon";
+import { DemoButton } from "../button/DemoButton";
 
 interface DemoSideBarProps {
   collapsed?: boolean;
@@ -83,41 +84,29 @@ export function DemoSideBar({ collapsed }: DemoSideBarProps) {
 
       {/* Logout */}
       <div className="absolute bottom-0 p-3 w-full">
-        <button
-          onClick={handleLogout}
-          className="
-              w-full flex justify-center items-center
+        <DemoButton
+          classTag="w-full flex justify-center items-center
               rounded-lg shadow-(--shadow)
               drop-shadow-xl
               transition-colors duration-300
               hover:bg-(--sidebar-hover-bg)
-              px-4 py-3
-            "
+              px-4 py-3"
+          icon={FaPowerOff}
+          iconClass={`text-(--foreground) shrink-0 ${collapsed ? "ml-2" : "ml-0"}`}
+          onClick={handleLogout}
         >
-          {/* ICON — stays fixed */}
-          <FaPowerOff
-            className="
-                text-(--foreground)
-                shrink-0
-              "
-          />
-
-          {/* TEXT CONTAINER — animated */}
-          <span
-            className={`
-                
+          {!collapsed && (
+            <span
+              className={`
                 overflow-hidden
                 transition-all duration-300 ease-in-out
-                ${
-                  collapsed
-                    ? "opacity-0 `translate-x-[-8px]` max-w-0 m-0"
-                    : "opacity-100 translate-x-0 max-w-[120px] ml-3"
-                }
+                ml-3
               `}
-          >
-            Logout
-          </span>
-        </button>
+            >
+              Logout
+            </span>
+          )}
+        </DemoButton>
       </div>
     </aside>
   );

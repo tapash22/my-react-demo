@@ -54,7 +54,7 @@ export default function Profile() {
     >
       <div
         ref={containerRef}
-        className="flex items-start gap-3 w-full h-auto p-2 "
+        className="flex items-start gap-3 w-full h-auto p-1 space-y-2"
       >
         {/* left side */}
         <div className="w-2/3 p-2 space-y-5">

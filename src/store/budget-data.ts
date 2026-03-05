@@ -132,14 +132,14 @@ export const ROUTING_PAGES: Page[] = [
     icon: FaRegChartBar,
   },
   {
-    name: "Settings",
-    path: "settings",
-    icon: IoMdSettings,
-  },
-  {
     name: "Referrals",
     path: "referrals",
     icon: FaUsers,
+  },
+  {
+    name: "Settings",
+    path: "settings",
+    icon: IoMdSettings,
   },
   {
     name: "Gallery",
