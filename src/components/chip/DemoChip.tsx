@@ -1,6 +1,7 @@
 import { FaTimes } from "react-icons/fa";
 import { DemoIcon } from "../common-property/DemoIcon";
 import { getFontSize, type SizeType } from "../../features/type/User";
+import type { IconType } from "react-icons";
 
 interface DemoChipProps {
   label: string;
@@ -10,6 +11,8 @@ interface DemoChipProps {
   variant?: "filled" | "outlined";
   className?: string;
   labelSize?: SizeType;
+  icon?: IconType;
+  iconSize?: number;
 }
 
 const colorStyles = {
@@ -27,22 +30,26 @@ export const DemoChip = ({
   variant = "filled",
   className = "",
   labelSize = "small",
+  icon,
+  iconSize,
 }: DemoChipProps) => {
   const fontSizeClass = getFontSize(labelSize);
   const baseClasses =
-    "inline-flex justify-between items-center ring-2 ring-(--input-border) gap-1.5 p-1 rounded-lg text-xs font-normal transition-all";
+    "flex justify-between items-center ring-1 ring-(--input-border) gap-1.5 p-1 rounded-lg text-xs font-normal transition-all";
   const variantClasses =
     variant === "outlined" ? "bg-transparent " : colorStyles[color];
+
   return (
     <div
       className={`${baseClasses} ${variantClasses} ${className} cursor-pointer`}
       onClick={() => onClick?.(label)}
     >
-      <span
+      {icon && <DemoIcon icon={icon} size={iconSize} color="--surface" />}
+      <p
         className={` ${fontSizeClass} tracking-wider text-(--foreground)  ${onDelete ? "w-2/3" : "w-full"} `}
       >
         {label}
-      </span>
+      </p>
       {onDelete && (
         <button
           onClick={(e) => {

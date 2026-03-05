@@ -53,31 +53,24 @@ export default function Home() {
     >
       <div
         ref={containerRef}
-        className="flex flex-col gap-3 items-start w-full h-auto p-2 space-y-2"
+        className="flex flex-col gap-3 items-start w-full h-auto p-1 space-y-2"
       >
         {/* dashboard top component view */}
-
-        <div className="grid grid-cols-4 gap-3 p-2 w-full">
-          {status.map((item, i) => (
-            <Democard
-              key={i}
-              amount={item.amount}
-              title={item.title}
-              change={item.change}
-              trend={item.trend}
-            />
+        <div className="grid grid-cols-4 gap-3 w-full h-auto p-2">
+          {status.map((statusData) => (
+            <Democard key={statusData.title} statusData={statusData} />
           ))}
         </div>
         {/* dashboard top component view end */}
 
         {/* dashboard body component view */}
-        <div className="flex gap-3 items-start w-full h-auto p-2 ">
+        <div className="flex gap-5 items-start w-full h-auto p-2  ">
           {/* left side */}
-          <div className="w-1/4 h-auto p-2 block space-y-5">
+          <div className="w-1/4 h-auto flex flex-col space-y-5">
             <div className="block w-full h-auto ring-2 ring-(--input-border) rounded-xl ">
               <StatisticDoughnutChart />
             </div>
-            <div className="w-full  grid shadow-2xl bg-(--surface) rounded-lg ">
+            <div className="w-full  grid  bg-(--surface) rounded-lg ">
               {QUICK_ROUTING_PAGES.length && (
                 <DemoList
                   items={QUICK_ROUTING_PAGES}
@@ -104,7 +97,7 @@ export default function Home() {
           {/* left side end */}
 
           {/* middle side */}
-          <div className="w-2/4 h-full  p-2 block space-y-5">
+          <div className="w-2/4 h-full flex flex-col space-y-5">
             {/* Line chart */}
             <div className="block w-auto rounded-xl p-4 h-96  ring-2 ring-(--input-border)">
               <MonthlyIncomeExpenseLineChart />
@@ -119,16 +112,16 @@ export default function Home() {
           {/* middle side end */}
 
           {/* right side */}
-          <div className="w-1/4 h-auto p-2 block space-y-5">
-            <div className="w-full h-auto ring-2 ring-(--input-border) rounded-xl ">
+          <div className="w-1/4 h-auto flex flex-col space-y-5">
+            <div className="w-full h-[20vh] ring-2 ring-(--input-border) rounded-xl overflow-hidden">
               <img
                 src={card}
-                alt={card}
-                className="bg-cover object-contain w-full"
+                alt="card"
+                className="w-full h-full object-cover"
               />
             </div>
 
-            <div className="block w-full h-auto ring-2 p-2 ring-(--input-border) rounded-xl ">
+            <div className="flex flex-col w-full h-auto p-2 ring-2 ring-(--input-border) rounded-xl">
               <GoalTrackerCard
                 title="Recent Activity"
                 onClick={handleRecentActivityAction}
@@ -158,9 +151,9 @@ export default function Home() {
         {/* dashboard body component view end*/}
 
         {/* dashboard bottom component view */}
-        <div className="flex gap-3 items-start w-full h-auto p-2 ">
-          <div className="w-1/4 h-auto p-2 block space-y-5">
-            <div className="block w-full h-auto ring-2 ring-(--input-border) rounded-xl ">
+        <div className="flex gap-5 items-start w-full h-auto p-2">
+          <div className="w-1/4 h-auto flex flex-col space-y-5">
+            <div className="flex flex-col w-full h-auto p-2 ring-2 ring-(--input-border) rounded-xl space-y-1">
               <GoalTrackerCard
                 title="Budget Performance"
                 path="/dashboard/budget-planning"
@@ -174,14 +167,14 @@ export default function Home() {
               />
             </div>
           </div>
-          <div className="w-2/4 h-auto p-2 block space-y-5">
+          <div className="w-2/4 h-auto  flex flex-col space-y-5">
             {/* table with pagination */}
 
             <Transaction />
             {/* table with pagination end */}
           </div>
-          <div className="w-1/4 h-auto p-2 block space-y-5">
-            <div className="block w-full h-auto ring-2 ring-(--input-border) rounded-xl ">
+          <div className="w-1/4 h-auto  flex flex-col space-y-5">
+            <div className="flex flex-col w-full h-auto p-2 ring-2 ring-(--input-border) rounded-xl space-y-1">
               <GoalTrackerCard
                 title="Saving Plans"
                 path="/dashboard/saving-goals"

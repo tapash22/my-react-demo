@@ -16,14 +16,14 @@ export function GoalTrackerCard({
   onClick,
 }: GoalTrackerCardProps) {
   return (
-    <div className="flex justify-between items-center px-2 py-2 w-full">
-      <p className="text-lg font-medium tracking-wide text-wrap text-(--forground)">
+    <div className="flex justify-between items-center p-3 w-full h-auto ">
+      <p className="text-lg font-medium text-(--forground) tracking-wide text-wrap ">
         {title}
       </p>
       {path ? (
         <NavLink
           to={path}
-          className="underline tracking-wide text-sm font-bold text-(--forground)"
+          className="text-sm font-normal text-(--foreground) tracking-wide underline underline-offset-4"
         >
           {pathTitle}
         </NavLink>

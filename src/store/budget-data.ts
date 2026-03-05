@@ -18,9 +18,11 @@ import {
   FaGift,
   FaUsers,
 } from "react-icons/fa";
+import { LuDollarSign, LuVault } from "react-icons/lu";
+import { GoLinkExternal } from "react-icons/go";
 import { FiUserPlus } from "react-icons/fi";
 import { IoGiftOutline } from "react-icons/io5";
-import { FaPhotoFilm, FaArrowTrendUp } from "react-icons/fa6";
+import { FaPhotoFilm, FaArrowTrendUp, FaPercent } from "react-icons/fa6";
 import { FiCreditCard, FiBookOpen } from "react-icons/fi";
 import { TbCardsFilled } from "react-icons/tb";
 import { IoMdSettings } from "react-icons/io";
@@ -37,6 +39,7 @@ import type {
   ReferralUserFinancialData,
   ReportCard,
   Resource,
+  StatusData,
 } from "../features/type/User";
 import { type Step } from "react-joyride";
 
@@ -304,30 +307,34 @@ export const getIcon = (name: string) => {
   }
 };
 
-export const status = [
+export const status: StatusData[] = [
   {
     title: "Total Income",
     amount: "$7.8k",
     change: "+1.78%",
     trend: "up",
+    icon: LuDollarSign,
   },
   {
     title: "Total Expense",
     amount: "$4.3k",
     change: "-1.78%",
     trend: "down",
+    icon: GoLinkExternal,
   },
   {
     title: "Total Savings",
     amount: "$5.6k",
     change: "+1.24%",
     trend: "up",
+    icon: LuVault,
   },
   {
     title: "Total Investment",
     amount: "$3.75k",
     change: "+66.95%",
     trend: "up",
+    icon: FaPercent,
   },
 ];
 

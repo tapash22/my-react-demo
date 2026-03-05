@@ -14,6 +14,13 @@ export interface Step {
   content: string;
   targetRef: RefObject<HTMLElement | null>;
 }
+export interface StatusData {
+  title: string;
+  amount: string;
+  change: string;
+  trend: string;
+  icon: IconType;
+}
 
 export interface Address {
   street: string;

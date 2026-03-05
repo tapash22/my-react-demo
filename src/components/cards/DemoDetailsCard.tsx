@@ -16,11 +16,11 @@ interface DemoDetailsCardProps<T> {
 
 export function DemoDetailsCard<T>({ items, keys }: DemoDetailsCardProps<T>) {
   return (
-    <div className="w-full h-auto p-2 block">
-      <h2 className="text-sm font-bold tracking-wider p-2 text-(--forground)">
+    <div className="w-full h-auto p-2 flex flex-col">
+      <h2 className="text-sm font-semibold tracking-wider text-(--forground) px-2">
         {formatRelativeDate(new Date())}
       </h2>
-      <div className="flex flex-col space-y-1 rounded-xl h-[40vh] overflow-y-scroll scrollbar-thin">
+      <div className="flex flex-col space-y-1 rounded-xl h-[45vh] overflow-y-scroll scrollbar-thin">
         {items?.map((item, index) => {
           const name = String(item[keys.name] ?? "");
           const action = String(item[keys.action] ?? "");
@@ -38,15 +38,15 @@ export function DemoDetailsCard<T>({ items, keys }: DemoDetailsCardProps<T>) {
                 <DemoAvatar size={10} icon={FaUser} />
               </div>
 
-              <div className="block w-full h-auto">
-                <p className="text-sm font-medium text-wrap tracking-wide text-(--forground) space-x-2">
+              <div className="flex flex-col space-y-1 w-full h-auto">
+                <p className="text-sm font-normal  tracking-wide text-(--forground) space-x-2">
                   <span className="tracking-wider font-medium text-sm">
                     {name}
                   </span>
                   <span>{action}</span>
                   {amount !== undefined && <span>{amount}</span>}
                 </p>
-                <p className="text-sm font-medium tracking-wider py-1 text-(--forground)">
+                <p className="text-sm font-normal tracking-wider text-(--forground)">
                   {time}
                 </p>
               </div>

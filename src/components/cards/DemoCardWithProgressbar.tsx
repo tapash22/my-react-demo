@@ -31,7 +31,7 @@ export function DemoCardWithProgressbar<T>({
   );
 
   return (
-    <div className="flex flex-col space-y-2 rounded-xl p-3 h-[50vh] overflow-y-scroll scrollbar-thin">
+    <div className="flex flex-col space-y-2 rounded-xl p-1 h-[50vh] overflow-y-scroll scrollbar-thin">
       <AnimatePresence mode="wait">
         {filteredData.length === 0 ? (
           <p>No data found</p>
