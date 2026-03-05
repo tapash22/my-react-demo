@@ -92,6 +92,13 @@ export interface Page {
   icon: IconType;
 }
 
+export interface DropdownMenu {
+  id: number;
+  name: string;
+  path: string;
+  icon?: IconType;
+}
+
 export interface Activity {
   name: string;
   action: string;

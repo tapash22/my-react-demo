@@ -23,7 +23,7 @@ export function DemoList<T>({
   return (
     <motion.div layout className="rounded-sm px-0 py-0 w-full h-full">
       <ul
-        className={`${direction === true ? "block" : "flex gap-0 rounded-xl h-full bg-(--surface) "}`}
+        className={`${direction === true ? "flex- flex-col" : "flex gap-0 rounded-xl h-full bg-(--surface) "}`}
       >
         <AnimatePresence>
           {visibleItems &&

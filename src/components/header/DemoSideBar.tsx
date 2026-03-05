@@ -66,7 +66,7 @@ export function DemoSideBar({ collapsed }: DemoSideBarProps) {
                 className={`
                   ml-3
                   overflow-hidden whitespace-nowrap
-                  text-lg font-semibold
+                  text-sm font-medium tracking-wide
                   transition-[opacity,transform,max-width] duration-300 ease-in-out
                   ${
                     collapsed
@@ -90,7 +90,7 @@ export function DemoSideBar({ collapsed }: DemoSideBarProps) {
               drop-shadow-xl
               transition-colors duration-300
               hover:bg-(--sidebar-hover-bg)
-              px-4 py-3"
+              px-4 py-3 "
           icon={FaPowerOff}
           iconClass={`text-(--foreground) shrink-0 ${collapsed ? "ml-2" : "ml-0"}`}
           onClick={handleLogout}

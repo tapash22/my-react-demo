@@ -4,6 +4,7 @@ import {
   FUND_COLORS,
   FUNDS_DATA,
   INCOME_DATA,
+  statisticMenu,
 } from "../../store/budget-data";
 import { Doughnut } from "react-chartjs-2";
 import type { TooltipItem } from "chart.js";
@@ -15,6 +16,8 @@ import { DemoToggleTabs } from "../toggle/DemoToggleTabs";
 import { HiDotsHorizontal } from "react-icons/hi";
 import { DemoIcon } from "../common-property/DemoIcon";
 import { FinanceList } from "../item/FinanceList";
+import { useOutsideClick } from "../hooks/useOutsideClick";
+import { DropdownProfileCard } from "../cards/DropdownProfileCard";
 // import { AnimatePresence, motion } from "framer-motion";
 // import DemoAnimatedToggle from "../toggle/DemoAnimatedToggle";
 // import { FUND_TABS } from "../../utils/tabData";
@@ -25,6 +28,9 @@ type Mode = "income" | "expense";
 export function StatisticDoughnutChart() {
   // Use mode directly for two tabs
   const [mode, setMode] = useState<Mode>("income");
+  const [showMenuCard, setShowMenuCard] = useState<boolean>(false);
+
+  const menuRef = useOutsideClick(() => setShowMenuCard(false));
 
   // Tabs array
   const tabs: Mode[] = ["income", "expense"];
@@ -114,7 +120,7 @@ export function StatisticDoughnutChart() {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto space-y-4 bg-(--background) ring-2 ring-(--input-border) rounded-xl">
+    <div className="w-full max-w-md mx-auto space-y-4 bg-(--background)  rounded-xl">
       <div className="p-5 flex justify-start items-center gap-2">
         <p className=" tracking-wider font-normal text-lg">Statistic</p>
         <DemoToggleTabs
@@ -123,7 +129,19 @@ export function StatisticDoughnutChart() {
           onChange={(index) => setMode(tabs[index])}
           activeBgColor={cssVar("--surface")}
         />
-        <DemoIcon icon={HiDotsHorizontal} size={30} />
+        <div ref={menuRef} className="relative">
+          <DemoIcon
+            icon={HiDotsHorizontal}
+            size={30}
+            onClick={() => setShowMenuCard(!showMenuCard)}
+          />
+          {showMenuCard && (
+            <DropdownProfileCard
+              menuData={statisticMenu}
+              navClick={() => setShowMenuCard(showMenuCard)}
+            />
+          )}
+        </div>
       </div>
       {/* <DemoAnimatedToggle /> */}
 

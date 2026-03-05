@@ -27,7 +27,7 @@ export function DemoButton({
 }: DemoButtonProps) {
   return (
     <button
-      className={`${buttonColor}  ${classTag ? classTag : "flex justify-evenly items-center"} ${isDisabled ? "opacity-55" : ""}  bg-(--surface) py-2 dark:bg-slate-800 ${textColor} font-medium text-center transition-colors duration-300 w-${widthSize} rounded-xl  shadow-(--shadow-default)  gap-2`}
+      className={`${buttonColor}  ${classTag ? classTag : "flex justify-evenly items-center px-3 text-sm font-semibold"} ${isDisabled ? "opacity-55" : ""}  bg-(--surface) py-2 dark:bg-slate-800 ${textColor} font-medium text-center transition-colors duration-300 w-${widthSize} rounded-xl  shadow-(--shadow-default)  gap-2`}
       onClick={onClick}
       disabled={isDisabled}
     >

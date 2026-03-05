@@ -7,18 +7,15 @@ import {
   FaSun,
   FaRegBell,
   FaUserCircle,
-  FaHome,
-  FaUser,
 } from "react-icons/fa";
 import { useTheme } from "../hooks/useTheme";
 import { logout } from "../auth/useAuth";
 import { useNavigate } from "react-router-dom";
 import { DemoIcon } from "../common-property/DemoIcon";
 import DemoBreadcrumbs from "../Breadcrumb/DemoBreadcrumbs";
-import type { Page } from "../../features/type/User";
 import { DropdownProfileCard } from "../cards/DropdownProfileCard";
 import { DemoNotificationList } from "../list/DemoNotificationList";
-import { FUNDS_DATA } from "../../store/budget-data";
+import { FUNDS_DATA, pages } from "../../store/budget-data";
 import { DemoList } from "../list/DemoList";
 
 import { useOutsideClick } from "../hooks/useOutsideClick";
@@ -27,19 +24,6 @@ import { DemoBadge } from "../Badge/DemoBadge";
 interface DemoHeaderProps {
   onToggleSidebar: () => void;
 }
-
-const pages: Page[] = [
-  {
-    name: "Home",
-    path: "home",
-    icon: FaHome,
-  },
-  {
-    name: "Profile",
-    path: "profile",
-    icon: FaUser,
-  },
-];
 
 export function DemoHeader({ onToggleSidebar }: DemoHeaderProps) {
   const navigate = useNavigate();
@@ -122,15 +106,20 @@ export function DemoHeader({ onToggleSidebar }: DemoHeaderProps) {
         </div>
 
         <div ref={profileRef} className="relative">
-          <FaUserCircle
+          <DemoIcon
+            icon={FaUserCircle}
             size={30}
-            className="text-xl font-light text-(--foreground)"
+            iconClass="text-xl font-light"
+            color="var(--foreground)"
             onClick={() => setShowProfileCard(!showProfileCard)}
           />
+
           {/* Card Dropdown */}
           {showProfileCard && (
             <DropdownProfileCard
-              pages={pages}
+              title="John"
+              email="johndoe@email.com"
+              menuData={pages}
               navClick={handleNavLinkClick}
               logout={handleLogout}
             />

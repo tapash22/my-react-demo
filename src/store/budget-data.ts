@@ -17,6 +17,7 @@ import {
   FaGraduationCap,
   FaGift,
   FaUsers,
+  FaUser,
 } from "react-icons/fa";
 import { LuDollarSign, LuVault } from "react-icons/lu";
 import { GoLinkExternal } from "react-icons/go";
@@ -33,6 +34,7 @@ import type {
   BankAccount,
   CalculatorData,
   CategoryData,
+  DropdownMenu,
   FaqData,
   referralStep,
   referralTerm,
@@ -145,6 +147,37 @@ export const ROUTING_PAGES: Page[] = [
     name: "Gallery",
     path: "gallery",
     icon: FaPhotoFilm,
+  },
+];
+
+export const pages: Page[] = [
+  {
+    name: "Home",
+    path: "home",
+    icon: FaHome,
+  },
+  {
+    name: "Profile",
+    path: "profile",
+    icon: FaUser,
+  },
+];
+
+export const statisticMenu: DropdownMenu[] = [
+  {
+    id: 1,
+    name: "View Details",
+    path: "$",
+  },
+  {
+    id: 2,
+    name: "Download reports",
+    path: "$",
+  },
+  {
+    id: 3,
+    name: "Settings",
+    path: "$",
   },
 ];
 

@@ -67,7 +67,7 @@ export default function Home() {
         <div className="flex gap-5 items-start w-full h-auto p-2  ">
           {/* left side */}
           <div className="w-1/4 h-auto flex flex-col space-y-5">
-            <div className="block w-full h-auto ring-2 ring-(--input-border) rounded-xl ">
+            <div className="flex flex-col w-full h-auto ring-2 ring-(--input-border) rounded-xl ">
               <StatisticDoughnutChart />
             </div>
             <div className="w-full  grid  bg-(--surface) rounded-lg ">
