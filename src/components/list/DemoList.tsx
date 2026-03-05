@@ -27,19 +27,22 @@ export function DemoList<T>({
       >
         <AnimatePresence>
           {visibleItems &&
-            visibleItems.map((item, index) => (
-              <motion.li
-                key={index}
-                initial={{ opacity: 0, y: -12 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -12 }}
-                transition={{ duration: 0.3 }}
-                className={`${haveBorder ? "ring-1 ring-(--forground) p-2" : "ring-0"} `}
-              >
-                {children && children(item, index)}
-                {haveBorder}
-              </motion.li>
-            ))}
+            visibleItems.map((item, index) => {
+              const isLast = index === visibleItems.length - 1;
+              return (
+                <motion.li
+                  key={index}
+                  initial={{ opacity: 0, y: -12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -12 }}
+                  transition={{ duration: 0.3 }}
+                  className={`${haveBorder ? "ring-1 ring-(--forground) p-2" : "ring-0"} ${isLast ? "" : "border-r-2 border-(--input-border)"} `}
+                >
+                  {children && children(item, index)}
+                  {haveBorder}
+                </motion.li>
+              );
+            })}
         </AnimatePresence>
       </ul>
 
@@ -53,6 +56,7 @@ export function DemoList<T>({
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 10 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
+                className="text-sm font-medium tracking-wide"
               >
                 {showAll ? "Show Less" : "Show All"}
               </motion.span>

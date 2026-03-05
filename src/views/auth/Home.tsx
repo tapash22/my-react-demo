@@ -70,7 +70,7 @@ export default function Home() {
             <div className="flex flex-col w-full h-auto ring-2 ring-(--input-border) rounded-xl ">
               <StatisticDoughnutChart />
             </div>
-            <div className="w-full  grid  bg-(--surface) rounded-lg ">
+            <div className="w-full grid bg-(--surface) rounded-lg shadow-(--shadow) ">
               {QUICK_ROUTING_PAGES.length && (
                 <DemoList
                   items={QUICK_ROUTING_PAGES}
@@ -82,11 +82,13 @@ export default function Home() {
                       to={`/dashboard/${page.path}`}
                       className="h-full"
                     >
-                      <div className="flex flex-col justify-center items-center bg-transparent hover:bg-(--background) hover:text-(--muted) hover:opacity-80  px-3 py-4 h-full space-y-2 ">
-                        <DemoIcon size={16} icon={page.icon} />
-                        <span className="tracking-wide text-sm text-center font-normal text-(--forground) ">
+                      <div
+                        className={`flex flex-col justify-center items-center bg-transparent hover:bg-(--background) hover:text-(--muted) hover:opacity-80  p-3 h-full space-y-1 `}
+                      >
+                        <DemoIcon size={20} icon={page.icon} />
+                        <p className="tracking-wide text-sm text-center font-normal text-(--forground) ">
                           {page.name}
-                        </span>
+                        </p>
                       </div>
                     </NavLink>
                   )}

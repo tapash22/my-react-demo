@@ -78,7 +78,7 @@ export function DemoTable<T extends { id: number }>({
   return (
     <div className="w-full rounded-xl bg-(--background) shadow-2xl spacer-y-5">
       {/* Search */}
-      <div className="w-1/3 h-auto p-3 flex justify-center align-bottom  ">
+      <div className="w-1/2 h-auto p-3 flex justify-center align-bottom gap-1  ">
         <DemoDropdownSelect
           value={filterColumn}
           options={filterableColumns}
@@ -95,7 +95,7 @@ export function DemoTable<T extends { id: number }>({
             setSearch(e.target.value);
             setPage(1); // reset page on search
           }}
-          className="input-search input-search::placeholder "
+          className="input-search input-search::placeholder shadow  "
         />
       </div>
       <div className="flex flex-col w-full p-3">
@@ -104,7 +104,10 @@ export function DemoTable<T extends { id: number }>({
           <thead className="rounded-tl-2xl rounded-tr-2xl ring-2 ring-(--input-border) ">
             <tr>
               {columns.map((key) => (
-                <th key={key} className="py-4 px-4  text-center">
+                <th
+                  key={key}
+                  className="py-4 px-4 text-center text-sm font-bold tracking-wide"
+                >
                   {key}
                 </th>
               ))}
@@ -130,7 +133,7 @@ export function DemoTable<T extends { id: number }>({
                     {columns.map((key) => (
                       <td
                         key={key}
-                        className={`py-4 subtitle-small-title text-center
+                        className={`py-4 text-sm font-normal tracking-wide text-(--foreground) text-center
                         `}
                       >
                         {String(tx[key as keyof T] ?? "-")}

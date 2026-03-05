@@ -26,13 +26,13 @@ export function DemoLinearProgressBar({
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full h-auto">
       {/* Label below the bar */}
       {showLabel.length > 0 && showLabel ? (
-        <p className="p-2 text-sm text-(--forground) text-left flex justify-between ">
+        <p className="p-2 text-sm font-normal text-(--forground) text-left flex justify-between ">
           {showLabel}
-          <span className="text-sm text-(--forground) text-right">
-            {safePercentage} %
+          <span className="text-sm font-medium text-(--forground) text-right">
+            {safePercentage}%
           </span>
         </p>
       ) : (

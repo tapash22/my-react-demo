@@ -34,7 +34,7 @@ export function DemoCardWithProgressbar<T>({
     <div className="flex flex-col space-y-2 rounded-xl p-1 h-[50vh] overflow-y-scroll scrollbar-thin">
       <AnimatePresence mode="wait">
         {filteredData.length === 0 ? (
-          <p>No data found</p>
+          <p className="text-lg font-medium tracking-wide">No data found</p>
         ) : (
           filteredData.map((item, index) => {
             const id = item[keys.id];
@@ -48,7 +48,7 @@ export function DemoCardWithProgressbar<T>({
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.25 }}
-                className={`p-2 rounded-xl flex flex-col space-y-2 w-full ${
+                className={`px-2 rounded-xl flex flex-col w-full ${
                   direction ? "ring-1 ring-(--input-border)" : ""
                 }`}
               >

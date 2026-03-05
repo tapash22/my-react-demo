@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from "react";
+import { IoCaretDown } from "react-icons/io5";
+import { DemoIcon } from "../common-property/DemoIcon";
 
 interface DemoDropdownSelectProps<T extends string> {
   value: T;
@@ -39,34 +41,36 @@ export function DemoDropdownSelect<T extends string>({
       <button
         type="button"
         onClick={() => setOpen((p) => !p)}
-        className="h-10 w-full rounded-md border px-3 text-left text-(--foreground) flex items-center justify-between"
+        className="h-10 w-full rounded-md shadow px-3 text-left text-(--foreground) flex items-center justify-between"
       >
-        <span className="truncate">
+        <span className="truncate text-sm font-medium tracking-wide">
           {getLabel
             ? getLabel(value)
             : value
               ? value.charAt(0).toUpperCase() + value.slice(1)
               : "Select"}
         </span>
-
-        <span className="ml-2 font-bold text-xl">▾</span>
+        <DemoIcon icon={IoCaretDown} size={16} />
       </button>
       {open && (
-        <ul className="absolute z-10 mt-1 w-full rounded-md border bg-(--background) shadow">
-          {options.map((option) => (
-            <li
-              key={option}
-              onClick={() => {
-                onChange(option);
-                setOpen(false);
-              }}
-              className="cursor-pointer px-4 py-2 hover:bg-(--sidebar-hover-bg)"
-            >
-              {getLabel
-                ? getLabel(option)
-                : option.charAt(0).toUpperCase() + option.slice(1)}
-            </li>
-          ))}
+        <ul className="absolute z-10 mt-1 w-full rounded-md bg-(--background) shadow">
+          {options.map((option) => {
+            const lastItem = options.length - 1;
+            return (
+              <li
+                key={option}
+                onClick={() => {
+                  onChange(option);
+                  setOpen(false);
+                }}
+                className={`cursor-pointer px-4 py-3 hover:bg-(--sidebar-hover-bg) text-sm font-medium tracking-wide ${lastItem ? "border-b border-(--input-border)" : ""}`}
+              >
+                {getLabel
+                  ? getLabel(option)
+                  : option.charAt(0).toUpperCase() + option.slice(1)}
+              </li>
+            );
+          })}
         </ul>
       )}
     </div>

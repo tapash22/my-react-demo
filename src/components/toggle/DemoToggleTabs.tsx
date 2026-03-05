@@ -37,7 +37,7 @@ export function DemoToggleTabs({
           className="absolute flex items-center top-1 bottom-1 left-1 right-1 rounded-full"
           style={{
             width: `${97 / tabs.length}%`,
-            height: "calc(100%-2)", // adjust height to fit inside container
+            height: "calc(100%-1)", // adjust height to fit inside container
             transform: `translateX(${translateX}%)`,
             backgroundColor: activeBgColor,
             transition: `transform ${duration}ms ease`,
@@ -51,7 +51,7 @@ export function DemoToggleTabs({
             <button
               key={tab}
               onClick={() => onChange(index)}
-              className="flex-1 text-center font-semibold transition-colors duration-300"
+              className="flex-1 text-center text-sm font-medium tracking-wide transition-colors duration-300"
               style={{
                 backgroundColor: "transparent",
                 color: isActive ? cssVar("--foreground") : cssVar("--muted"),

@@ -23,7 +23,7 @@ export function DropdownProfileCard({
 }: PagesProps) {
   return (
     <div
-      className={`absolute right-0 ${title ? "w-72" : "w-40"} max-w-72 mt-3  bg-(--card-bg)  shadow-(--shadow)  flex flex-col rounded-lg drop-shadow-xl z-50 text-(--foreground)`}
+      className={`absolute right-0 ${title ? "w-72 mt-3" : "w-40 mt-1"} max-w-72 bg-(--card-bg)  shadow-(--shadow)  flex flex-col rounded-lg drop-shadow-xl z-50 text-(--foreground)`}
     >
       {(title.trim().length && email.trim().length) !== 0 && (
         <div className="w-full px-5 py-3 border-b-2 opacity-85 border-(--input-border) space-y-1">

@@ -122,7 +122,7 @@ export function StatisticDoughnutChart() {
   return (
     <div className="w-full max-w-md mx-auto space-y-4 bg-(--background)  rounded-xl">
       <div className="p-5 flex justify-start items-center gap-2">
-        <p className=" tracking-wider font-normal text-lg">Statistic</p>
+        <p className="tracking-wide font-normal text-lg">Statistic</p>
         <DemoToggleTabs
           tabs={["Income", "Expense"]}
           activeIndex={activeIndex}
