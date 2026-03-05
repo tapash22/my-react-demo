@@ -100,7 +100,7 @@ export default function Home() {
           <div className="w-2/4 h-full flex flex-col space-y-5">
             {/* Line chart */}
             <div className="block w-auto rounded-xl p-4 h-96  ring-2 ring-(--input-border)">
-              <MonthlyIncomeExpenseLineChart />
+              <MonthlyIncomeExpenseLineChart showFill={false} />
             </div>
             {/* Line chart end */}
             {/* bar chart */}

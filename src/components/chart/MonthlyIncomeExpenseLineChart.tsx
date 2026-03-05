@@ -10,8 +10,13 @@ import type { PeriodType } from "../../assets/type/budget-type";
 import { useMemo, useState } from "react";
 import { DemoDropdownSelect } from "../dropdown/DemoDropdownSelect";
 import { useLeftToRightAnimation } from "../hooks/useLeftToRightAnimation";
+interface MonthlyIncomeExpenseLineChartProps {
+  showFill?: boolean;
+}
 
-export function MonthlyIncomeExpenseLineChart() {
+export function MonthlyIncomeExpenseLineChart({
+  showFill = true,
+}: MonthlyIncomeExpenseLineChartProps) {
   const [period, setPeriod] = useState<PeriodType>("monthly");
 
   const sourceData = useMemo(() => getIncomeExpenseData(period), [period]);
@@ -26,7 +31,8 @@ export function MonthlyIncomeExpenseLineChart() {
         data: sourceData.map((item) => item.income),
         borderColor: cssVar("--foreground"),
         backgroundColor: cssVar("--foreground"),
-        fill: "start",
+        // 🟢 Controlled by props
+        fill: showFill ? "start" : false,
         tension: 0.4,
         cubicInterpolationMode: "monotone",
         clip: false,
@@ -41,7 +47,7 @@ export function MonthlyIncomeExpenseLineChart() {
         data: sourceData.map((item) => item.expense),
         borderColor: cssVar("--muted"),
         backgroundColor: cssVar("--muted"),
-        fill: "start",
+        fill: showFill ? "start" : false,
         tension: 0.4,
         cubicInterpolationMode: "monotone",
         clip: false,
