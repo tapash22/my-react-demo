@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-interface ExpandableSearchProps {
+interface DemoExpandableSearchProps {
   value: string;
   onChange: (val: string) => void;
   placeholder?: string;
@@ -9,13 +9,13 @@ interface ExpandableSearchProps {
   expandedWidth?: string; // e.g., "w-full sm:max-w-xs"
 }
 
-export function ExpandableSearch({
+export function DemoExpandableSearch({
   value,
   onChange,
   placeholder = "Search...",
   initialWidth = "w-32",
   expandedWidth = "w-full sm:max-w-xs",
-}: ExpandableSearchProps) {
+}: DemoExpandableSearchProps) {
   const [isFocused, setIsFocused] = useState(false);
 
   // Convert Tailwind width classes to CSS widths

@@ -4,7 +4,7 @@ import { Pagination } from "./Pagination";
 import { DemoDropdownSelect } from "../dropdown/DemoDropdownSelect";
 import { DemoButton } from "../button/DemoButton";
 import { FaPen, FaTrash } from "react-icons/fa";
-import { ExpandableSearch } from "../input-component/ExpandableSearch";
+import { DemoExpandableSearch } from "../input-component/DemoExpandableSearch";
 
 interface DemoTableProps<T> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -90,7 +90,7 @@ export function DemoTable<T extends { id: number }>({
             }}
           />
         </div>
-        <ExpandableSearch
+        <DemoExpandableSearch
           value={search}
           onChange={(val) => {
             setSearch(val);
