@@ -272,11 +272,15 @@ body {
 }
 
 .input-search {
-  @apply ring-1 rounded-lg px-5 py-2 ring-gray-300 w-3/4;
+  @apply ring-1 rounded-lg px-5 py-2 ring-gray-300 outline-none w-full;
+}
+
+.input-search:focus {
+  @apply ring-2 ring-(--input-border);
 }
 
 .input-search::placeholder {
-  @apply text-(--foreground) font-medium tracking-wider text-start px-0
+  @apply text-(--foreground) text-sm font-normal tracking-wider text-start px-0;
 }
 
 /* Make select match input styles */

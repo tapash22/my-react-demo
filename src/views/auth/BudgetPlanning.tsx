@@ -34,6 +34,7 @@ export default function BudgetPlanning() {
             <DemoButton
               title="Add Category"
               icon={FaPlus}
+              iconSize={12}
               onClick={() => handleClick}
             />
           </div>
@@ -42,47 +43,49 @@ export default function BudgetPlanning() {
     >
       <div
         ref={containerRef}
-        className="flex gap-3 items-start w-full h-auto p-2"
+        className="flex gap-3 items-start w-full h-auto p-1 space-y-2"
       >
         {/* left side */}
 
         <div className="w-1/3 p-2 sticky top-2 h-fit">
-          <div className="block w-full h-auto ring-2 ring-(--input-border) rounded-xl p-3 space-y-3 py-5 bg-(--surface)">
-            <PageHeaderCard title="Budget " />
-
+          <div className="flex flex-col w-full h-auto ring-2 ring-(--input-border) rounded-xl p-3 space-y-3 py-5 bg-(--background)">
+            <PageHeaderCard title="Budget" titleClass="text-lg font-normal" />
             <div className="flex justify-between ">
               {statsArray.map((stat) => (
                 <div
                   key={stat.label}
-                  className="px-2 py-2 bg-(--surface) rounded-lg mx-1 space-y-1"
+                  className="px-2 bg-(--background) rounded-lg mx-1 space-y-1"
                 >
-                  <p className="text-sm text-(--muted)">{stat.label}</p>
-                  <p className="text-xl font-bold text-(--foreground)">
+                  <p className="text-sm font-normal text-(--muted)">
+                    {stat.label}
+                  </p>
+                  <p className="text-lg font-bold text-(--foreground) tracking-wide">
                     ${stat.value.toLocaleString()}
                   </p>
                 </div>
               ))}
             </div>
 
-            <div className="p-2">
+            <div className="px-2 py-1">
               <DemoLinearProgressBar
                 targetAmount={budgetData.stats.totalBudget}
                 currentAmount={budgetData.stats.totalSpent}
+                height="h-2"
                 showLabel="Budget Used"
               />
             </div>
 
-            <div className="p-4 my-4 rounded-2xl bg-(--background) flex justify-between items-center w-full border border-(--input-border) ">
+            <div className="p-4 my-2 rounded-2xl bg-(--surface) flex justify-between items-center w-full border border-(--input-border) ">
               <div className="block w-auto p-2 space-y-1">
-                <p className="text-sm text-(--muted) font-medium">
+                <p className="text-sm font-normal text-(--muted) tracking-wide">
                   Daily Budget
                 </p>
                 <p className="text-lg font-bold text-(--foreground)">
                   ${amount}
                 </p>
               </div>
-              <p className="text-sm text-(--muted) font-medium tracking-wide">
-                for the next {daysRemaining} days
+              <p className="text-sm font-medium text-(--muted) tracking-wide">
+                For the next {daysRemaining} days
               </p>
             </div>
 
@@ -96,15 +99,16 @@ export default function BudgetPlanning() {
                     key={budget.id}
                     targetAmount={budget.targetAmount}
                     currentAmount={budget.currentAmount}
+                    height="h-2"
                     children={
-                      <div className="flex justify-between items-center py-3 px-2">
-                        <div className="w-2/6 flex items-center gap-4">
+                      <div className="flex justify-between items-center py-2 px-2">
+                        <div className="w-2/6 flex items-center gap-2">
                           <DemoAvatar icon={budget.icon} size={10} />
                           <span className="text-sm text-(--forground) text-left">
                             {budget.name}
                           </span>
                         </div>
-                        <p className="text-sm text-(--forground) text-right">
+                        <p className="text-sm font-medium text-(--forground) text-right">
                           {budget.currentAmount} %
                         </p>
                       </div>
@@ -118,30 +122,43 @@ export default function BudgetPlanning() {
 
         {/* right side */}
         <div className="w-2/3 h-auto p-2 block space-y-5">
-          <div className="block w-full h-auto ring-2 ring-(--input-border) rounded-xl p-5 ">
-            <PageHeaderCard title="Budget Categories " visibleDate={false} />
-            <div className="flex justify-between items-center p-2 w-full h-auto">
-              <div className="w-1/2 h-auto flex justify-start items-center gap-3 ">
-                <p className="text-wrap text-lg font-medium tracking-wider ">
-                  Total budget: $3000
+          <div className="block w-full h-auto ring-2 ring-(--input-border) rounded-xl p-5 space-y-2 ">
+            <PageHeaderCard
+              title="Budget Categories"
+              titleClass="text-lg font-normal"
+              visibleDate={false}
+            />
+            <div className="flex justify-between items-center px-2 w-full h-auto">
+              <div className="w-1/2 h-auto flex justify-start items-center gap-2 ">
+                <p className="space-x-1">
+                  <span className="text-wrap text-sm font-normal text-(--foreground) tracking-wide">
+                    Total budget:
+                  </span>
+                  <span className="text-sm font-semibold">$3000 </span>
                 </p>
-                |
-                <p className="text-wrap text-lg font-medium tracking-wider ">
-                  Allocated: $2800
+                <span className="h-4 w-px bg-red-700 inline-block "></span>
+                <p className="space-x-1">
+                  <span className="text-wrap text-sm font-normal text-(--foreground) tracking-wide">
+                    Allocated:
+                  </span>
+                  <span className="text-sm font-semibold">$2800</span>
                 </p>
               </div>
-              <div className="w-1/2 h-auto flex justify-end items-center gap-3 ">
-                <p className="text-sm font-normal text-wrap ">Manage Budget:</p>
+              <div className="w-1/2 h-auto flex flex-row justify-end items-center gap-3">
+                <p className="text-sm font-normal tracking-wide whitespace-nowrap">
+                  Manage Budget:
+                </p>
                 <input
                   type="text"
                   placeholder="Search..."
                   value={budget}
                   onChange={handleSearch}
-                  className="input-search "
+                  className="input-search"
                 />
                 <DemoButton
-                  title="update"
+                  title="Update"
                   icon={FaPlus}
+                  iconClass="10"
                   onClick={() => handleClick}
                 />
               </div>

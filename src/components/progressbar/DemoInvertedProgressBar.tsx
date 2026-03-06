@@ -36,7 +36,7 @@ export function DemoInvertedProgressBar({
   const calculatedAmountA = targetAmount - calculatedAmountB;
 
   return (
-    <div className="w-full p-6 bg-(--surface) rounded-xl">
+    <div className="w-full p-6 bg-(--surface) rounded-tl-xl rounded-tr-xl">
       {/* Top Bar: Visual feedback of the inverse value */}
       <div className="space-y-4">
         <div className="flex justify-between items-center text-xs font-semibold text-(--foreground) opacity-70 w-full">
@@ -44,11 +44,11 @@ export function DemoInvertedProgressBar({
             <div className=" bg-(--surface)  text-(--forground) rounded-xl h-auto  ">
               <DemoAvatar size={10} icon={FaUser} />
             </div>
-            <h2 className="text-lg font-semibold text-(--forground)">
+            <h2 className="text-[16px] font-medium text-(--forground)">
               {title && title}
             </h2>
           </div>
-          <span className="text-sm tracking-wide text-(--forground)">
+          <span className="text-sm font-semibold tracking-wide text-(--forground)">
             ${calculatedAmountA.toFixed(0)} / ${targetAmount}
           </span>
         </div>

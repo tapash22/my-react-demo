@@ -6,6 +6,7 @@ interface DemoButtonProps {
   icon?: IconType;
   iconClass?: string;
   buttonColor?: string;
+  iconSize?: number;
   textColor?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   widthSize?: string;
@@ -18,6 +19,7 @@ export function DemoButton({
   icon,
   iconClass,
   buttonColor = "bg-(--muted)",
+  iconSize,
   textColor = "text-(--foreground)",
   onClick,
   widthSize = "auto",
@@ -31,7 +33,11 @@ export function DemoButton({
       onClick={onClick}
       disabled={isDisabled}
     >
-      <DemoIcon size={16} icon={icon ? icon : null} iconClass={iconClass} />
+      <DemoIcon
+        size={iconSize ? iconSize : 16}
+        icon={icon ? icon : null}
+        iconClass={iconClass}
+      />
       <span className="">{children ?? title}</span>
     </button>
   );
