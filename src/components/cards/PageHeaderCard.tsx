@@ -20,7 +20,7 @@ export function PageHeaderCard({
   children,
 }: PageHeaderCardProps) {
   return (
-    <div className="flex justify-between w-full h-auto items-center px-3 py-2">
+    <div className="flex justify-between w-full h-auto items-center px-4 py-2">
       <h2 className="flex flex-col  w-2/3">
         {title && (
           <span
