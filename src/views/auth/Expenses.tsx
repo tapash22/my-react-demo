@@ -107,7 +107,7 @@ export default function Expenses() {
     >
       <div
         ref={containerRef}
-        className="flex gap-3 items-start w-full h-auto p-2"
+        className="flex gap-3 items-start w-full h-auto p-1 space-y-2"
       >
         {/* left side */}
         <div className="w-2/3 h-auto p-2 block space-y-5">
@@ -134,11 +134,13 @@ export default function Expenses() {
         {/* left side end */}
 
         {/* right side */}
-        <div className="w-1/3 p-2 sticky top-2  ">
-          <div className="block w-full h-auto ring-2 ring-(--input-border) rounded-xl p-3 space-y-3  bg-(--surface) ">
+        <div className="w-1/3 p-2 sticky top-2 h-fit">
+          <div className="block w-full h-auto bg-(--background) ring-2 ring-(--input-border) rounded-xl p-3 space-y-3">
             <PageHeaderCard
               title="Expense Breakdown"
+              titleClass="text-lg font-normal"
               subtitle="Current month spending by category"
+              subtitleClass="text-sm font-normal"
               visibleDate={false}
             />
             <div
@@ -192,7 +194,6 @@ export default function Expenses() {
             </div>
           </div>
         </div>
-
         {/* right side end */}
       </div>
     </PageLayout>

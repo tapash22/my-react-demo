@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { PiSidebarSimpleLight } from "react-icons/pi";
-import { InputPrepend } from "../Input/InputPrepend";
+import { InputPrepend } from "../input-component/InputPrepend";
 import {
   FaSearch,
   FaMoon,

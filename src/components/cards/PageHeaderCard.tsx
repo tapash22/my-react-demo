@@ -4,6 +4,7 @@ interface PageHeaderCardProps {
   title?: string;
   titleClass?: string;
   subtitle?: string;
+  subtitleClass?: string;
   visibleDate?: boolean;
   data?: Date;
   children?: React.ReactNode;
@@ -15,13 +16,14 @@ export function PageHeaderCard({
   title,
   titleClass,
   subtitle,
+  subtitleClass,
   visibleDate = true,
   data = today,
   children,
 }: PageHeaderCardProps) {
   return (
     <div className="flex justify-between w-full h-auto items-center px-4 py-2">
-      <h2 className="flex flex-col  w-2/3">
+      <h2 className="flex flex-col w-2/3">
         {title && (
           <span
             className={` ${titleClass ? titleClass : "text-xl font-semibold"} text-(--foreground) tracking-wide`}
@@ -30,12 +32,14 @@ export function PageHeaderCard({
           </span>
         )}
         {subtitle && (
-          <span className="subtitle-small-title text-(--subtitle)">
+          <span
+            className={` ${subtitleClass ? subtitleClass : "text-sm font-medium"} text-(--subtitle) tracking-normal`}
+          >
             {subtitle}
           </span>
         )}
         {visibleDate && (
-          <span className="text-sm font-normal text-(--subtitle)">
+          <span className="text-sm font-normal text-(--subtitle) ">
             {formatDate(data)}
           </span>
         )}

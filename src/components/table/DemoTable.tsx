@@ -4,6 +4,7 @@ import { Pagination } from "./Pagination";
 import { DemoDropdownSelect } from "../dropdown/DemoDropdownSelect";
 import { DemoButton } from "../button/DemoButton";
 import { FaPen, FaTrash } from "react-icons/fa";
+import { ExpandableSearch } from "../input-component/ExpandableSearch";
 
 interface DemoTableProps<T> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -76,26 +77,28 @@ export function DemoTable<T extends { id: number }>({
   const currentData = filteredData.slice(startIndex, startIndex + pageSize);
 
   return (
-    <div className="w-full rounded-xl bg-(--background) shadow-2xl spacer-y-5">
+    <div className="w-full rounded-xl bg-(--background) spacer-y-3 shadow-(--shadow-card) p-2">
       {/* Search */}
-      <div className="w-1/2 h-auto p-3 flex justify-center align-bottom gap-1  ">
-        <DemoDropdownSelect
-          value={filterColumn}
-          options={filterableColumns}
-          onChange={(col) => {
-            setFilterColumn(col);
+      <div className="w-full h-auto p-3 flex justify-between align-bottom gap-3">
+        <div className="w-1/3">
+          <DemoDropdownSelect
+            value={filterColumn}
+            options={filterableColumns}
+            onChange={(col) => {
+              setFilterColumn(col);
+              setPage(1);
+            }}
+          />
+        </div>
+        <ExpandableSearch
+          value={search}
+          onChange={(val) => {
+            setSearch(val);
             setPage(1);
           }}
-        />
-        <input
-          type="text"
           placeholder="Search..."
-          value={search}
-          onChange={(e) => {
-            setSearch(e.target.value);
-            setPage(1); // reset page on search
-          }}
-          className="input-search input-search::placeholder shadow  "
+          initialWidth="w-32"
+          expandedWidth="w-full sm:max-w-xs"
         />
       </div>
       <div className="flex flex-col w-full p-3">

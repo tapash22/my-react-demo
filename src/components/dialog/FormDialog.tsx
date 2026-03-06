@@ -1,10 +1,8 @@
 import { FaTimes } from "react-icons/fa";
-import {
-  calculateFormModalHeight,
-  getModalWidth,
-} from "../../utils/formDialogHeight";
+import { calculateFormModalHeight } from "../../utils/formDialogHeight";
 import { type SizeType } from "../../features/type/User";
 import React from "react";
+import { getModalWidthClass } from "../../utils/modalWidth";
 
 export interface FormDialogProps {
   open: boolean;
@@ -29,13 +27,12 @@ export default function FormDialog({
 }: FormDialogProps) {
   if (!open) return null;
 
-  const width = sizeType ? getModalWidth(sizeType) : "50vw";
-  const height = calculateFormModalHeight(children, !!subtitle);
-
   // Determine grid template based on columns prop
   // const gridTemplateColumns = columns
   //   ? `repeat(${columns}, minmax(0, 1fr))`
   //   : "1fr"; // default 1 column
+  const width = sizeType ? getModalWidthClass(sizeType) : "50vw";
+  const height = calculateFormModalHeight(children, !!subtitle);
 
   return (
     <div className="fixed inset-0 flex justify-center items-center z-50 bg-black/30">

@@ -27,7 +27,8 @@
   --color-muted: #64748b;
   /* Stone Gray */
   /* shadow */
-  --shadow: 0 0 8px 2px rgba(100, 116, 139, 0.3);
+  --shadow: 0 0 8px 2px rgba(148, 163, 184, 0.24);
+
   --list: rgba(185, 175, 175, 0.568);
   --list-possitive: #ddd8d8a1;
 
@@ -272,16 +273,22 @@ body {
 }
 
 .input-search {
-  @apply ring-1 rounded-lg px-5 py-2 ring-gray-300 outline-none w-full;
-}
-
-.input-search:focus {
-  @apply ring-2 ring-(--input-border);
+  @apply ring-1 rounded-lg px-5 py-2 w-full shadow-2xl;
+  /* Always visible shadow */
+  background-color: var(--surface);
+  box-shadow: var(--shadow-light);
+  outline: none;
+  transition: all 0.3s ease-in-out;
 }
 
 .input-search::placeholder {
   @apply text-(--foreground) text-sm font-normal tracking-wider text-start px-0;
 }
+
+.input-search:focus {
+  @apply ring-2 ring-(--input-border) outline-none;
+}
+
 
 /* Make select match input styles */
 .select-search {

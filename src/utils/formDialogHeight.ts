@@ -1,39 +1,8 @@
 import React from "react";
 import { type SizeType } from "../features/type/User";
+// model function import to use
+// import { getModalWidthClass } from "./modalWidth";
 
-/**
- * Recursively count form elements (input, textarea, select, checkbox)
- */
-
-//count div also
-// export const countFormElementsIncludingAll = (
-//   children: React.ReactNode,
-// ): number => {
-//   let count = 0;
-
-//   React.Children.forEach(children, (child) => {
-//     if (!React.isValidElement(children)) return;
-
-//     const element = child as React.ReactElement<{
-//       children?: React.ReactNode;
-//       [key: string]: unknown;
-//     }>;
-
-//     // Count all elements (inputs, selects, textareas, images, divs, etc.)
-//     count += 1;
-
-//     // Recurse into nested children
-//     if (element.props?.children) {
-//       count += countFormElementsIncludingAll(element.props.children);
-//     }
-//   });
-
-//   return count;
-// };
-
-/**
- * Calculate dynamic modal height based on number of form elements
- */
 export const calculateFormModalHeight = (
   children: React.ReactNode,
   hasSubtitle: boolean,
@@ -70,26 +39,14 @@ export const calculateFormModalHeight = (
   return `${height}vh`;
 };
 
-/**
- * Get modal width based on sizeType
- */
-export const getModalWidth = (sizeType: SizeType): string => {
-  const widthMap: Record<SizeType, string> = {
-    tiny: "30vw",
-    small: "40vw",
-    medium: "50vw",
-    large: "70vw",
-  };
-  return widthMap[sizeType];
-};
-
 // count only input, select with child, textarea
-
 export const countFormElementsIncludingAll = (
   children: React.ReactNode,
 ): number => {
   let count = 0;
 
+  // model wide handle
+  // const modalClass = getModalWidthClass("large");
   React.Children.forEach(children, (child) => {
     if (!React.isValidElement(child)) return;
 
@@ -112,7 +69,7 @@ export const countFormElementsIncludingAll = (
         count += 1;
       }
 
-      // ✅ Only cast to HTMLInputElement props if tag === "input"
+      // Only cast to HTMLInputElement props if tag === "input"
       if (tag === "input") {
         const props =
           element.props as React.InputHTMLAttributes<HTMLInputElement>;
@@ -121,7 +78,6 @@ export const countFormElementsIncludingAll = (
         }
       }
     }
-
     // Recurse for nested children
     if (element.props?.children) {
       count += countFormElementsIncludingAll(element.props.children);

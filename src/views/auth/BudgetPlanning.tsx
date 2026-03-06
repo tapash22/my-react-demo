@@ -43,7 +43,7 @@ export default function BudgetPlanning() {
     >
       <div
         ref={containerRef}
-        className="flex gap-3 items-start w-full h-auto p-1 space-y-2 bg-accent"
+        className="flex gap-3 items-start w-full h-auto p-1 space-y-2"
       >
         {/* left side */}
 
