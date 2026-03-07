@@ -1,10 +1,8 @@
-// import { BudgetVisualizer3D } from "../../components/3D/BudgetVisualizer3D";
-
 import { FaPlus } from "react-icons/fa";
 import { DemoButton } from "../../components/button/DemoButton";
 import { PageHeaderCard } from "../../components/cards/PageHeaderCard";
 import { Transaction } from "../Transaction";
-import { categoryExpenses } from "../../store/budget-data";
+import { categoryExpenses, comparisonItems } from "../../store/budget-data";
 import { Doughnut } from "react-chartjs-2";
 import { centerTextPlugin } from "../../components/chart/centerTextPlugin";
 import type { DoughnutChartOptions } from "../../features/type/User";
@@ -13,23 +11,15 @@ import { FinanceList } from "../../components/item/FinanceList";
 import { BillCard } from "../../components/cards/BillCard";
 import { PageLayout } from "../../components/layout/PageLayout";
 import { useRef } from "react";
+import { DemoMonthlyComparisonCard } from "../../components/cards/DemoMonthlyComparisonCard";
+//this is 3D example
+// import { BudgetVisualizer3D } from "../../components/3D/BudgetVisualizer3D";
 
 export default function Expenses() {
   const containerRef = useRef<HTMLDivElement>(null);
-
-  const handleClick = () => {
-    console.log("click");
-  };
-
-  const lastMonth = 2350;
+  // const lastMonth = 2350;
   const values = categoryExpenses.map((expense) => expense.amount);
   const total = values.reduce((sum, i) => sum + i, 0);
-
-  const difference = total - lastMonth;
-  const percentageChange = (difference / lastMonth) * 100;
-
-  // Determine sign for display
-  const sign = difference >= 0 ? "+" : "-";
 
   const data = {
     labels: categoryExpenses.map((item) => item.label),
@@ -91,6 +81,11 @@ export default function Expenses() {
     },
   };
 
+  //handle click
+  const handleClick = () => {
+    console.log("click");
+  };
+
   return (
     <PageLayout
       header={
@@ -98,6 +93,7 @@ export default function Expenses() {
           <div className="flex justify-end items-center gap-5">
             <DemoButton
               title="Add Transaction"
+              iconSize={12}
               icon={FaPlus}
               onClick={() => handleClick}
             />
@@ -114,10 +110,12 @@ export default function Expenses() {
           <div className="w-full h-full ">
             <Transaction />
           </div>
-          <div className="flex flex-col space-y-3 ring-2 ring-(--input-border) rounded-xl p-3">
+          <div className="flex flex-col space-y-2 ring-2 ring-(--input-border) rounded-xl p-3">
             <PageHeaderCard
               title="Upcoming Payments"
+              titleClass="text-lg font-normal"
               subtitle="Bills due in the next 2 weeks"
+              subtitleClass="text-sm font-normal"
               visibleDate={false}
             />
             <BillCard />
@@ -135,7 +133,7 @@ export default function Expenses() {
 
         {/* right side */}
         <div className="w-1/3 p-2 sticky top-2 h-fit">
-          <div className="block w-full h-auto bg-(--background) ring-2 ring-(--input-border) rounded-xl p-3 space-y-3">
+          <div className="flex flex-col w-full h-auto bg-(--background) ring-2 ring-(--input-border) rounded-xl p-3 space-y-3">
             <PageHeaderCard
               title="Expense Breakdown"
               titleClass="text-lg font-normal"
@@ -153,44 +151,17 @@ export default function Expenses() {
                 plugins={[centerTextPlugin]}
               />
             </div>
-            <div className="w-full h-auto space-y-3 p-2  overflow-hidden">
+            <div className="w-full h-auto">
               <FinanceList dataList={categoryExpenses} direction={false} />
             </div>
             {/* <p className="text-xl font-bold text-(--foreground)">
                     ${stat.value.toLocaleString()}
                   </p> */}
-            <div className="w-full p-3 flex flex-col space-y-3">
-              <p className="text-sm font-medium text-(--forground) text-left ">
-                Monthly Comparison
-              </p>
-              {/* Last Month */}
-              <div className="bg-(--surface) rounded-lg space-y-1 flex justify-between items-center">
-                <p className="text-sm text-(--foreground)">Last Month</p>
-                <p className="font-medium text-sm text-(--foreground) ">
-                  ${lastMonth}
-                </p>
-              </div>
-              {/* Last Month end*/}
-
-              {/* This Month */}
-              <div className="bg-(--surface) rounded-lg space-y-1 flex justify-between items-center">
-                <p className="text-sm text-(--foreground)">This Month</p>
-                <p className="font-medium text-sm text-(--foreground)">
-                  ${total}
-                </p>
-              </div>
-              {/* This Month end */}
-
-              {/* Difference*/}
-              <div className="bg-(--surface) rounded-lg space-y-1 flex justify-between items-center">
-                <p className="text-sm text-(--foreground)">Difference</p>
-                <p
-                  className={`font-medium text-sm ${difference >= 0 ? "text-(--danger)" : "text-(--success)"}`}
-                >
-                  {sign}${difference} ({Math.abs(percentageChange).toFixed(1)}%)
-                </p>
-              </div>
-              {/* Difference end */}
+            <div className="w-full h-auto">
+              <DemoMonthlyComparisonCard
+                title="Monthly Comparison"
+                items={comparisonItems}
+              />
             </div>
           </div>
         </div>
@@ -199,7 +170,3 @@ export default function Expenses() {
     </PageLayout>
   );
 }
-
-// <div>
-//   <BudgetVisualizer3D />
-// </div>

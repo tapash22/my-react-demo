@@ -8,7 +8,7 @@ interface FinanceListProps {
 export function FinanceList({ dataList, direction = true }: FinanceListProps) {
   return (
     <>
-      <ul className="space-y-2 w-full overflow-hidden relative  ">
+      <ul className="w-full p-1 flex flex-col space-y-2 overflow-hidden relative">
         <AnimatePresence mode="popLayout">
           {dataList &&
             dataList.map((item, index) => (
@@ -44,19 +44,19 @@ export function FinanceList({ dataList, direction = true }: FinanceListProps) {
                     <span className="w-2 h-2 rounded-full bg-(--primary)"></span>
                   )}
 
-                  <span className="subtitle-small-title font-semibold">
+                  <span className="text-sm font-medium text-(--foreground) tracking-wide">
                     {item.label}
                   </span>
                 </div>
                 <div className="flex justify-end items-center font-semibold text-sm tracking-wide space-x-1">
-                  <span className="subtitle-small-title space-x-0.5">
+                  <span className="text-sm font-semibold text-(--foreground) tracking-wide space-x-0.5">
                     $ {item.amount}
                   </span>
 
                   {direction === false && (
                     <span
-                      className="font-normal
-                     text-(--foreground) tracking-wide"
+                      className="text-sm font-medium
+                     text-(--foreground) tracking-normal"
                     >
                       ({item.percentage}%)
                     </span>

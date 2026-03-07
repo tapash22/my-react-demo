@@ -257,3 +257,11 @@ export interface ReferralUserFinancialData {
   recentReferrals: RecentReferral[];
   viewAllText: string;
 }
+// Expense
+export interface ComparisonItem {
+  label: string;
+  value: string | number; // string or number only
+  textColorClass?: string; // optional for dynamic styling
+}
+//define arry of object
+export type ComparisonItems<T extends ComparisonItem = ComparisonItem> = T[];

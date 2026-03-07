@@ -34,6 +34,7 @@ import type {
   BankAccount,
   CalculatorData,
   CategoryData,
+  ComparisonItems,
   DropdownMenu,
   FaqData,
   referralStep,
@@ -835,4 +836,9 @@ export const referralTerms: referralTerm[] = [
     description:
       "FinTrack reserves the right to modify or terminate the referral program at any time",
   },
+];
+
+export const comparisonItems: ComparisonItems = [
+  { label: "Last Month", value: 2800 },
+  { label: "This Month", value: 3000 },
 ];
