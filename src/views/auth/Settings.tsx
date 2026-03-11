@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { PageHeaderCard } from "../../components/cards/PageHeaderCard";
 import { PageLayout } from "../../components/layout/PageLayout";
 import { DemoTabs } from "../../components/tabs/DemoTabs";
@@ -8,10 +8,40 @@ import { AppSettings } from "./settings/AppSettings";
 import { SecuritySettings } from "./settings/SecuritySettings";
 import { HelpSettings } from "./settings/HelpSettings";
 import { ResourcesSettings } from "./settings/ResourcesSettings";
+import { usePageAnimation } from "../../components/hooks/usePageAnimation";
+import type { Direction } from "../../features/type/User";
 
 export default function Settings() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
+
+  //  Load initial tab from localStorage or default to 0
+  const storedTabIndex = localStorage.getItem("settingsActiveTab");
+  const [activeIndex, setActiveIndex] = useState<number>(
+    storedTabIndex ? Number(storedTabIndex) : 0,
+  );
+  //handle direction from left/right
+  const [direction, setDirection] = useState<Direction>("right");
+  // track previous tab index
+  const prevIndex = useRef(0);
+
+  // detect tab direction inside handler
+  const handleTabChange = (index: number) => {
+    const newDirection: Direction =
+      index > prevIndex.current ? "right" : "left";
+
+    setDirection(newDirection);
+    prevIndex.current = index;
+
+    setActiveIndex(index);
+    localStorage.setItem("settingsActiveTab", String(index));
+  };
+
+  const activeTabRef = usePageAnimation<HTMLDivElement>({
+    dep: activeIndex,
+    direction,
+  });
+
+  //active index
   const activeTab = menuItems[activeIndex];
 
   const tabComponents = {
@@ -21,6 +51,11 @@ export default function Settings() {
     help: <HelpSettings />,
     resources: <ResourcesSettings />,
   };
+
+  // keep prevIndex updated on tab change
+  useEffect(() => {
+    prevIndex.current = activeIndex;
+  }, [activeIndex]);
 
   return (
     <PageLayout
@@ -36,12 +71,12 @@ export default function Settings() {
         <DemoTabs
           tabs={menuItems}
           activeIndex={activeIndex}
-          onChange={setActiveIndex}
+          onChange={handleTabChange}
           delay={50}
           duration={300}
           activeBgClass="bg-(--surface)"
         />
-        <div className="mt-6">
+        <div ref={activeTabRef} className="mt-6">
           {tabComponents[activeTab.value as keyof typeof tabComponents]}
         </div>
       </div>

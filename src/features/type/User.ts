@@ -265,3 +265,7 @@ export interface ComparisonItem {
 }
 //define arry of object
 export type ComparisonItems<T extends ComparisonItem = ComparisonItem> = T[];
+
+//route or tab animation type declear
+export type AnimationMode = "route" | "tab";
+export type Direction = "left" | "right";
