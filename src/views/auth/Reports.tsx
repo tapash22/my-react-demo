@@ -113,12 +113,13 @@ export default function Reports() {
     >
       <div
         ref={containerRef}
-        className="relative min-h-screen flex gap-3 items-start w-full h-auto p-2"
+        className="flex gap-3 items-start w-full h-auto p-1 space-y-2"
       >
-        <div className="w-2/5 p-2 space-y-5">
-          <div className="block w-full h-auto ring-2 ring-(--input-border) rounded-xl p-3 space-y-3  bg-(--surface) ">
+        <div className="w-1/3 h-auto space-y-5 p-2">
+          <div className="flex flex-col w-full h-auto bg-(--background) ring-2 ring-(--input-border) rounded-xl p-3 space-y-3">
             <PageHeaderCard
-              subtitle="Expenses by Category"
+              title="Expenses by Category"
+              titleClass="text-lg font-normal"
               visibleDate={false}
             />
             <div
@@ -131,18 +132,15 @@ export default function Reports() {
                 plugins={[centerTextPlugin]}
               />
             </div>
-            <div className="w-full h-auto space-y-3 p-2  overflow-hidden">
-              <FinanceList dataList={categoryExpenses} direction={false} />
-            </div>
-            {/* <p className="text-xl font-bold text-(--foreground)">
-                    ${stat.value.toLocaleString()}
-                  </p> */}
+            <FinanceList dataList={categoryExpenses} direction={false} />
           </div>
 
           <div className="block w-full h-auto ring-2 ring-(--input-border) rounded-xl p-3 space-y-3  bg-(--surface) ">
             <PageHeaderCard
               title="Budget Analysis"
+              titleClass="text-lg font-normal"
               subtitle="AI-powered insights and projections for your spending"
+              subtitleClass="text-sm font-normal"
               visibleDate={false}
             />
             <div className="w-full h-auto p-5 space-y-2 flex flex-col justify-center items-center bg-(--background) opacity-80 rounded-2xl">
