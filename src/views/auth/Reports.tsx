@@ -3,7 +3,7 @@ import { PageLayout } from "../../components/layout/PageLayout";
 import { PageHeaderCard } from "../../components/cards/PageHeaderCard";
 import { DemoButton } from "../../components/button/DemoButton";
 import { FaPlus } from "react-icons/fa";
-import { categoryExpenses } from "../../store/budget-data";
+import { categoryExpenses, spendingTips } from "../../store/budget-data";
 import { Doughnut } from "react-chartjs-2";
 import { FinanceList } from "../../components/item/FinanceList";
 import { cssVar } from "../../utils/cssVar";
@@ -13,7 +13,8 @@ import { MonthlyIncomeExpenseLineChart } from "../../components/chart/MonthlyInc
 import { MonthlyIncomeExpenseLabelChart } from "../../components/chart/MonthlyIncomeExpenseLabelChart";
 import { CategoryCard } from "../../components/cards/CategoryCard";
 import { DemoLinearProgressBar } from "../../components/progressbar/DemoLinearProgressBar";
-import { DemoChip } from "../../components/chip/DemoChip";
+import { DemoDataCard } from "../../components/cards/DemoDataCard";
+import { DemoPageSectionCard } from "../../components/cards/DemoPageSectionCard";
 // practice gsap with BsThreeDots.js
 // import { GsapWithThreeExample } from "../../practice/GsapWithThreeExample";
 
@@ -115,7 +116,10 @@ export default function Reports() {
         ref={containerRef}
         className="flex gap-3 items-start w-full h-auto p-1 space-y-2"
       >
+        {/* left side */}
+
         <div className="w-1/3 h-auto space-y-5 p-2">
+          {/* Expenses section */}
           <div className="flex flex-col w-full h-auto bg-(--background) ring-2 ring-(--input-border) rounded-xl p-3 space-y-3">
             <PageHeaderCard
               title="Expenses by Category"
@@ -134,8 +138,11 @@ export default function Reports() {
             </div>
             <FinanceList dataList={categoryExpenses} direction={false} />
           </div>
+          {/* Expenses section end */}
 
-          <div className="block w-full h-auto ring-2 ring-(--input-border) rounded-xl p-3 space-y-3  bg-(--surface) ">
+          {/* Budget Analysis */}
+
+          <div className="block w-full h-auto ring-2 ring-(--input-border) rounded-xl p-3 space-y-3  ">
             <PageHeaderCard
               title="Budget Analysis"
               titleClass="text-lg font-normal"
@@ -143,13 +150,14 @@ export default function Reports() {
               subtitleClass="text-sm font-normal"
               visibleDate={false}
             />
-            <div className="w-full h-auto p-5 space-y-2 flex flex-col justify-center items-center bg-(--background) opacity-80 rounded-2xl">
-              <div className="flex justify-between items-center  w-full">
-                <p className="text-lg font-semibold tracking-wide text-(--muted) ">
-                  Credit Utilization
-                </p>
-                <DemoChip label="95%" />
-              </div>
+            <div className="w-full h-auto px-2 py-4 space-y-2 flex flex-col justify-center items-center bg-(--surface) opacity-80 rounded-2xl">
+              <DemoDataCard
+                title="Credit Utilization"
+                chipLabel="95%"
+                chipLabelSize="tiny"
+                chipclassName="px-2"
+              />
+
               <DemoLinearProgressBar
                 showLabel="Current Spending"
                 height="h-1"
@@ -167,16 +175,43 @@ export default function Reports() {
             <CategoryCard />
             <CategoryCard />
             <CategoryCard />
+
+            <div className="w-full h-auto p-3 flex flex-col justify-center items-center bg-(--surface) opacity-80 rounded-2xl">
+              <DemoPageSectionCard title="Recommendations" haveBorder={false} />
+              <ul
+                className={`w-full flex flex-col  justify-start items-start rounded-xl h-full space-y-2 px-8 list-disc`}
+              >
+                {spendingTips &&
+                  spendingTips.map((tips) => (
+                    <li
+                      className={`text-sm font-normal tracking-wide text-(--foreground)`}
+                    >
+                      {tips.message}
+                    </li>
+                  ))}
+              </ul>
+            </div>
           </div>
+          {/* Budget Analysis end */}
         </div>
-        <div className="w-3/5 h-auto p-2 block space-y-5">
+        {/* left side end */}
+
+        {/* right side */}
+        <div className="w-2/3 h-auto p-2 block space-y-5">
+          {/* line chart */}
           <div className="block w-full rounded-xl p-4 h-96  ring-2 ring-(--input-border)">
             <MonthlyIncomeExpenseLineChart />
           </div>
+          {/* line chart end*/}
+
+          {/* bar chart */}
+
           <div className="block w-full h-80 ring-2 ring-(--input-border) rounded-xl p-2 ">
             <MonthlyIncomeExpenseLabelChart />
           </div>
+          {/* bar chart end */}
         </div>
+        {/* right side end */}
       </div>
     </PageLayout>
   );

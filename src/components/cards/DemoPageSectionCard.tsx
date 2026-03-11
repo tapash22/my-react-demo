@@ -16,7 +16,7 @@ export function DemoPageSectionCard({
 }: DemoPageSectionCardProps) {
   return (
     <div
-      className={`w-full h-auto flex justify-between items-center rounded-xl space-y-1 ${haveBorder ? "ring-1 ring-(--input-border) p-4" : "p-2"}`}
+      className={`w-full h-auto flex justify-between items-center rounded-xl space-y-1 ${haveBorder ? "ring-1 ring-(--input-border) p-4" : "px-2 py-1"}`}
     >
       <div className="flex flex-col justify-start">
         <h2 className="text-lg font-medium tracking-wide text-(--foreground)">

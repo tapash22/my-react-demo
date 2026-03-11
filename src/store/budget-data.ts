@@ -759,11 +759,16 @@ export const referralSteps: referralStep[] = [
  * The Referral User Financial Data Object
  */
 export const referralUserData: ReferralUserFinancialData = {
-  earningsOverview: {
-    totalEarned: 50,
-    pendingEarnings: 20,
-    availableBalance: 30,
-  },
+  earningsOverview: [
+    {
+      label: "Total Earned",
+      value: "50",
+    },
+    {
+      label: "Pending Earnings",
+      value: "20",
+    },
+  ],
 
   referralUsage: {
     used: 5,
@@ -877,5 +882,35 @@ export const balanceData: ComparisonItems = [
   {
     label: "Total Liabilities",
     value: 3050,
+  },
+];
+
+export const earningsData: ComparisonItems = [
+  {
+    label: "Total Earned",
+    value: "$50",
+  },
+  {
+    label: "Pending Earnings",
+    value: "$20",
+  },
+];
+
+export const spendingTips = [
+  {
+    id: 1,
+    message:
+      "Consider reducing entertainment spending by $30 to stay on budget",
+    type: "warning", // optional: can use 'warning', 'info', 'success'
+  },
+  {
+    id: 2,
+    message: "You're doing great with food spending - keep it up!",
+    type: "success",
+  },
+  {
+    id: 3,
+    message: "Transportation costs are trending up - review recent expenses",
+    type: "info",
   },
 ];

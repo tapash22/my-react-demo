@@ -18,11 +18,19 @@ export function DemoMonthlyComparisonCard({
 
   const lastMonthItem = items.find((i) => {
     const label = i.label.toLowerCase();
-    return label.includes("last") || label.includes("asset");
+    return (
+      label.includes("last") ||
+      label.includes("asset") ||
+      label.includes("pending")
+    );
   });
   const thisMonthItem = items.find((i) => {
     const label = i.label.toLocaleLowerCase();
-    return label.includes("this") || label.includes("Liabilities");
+    return (
+      label.includes("this") ||
+      label.includes("Liabilities") ||
+      label.includes("total")
+    );
   });
 
   const lastMonth = lastMonthItem ? Number(lastMonthItem.value) : 0;

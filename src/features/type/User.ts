@@ -251,7 +251,7 @@ export interface RecentReferral {
 }
 
 export interface ReferralUserFinancialData {
-  earningsOverview: EarningsOverview;
+  earningsOverview: ComparisonItems;
   referralUsage: ReferralUsage;
   withdrawSection: WithdrawSection;
   recentReferrals: RecentReferral[];

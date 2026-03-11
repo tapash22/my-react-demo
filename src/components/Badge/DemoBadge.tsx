@@ -20,9 +20,9 @@ export function DemoBadge({
   return (
     <>
       <span
-        className={`absolute ${isAvatorbadge ? "top-1 -right-1 bg-(--surface) text-(--mute) ring-2 ring-(${badgeColor}) min-w-5 min-h-5 text-sm font-semibold tracking-wide " : "-top-2 -right-2 bg-transparent ring-1  ring-(--card-border) min-w-[18px] h-[18px] text-sm font-normal tracking-wide text-(--foreground)"}  px-1 rounded-full  flex items-center justify-center object-contain `}
+        className={`absolute ${isAvatorbadge ? "top-1 -right-1 ring-2 ring-(${badgeColor}) min-w-5 min-h-5 text-sm font-semibold tracking-wide " : "-top-2 -right-2 bg-transparent ring-1  ring-(--card-border) min-w-[18px] h-[18px] text-sm font-normal tracking-wide "} text-(--background)  px-1 rounded-full  flex items-center justify-center object-contain `}
         style={{
-          color: computedColor,
+          background: computedColor,
           boxShadow: `0 0 0 2px ${computedColor}`,
         }}
       >

@@ -8,6 +8,7 @@ interface PageHeaderCardProps {
   visibleDate?: boolean;
   data?: Date;
   children?: React.ReactNode;
+  direction?: boolean;
 }
 
 const today = new Date();
@@ -20,9 +21,12 @@ export function PageHeaderCard({
   visibleDate = true,
   data = today,
   children,
+  direction = false,
 }: PageHeaderCardProps) {
   return (
-    <div className="flex justify-between w-full h-auto items-center px-4 py-1">
+    <div
+      className={`flex justify-between w-full h-auto items-center px-4 py-1 ${direction ? "flex flex-col justify-between items-center space-y-3" : "flex justify-between items-center"}`}
+    >
       <h2 className="flex flex-col w-full">
         {title && (
           <span
@@ -44,7 +48,11 @@ export function PageHeaderCard({
           </span>
         )}
       </h2>
-      {children && <div className="w-1/2 h-auto">{children}</div>}
+      {children && (
+        <div className={`${direction ? "w-full h-auto" : "w-1/2 h-auto"}`}>
+          {children}
+        </div>
+      )}
     </div>
   );
 }

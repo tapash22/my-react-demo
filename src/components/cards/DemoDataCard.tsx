@@ -24,7 +24,7 @@ export function DemoDataCard({
   chipclassName,
 }: DemoDataCardProps) {
   return (
-    <div className="flex justify-between items-center gap-3 w-full px-3 h-auto ">
+    <div className="flex justify-between items-center gap-3 w-full px-3 py-1 h-auto ">
       <div className="w-1/2 h-auto flex justify-start items-center gap-2 ">
         {icon && <DemoIcon icon={icon} size={iconSize} />}
         <h2

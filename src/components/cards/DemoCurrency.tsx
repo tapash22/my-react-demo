@@ -21,9 +21,9 @@ export function DemoCurrency({
   }).format(amount);
 
   return (
-    <div className="w-auto h-auto p-2 flex justify-evenly items-center ">
+    <div className="w-auto h-auto py-2 px-1 flex justify-evenly items-center ">
       {currencyLabel && (
-        <p className="text-sm font-medium tracking-wider text-(--foreground)">
+        <p className="text-sm font-normal tracking-wider text-(--foreground)">
           {currencyLabel}:
         </p>
       )}

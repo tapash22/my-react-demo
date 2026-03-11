@@ -6,7 +6,7 @@ import { DemoDataCard } from "./DemoDataCard";
 
 export function CategoryCard() {
   return (
-    <div className="flex flex-col justify-between items-center text-xs font-semibold text-(--foreground) opacity-80 w-full ring-2 ring-(--input-border) p-3 rounded-xl space-y-2">
+    <div className="flex flex-col justify-between items-center text-xs font-semibold text-(--foreground) opacity-80 w-full ring-2 ring-(--input-border) p-3 rounded-xl space-y-2  hover:bg-(--sidebar-hover-bg) cursor-pointer">
       <DemoDataCard
         title="title"
         icon={FaUser}
@@ -20,6 +20,7 @@ export function CategoryCard() {
         <DemoLinearProgressBar
           currentAmount={200}
           targetAmount={300}
+          height="h-1"
           childrenBottom={
             <div className="w-full flex justify-between items-center ">
               <DemoCurrency
