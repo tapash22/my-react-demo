@@ -1,4 +1,8 @@
-import { FUNDS_DATA } from "../../store/budget-data";
+import {
+  FUNDS_DATA,
+  monthlySavingData,
+  savingsData,
+} from "../../store/budget-data";
 import { useSavingsOverview } from "../../components/hooks/useSavingsOverview";
 import { DemoCardWithProgressbar } from "../../components/cards/DemoCardWithProgressbar";
 import { FUND_TABS } from "../../utils/tabData";
@@ -10,6 +14,8 @@ import { PageLayout } from "../../components/layout/PageLayout";
 import { PageHeaderCard } from "../../components/cards/PageHeaderCard";
 import { DemoButton } from "../../components/button/DemoButton";
 import { FaPlus } from "react-icons/fa";
+import { DemoMonthlyComparisonCard } from "../../components/cards/DemoMonthlyComparisonCard";
+import { DemoFinancialMetricCard } from "../../components/cards/DemoFinancialMetricCard";
 // this are gsap practice
 // import { GsapExample } from "../../practice/GsapExample";
 
@@ -17,16 +23,12 @@ export default function SavingGoals() {
   // const menuRef = useRef<HTMLLIElement[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const {
-    totalSaved,
-    totalGoals,
-    // monthlyProgress,
-    overallProgress,
-    monthlyTarget,
-    remaining,
-    savedThisMonth,
-    savingsRate,
-  } = useSavingsOverview(FUNDS_DATA, 1200, 1500, 6667);
+  const { overallProgress, savingsRate } = useSavingsOverview(
+    FUNDS_DATA,
+    1200,
+    1500,
+    6667,
+  );
 
   const keys = {
     id: "id",
@@ -61,98 +63,79 @@ export default function SavingGoals() {
     >
       <div
         ref={containerRef}
-        className="flex justify-evenly items-start gap-5 p-3 bg-(--background) w-full"
+        className="flex gap-3 items-start w-full h-auto p-1 space-y-2"
       >
         {/* left side card */}
-        <div className="flex flex-col items-center w-2/4 h-full p-5 shadow-(--shadow-card) rounded-xl space-y-2">
-          <h3 className="font-bold subtitle-title text-start text-(--foreground) w-full p-3">
-            Savings Overview
-          </h3>
-          <div className="flex justify-center items-center">
+        <div className="w-1/3 p-2 sticky top-2 h-fit">
+          <div className="flex flex-col w-full h-auto bg-(--background) ring-2 ring-(--input-border) rounded-xl p-3 space-y-1">
+            <PageHeaderCard
+              title="Saving Goals"
+              titleClass="text-lg font-normal"
+              visibleDate={false}
+            />
             <DemoCircleProgressbar percentage={overallProgress} />
-          </div>
-          {/* Financial Stats */}
-          <div className="space-y-3 text-sm w-full p-3">
-            <div className="flex justify-between">
-              <span>Total Saved</span>
-              <span className="font-semibold">
-                ${totalSaved.toLocaleString()}
-              </span>
-            </div>
-            <div className="flex justify-between">
-              <span>Total Goals</span>
-              <span className="font-semibold">
-                ${totalGoals.toLocaleString()}
-              </span>
-            </div>
-            <div className="flex justify-between">
-              <span>Remaining</span>
-              <span className="font-semibold">
-                ${remaining.toLocaleString()}
-              </span>
-            </div>
-          </div>
-          {/* Monthly Section */}
-          <div className="space-y-2 text-sm w-full p-3">
-            <h3 className="font-bold mb-2 text-start subtitle-title ">
-              Monthly Savings
-            </h3>
-            <div className="flex justify-between">
-              <span>Target</span>
-              <span>${monthlyTarget.toLocaleString()}</span>
-            </div>
-            <div className="flex justify-between">
-              <span>Saved This Month</span>
-              <span>${savedThisMonth.toLocaleString()}</span>
-            </div>
-
+            {/* Financial Stats */}
+            <DemoMonthlyComparisonCard
+              items={savingsData}
+              showDifference={false}
+            />
+            {/* Monthly Section */}
+            <DemoMonthlyComparisonCard
+              title="Monthly Savings"
+              items={monthlySavingData}
+              showDifference={false}
+            />
             {/* Progress Bar */}
-            <DemoLinearProgressBar currentAmount={1200} targetAmount={1500} />
-          </div>
+            <DemoLinearProgressBar
+              showLabel="Progress"
+              currentAmount={1200}
+              targetAmount={1500}
+              height="h-1"
+            />
+            {/* Progress Bar end */}
 
-          {/* Savings Rate Card */}
-          <div className="mt-6 p-4 bg-(--surface) rounded-lg text-center w-full">
-            <div className="text-xs uppercase text-(--muted) font-medium">
-              Savings Rate
+            {/* Savings Rate Card */}
+            <DemoFinancialMetricCard
+              title="Savings Rate"
+              value={savingsRate}
+              description="of monthly income"
+            />
+            {/* Savings Rate Card end */}
+          </div>
+        </div>
+
+        <div className="w-2/3 h-auto p-2 flex flex-col space-y-5">
+          <div className="flex flex-col w-full h-auto bg-(--background) ring-2 ring-(--input-border) rounded-xl p-3 space-y-3">
+            <div className="flex justify-between items-center ">
+              <PageHeaderCard
+                title="Savings Overview"
+                titleClass="text-lg font-normal"
+                visibleDate={false}
+              />
+              <DemoTabs
+                tabs={FUND_TABS}
+                activeIndex={activeIndex}
+                onChange={setActiveIndex}
+                delay={50}
+                duration={300}
+                activeBgClass="bg-(--surface)"
+              />
             </div>
-            <div className="text-2xl font-bold my-1">{savingsRate}%</div>
-            <div className="text-xs text-(--muted)">of monthly income</div>
+            {/* Scrollable content */}
+            <div className="flex-1 overflow-y-auto scrollbar">
+              <DemoCardWithProgressbar
+                fundsData={FUNDS_DATA}
+                keys={keys}
+                status={
+                  activeTab.value === "all"
+                    ? undefined
+                    : (activeTab.value as "active" | "paused" | "completed")
+                }
+              />
+            </div>
+            {/* Scrollable content end */}
           </div>
         </div>
-        {/* left side card end */}
-
-        {/* right side list */}
-        <div className="shadow-(--shadow-card) p-5 w-full h-[620px] rounded-2xl flex flex-col space-y-3 ">
-          <div className="flex justify-between items-center shrink-0">
-            <p className="text-(--foreground) subtitle-title p-3 ">
-              Saving Goals
-            </p>
-
-            <DemoTabs
-              tabs={FUND_TABS}
-              activeIndex={activeIndex}
-              onChange={setActiveIndex}
-              delay={50}
-              duration={300}
-              activeBgClass="bg-(--surface)"
-            />
-          </div>
-
-          {/* Scrollable content */}
-          <div className="flex-1 overflow-y-auto scrollbar">
-            <DemoCardWithProgressbar
-              fundsData={FUNDS_DATA}
-              keys={keys}
-              status={
-                activeTab.value === "all"
-                  ? undefined
-                  : (activeTab.value as "active" | "paused" | "completed")
-              }
-            />
-          </div>
-        </div>
-
-        {/* right side list end */}
       </div>
     </PageLayout>
   );

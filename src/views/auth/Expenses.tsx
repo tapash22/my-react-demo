@@ -106,7 +106,7 @@ export default function Expenses() {
         className="flex gap-3 items-start w-full h-auto p-1 space-y-2"
       >
         {/* left side */}
-        <div className="w-2/3 h-auto p-2 block space-y-5">
+        <div className="w-2/3 h-auto p-2 flex flex-col space-y-5">
           <div className="w-full h-full ">
             <Transaction />
           </div>

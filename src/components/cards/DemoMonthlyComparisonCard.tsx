@@ -2,7 +2,7 @@ import type { ComparisonItems } from "../../features/type/User";
 import { DemoComparisonItem } from "./DemoComparisonItem";
 
 interface DemoMonthlyComparisonProps {
-  title: string;
+  title?: string;
   items: ComparisonItems;
   showDifference?: boolean;
 }
@@ -30,9 +30,11 @@ export function DemoMonthlyComparisonCard({
 
   return (
     <div className="w-full p-1 flex flex-col space-y-2">
-      <p className="text-sm font-medium text-(--foreground) tracking-wide text-left py-1 px-2">
-        {title}
-      </p>
+      {title && (
+        <p className="text-sm font-medium text-(--foreground) tracking-wide text-left py-1 px-2">
+          {title}
+        </p>
+      )}
 
       <div className="space-y-1">
         {items.map((item, index) => (

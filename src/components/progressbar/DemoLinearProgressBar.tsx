@@ -26,7 +26,7 @@ export function DemoLinearProgressBar({
   };
 
   return (
-    <div className="w-full h-auto">
+    <div className="w-full h-auto px-2">
       {/* Label below the bar */}
       {showLabel.length > 0 && showLabel ? (
         <p className="p-2 text-sm font-normal text-(--forground) text-left flex justify-between ">

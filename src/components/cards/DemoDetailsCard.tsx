@@ -20,7 +20,7 @@ export function DemoDetailsCard<T>({ items, keys }: DemoDetailsCardProps<T>) {
       <h2 className="text-sm font-semibold tracking-wider text-(--forground) px-2">
         {formatRelativeDate(new Date())}
       </h2>
-      <div className="flex flex-col space-y-1 rounded-xl h-[45vh] overflow-y-scroll scrollbar-thin">
+      <div className="flex flex-col space-y-1 rounded-xl h-[40vh] overflow-y-scroll scrollbar-thin">
         {items?.map((item, index) => {
           const name = String(item[keys.name] ?? "");
           const action = String(item[keys.action] ?? "");

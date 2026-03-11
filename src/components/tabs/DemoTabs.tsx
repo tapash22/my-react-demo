@@ -32,7 +32,7 @@ export function DemoTabs({
   }, [activeIndex, tabs.length, delay]);
 
   return (
-    <div className="relative inline-flex rounded-lg overflow-hidden ring-2 ring-(--input-border)">
+    <div className="relative inline-flex rounded-lg ring-2 ring-(--input-border)">
       {/* Sliding background */}
       <div
         className={`absolute top-0 left-0 bottom-0 ${activeBgClass} rounded-lg`}
