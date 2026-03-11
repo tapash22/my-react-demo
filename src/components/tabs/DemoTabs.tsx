@@ -39,7 +39,7 @@ export function DemoTabs({
 
   return (
     <div
-      className={`relative inline-flex rounded-lg  ${useTabsBorder ? " border-2 border-(--input-border)" : "ring-2 ring-(--input-border)"}`}
+      className={`relative inline-flex rounded-lg ${useTabsBorder ? " border-2 border-(--input-border)" : "shadow-(--shadow-card)"}`}
     >
       {/* Sliding background */}
       <div
@@ -78,7 +78,7 @@ export function DemoTabs({
             ref={(el) => {
               tabRefs.current[i] = el;
             }}
-            className={`p-4 text-center transition-colors duration-300 relative z-10
+            className={`p-4 text-center transition-colors duration-300 relative z-10 cursor-pointer
               ${isActive ? "text-(--foreground) text-sm font-bold tracking-wide" : "text-(--muted) text-sm font-medium tracking-wide"}
               ${borderClass} ${roundedClass}`}
             onClick={() => onChange(i)}
