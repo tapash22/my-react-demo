@@ -5,6 +5,7 @@ interface DemoIconProps {
   size?: number;
   color?: string;
   iconClass?: string;
+  dropShadow?: boolean;
   onClick?: () => void;
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
@@ -14,6 +15,7 @@ export function DemoIcon({
   size = 20,
   color = "var(--foreground)",
   iconClass,
+  dropShadow = false,
   onClick,
   onMouseEnter,
   onMouseLeave,
@@ -24,7 +26,7 @@ export function DemoIcon({
   return (
     <Icon
       size={size}
-      className={`${colorClass} cursor-pointer ${iconClass}`}
+      className={`${colorClass} cursor-pointer ${iconClass} ${dropShadow ? "drop-shadow-[0_0_1px_currentColor]" : ""} `}
       onClick={onClick}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}

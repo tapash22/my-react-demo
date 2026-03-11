@@ -7,13 +7,13 @@ export default function DemoBreadcrumbs() {
   if (!breadcrumbs.length) return null;
 
   return (
-    <nav className="flex items-center text-lg text-(--forground)">
+    <nav className="flex justify-start items-center text-sm font-medium text-(--forground) w-full space-x-1">
       {breadcrumbs &&
         breadcrumbs.map((crumb, index) => {
           const isLast = index === breadcrumbs.length - 1;
 
           return (
-            <span key={crumb.path} className="flex items-center">
+            <p key={crumb.path} className="flex items-center">
               {!isLast ? (
                 <Link
                   to={crumb.path}
@@ -22,15 +22,11 @@ export default function DemoBreadcrumbs() {
                   {crumb.label}
                 </Link>
               ) : (
-                <span className=" text-(--forground) tracking-wide">
-                  {crumb.label}
-                </span>
+                <p className="">{crumb.label}</p>
               )}
 
-              {!isLast && (
-                <span className="mx-2 text-(--forground) tracking-wide">/</span>
-              )}
-            </span>
+              {!isLast && <p className="px-1">/</p>}
+            </p>
           );
         })}
     </nav>

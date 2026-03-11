@@ -47,16 +47,19 @@ export function DemoHeader({ onToggleSidebar }: DemoHeaderProps) {
   };
 
   return (
-    <header className="h-16 w-full flex items-center justify-between p-5 bg-(--background) shadow-(--shadow) ">
-      <div className="w-2/3 h-auto flex justify-between items-center gap-5 px-2 ">
-        <div className="flex justify-start w-1/2 gap-4 shrink-0">
-          <DemoIcon
-            icon={PiSidebarSimpleLight}
-            size={30}
-            onClick={onToggleSidebar}
-          />
+    <header className="h-16 w-full flex items-center justify-between p-5 bg-(--background) shadow-(--shadow)">
+      <div className="flex items-center gap-2 shrink-0">
+        <DemoIcon
+          icon={PiSidebarSimpleLight}
+          size={30}
+          dropShadow={true}
+          onClick={onToggleSidebar}
+        />
+        <div className="hidden md:block">
           <DemoBreadcrumbs />
         </div>
+      </div>
+      <div className="flex-1 max-w-lg px-2">
         <InputPrepend
           type="search"
           name="search"
@@ -64,10 +67,10 @@ export function DemoHeader({ onToggleSidebar }: DemoHeaderProps) {
           onChange={(e) => setSearch(e.target.value)}
           className="placeholder:text-(--foreground)"
           placeholder="Search . . ."
-          prepend={<DemoIcon icon={FaSearch} />}
+          prepend={<DemoIcon icon={FaSearch} color="--foreground" size={16} />}
         />
       </div>
-      <div className="w-1/3 h-auto flex justify-end items-center gap-8 px-5 ">
+      <div className="flex items-center gap-4 md:gap-8 ">
         <button
           onClick={toggleTheme}
           className="relative w-7 h-7 ring-2 ring-(--foreground)  rounded-full flex items-center justify-center overflow-hidden"

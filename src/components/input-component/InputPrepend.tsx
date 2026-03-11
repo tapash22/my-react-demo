@@ -12,16 +12,16 @@ export function InputPrepend({
   return (
     <div className="relative w-auto">
       {prepend && (
-        <span className="absolute inset-y-0 left-3 flex items-center text-(--foreground) pointer-events-none">
+        <span className="absolute inset-y-0 left-3 flex items-center  pointer-events-none">
           {prepend}
         </span>
       )}
 
       <input
         {...props}
-        className={`w-full rounded-xl border border-(--foreground)  py-2 pr-3 
+        className={`w-full rounded-xl ring-1 ring-(--input-border)  py-2 pr-3 
         ${prepend ? "pl-10" : "pl-3"}
-        focus:outline-none focus:ring-2 focus:ring-blue-500 ${className}`}
+        focus:outline-none focus:ring-2 focus:ring-(--surface) ${className}`}
       />
     </div>
   );
