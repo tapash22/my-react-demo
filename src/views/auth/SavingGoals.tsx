@@ -95,11 +95,13 @@ export default function SavingGoals() {
             {/* Progress Bar end */}
 
             {/* Savings Rate Card */}
-            <DemoFinancialMetricCard
-              title="Savings Rate"
-              value={savingsRate}
-              description="of monthly income"
-            />
+            <div className="p-2">
+              <DemoFinancialMetricCard
+                title="Savings Rate"
+                value={savingsRate}
+                description="of monthly income"
+              />
+            </div>
             {/* Savings Rate Card end */}
           </div>
         </div>

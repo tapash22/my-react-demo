@@ -22,8 +22,8 @@ export function PageHeaderCard({
   children,
 }: PageHeaderCardProps) {
   return (
-    <div className="flex justify-between w-full h-auto items-center px-4 py-2">
-      <h2 className="flex flex-col w-1/2">
+    <div className="flex justify-between w-full h-auto items-center px-4 py-1">
+      <h2 className="flex flex-col w-full">
         {title && (
           <span
             className={` ${titleClass ? titleClass : "text-xl font-semibold"} text-(--foreground) tracking-wide`}

@@ -5,20 +5,25 @@ interface DemoMonthlyComparisonProps {
   title?: string;
   items: ComparisonItems;
   showDifference?: boolean;
+  differenceLabel?: string;
 }
 
 export function DemoMonthlyComparisonCard({
   title,
   items,
   showDifference = true,
+  differenceLabel,
 }: DemoMonthlyComparisonProps) {
   // Extract lastMonth and thisMonth values
-  const lastMonthItem = items.find((i) =>
-    i.label.toLowerCase().includes("last"),
-  );
-  const thisMonthItem = items.find((i) =>
-    i.label.toLowerCase().includes("this"),
-  );
+
+  const lastMonthItem = items.find((i) => {
+    const label = i.label.toLowerCase();
+    return label.includes("last") || label.includes("asset");
+  });
+  const thisMonthItem = items.find((i) => {
+    const label = i.label.toLocaleLowerCase();
+    return label.includes("this") || label.includes("Liabilities");
+  });
 
   const lastMonth = lastMonthItem ? Number(lastMonthItem.value) : 0;
   const total = thisMonthItem ? Number(thisMonthItem.value) : 0;
@@ -44,9 +49,9 @@ export function DemoMonthlyComparisonCard({
 
       {/* Render Difference */}
       {showDifference && (
-        <div className="bg-(--surface) backdrop-brightness-100 grid grid-cols-2 items-center p-1  rounded-lg ">
+        <div className="bg-(--surface) backdrop-brightness-100 grid grid-cols-2 items-center p-1 rounded-lg ">
           <p className="text-sm font-medium text-(--foreground) tracking-wide text-left py-2 px-3">
-            Difference
+            {differenceLabel ? differenceLabel : "Difference"}
           </p>
           <p
             className={`font-bold tracking-wide text-sm text-right px-2 ${

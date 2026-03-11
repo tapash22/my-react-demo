@@ -18,7 +18,7 @@ export function DemoButton({
   title,
   icon,
   iconClass,
-  buttonColor = "bg-(--muted)",
+  buttonColor = "bg-(--primary)",
   iconSize,
   textColor = "text-(--foreground)",
   onClick,

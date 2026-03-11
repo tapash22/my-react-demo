@@ -868,3 +868,14 @@ export const savingsData: ComparisonItems = [
     value: 74000,
   },
 ];
+
+export const balanceData: ComparisonItems = [
+  {
+    label: "Total Asset",
+    value: 20350,
+  },
+  {
+    label: "Total Liabilities",
+    value: 3050,
+  },
+];
