@@ -22,8 +22,6 @@ export default function Settings() {
     resources: <ResourcesSettings />,
   };
 
-  const handleClick = () => console.log("click");
-
   return (
     <PageLayout
       header={
