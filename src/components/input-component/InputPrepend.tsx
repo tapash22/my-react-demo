@@ -1,7 +1,6 @@
 import React from "react";
 
-interface InputPrependProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
+interface InputPrependProps extends React.InputHTMLAttributes<HTMLInputElement> {
   prepend?: React.ReactNode;
 }
 
@@ -11,7 +10,7 @@ export function InputPrepend({
   ...props
 }: InputPrependProps) {
   return (
-    <div className="relative w-full">
+    <div className="relative w-auto">
       {prepend && (
         <span className="absolute inset-y-0 left-3 flex items-center text-(--foreground) pointer-events-none">
           {prepend}
