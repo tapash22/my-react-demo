@@ -95,9 +95,10 @@ export default function Accountcard() {
         </div>
         {/* <CategoryCard /> */}
 
-        <div className="w-1/3 h-auto p-3 space-y-2 ring-1 ring-(--input-border) rounded-2xl flex flex-col">
+        <div className="w-1/3 h-auto p-3 space-y-2 ring-1 ring-(--input-border) rounded-2xl flex flex-col ">
           <PageHeaderCard
             title="Account Summary"
+            titleClass="text-lg font-normal -ml-1"
             visibleDate={false}
           ></PageHeaderCard>
 

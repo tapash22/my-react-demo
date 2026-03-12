@@ -67,7 +67,7 @@ export default function Settings() {
         ></PageHeaderCard>
       }
     >
-      <div ref={containerRef} className="relative w-full overflow-hidden">
+      <div ref={containerRef} className="relative w-full overflow-hidden p-2">
         <DemoTabs
           tabs={menuItems}
           activeIndex={activeIndex}
