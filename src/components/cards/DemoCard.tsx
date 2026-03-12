@@ -26,7 +26,6 @@ export function Democard({ statusData, onClick, dotClick }: DemocardProps) {
             size={20}
             icon={statusData.icon ? statusData.icon : FaArrowsAltH}
             onClick={onClick}
-            color="--background"
           />
         </div>
       </div>
@@ -35,6 +34,7 @@ export function Democard({ statusData, onClick, dotClick }: DemocardProps) {
           labelSize="tiny"
           label={statusData.change}
           iconSize={16}
+          variant="outlined"
           icon={statusData.trend === "up" ? GoArrowUpRight : GoArrowDownRight}
         />
 

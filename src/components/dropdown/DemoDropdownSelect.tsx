@@ -41,7 +41,7 @@ export function DemoDropdownSelect<T extends string>({
       <button
         type="button"
         onClick={() => setOpen((p) => !p)}
-        className="h-10 w-full rounded-md shadow px-3 text-left text-(--foreground) flex items-center justify-between"
+        className="h-10 w-full rounded-md shadow-(--shadow-card) px-3 text-left text-(--foreground) flex items-center justify-between"
       >
         <span className="truncate text-sm font-medium tracking-wide">
           {getLabel

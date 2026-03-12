@@ -49,9 +49,9 @@ export function DemoCardExpansion({
             ? `View Transactions`
             : ""}
         {isOpen ? (
-          <DemoIcon icon={FaChevronUp} size={16} />
+          <DemoIcon icon={FaChevronUp} color="--muted" size={16} />
         ) : (
-          <DemoIcon icon={FaChevronDown} size={16} />
+          <DemoIcon icon={FaChevronDown} color="--muted" size={16} />
         )}
       </button>
 

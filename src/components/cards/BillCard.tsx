@@ -7,14 +7,14 @@ export const BillCard = () => {
   return (
     <div className="w-full flex items-center justify-between p-4 bg-(--surface) rounded-2xl ring-1 ring-(--input-border) shadow-sm hover:bg-(--sidebar-active-bg) opacity-90 hover:opacity-100">
       {/* Left Section: Status & Details */}
-      <div className="flex items-center gap-6">
+      <div className="flex items-center gap-3">
         {/* Status Indicator */}
-        <div className="flex flex-col items-center gap-1">
-          <div className="flex items-center gap-1 text-(--danger) font-semibold text-sm">
-            <DemoIcon size={14} icon={LuClock3} />
-            <span className="font-sm font-semibold text-(--foreground) tracking-wide">
+        <div className="flex flex-col space-y-2">
+          <div className="flex justify-center items-center space-x-1 ">
+            <DemoIcon size={14} icon={LuClock3} color="--danger" />
+            <p className="text-xs font-medium text-(--foreground) tracking-wide">
               3d
-            </span>
+            </p>
           </div>
           <DemoChip
             label="Due Soon"
@@ -25,33 +25,34 @@ export const BillCard = () => {
         </div>
 
         {/* Info */}
-        <div className="space-y-1">
-          <div className="flex items-center gap-3">
-            <h3 className="text-sm font-medium tracking-wide text-(--foreground)">
+        <div className="flex flex-col space-y-2">
+          <div className="flex items-center justify-between space-x-2">
+            <h3 className="text-sm font-normal tracking-wide text-(--foreground)">
               Electric Bill
             </h3>
             <DemoChip
               icon={LuRefreshCcw}
-              iconSize={16}
+              iconSize={14}
               label="Recurring"
               labelSize="tiny"
-              className="px-1 uppercase"
+              className="px-2 uppercase"
+              variant="outlined"
             />
           </div>
-          <p className="text-sm text-(--muted) font-normal tracking-wide">
+          <p className="text-xs text-(--muted) font-normal tracking-wide">
             Utilities • Due May 25
           </p>
         </div>
       </div>
 
-      {/* Right Section: Amount & Action */}
       <div className="flex items-center gap-8">
-        <span className="text-lg font-bold text-(--danger)">$120.35</span>
+        <span className="text-lg font-medium text-(--danger)">$120.35</span>
         <DemoButton
           title="Pay Now"
-          classTag="px-3 py-2 text-sm font-normal tracking-wide shadow-(--shadow-default)"
+          classTag="px-3 py-1 text-sm font-normal tracking-wide shadow-(--shadow-default)"
         />
       </div>
+      {/* Right Section: Amount & Action */}
     </div>
   );
 };

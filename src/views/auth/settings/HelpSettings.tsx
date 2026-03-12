@@ -4,6 +4,7 @@ import { DemoPageSectionCard } from "../../../components/cards/DemoPageSectionCa
 import { DemoDropdownSelect } from "../../../components/dropdown/DemoDropdownSelect";
 import { faqs } from "../../../store/budget-data";
 import { DemoCardExpansion } from "../../../components/cards/DemoCardExpansion";
+import { PageHeaderCard } from "../../../components/cards/PageHeaderCard";
 
 interface ContactFields {
   subject: string;
@@ -87,20 +88,24 @@ export function HelpSettings() {
     !contact.file; // disable if no file selected
 
   return (
-    <div className="p-1 w-full h-auto bg-(--background) flex flex-col space-y-5">
-      <div className="w-full h-auto  flex flex-col  ">
-        <DemoPageSectionCard title="Help Resources" haveBorder={false} />
-        <div className="w-full h-auto ring-1 ring-(--input-border) rounded-xl p-3 ">
-          <DemoPageSectionCard
+    <div className="p-2 w-full h-auto bg-(--background) flex flex-col space-y-3">
+      <div className="w-full h-auto flex flex-col">
+        <div className="w-full h-auto ring-1 ring-(--input-border) rounded-xl p-3">
+          <PageHeaderCard
             title="Contact Support"
             subtitle="Reach out for help or submit a request"
-            haveBorder={false}
+            titleClass="text-lg font-normal -ml-2"
+            subtitleClass="text-sm font-normal -ml-2"
+            visibleDate={false}
           />
           <form
             onSubmit={handleContact}
             className="flex flex-col  gap-5 w-full p-3"
           >
-            <div className="flex justify-start items-center ">
+            <div className="flex flex-col w-full space-y-2">
+              <label className="text-lg font-medium tracking-wide text-(--foreground)">
+                Subject
+              </label>
               <DemoDropdownSelect
                 value={contact.subject}
                 options={SUBJECT_OPTIONS}
@@ -112,7 +117,10 @@ export function HelpSettings() {
                 }
               />
             </div>
-            <div className="flex justify-between gap-3 ">
+            <div className="flex flex-col w-full space-y-2">
+              <label className="text-lg font-medium tracking-wide text-(--foreground)">
+                Message
+              </label>
               <textarea
                 name="message"
                 placeholder="Message"
@@ -121,7 +129,10 @@ export function HelpSettings() {
                 className="input-field"
               />
             </div>
-            <div className="block w-full">
+            <div className="flex flex-col w-full space-y-2">
+              <label className="text-lg font-medium tracking-wide text-(--foreground)">
+                Attach Options
+              </label>
               <input
                 type="file"
                 name="file"
@@ -130,7 +141,7 @@ export function HelpSettings() {
                 className="input-field"
               />
             </div>
-            <div className="w-full p-2 h-auto flex justify-end items-center">
+            <div className="w-full h-auto flex justify-end items-center">
               <DemoButton
                 isDisabled={isSubmitDisabled}
                 title="Submit Request"
@@ -140,12 +151,14 @@ export function HelpSettings() {
         </div>
       </div>
 
-      <div className="w-full h-auto flex flex-col  ">
+      <div className="w-full h-auto flex flex-col">
         <div className="w-full h-auto ring-1 ring-(--input-border) rounded-xl p-3 space-y-2 ">
-          <DemoPageSectionCard
+          <PageHeaderCard
             title="Frequently Asked Questions"
             subtitle="Find quick answers to common questions"
-            haveBorder={false}
+            titleClass="text-lg font-normal -ml-2"
+            subtitleClass="text-sm font-normal -ml-2"
+            visibleDate={false}
           />
           <div className="w-full h-auto flex flex-col space-y-2 ">
             {faqs &&

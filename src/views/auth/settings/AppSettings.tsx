@@ -12,18 +12,16 @@ export function AppSettings() {
   const [isEnabled, setIsEnabled] = useState(false);
 
   return (
-    <div className="p-2 w-full h-auto bg-(--background) flex flex-col space-y-5 ">
-      <div className="w-full h-auto ring-1 ring-(--input-border) rounded-xl ">
-        <div className="py-2">
-          <PageHeaderCard
-            title="Appearance"
-            subtitle="Customize how the app looks and feels"
-            titleClass="text-lg font-normal"
-            subtitleClass="text-sm font-normal"
-            visibleDate={false}
-          />
-        </div>
-        <div className="w-full border-t border-(--input-border) p-2">
+    <div className="p-2 w-full h-auto bg-(--background) flex flex-col space-y-3 ">
+      <div className="w-full h-auto ring-1 ring-(--input-border) rounded-xl py-3 space-y-2">
+        <PageHeaderCard
+          title="Appearance"
+          subtitle="Customize how the app looks and feels"
+          titleClass="text-lg font-normal"
+          subtitleClass="text-sm font-normal"
+          visibleDate={false}
+        />
+        <div className="w-full border-t border-(--input-border) space-y-2 py-2">
           <PageHeaderCard
             title="Theme"
             subtitle="Select your preferred theme"
@@ -59,17 +57,15 @@ export function AppSettings() {
           />
         </div>
       </div>
-      <div className="w-full h-auto ring-1 ring-(--input-border) rounded-xl ">
-        <div className="py-2">
-          <PageHeaderCard
-            title="Notifications"
-            subtitle="Configure your notification preferences"
-            titleClass="text-lg font-normal"
-            subtitleClass="text-sm font-normal"
-            visibleDate={false}
-          />
-        </div>
-        <div className="w-full border-t border-(--input-border) p-2">
+      <div className="w-full h-auto ring-1 ring-(--input-border) rounded-xl py-3 space-y-2">
+        <PageHeaderCard
+          title="Notifications"
+          subtitle="Configure your notification preferences"
+          titleClass="text-lg font-normal"
+          subtitleClass="text-sm font-normal"
+          visibleDate={false}
+        />
+        <div className="w-full border-t border-(--input-border) space-y-2 py-2 ">
           <PageHeaderCard
             title="Email Notifications"
             subtitle="Receive notifications via email"
@@ -139,17 +135,15 @@ export function AppSettings() {
           />
         </div>
       </div>
-      <div className="w-full h-auto ring-1 ring-(--input-border) rounded-xl ">
-        <div className="py-2">
-          <PageHeaderCard
-            title="Data & Privacy"
-            subtitle="Manage your data and privacy settings"
-            titleClass="text-lg font-normal"
-            subtitleClass="text-sm font-normal"
-            visibleDate={false}
-          />
-        </div>
-        <div className="w-full border-t border-(--input-border) p-1 space-y-0">
+      <div className="w-full h-auto ring-1 ring-(--input-border) rounded-xl py-3 space-y-2">
+        <PageHeaderCard
+          title="Data & Privacy"
+          subtitle="Manage your data and privacy settings"
+          titleClass="text-lg font-normal"
+          subtitleClass="text-sm font-normal"
+          visibleDate={false}
+        />
+        <div className="w-full border-t border-(--input-border) space-y-2 py-2">
           <PageHeaderCard
             title="Data Sharing"
             subtitle="Share anonymous usage data to improve the app"

@@ -2,54 +2,59 @@ import { useState } from "react";
 import { DemoBooleanToggle } from "../../../components/toggle/DemoBooleanToggle";
 import { BillCard } from "../../../components/cards/BillCard";
 import { DemoButton } from "../../../components/button/DemoButton";
-import { DemoPageSectionCard } from "../../../components/cards/DemoPageSectionCard";
+import { PageHeaderCard } from "../../../components/cards/PageHeaderCard";
 
 export function SecuritySettings() {
   const [isEnabled, setIsEnabled] = useState(false);
 
   return (
-    <div className="p-1 w-full h-auto bg-(--background) flex flex-col space-y-5">
-      <div className="w-full h-auto ring-1 ring-(--input-border) rounded-xl ">
-        <div className="p-2">
-          <DemoPageSectionCard
-            title="Two-Factor Authentication"
-            subtitle="Add an extra layer of security to your account"
-            haveBorder={false}
-          />
-
-          <DemoPageSectionCard
-            title="Enable2FA"
-            subtitle="Send a code to your phone or email when logging in."
-            haveBorder={false}
-          />
-        </div>
+    <div className="p-2 w-full h-auto bg-(--background) flex flex-col space-y-3">
+      <div className="w-full h-auto ring-1 ring-(--input-border) rounded-xl py-3 space-y-2">
+        <PageHeaderCard
+          title="Two-Factor Authentication"
+          subtitle="Add an extra layer of security to your account"
+          titleClass="text-lg font-normal"
+          subtitleClass="text-sm font-normal"
+          visibleDate={false}
+        />
+        <PageHeaderCard
+          title="Enable2FA"
+          subtitle="Send a code to your phone or email when logging in."
+          titleClass="text-lg font-normal"
+          subtitleClass="text-sm font-normal"
+          visibleDate={false}
+        />
       </div>
-      <div className="w-full h-auto ring-1 ring-(--input-border) rounded-xl ">
-        <div className="p-2">
-          <DemoPageSectionCard
-            title="Device Management"
-            subtitle="See where you're signed in"
-            haveBorder={false}
-          />
-        </div>
+
+      <div className="w-full h-auto ring-1 ring-(--input-border) rounded-xl py-3 space-y-2">
+        <PageHeaderCard
+          title="Device Management"
+          subtitle="See where you're signed in"
+          titleClass="text-lg font-normal"
+          subtitleClass="text-sm font-normal"
+          visibleDate={false}
+        />
         <div className="w-full p-2 space-y-3">
           <BillCard />
           <BillCard />
         </div>
       </div>
-      <div className="w-full h-auto ring-1 ring-(--input-border) rounded-xl ">
-        <div className="p-2">
-          <DemoPageSectionCard
-            title="Additional Security"
-            subtitle="Configure extra protections"
-            haveBorder={false}
-          />
-        </div>
-        <div className="w-full border-t border-(--input-border) p-2">
-          <DemoPageSectionCard
+
+      <div className="w-full h-auto ring-1 ring-(--input-border) rounded-xl py-3 space-y-2">
+        <PageHeaderCard
+          title="Additional Security"
+          subtitle="Configure extra protections"
+          titleClass="text-lg font-normal"
+          subtitleClass="text-sm font-normal"
+          visibleDate={false}
+        />
+        <div className="w-full border-t border-(--input-border) space-y-2 py-2">
+          <PageHeaderCard
             title="Login Alerts"
             subtitle="Receive email notifications of new logins"
-            haveBorder={false}
+            titleClass="text-lg font-normal"
+            subtitleClass="text-sm font-normal"
+            visibleDate={false}
             children={
               <div className="flex justify-end">
                 <DemoBooleanToggle
@@ -61,10 +66,13 @@ export function SecuritySettings() {
               </div>
             }
           />
-          <DemoPageSectionCard
+
+          <PageHeaderCard
             title="Suspicious Activity"
             subtitle="Alert on unusual login attempts"
-            haveBorder={false}
+            titleClass="text-lg font-normal"
+            subtitleClass="text-sm font-normal"
+            visibleDate={false}
             children={
               <div className="flex justify-end ">
                 <DemoBooleanToggle
@@ -77,10 +85,12 @@ export function SecuritySettings() {
             }
           />
 
-          <DemoPageSectionCard
+          <PageHeaderCard
             title="Reset Protection"
             subtitle="Require verification to reset password"
-            haveBorder={false}
+            titleClass="text-lg font-normal"
+            subtitleClass="text-sm font-normal"
+            visibleDate={false}
             children={
               <div className="flex justify-end ">
                 <DemoBooleanToggle
@@ -94,7 +104,10 @@ export function SecuritySettings() {
           />
 
           <div className="w-full border-t border-(--input-border) p-4">
-            <DemoButton title="change PassWord" />
+            <DemoButton
+              title="Change Password"
+              classTag="text-sm font-normer tracking-wide text-(--foreground) px-4 py-2"
+            />
           </div>
         </div>
       </div>
