@@ -23,12 +23,12 @@ export function DemoList<T>({
   return (
     <motion.div layout className="rounded-sm px-0 py-0 w-full h-full">
       <ul
-        className={`${direction === true ? "flex- flex-col" : "flex gap-0 rounded-xl h-full bg-(--surface) "}`}
+        className={`${direction === true ? "flex flex-col" : "flex gap-0 rounded-xl h-full bg-(--surface) "}`}
       >
         <AnimatePresence>
           {visibleItems &&
             visibleItems.map((item, index) => {
-              const isLast = index === visibleItems.length - 1;
+              // const isLast = index === visibleItems.length - 1;
               return (
                 <motion.li
                   key={index}
@@ -36,10 +36,9 @@ export function DemoList<T>({
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -12 }}
                   transition={{ duration: 0.3 }}
-                  className={`${haveBorder ? "ring-1 ring-(--forground) p-2" : "ring-0"} ${isLast ? "" : "border-r-2 border-(--input-border)"} `}
+                  className={`${haveBorder ? "border-b border-(--muted)" : "ring-0"} `}
                 >
                   {children && children(item, index)}
-                  {haveBorder}
                 </motion.li>
               );
             })}
@@ -47,15 +46,18 @@ export function DemoList<T>({
       </ul>
 
       {items && items.length > initialCount && (
-        <motion.div layout className="p-3">
-          <DemoButton onClick={() => setShowAll(!showAll)}>
+        <motion.div layout className="p-4 flex justify-center w-full">
+          <DemoButton
+            onClick={() => setShowAll(!showAll)}
+            classTag="w-full py-1 rounded-lg text-sm font-normal py-1"
+          >
             <AnimatePresence mode="wait">
               <motion.span
                 key={showAll ? "less" : "all"}
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 10 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                transition={{ duration: 0.2 }}
                 className="text-sm font-medium tracking-wide"
               >
                 {showAll ? "Show Less" : "Show All"}

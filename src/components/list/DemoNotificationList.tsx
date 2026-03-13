@@ -5,17 +5,19 @@ interface DemoNotificationListProps {
 
 export function DemoNotificationList({ fund }: DemoNotificationListProps) {
   return (
-    <div className="w-full p-2">
-      <div className="rounded-lg p-2 bg-(--surface) spacr-y-3">
-        <div className="flex justify-between items-center">
-          <h3 className="font-semibold text-(--foreground)">{fund.name}</h3>
-          <span className="text-xs text-(--muted)">{fund.targetDate}</span>
-        </div>
+    <div className="p-3 bg-(--surface) space-y-1">
+      <div className="flex justify-between items-center">
+        <h3 className="font-semibold text-sm text-(--foreground) tracking-wide">
+          {fund.name}
+        </h3>
+        <p className="text-xs font-normal text-(--muted) tracking-normal">
+          {fund.targetDate}
+        </p>
+      </div>
 
-        <div className="text-sm text-(--muted) flex items-center ">
-          {fund.currency} {fund.currentAmount.toLocaleString()} /{" "}
-          {fund.targetAmount.toLocaleString()}
-        </div>
+      <div className="text-sm font-normal text-(--muted) flex items-center">
+        {fund.currency} {fund.currentAmount.toLocaleString()} /{" "}
+        {fund.targetAmount.toLocaleString()}
       </div>
     </div>
   );

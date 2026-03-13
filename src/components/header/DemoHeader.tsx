@@ -76,7 +76,7 @@ export function DemoHeader({ onToggleSidebar }: DemoHeaderProps) {
       {/* search start end */}
 
       {/* Badge */}
-      <div className="flex items-center  gap-2 md:gap-6 ">
+      <div className="flex items-center gap-2 md:gap-6 ">
         <DemoButton
           onClick={toggleTheme}
           icon={theme !== "dark" ? FaMoon : FaSun}
@@ -92,7 +92,7 @@ export function DemoHeader({ onToggleSidebar }: DemoHeaderProps) {
             icon={FaRegBell}
           />
           {showNotification && (
-            <div className="absolute right-0 px-0 w-72 bg-(--surface) mt-3  shadow-md  flex flex-col gap-2 rounded-lg drop-shadow-xl space-y-1 z-50 text-(--foreground) h-min-[30vh] h-max-[50vh] overflow-hidden">
+            <div className="absolute right-0 px-0 w-72 bg-(--surface) mt-3 flex flex-col gap-1 rounded-lg drop-shadow-xl space-y-1 z-50 text-(--foreground) h-min-[20vh] h-max-[40vh] overflow-hidden">
               <DemoList
                 items={FUNDS_DATA}
                 initialCount={3}
