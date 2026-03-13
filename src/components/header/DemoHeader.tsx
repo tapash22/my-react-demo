@@ -20,6 +20,7 @@ import { DemoList } from "../list/DemoList";
 
 import { useOutsideClick } from "../hooks/useOutsideClick";
 import { DemoBadge } from "../Badge/DemoBadge";
+import { DemoButton } from "../button/DemoButton";
 
 interface DemoHeaderProps {
   onToggleSidebar: () => void;
@@ -70,24 +71,13 @@ export function DemoHeader({ onToggleSidebar }: DemoHeaderProps) {
           prepend={<DemoIcon icon={FaSearch} color="--foreground" size={16} />}
         />
       </div>
-      <div className="flex items-center gap-4 md:gap-8 ">
-        <button
+      <div className="flex items-center  gap-2 md:gap-8 ">
+        <DemoButton
           onClick={toggleTheme}
-          className="relative w-7 h-7 ring-2 ring-(--foreground)  rounded-full flex items-center justify-center overflow-hidden"
-        >
-          {theme !== "dark" ? (
-            <FaMoon
-              key="moon"
-              className="absolute text-xl text-(--foreground) transition-opacity duration-500"
-            />
-          ) : (
-            <FaSun
-              key="sun"
-              className="absolute text-xl text-(--foreground) transition-opacity duration-500"
-            />
-          )}
-        </button>
-
+          icon={theme !== "dark" ? FaMoon : FaSun}
+          iconSize={20}
+          classTag="ring-2 ring-(--foreground) p-2  flex justify-center items-center bg-green-700 rounded-full w-8 h-8"
+        />
         <div ref={notificationRef} className="relative ">
           {/* Badge */}
 
@@ -97,7 +87,7 @@ export function DemoHeader({ onToggleSidebar }: DemoHeaderProps) {
             icon={FaRegBell}
           />
           {showNotification && (
-            <div className="absolute right-0 px-0 w-72 bg-(--surface) mt-3  shadow-md  flex flex-col gap-2 rounded-lg drop-shadow-xl space-y-2 z-50 text-(--foreground) h-min-[30vh] h-max-[50vh] overflow-y-scroll">
+            <div className="absolute right-0 px-0 w-72 bg-(--surface) mt-3  shadow-md  flex flex-col gap-2 rounded-lg drop-shadow-xl space-y-1 z-50 text-(--foreground) h-min-[30vh] h-max-[50vh] overflow-y-scroll">
               <DemoList
                 items={FUNDS_DATA}
                 initialCount={3}

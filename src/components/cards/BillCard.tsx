@@ -46,7 +46,7 @@ export const BillCard = () => {
       </div>
 
       <div className="flex items-center gap-8">
-        <span className="text-lg font-medium text-(--danger)">$120.35</span>
+        <span className="text-lg font-medium text-(--muted)">$120.35</span>
         <DemoButton
           title="Pay Now"
           classTag="px-3 py-1 text-sm font-normal tracking-wide shadow-(--shadow-default)"

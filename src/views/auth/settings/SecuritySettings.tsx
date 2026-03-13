@@ -34,7 +34,7 @@ export function SecuritySettings() {
           subtitleClass="text-sm font-normal"
           visibleDate={false}
         />
-        <div className="w-full p-2 space-y-3">
+        <div className="w-full px-3 space-y-2">
           <BillCard />
           <BillCard />
         </div>

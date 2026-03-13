@@ -18,7 +18,7 @@ export function DemoButton({
   title,
   icon,
   iconClass,
-  buttonColor = "bg-(--primary)",
+  buttonColor = "bg-transparent",
   iconSize,
   textColor = "text-(--foreground)",
   onClick,
@@ -29,7 +29,7 @@ export function DemoButton({
 }: DemoButtonProps) {
   return (
     <button
-      className={`${buttonColor}  ${classTag ? classTag : "flex justify-evenly items-center px-3 text-sm font-semibold"} ${isDisabled ? "opacity-55" : ""}  bg-(--surface) py-2 dark:bg-slate-800 ${textColor} font-medium text-center transition-colors duration-300 w-${widthSize} rounded-lg  shadow-(--shadow-default)  gap-2`}
+      className={`${buttonColor}  ${classTag ? classTag : "flex justify-evenly items-center px-3 py-2 text-sm font-semibold rounded-lg "} ${isDisabled ? "opacity-55" : ""} ${textColor} font-medium text-center transition-colors duration-300 ${widthSize ? `w-${widthSize}` : ""} h-auto shadow-(--shadow-default)  gap-2`}
       onClick={onClick}
       disabled={isDisabled}
     >
@@ -38,7 +38,7 @@ export function DemoButton({
         icon={icon ? icon : null}
         iconClass={iconClass}
       />
-      <span className="">{children ?? title}</span>
+      {children || (title && <span className="">{children ?? title}</span>)}
     </button>
   );
 }
