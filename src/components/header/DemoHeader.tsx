@@ -71,7 +71,7 @@ export function DemoHeader({ onToggleSidebar }: DemoHeaderProps) {
           prepend={<DemoIcon icon={FaSearch} color="--foreground" size={16} />}
         />
       </div>
-      <div className="flex items-center  gap-2 md:gap-8 ">
+      <div className="flex items-center  gap-2 md:gap-5 ">
         <DemoButton
           onClick={toggleTheme}
           icon={theme !== "dark" ? FaMoon : FaSun}
