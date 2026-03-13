@@ -60,7 +60,9 @@ export function DemoHeader({ onToggleSidebar }: DemoHeaderProps) {
           <DemoBreadcrumbs />
         </div>
       </div>
-      <div className="flex-1 max-w-lg px-2">
+
+      {/* search start */}
+      <div className="flex-1 max-w-lg p-2">
         <InputPrepend
           type="search"
           name="search"
@@ -71,7 +73,10 @@ export function DemoHeader({ onToggleSidebar }: DemoHeaderProps) {
           prepend={<DemoIcon icon={FaSearch} color="--foreground" size={16} />}
         />
       </div>
-      <div className="flex items-center  gap-2 md:gap-5 ">
+      {/* search start end */}
+
+      {/* Badge */}
+      <div className="flex items-center  gap-2 md:gap-6 ">
         <DemoButton
           onClick={toggleTheme}
           icon={theme !== "dark" ? FaMoon : FaSun}
@@ -87,7 +92,7 @@ export function DemoHeader({ onToggleSidebar }: DemoHeaderProps) {
             icon={FaRegBell}
           />
           {showNotification && (
-            <div className="absolute right-0 px-0 w-72 bg-(--surface) mt-3  shadow-md  flex flex-col gap-2 rounded-lg drop-shadow-xl space-y-1 z-50 text-(--foreground) h-min-[30vh] h-max-[50vh] overflow-y-scroll">
+            <div className="absolute right-0 px-0 w-72 bg-(--surface) mt-3  shadow-md  flex flex-col gap-2 rounded-lg drop-shadow-xl space-y-1 z-50 text-(--foreground) h-min-[30vh] h-max-[50vh] overflow-hidden">
               <DemoList
                 items={FUNDS_DATA}
                 initialCount={3}
@@ -119,6 +124,7 @@ export function DemoHeader({ onToggleSidebar }: DemoHeaderProps) {
           )}
         </div>
       </div>
+      {/* Badge end */}
     </header>
   );
 }
