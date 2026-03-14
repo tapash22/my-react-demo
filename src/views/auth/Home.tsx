@@ -115,7 +115,7 @@ export default function Home() {
 
           {/* right side */}
           <div className="w-1/4 h-auto flex flex-col space-y-5">
-            <div className="w-full h-[25vh] ring-2 ring-(--input-border) rounded-xl overflow-hidden">
+            <div className="w-full h-[26vh] ring-2 ring-(--input-border) rounded-xl overflow-hidden">
               <img
                 src={card}
                 alt="card"
