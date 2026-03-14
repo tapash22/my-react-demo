@@ -1,3 +1,5 @@
+import { Container } from "./Container";
+
 interface PageLayoutProps {
   header: React.ReactNode;
   children?: React.ReactNode;
@@ -5,14 +7,15 @@ interface PageLayoutProps {
 
 export function PageLayout({ header, children }: PageLayoutProps) {
   return (
-    <div className="w-full h-full p-2 m-0 flex flex-col space-y-1 ">
-      {/* Header */}
-      <div className="block w-full h-auto px-2 py-0 space-y-3">{header}</div>
-
-      {/* Body */}
-      <div className="flex gap-3 items-start w-full h-auto px-2 py-0">
-        {children && children}
-      </div>
-    </div>
+    <Container
+      direction="column"
+      className="w-full h-full p-2 m-0 flex flex-col space-y-1"
+    >
+      {/* header */}
+      <Container className="flex flex-col w-full h-auto px-2 py-0 space-y-3">
+        {header}
+      </Container>
+      <Container className=" w-full h-auto px-2">{children}</Container>
+    </Container>
   );
 }

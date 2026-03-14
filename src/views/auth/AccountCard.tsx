@@ -11,6 +11,7 @@ import { LuCable } from "react-icons/lu";
 import { DemoLinearProgressBar } from "../../components/progressbar/DemoLinearProgressBar";
 import { DemoFinancialMetricCard } from "../../components/cards/DemoFinancialMetricCard";
 import { DemoMonthlyComparisonCard } from "../../components/cards/DemoMonthlyComparisonCard";
+import { Container } from "../../components/layout/Container";
 // using tour gide
 // import { TourExample } from "../../practice/TourExample";
 
@@ -21,7 +22,7 @@ export default function Accountcard() {
   const total = 3050;
   const difference = lastMonth - total;
   // const percentageChange = (difference / lastMonth) * 100;
-  const sign = difference >= 0 ? "+" : "-";
+  // const sign = difference >= 0 ? "+" : "-";
 
   const handleClick = () => {
     console.log("click");
@@ -47,10 +48,7 @@ export default function Accountcard() {
         </PageHeaderCard>
       }
     >
-      <div
-        ref={containerRef}
-        className="flex items-start gap-3 w-full h-auto p-2"
-      >
+      <Container ref={containerRef}>
         <div className="w-2/3 h-auto p-3 space-y-2 ring-1 ring-(--input-border) rounded-2xl flex flex-col">
           <PageHeaderCard
             title="Linked Accounts"
@@ -156,7 +154,7 @@ export default function Accountcard() {
             />
           </div>
         </div>
-      </div>
+      </Container>
     </PageLayout>
   );
 }

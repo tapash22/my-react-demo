@@ -15,6 +15,7 @@ import { CategoryCard } from "../../components/cards/CategoryCard";
 import { DemoLinearProgressBar } from "../../components/progressbar/DemoLinearProgressBar";
 import { DemoDataCard } from "../../components/cards/DemoDataCard";
 import { DemoPageSectionCard } from "../../components/cards/DemoPageSectionCard";
+import { Container } from "../../components/layout/Container";
 // practice gsap with BsThreeDots.js
 // import { GsapWithThreeExample } from "../../practice/GsapWithThreeExample";
 
@@ -112,10 +113,7 @@ export default function Reports() {
         </PageHeaderCard>
       }
     >
-      <div
-        ref={containerRef}
-        className="flex gap-3 items-start w-full h-auto p-1 space-y-2"
-      >
+      <Container ref={containerRef}>
         {/* left side */}
 
         <div className="w-1/3 h-auto space-y-5 p-2">
@@ -212,7 +210,7 @@ export default function Reports() {
           {/* bar chart end */}
         </div>
         {/* right side end */}
-      </div>
+      </Container>
     </PageLayout>
   );
 }

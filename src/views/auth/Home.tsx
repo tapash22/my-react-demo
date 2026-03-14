@@ -17,10 +17,10 @@ import { FUNDS_DATA } from "../../store/budget-data";
 import { activities } from "../../store/budget-data";
 import { DemoDetailsCard } from "../../components/cards/DemoDetailsCard";
 import { PageLayout } from "../../components/layout/PageLayout";
+import { Container } from "../../components/layout/Container";
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
-
   const [openMenu, setOpenMenu] = useState(false);
 
   const keys = {
@@ -51,10 +51,7 @@ export default function Home() {
         </PageHeaderCard>
       }
     >
-      <div
-        ref={containerRef}
-        className="flex flex-col gap-3 items-start w-full h-auto p-1 space-y-2"
-      >
+      <Container ref={containerRef} direction="column">
         {/* dashboard top component view */}
         <div className="grid grid-cols-4 gap-3 w-full h-auto p-2">
           {status.map((statusData) => (
@@ -192,7 +189,7 @@ export default function Home() {
           </div>
         </div>
         {/* dashboard bottom component view end */}
-      </div>
+      </Container>
     </PageLayout>
   );
 }

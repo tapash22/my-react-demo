@@ -25,7 +25,7 @@ export function PageHeaderCard({
 }: PageHeaderCardProps) {
   return (
     <div
-      className={`flex justify-between w-full h-auto items-center px-4 py-1 ${direction ? "flex flex-col justify-between items-center space-y-3" : "flex justify-between items-center"}`}
+      className={`flex justify-between w-full h-auto items-center px-4 py-1 ${subtitle || visibleDate ? "py-1" : "py-3"} ${direction ? "flex flex-col justify-between items-center space-y-3" : "flex justify-between items-center"}`}
     >
       <h2 className="flex flex-col w-full">
         {title && (

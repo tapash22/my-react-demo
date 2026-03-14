@@ -12,6 +12,7 @@ import { BillCard } from "../../components/cards/BillCard";
 import { PageLayout } from "../../components/layout/PageLayout";
 import { useRef } from "react";
 import { DemoMonthlyComparisonCard } from "../../components/cards/DemoMonthlyComparisonCard";
+import { Container } from "../../components/layout/Container";
 //this is 3D example
 // import { BudgetVisualizer3D } from "../../components/3D/BudgetVisualizer3D";
 
@@ -101,10 +102,7 @@ export default function Expenses() {
         </PageHeaderCard>
       }
     >
-      <div
-        ref={containerRef}
-        className="flex gap-3 items-start w-full h-auto p-1 space-y-2"
-      >
+      <Container ref={containerRef}>
         {/* left side */}
         <div className="w-2/3 h-auto p-2 flex flex-col space-y-5">
           <div className="w-full h-full ">
@@ -166,7 +164,7 @@ export default function Expenses() {
           </div>
         </div>
         {/* right side end */}
-      </div>
+      </Container>
     </PageLayout>
   );
 }

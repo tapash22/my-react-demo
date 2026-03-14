@@ -14,6 +14,7 @@ import {
 import { DemoBadge } from "../../components/Badge/DemoBadge";
 import { DemoLinearProgressBar } from "../../components/progressbar/DemoLinearProgressBar";
 import { DemoMonthlyComparisonCard } from "../../components/cards/DemoMonthlyComparisonCard";
+import { Container } from "../../components/layout/Container";
 
 export default function Profile() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -53,10 +54,7 @@ export default function Profile() {
         ></PageHeaderCard>
       }
     >
-      <div
-        ref={containerRef}
-        className="flex items-start gap-3 w-full h-auto p-1 space-y-2"
-      >
+      <Container ref={containerRef}>
         {/* left side */}
         <div className="w-2/3 p-2 space-y-5">
           <div className="flex flex-col w-full h-auto ring-2 ring-(--input-border) rounded-xl p-3 space-y-3">
@@ -238,7 +236,7 @@ export default function Profile() {
           </div>
         </div>
         {/* right side end */}
-      </div>
+      </Container>
     </PageLayout>
   );
 }

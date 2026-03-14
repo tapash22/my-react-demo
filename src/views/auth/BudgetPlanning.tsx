@@ -8,6 +8,7 @@ import { categories } from "../../store/budget-data";
 import { useRef, useState } from "react";
 import { DemoCardExpansion } from "../../components/cards/DemoCardExpansion";
 import { PageLayout } from "../../components/layout/PageLayout";
+import { Container } from "../../components/layout/Container";
 
 export default function BudgetPlanning() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -41,12 +42,8 @@ export default function BudgetPlanning() {
         </PageHeaderCard>
       }
     >
-      <div
-        ref={containerRef}
-        className="flex gap-3 items-start w-full h-auto p-1 space-y-2"
-      >
+      <Container ref={containerRef}>
         {/* left side */}
-
         <div className="w-1/3 p-2 sticky top-2 h-fit">
           <div className="flex flex-col w-full h-auto ring-2 ring-(--input-border) rounded-xl p-3 space-y-3 py-5 bg-(--background)">
             <PageHeaderCard title="Budget" titleClass="text-lg font-normal" />
@@ -171,7 +168,7 @@ export default function BudgetPlanning() {
           </div>
         </div>
         {/* right side end */}
-      </div>
+      </Container>
     </PageLayout>
   );
 }

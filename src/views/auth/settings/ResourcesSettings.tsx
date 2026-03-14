@@ -8,7 +8,7 @@ export function ResourcesSettings() {
     <div className="p-2 w-full h-auto bg-(--background) flex flex-col space-y-3">
       <PageHeaderCard
         title="Learning Resources"
-        titleClass="text-lg font-normal -ml-2"
+        titleClass="text-lg font-normal -ml-2 -my-5"
         visibleDate={false}
       />
       <div className="w-full h-auto flex flex-col ">

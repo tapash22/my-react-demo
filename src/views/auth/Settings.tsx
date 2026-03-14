@@ -10,6 +10,7 @@ import { HelpSettings } from "./settings/HelpSettings";
 import { ResourcesSettings } from "./settings/ResourcesSettings";
 import { usePageAnimation } from "../../components/hooks/usePageAnimation";
 import type { Direction } from "../../features/type/User";
+import { Container } from "../../components/layout/Container";
 
 export default function Settings() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -67,7 +68,11 @@ export default function Settings() {
         ></PageHeaderCard>
       }
     >
-      <div ref={containerRef} className="relative w-full overflow-hidden p-2">
+      <Container
+        ref={containerRef}
+        direction="column"
+        className="overflow-hidden "
+      >
         <DemoTabs
           tabs={menuItems}
           activeIndex={activeIndex}
@@ -77,10 +82,10 @@ export default function Settings() {
           activeBgClass="bg-(--surface)"
           useTabsBorder={true}
         />
-        <div ref={activeTabRef} className="mt-6">
+        <div ref={activeTabRef} className=" bg-amber-500 w-full">
           {tabComponents[activeTab.value as keyof typeof tabComponents]}
         </div>
-      </div>
+      </Container>
     </PageLayout>
   );
 }

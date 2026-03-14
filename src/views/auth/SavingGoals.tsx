@@ -16,6 +16,7 @@ import { DemoButton } from "../../components/button/DemoButton";
 import { FaPlus } from "react-icons/fa";
 import { DemoMonthlyComparisonCard } from "../../components/cards/DemoMonthlyComparisonCard";
 import { DemoFinancialMetricCard } from "../../components/cards/DemoFinancialMetricCard";
+import { Container } from "../../components/layout/Container";
 // this are gsap practice
 // import { GsapExample } from "../../practice/GsapExample";
 
@@ -61,10 +62,7 @@ export default function SavingGoals() {
         </PageHeaderCard>
       }
     >
-      <div
-        ref={containerRef}
-        className="flex gap-3 items-start w-full h-auto p-1 space-y-2"
-      >
+      <Container ref={containerRef}>
         {/* left side card */}
         <div className="w-1/3 p-2 sticky top-2 h-fit">
           <div className="flex flex-col w-full h-auto bg-(--background) ring-2 ring-(--input-border) rounded-xl p-3 space-y-1">
@@ -138,7 +136,7 @@ export default function SavingGoals() {
             {/* Scrollable content end */}
           </div>
         </div>
-      </div>
+      </Container>
     </PageLayout>
   );
 }
