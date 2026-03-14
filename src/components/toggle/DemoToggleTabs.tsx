@@ -29,12 +29,12 @@ export function DemoToggleTabs({
   }, [activeIndex, tabs.length, delay]);
 
   return (
-    <div className="p-3 w-full  mx-auto">
+    <div className="px-2 py-1 w-full  mx-auto">
       {/* Parent wrapper with padding */}
-      <div className="relative flex w-full rounded-full ring-2 ring-(--input-border) overflow-hidden">
+      <div className="relative flex w-full rounded-full shadow-(--shadow) ring-2 py-1 ring-(--input-border) overflow-hidden">
         {/* Sliding background for active tab */}
         <div
-          className="absolute flex items-center top-1 bottom-1 left-1 right-1 rounded-full"
+          className="absolute flex items-center top-1 bottom-1 left-1 right-1 ring-(--muted)  rounded-full"
           style={{
             width: `${97 / tabs.length}%`,
             height: "calc(100%-1)", // adjust height to fit inside container
@@ -51,7 +51,7 @@ export function DemoToggleTabs({
             <button
               key={tab}
               onClick={() => onChange(index)}
-              className="flex-1 text-center text-sm font-medium tracking-wide transition-colors duration-300"
+              className="flex-1 text-center text-sm font-semibold tracking-wide transition-colors duration-300 "
               style={{
                 backgroundColor: "transparent",
                 color: isActive ? cssVar("--foreground") : cssVar("--muted"),

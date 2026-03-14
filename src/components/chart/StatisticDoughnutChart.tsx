@@ -121,7 +121,7 @@ export function StatisticDoughnutChart() {
 
   return (
     <div className="w-full max-w-md mx-auto space-y-4 bg-(--background)  rounded-xl">
-      <div className="p-5 flex justify-start items-center gap-2">
+      <div className="p-4 flex justify-start items-center gap-2">
         <p className="tracking-wide font-normal text-lg">Statistic</p>
         <DemoToggleTabs
           tabs={["Income", "Expense"]}
@@ -132,7 +132,7 @@ export function StatisticDoughnutChart() {
         <div ref={menuRef} className="relative">
           <DemoIcon
             icon={HiDotsHorizontal}
-            size={30}
+            size={24}
             onClick={() => setShowMenuCard(!showMenuCard)}
           />
           {showMenuCard && (
