@@ -5,7 +5,7 @@ import { DemoChip } from "../chip/DemoChip";
 
 export const BillCard = () => {
   return (
-    <div className="w-full flex items-center justify-between p-4 bg-(--surface) rounded-2xl ring-1 ring-(--input-border) shadow-sm hover:bg-(--sidebar-active-bg) opacity-90 hover:opacity-100">
+    <div className="w-full flex items-center justify-between p-4 bg-(--surface) rounded-xl ring-1 ring-(--input-border)  hover:ring-1 hover:ring-(--muted) ">
       {/* Left Section: Status & Details */}
       <div className="flex items-center gap-3">
         {/* Status Indicator */}
@@ -49,7 +49,7 @@ export const BillCard = () => {
         <span className="text-lg font-medium text-(--muted)">$120.35</span>
         <DemoButton
           title="Pay Now"
-          classTag="px-3 py-1 text-sm font-normal tracking-wide shadow-(--shadow-default)"
+          classTag="px-3 py-1 text-sm font-medium tracking-wide  rounded-sm "
         />
       </div>
       {/* Right Section: Amount & Action */}

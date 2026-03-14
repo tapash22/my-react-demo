@@ -96,15 +96,15 @@ export const centerTextPlugin: Plugin<"doughnut"> = {
 
     // ---------- TITLE (TOP) ----------
     ctx.globalAlpha = alpha;
-    ctx.font = `${18 * scale}px sans-serif`;
+    ctx.font = `${12 * scale}px sans-serif`;
     ctx.fillStyle = labelColor; // use labelColor or default
     ctx.letterSpacing = "1px";
     ctx.fillText(titleText, centerX, centerY - 22);
 
     // ---------- TOTAL (CENTER) ----------
-    ctx.font = `bold ${24 * scale}px sans-serif`;
+    ctx.font = `bold ${20 * scale}px sans-serif`;
     ctx.fillStyle = valueColor; // use valueColor or default
-    ctx.fillText(`$${total.toLocaleString()}`, centerX, centerY + 12);
+    ctx.fillText(`$${total.toLocaleString()}`, centerX, centerY + 6);
 
     ctx.restore();
 

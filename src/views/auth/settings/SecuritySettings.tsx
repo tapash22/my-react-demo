@@ -106,7 +106,7 @@ export function SecuritySettings() {
           <div className="w-full border-t border-(--input-border) p-4">
             <DemoButton
               title="Change Password"
-              classTag="text-sm font-normer tracking-wide text-(--foreground) px-4 py-2"
+              classTag="text-sm font-normer tracking-wide text-(--foreground) px-4 py-2 rounded-lg"
             />
           </div>
         </div>

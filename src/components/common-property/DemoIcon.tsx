@@ -22,7 +22,7 @@ export function DemoIcon({
 }: DemoIconProps) {
   if (!Icon) return null;
 
-  const colorClass = color ? `text-(${color})` : "text-(--foreground)";
+  const colorClass = `text-(${color})`;
   return (
     <Icon
       size={size}

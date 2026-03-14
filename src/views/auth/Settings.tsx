@@ -80,7 +80,6 @@ export default function Settings() {
           delay={50}
           duration={300}
           activeBgClass="bg-(--surface)"
-          useTabsBorder={true}
         />
         <div ref={activeTabRef} className=" bg-amber-500 w-full">
           {tabComponents[activeTab.value as keyof typeof tabComponents]}

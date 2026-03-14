@@ -83,7 +83,7 @@ export default function Reports() {
           weight: "bold",
         },
         align: "center" as const,
-        padding: { top: 0, bottom: 10 },
+        padding: { top: 0, bottom: 5 },
       },
       legend: {
         display: false,
@@ -125,7 +125,7 @@ export default function Reports() {
               visibleDate={false}
             />
             <div
-              style={{ height: "200px" }}
+              style={{ height: "150px" }}
               className="w-full flex justify-center"
             >
               <Doughnut
@@ -169,10 +169,13 @@ export default function Reports() {
                 targetAmount={300}
               />
             </div>
-            <CategoryCard />
-            <CategoryCard />
-            <CategoryCard />
-            <CategoryCard />
+
+            <div className="scrollbar-thin h-[30vh] space-y-3 p-4 ring-2 ring-(--input-border) shadow rounded-lg">
+              <CategoryCard />
+              <CategoryCard />
+              <CategoryCard />
+              <CategoryCard />
+            </div>
 
             <div className="w-full h-auto p-3 flex flex-col justify-center items-center bg-(--surface) opacity-80 rounded-2xl">
               <DemoPageSectionCard title="Recommendations" haveBorder={false} />

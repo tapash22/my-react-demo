@@ -72,7 +72,7 @@ export default function BudgetPlanning() {
               />
             </div>
 
-            <div className="p-4 my-2 rounded-2xl bg-(--surface) flex justify-between items-center w-full border border-(--input-border) ">
+            <div className="p-4 my-2 rounded-2xl bg-(--surface) flex justify-between items-center w-full shadow-(--shadow-card)">
               <div className="block w-auto p-2 space-y-1">
                 <p className="text-sm font-normal text-(--muted) tracking-wide">
                   Daily Budget

@@ -57,9 +57,7 @@ export function DemoSideBar({ collapsed }: DemoSideBarProps) {
                 `
               }
             >
-              {/* ICON — fixed, never moves */}
               <DemoIcon size={20} icon={icon} />
-              {/* <Icon size={20} className="text-(--foreground) shrink-0" /> */}
 
               {/* TEXT — animated only */}
               <span
@@ -86,21 +84,19 @@ export function DemoSideBar({ collapsed }: DemoSideBarProps) {
       <div className="absolute bottom-0 p-3 w-full">
         <DemoButton
           classTag="w-full flex justify-center items-center
-              rounded-lg shadow-(--shadow)
-              drop-shadow-xl
+              rounded-lg 
               transition-colors duration-300
               hover:bg-(--sidebar-hover-bg)
-              px-4 py-3 "
+              px-2 py-2 "
           icon={FaPowerOff}
-          iconClass={`text-(--foreground) shrink-0 ${collapsed ? "ml-2" : "ml-0"}`}
+          iconClass={`text-(--foreground) shrink-0 `}
           onClick={handleLogout}
         >
           {!collapsed && (
             <span
               className={`
                 overflow-hidden
-                transition-all duration-300 ease-in-out
-                ml-3
+                transition-all duration-300 ease-in-out text-sm font-medium teacking-wider
               `}
             >
               Logout

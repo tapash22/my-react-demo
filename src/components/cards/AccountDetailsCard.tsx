@@ -40,7 +40,7 @@ export function AccountDetailsCard({
   };
 
   return (
-    <div className="flex justify-between items-center text-xs font-semibold text-(--foreground) opacity-80 w-full ring-2 ring-(--input-border) p-2 rounded-xl hover:bg-(--surface) cursor-pointer">
+    <div className="flex justify-between items-center text-xs font-semibold text-(--foreground) opacity-80 w-full ring-2 ring-(--input-border) p-2 rounded-xl hover:ring-2 hover:ring-(--surface) cursor-pointer">
       <div className="flex justify-start items-center gap-3 w-2/3 px-1 h-auto ">
         <DemoAvatar size={12} icon={FaUser} />
         <div className="flex flex-col justify-start items-center">
@@ -81,7 +81,11 @@ export function AccountDetailsCard({
           />
           {/* Card Dropdown */}
           {showProfileCard && (
-            <DropdownProfileCard pages={pages} navClick={handleNavLinkClick} />
+            <DropdownProfileCard
+              menuData={pages}
+              navClick={() => handleNavLinkClick}
+              iconSize={16}
+            />
           )}
         </div>
       </div>

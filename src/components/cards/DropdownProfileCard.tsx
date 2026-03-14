@@ -12,6 +12,7 @@ interface PagesProps {
   email?: string;
   navClick: () => void;
   logout?: () => void;
+  iconSize?: number;
 }
 
 export function DropdownProfileCard({
@@ -20,10 +21,11 @@ export function DropdownProfileCard({
   email = "",
   navClick,
   logout,
+  iconSize,
 }: PagesProps) {
   return (
     <div
-      className={`absolute right-0 ${title ? "w-72 mt-3" : "w-40 mt-1"} max-w-72 bg-(--card-bg)  shadow-(--shadow)  flex flex-col rounded-lg drop-shadow-xl z-50 text-(--foreground)`}
+      className={`absolute right-0 ${title ? "w-72 mt-3 rounded-lg" : "w-40  "} max-w-72 bg-(--surface)  shadow-(--shadow)  flex flex-col drop-shadow-xl z-50 text-(--foreground)`}
     >
       {(title.trim().length && email.trim().length) !== 0 && (
         <div className="w-full px-5 py-3 border-b-2 opacity-85 border-(--input-border) space-y-1">
@@ -41,9 +43,9 @@ export function DropdownProfileCard({
             onClick={navClick}
             key={path}
             to={`/dashboard/${path}`}
-            className={`flex items-center space-x-5 ${title ? "px-6 py-5" : "px-3 py-2"} transition-colors rounded-sm  hover:bg-(--sidebar-hover-bg) hover:text-(--foreground)`}
+            className={`flex items-center space-x-5 ${title ? "px-6 py-5 rounded-sm" : "px-3 py-3"} transition-colors hover:bg-(--sidebar-hover-bg) hover:text-(--foreground)`}
           >
-            {icon && <DemoIcon icon={icon} size={20} />}
+            {icon && <DemoIcon icon={icon} size={iconSize} />}
             <span className="text-sm font-normal tracking-wide">{name}</span>
           </NavLink>
         ))}
