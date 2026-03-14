@@ -194,9 +194,9 @@ export default function Profile() {
                       direction={true}
                       children={
                         <DemoButton
-                          buttonColor="bg-(--foreground)"
+                          buttonColor="bg-(--surface)"
                           widthSize="full"
-                          classTag="w-full"
+                          classTag="h-1 text-sm font-medium track-wider rounded-sm p-1"
                           title={referralUserData.withdrawSection.actionText}
                         />
                       }

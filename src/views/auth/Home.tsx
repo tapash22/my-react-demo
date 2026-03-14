@@ -41,11 +41,19 @@ export default function Home() {
       header={
         <PageHeaderCard title="Dashboard">
           <div className="flex justify-end items-center gap-5">
-            <DemoButton title="Export Data" />
+            <DemoButton
+              title="Export Data"
+              classTag="rounded-lg text-sm font-medium tracking-wide px-4 py-2"
+              buttonColor="bg-(--surface)"
+              textColor="--foreground"
+              widthSize="auto"
+            />
             <DemoButton
               title="View Reports"
-              buttonColor="bg-blue-950"
-              textColor="text-gray-200"
+              classTag="rounded-lg text-sm font-medium tracking-wide px-4 py-2 ring-1 ring-(--surface)"
+              buttonColor="bg-(--shadow)"
+              textColor="--muted"
+              widthSize="auto"
             />
           </div>
         </PageHeaderCard>
@@ -67,7 +75,7 @@ export default function Home() {
             <div className="flex flex-col w-full h-auto ring-2 ring-(--input-border) rounded-xl ">
               <StatisticDoughnutChart />
             </div>
-            <div className="w-full grid bg-(--surface) rounded-lg shadow-(--shadow) ">
+            <div className="w-full grid bg-(--surface) rounded-lg  ">
               {QUICK_ROUTING_PAGES.length && (
                 <DemoList
                   items={QUICK_ROUTING_PAGES}
@@ -80,10 +88,10 @@ export default function Home() {
                       className="h-full"
                     >
                       <div
-                        className={`flex flex-col justify-center items-center bg-transparent hover:bg-(--background) hover:text-(--muted) hover:opacity-80  p-3 h-full space-y-1 `}
+                        className={`flex flex-col justify-center items-center transform scale-80 transition-all duration-700 hover:scale-110  hover:bg-(--background) hover:text-(--muted) p-3 h-full space-y-1 `}
                       >
-                        <DemoIcon size={20} icon={page.icon} />
-                        <p className="tracking-wide text-sm text-center font-normal text-(--forground) ">
+                        <DemoIcon size={24} icon={page.icon} iconClass="" />
+                        <p className="tracking-wide text-sm text-center font-normal  scale-95 hover:scale-100">
                           {page.name}
                         </p>
                       </div>
