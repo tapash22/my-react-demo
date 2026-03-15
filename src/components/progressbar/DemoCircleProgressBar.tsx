@@ -6,8 +6,8 @@ export function DemoCircleProgressbar({ percentage }: { percentage: number }) {
   const offset = circumference - (percentage / 100) * circumference;
 
   return (
-    <div className="flex justify-center mb-6">
-      <div className="relative w-32 h-32">
+    <div className="flex justify-center items-center ">
+      <div className="relative w-28 h-28">
         {/* SVG Layer */}
         <svg className="w-full h-full -rotate-150" viewBox="0 0 100 100">
           {/* Background Gray Ring */}
@@ -15,7 +15,7 @@ export function DemoCircleProgressbar({ percentage }: { percentage: number }) {
             cx="50"
             cy="50"
             r={radius}
-            stroke="#f1f5f9" // slate-100
+            className="stroke-(--surface)"
             strokeWidth="8"
             fill="transparent"
           />
@@ -24,8 +24,8 @@ export function DemoCircleProgressbar({ percentage }: { percentage: number }) {
             cx="50"
             cy="50"
             r={radius}
-            stroke="#065f46" // emerald-800
-            strokeWidth="8"
+            className="stroke-(--foreground)"
+            strokeWidth="6"
             fill="transparent"
             strokeDasharray={circumference}
             style={{
@@ -37,12 +37,12 @@ export function DemoCircleProgressbar({ percentage }: { percentage: number }) {
         </svg>
 
         {/* Center Text & Icon */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <div className="text-emerald-800 mb-1">
+        <div className="absolute inset-0 -top-4 flex flex-col items-center justify-center">
+          <div>
             {/* Simple Hand/Coin Icon */}
             <svg
-              width="20"
-              height="20"
+              width="24"
+              height="24"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -52,10 +52,10 @@ export function DemoCircleProgressbar({ percentage }: { percentage: number }) {
               <path d="m7 21 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.8-2.8L13 15" />
             </svg>
           </div>
-          <span className="text-2xl font-bold text-slate-800">
+          <span className="text-lg font-bold text-(--muted)">
             {percentage}%
           </span>
-          <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">
+          <span className="text-[10px] text-(--foreground) font-bold uppercase tracking-wider">
             Progress
           </span>
         </div>

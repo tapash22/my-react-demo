@@ -31,30 +31,31 @@ export function DemoCardHeader<T>({
 
   return (
     <div className="flex justify-between items-center">
-      <div className="flex items-center space-x-2">
+      <div className="flex items-center space-x-2 ">
         {direction ? (
-          <div className="p-2 bg-(--surface) h-12 w-12 rounded-lg flex justify-center items-center">
-            <DemoIcon icon={getIcon(name)} size={16} />
+          <div className="p-3 bg-(--surface) shadow-(--shadow) h-auto w-auto rounded-lg flex justify-center items-center ring-2 ring-(--input-border)">
+            <DemoIcon
+              icon={getIcon(name)}
+              size={20}
+              iconClass="text-(--foreground)"
+            />
           </div>
         ) : (
-          <DemoIcon icon={getIcon(name)} size={12} />
+          <DemoIcon
+            icon={getIcon(name)}
+            size={20}
+            iconClass="text-(--foreground)"
+          />
         )}
-
-        <div className="flex justify-start items-center gap-3">
-          <div
-            className={`${direction ? "block space-y-2" : "flex justify-between items-center"}`}
-          >
-            <p
-              className={`${direction ? "text-lg" : "text-sm"} font-semibold text-(--foreground)`}
-            >
-              {name}
+        <div
+          className={`${direction ? "flex flex-col" : "flex justify-between items-center"}`}
+        >
+          <p className={` text-sm font-medium text-(--foreground)`}>{name}</p>
+          {direction && (
+            <p className="text-sm font-medium text-(--muted)">
+              Target: {targetDate}
             </p>
-            {direction && (
-              <p className="text-sm font-light text-(--muted)">
-                Target: {targetDate}
-              </p>
-            )}
-          </div>
+          )}
         </div>
       </div>
 

@@ -69,6 +69,7 @@ export default function SavingGoals() {
               titleClass="text-lg font-normal"
               visibleDate={false}
             />
+
             <DemoCircleProgressbar percentage={overallProgress} />
             {/* Financial Stats */}
             <DemoMonthlyComparisonCard
@@ -104,7 +105,7 @@ export default function SavingGoals() {
 
         <div className="w-2/3 h-auto p-2 flex flex-col space-y-5">
           <div className="flex flex-col w-full h-auto bg-(--background) ring-2 ring-(--input-border) rounded-xl p-3 space-y-3">
-            <div className="flex justify-between items-center ">
+            <div className="flex justify-between items-center py-2 ">
               <PageHeaderCard
                 title="Savings Overview"
                 titleClass="text-lg font-normal"
@@ -120,7 +121,7 @@ export default function SavingGoals() {
               />
             </div>
             {/* Scrollable content */}
-            <div className="flex-1 overflow-y-auto scrollbar">
+            <div className="flex-1 overflow-y-auto scrollba">
               <DemoCardWithProgressbar
                 fundsData={FUNDS_DATA}
                 keys={keys}
