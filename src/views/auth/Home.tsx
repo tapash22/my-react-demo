@@ -133,7 +133,6 @@ export default function Home() {
                 title="Recent Activity"
                 onClick={handleRecentActivityAction}
               />
-
               {/* //using for dropdown menu */}
               {/* {openMenu && (
                 <div className="w-10 h-10 ">
@@ -141,7 +140,7 @@ export default function Home() {
                 </div>
               )} */}
               {/* //using for dropdown menu end */}
-
+              ;
               <DemoDetailsCard
                 items={activities}
                 keys={{

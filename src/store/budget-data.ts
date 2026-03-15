@@ -80,6 +80,7 @@ export const myBudget: Budget = {
   savings: 20000,
 };
 
+//routing array
 export const QUICK_ROUTING_PAGES: Page[] = [
   {
     name: "Expenses",
@@ -103,6 +104,7 @@ export const QUICK_ROUTING_PAGES: Page[] = [
   },
 ];
 
+//home card list
 export const ROUTING_PAGES: Page[] = [
   {
     name: "Home",
@@ -163,7 +165,17 @@ export const pages: Page[] = [
     icon: FaUser,
   },
 ];
+//setting tabs
+export const settingTabs = [
+  { label: "Profile", value: "profile" },
+  { label: "App", value: "app" },
+  { label: "Security", value: "security" },
+  { label: "Help", value: "help" },
+  { label: "Resources", value: "resources" },
+];
+//routing array end
 
+//home page usages
 export const statisticMenu: DropdownMenu[] = [
   {
     id: 1,
@@ -182,6 +194,126 @@ export const statisticMenu: DropdownMenu[] = [
   },
 ];
 
+//home recent activities
+export const activities: Activity[] = [
+  {
+    name: "Sarah Parker",
+    action: "added a new expense",
+    category: "Food & Drink",
+    time: "15:30",
+  },
+  {
+    name: "David Miller",
+    action: "created a monthly savings goal",
+    amount: "$500",
+    time: "11:20",
+  },
+  {
+    name: "Emma Wilson",
+    action: "transferred",
+    amount: "$200",
+    category: "Investment account",
+    time: "09:10",
+  },
+  {
+    name: "Sarah Parker",
+    action: "added a new expense",
+    category: "Food & Drink",
+    time: "15:30",
+  },
+  {
+    name: "David Miller",
+    action: "created a monthly savings goal",
+    amount: "$500",
+    time: "11:20",
+  },
+  {
+    name: "Emma Wilson",
+    action: "transferred",
+    amount: "$200",
+    category: "Investment account",
+    time: "09:10",
+  },
+  {
+    name: "Sarah Parker",
+    action: "added a new expense",
+    category: "Food & Drink",
+    time: "15:30",
+  },
+  {
+    name: "David Miller",
+    action: "created a monthly savings goal",
+    amount: "$500",
+    time: "11:20",
+  },
+  {
+    name: "Emma Wilson",
+    action: "transferred",
+    amount: "$200",
+    category: "Investment account",
+    time: "09:10",
+  },
+];
+
+export const status: StatusData[] = [
+  {
+    title: "Total Income",
+    amount: "$7.8k",
+    change: "+1.78%",
+    trend: "up",
+    icon: LuDollarSign,
+  },
+  {
+    title: "Total Expense",
+    amount: "$4.3k",
+    change: "-1.78%",
+    trend: "down",
+    icon: GoLinkExternal,
+  },
+  {
+    title: "Total Savings",
+    amount: "$5.6k",
+    change: "+1.24%",
+    trend: "up",
+    icon: LuVault,
+  },
+  {
+    title: "Total Investment",
+    amount: "$3.75k",
+    change: "+66.95%",
+    trend: "up",
+    icon: FaPercent,
+  },
+];
+//doughnut chart color handle
+export const FUND_COLORS: Record<string, string> = {
+  "Emergency Fund": cssVar("--danger"),
+  "New Car": cssVar("--primary"),
+  Vacation: cssVar("--accent"),
+  "Home Down Payment": cssVar("--info"),
+  "Education Fund": cssVar("--secondary"),
+  "Anniversary Gift": cssVar("--success"),
+};
+//doughnut chart with tabs shitch data
+export const EXPENSE_DATA: FinanceItem[] = [
+  { label: "Housing & Utilities", percentage: 40, amount: 1800 },
+  { label: "Food & Groceries", percentage: 20, amount: 900 },
+  { label: "Education", percentage: 6, amount: 270 },
+  { label: "Healthcare", percentage: 8, amount: 360 },
+  { label: "Transportation", percentage: 10, amount: 450 },
+  { label: "Entertainment", percentage: 6, amount: 270 },
+];
+
+export const INCOME_DATA: FinanceItem[] = [
+  { label: "Salary", percentage: 65, amount: 4000 },
+  { label: "Revenue", percentage: 20, amount: 900 },
+  { label: "Savings & Insurance", percentage: 10, amount: 450 },
+  { label: "Freelance / Side Hustle", percentage: 20, amount: 1200 },
+  { label: "Investments", percentage: 11, amount: 700 },
+  { label: "Rental Income", percentage: 4, amount: 250 },
+];
+
+//notification list
 export const FUNDS_DATA: Fund[] = [
   {
     id: 1,
@@ -244,42 +376,7 @@ export const FUNDS_DATA: Fund[] = [
     status: "completed",
   },
 ];
-
-export const menuItems = [
-  { label: "Profile", value: "profile" },
-  { label: "App", value: "app" },
-  { label: "Security", value: "security" },
-  { label: "Help", value: "help" },
-  { label: "Resources", value: "resources" },
-];
-
-export const FUND_COLORS: Record<string, string> = {
-  "Emergency Fund": cssVar("--danger"),
-  "New Car": cssVar("--primary"),
-  Vacation: cssVar("--accent"),
-  "Home Down Payment": cssVar("--info"),
-  "Education Fund": cssVar("--secondary"),
-  "Anniversary Gift": cssVar("--success"),
-};
-
-export const EXPENSE_DATA: FinanceItem[] = [
-  { label: "Housing & Utilities", percentage: 40, amount: 1800 },
-  { label: "Food & Groceries", percentage: 20, amount: 900 },
-  { label: "Education", percentage: 6, amount: 270 },
-  { label: "Healthcare", percentage: 8, amount: 360 },
-  { label: "Transportation", percentage: 10, amount: 450 },
-  { label: "Entertainment", percentage: 6, amount: 270 },
-];
-
-export const INCOME_DATA: FinanceItem[] = [
-  { label: "Salary", percentage: 65, amount: 4000 },
-  { label: "Revenue", percentage: 20, amount: 900 },
-  { label: "Savings & Insurance", percentage: 10, amount: 450 },
-  { label: "Freelance / Side Hustle", percentage: 20, amount: 1200 },
-  { label: "Investments", percentage: 11, amount: 700 },
-  { label: "Rental Income", percentage: 4, amount: 250 },
-];
-
+//bar chart data
 export const MONTHLY_INCOME_EXPENSE_DATA: IncomeExpense[] = [
   { label: "Jan", income: 5000, expense: 2200 },
   { label: "Feb", income: 2200, expense: 3300 },
@@ -292,13 +389,18 @@ export const MONTHLY_INCOME_EXPENSE_DATA: IncomeExpense[] = [
   { label: "Sep", income: 5200, expense: 4000 },
 ];
 
-export const WEEKLY_INCOME_EXPENSE_DATA: IncomeExpense[] = [
-  { label: "Week 1", income: 1200, expense: 800 },
-  { label: "Week 2", income: 1500, expense: 1100 },
-  { label: "Week 3", income: 1300, expense: 900 },
-  { label: "Week 4", income: 1000, expense: 700 },
+// options for handle getIncomeExpenseData
+export const PERIOD_OPTIONS: PeriodType[] = [
+  "weekly",
+  "monthly",
+  "last3Months",
 ];
-
+export const PERIOD_LABEL_MAP: Record<PeriodType, string> = {
+  weekly: "Weekly",
+  monthly: "Monthly",
+  last3Months: "Last 3 Months",
+};
+// handle option of monthly data
 export function getIncomeExpenseData(type: PeriodType): IncomeExpense[] {
   switch (type) {
     case "weekly":
@@ -310,18 +412,16 @@ export function getIncomeExpenseData(type: PeriodType): IncomeExpense[] {
       return MONTHLY_INCOME_EXPENSE_DATA;
   }
 }
-export const PERIOD_OPTIONS: PeriodType[] = [
-  "weekly",
-  "monthly",
-  "last3Months",
+//bar chart data end
+
+export const WEEKLY_INCOME_EXPENSE_DATA: IncomeExpense[] = [
+  { label: "Week 1", income: 1200, expense: 800 },
+  { label: "Week 2", income: 1500, expense: 1100 },
+  { label: "Week 3", income: 1300, expense: 900 },
+  { label: "Week 4", income: 1000, expense: 700 },
 ];
 
-export const PERIOD_LABEL_MAP: Record<PeriodType, string> = {
-  weekly: "Weekly",
-  monthly: "Monthly",
-  last3Months: "Last 3 Months",
-};
-
+//icon use for handle type
 export const getIcon = (name: string) => {
   switch (name) {
     case "Emergency Fund":
@@ -341,97 +441,7 @@ export const getIcon = (name: string) => {
   }
 };
 
-export const status: StatusData[] = [
-  {
-    title: "Total Income",
-    amount: "$7.8k",
-    change: "+1.78%",
-    trend: "up",
-    icon: LuDollarSign,
-  },
-  {
-    title: "Total Expense",
-    amount: "$4.3k",
-    change: "-1.78%",
-    trend: "down",
-    icon: GoLinkExternal,
-  },
-  {
-    title: "Total Savings",
-    amount: "$5.6k",
-    change: "+1.24%",
-    trend: "up",
-    icon: LuVault,
-  },
-  {
-    title: "Total Investment",
-    amount: "$3.75k",
-    change: "+66.95%",
-    trend: "up",
-    icon: FaPercent,
-  },
-];
-
-export const activities: Activity[] = [
-  {
-    name: "Sarah Parker",
-    action: "added a new expense",
-    category: "Food & Drink",
-    time: "15:30",
-  },
-  {
-    name: "David Miller",
-    action: "created a monthly savings goal",
-    amount: "$500",
-    time: "11:20",
-  },
-  {
-    name: "Emma Wilson",
-    action: "transferred",
-    amount: "$200",
-    category: "Investment account",
-    time: "09:10",
-  },
-  {
-    name: "Sarah Parker",
-    action: "added a new expense",
-    category: "Food & Drink",
-    time: "15:30",
-  },
-  {
-    name: "David Miller",
-    action: "created a monthly savings goal",
-    amount: "$500",
-    time: "11:20",
-  },
-  {
-    name: "Emma Wilson",
-    action: "transferred",
-    amount: "$200",
-    category: "Investment account",
-    time: "09:10",
-  },
-  {
-    name: "Sarah Parker",
-    action: "added a new expense",
-    category: "Food & Drink",
-    time: "15:30",
-  },
-  {
-    name: "David Miller",
-    action: "created a monthly savings goal",
-    amount: "$500",
-    time: "11:20",
-  },
-  {
-    name: "Emma Wilson",
-    action: "transferred",
-    amount: "$200",
-    category: "Investment account",
-    time: "09:10",
-  },
-];
-
+//budget planning
 export const budgetData = {
   title: "Budget Summary",
   month: "May 2024",
@@ -478,6 +488,7 @@ export const statsArray = [
   { label: "Remaining", value: budgetData.stats.remaining },
 ];
 
+//budged categories
 export const categories: CategoryData[] = [
   {
     category: "Food & Dining",
@@ -537,6 +548,7 @@ export const categories: CategoryData[] = [
   },
 ];
 
+//expense and report page usage data
 export const categoryExpenses: FinanceItem[] = [
   { label: "Food & Dining", amount: 350, percentage: 16 },
   { label: "Housing", amount: 1200, percentage: 55 },
@@ -561,6 +573,7 @@ export const categoryExpenses: FinanceItem[] = [
 //   },
 // ];
 
+//tour step handle
 export const steps: Step[] = [
   {
     target: ".step-1",
@@ -582,6 +595,7 @@ export const steps: Step[] = [
   },
 ];
 
+//unused
 export const reportCards: ReportCard[] = [
   {
     category: "Housing",
@@ -617,6 +631,7 @@ export const reportCards: ReportCard[] = [
   },
 ];
 
+//account card data
 export const bankAccounts: BankAccount[] = [
   {
     name: "Chase Checking",
@@ -655,7 +670,7 @@ export const bankAccounts: BankAccount[] = [
     amount: 300,
   },
 ];
-
+//setting -> resource setting data
 export const resources: Resource[] = [
   {
     id: 1,
@@ -683,6 +698,7 @@ export const resources: Resource[] = [
   },
 ];
 
+//setting -> resource setting calculation
 export const calculators: CalculatorData[] = [
   {
     title: "Loan Calculator",
@@ -702,6 +718,7 @@ export const calculators: CalculatorData[] = [
   },
 ];
 
+//setting -> helpsetting data
 export const faqs: FaqData[] = [
   {
     id: 1,
@@ -729,6 +746,7 @@ export const faqs: FaqData[] = [
   },
 ];
 
+//referral page data
 export const referralSteps: referralStep[] = [
   {
     id: 1,
@@ -843,11 +861,13 @@ export const referralTerms: referralTerm[] = [
   },
 ];
 
+//expense page data compare
 export const comparisonItems: ComparisonItems = [
   { label: "Last Month", value: 2800 },
   { label: "This Month", value: 3000 },
 ];
 
+//saving page data compare
 export const monthlySavingData: ComparisonItems = [
   {
     label: "Target",
@@ -858,7 +878,7 @@ export const monthlySavingData: ComparisonItems = [
     value: 1200,
   },
 ];
-
+//saving page data compare
 export const savingsData: ComparisonItems = [
   {
     label: "Total Saved",
@@ -874,6 +894,7 @@ export const savingsData: ComparisonItems = [
   },
 ];
 
+//account card page compare
 export const balanceData: ComparisonItems = [
   {
     label: "Total Asset",
@@ -884,7 +905,7 @@ export const balanceData: ComparisonItems = [
     value: 3050,
   },
 ];
-
+//unused
 export const earningsData: ComparisonItems = [
   {
     label: "Total Earned",
@@ -896,6 +917,7 @@ export const earningsData: ComparisonItems = [
   },
 ];
 
+//reports pags tips
 export const spendingTips = [
   {
     id: 1,
