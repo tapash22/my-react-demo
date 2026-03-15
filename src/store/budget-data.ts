@@ -1,121 +1,10 @@
 import type { Budget } from "../assets/type/budget-type";
-import {
-  FaHome,
-  FaShieldAlt,
-  FaCar,
-  FaUmbrellaBeach,
-  FaGraduationCap,
-  FaGift,
-} from "react-icons/fa";
-
+import { FaHome, FaCar, FaGift } from "react-icons/fa";
 import type {
   CategoryData,
   ComparisonItems,
   ReportCard,
 } from "../features/type/User";
-
-//unused
-export const myBudget: Budget = {
-  personalInfo: {
-    name: "Tapas Paul",
-    city: "Dhaka",
-    salary: 80000,
-    loans: [
-      {
-        id: 1,
-        name: "Car Loan",
-        amount: 300000,
-        monthlyPayment: 15000,
-        remaining: 150000,
-      },
-    ],
-    insurance: [
-      {
-        id: 1,
-        name: "Life Insurance",
-        monthlyPremium: 2000,
-        coverage: 1000000,
-      },
-    ],
-  },
-  dailyExpenses: [
-    { id: 1, date: "2025-12-19", category: "Food", amount: 300, note: "Lunch" },
-    { id: 2, date: "2025-12-19", category: "Transport", amount: 100 },
-  ],
-  monthlyExpenses: [
-    { id: 1, category: "Electricity", amount: 2500 },
-    { id: 2, category: "Internet", amount: 1500 },
-  ],
-  savings: 20000,
-};
-
-//unused
-export const reportCards: ReportCard[] = [
-  {
-    category: "Housing",
-    status: "On Track",
-    spent: 1200,
-    budget: 1500,
-    projected: 1450,
-    trend: "stable",
-  },
-  {
-    category: "Food & Dining",
-    status: "Under Budget",
-    spent: 350,
-    budget: 500,
-    projected: 480,
-    trend: "decreasing",
-  },
-  {
-    category: "Transportation",
-    status: "Warning",
-    spent: 180,
-    budget: 200,
-    projected: 220,
-    trend: "increasing",
-  },
-  {
-    category: "Entertainment",
-    status: "Over Budget",
-    spent: 150,
-    budget: 120,
-    projected: 180,
-    trend: "increasing",
-  },
-];
-
-//unused
-export const earningsData: ComparisonItems = [
-  {
-    label: "Total Earned",
-    value: "$50",
-  },
-  {
-    label: "Pending Earnings",
-    value: "$20",
-  },
-];
-
-//icon use for handle type
-export const getIcon = (name: string) => {
-  switch (name) {
-    case "Emergency Fund":
-      return FaShieldAlt;
-    case "New Car":
-      return FaCar;
-    case "Vacation":
-      return FaUmbrellaBeach;
-    case "Home Down Payment":
-      return FaHome;
-    case "Education Fund":
-      return FaGraduationCap;
-    case "Anniversary Gift":
-      return FaGift;
-    default:
-      return null;
-  }
-};
 
 //budget planning
 export const budgetData = {
@@ -221,5 +110,88 @@ export const categories: CategoryData[] = [
       { title: "Shoes", date: "May 15, 2024", amount: 80 },
       { title: "Accessories", date: "May 12, 2024", amount: 100 },
     ],
+  },
+];
+
+//unused
+export const myBudget: Budget = {
+  personalInfo: {
+    name: "Tapas Paul",
+    city: "Dhaka",
+    salary: 80000,
+    loans: [
+      {
+        id: 1,
+        name: "Car Loan",
+        amount: 300000,
+        monthlyPayment: 15000,
+        remaining: 150000,
+      },
+    ],
+    insurance: [
+      {
+        id: 1,
+        name: "Life Insurance",
+        monthlyPremium: 2000,
+        coverage: 1000000,
+      },
+    ],
+  },
+  dailyExpenses: [
+    { id: 1, date: "2025-12-19", category: "Food", amount: 300, note: "Lunch" },
+    { id: 2, date: "2025-12-19", category: "Transport", amount: 100 },
+  ],
+  monthlyExpenses: [
+    { id: 1, category: "Electricity", amount: 2500 },
+    { id: 2, category: "Internet", amount: 1500 },
+  ],
+  savings: 20000,
+};
+
+//unused
+export const reportCards: ReportCard[] = [
+  {
+    category: "Housing",
+    status: "On Track",
+    spent: 1200,
+    budget: 1500,
+    projected: 1450,
+    trend: "stable",
+  },
+  {
+    category: "Food & Dining",
+    status: "Under Budget",
+    spent: 350,
+    budget: 500,
+    projected: 480,
+    trend: "decreasing",
+  },
+  {
+    category: "Transportation",
+    status: "Warning",
+    spent: 180,
+    budget: 200,
+    projected: 220,
+    trend: "increasing",
+  },
+  {
+    category: "Entertainment",
+    status: "Over Budget",
+    spent: 150,
+    budget: 120,
+    projected: 180,
+    trend: "increasing",
+  },
+];
+
+//unused
+export const earningsData: ComparisonItems = [
+  {
+    label: "Total Earned",
+    value: "$50",
+  },
+  {
+    label: "Pending Earnings",
+    value: "$20",
   },
 ];

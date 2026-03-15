@@ -1,6 +1,6 @@
 import { FaPen, FaTrash } from "react-icons/fa";
 import { DemoIcon } from "../common-property/DemoIcon";
-import { getIcon } from "../../store/budget-data";
+import { getIcon } from "../../utils/iconHelper";
 
 export type DemoCardHeaderKeys<T> = {
   id: keyof T;
