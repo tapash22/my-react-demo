@@ -1,5 +1,5 @@
 import type { FundStatus } from "../assets/type/budget-type";
-import { FUNDS_DATA } from "../store/budget-data";
+import { FUNDS_DATA } from "../store/chart-data";
 
 interface FundTab {
   label: string;

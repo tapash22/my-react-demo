@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { PageHeaderCard } from "../../components/cards/PageHeaderCard";
 import { PageLayout } from "../../components/layout/PageLayout";
 import { DemoTabs } from "../../components/tabs/DemoTabs";
-import { settingTabs } from "../../store/budget-data";
+import { settingTabs } from "../../store/settings-data";
 import { ProfileSettings } from "./settings/ProfileSettings";
 import { AppSettings } from "./settings/AppSettings";
 import { SecuritySettings } from "./settings/SecuritySettings";

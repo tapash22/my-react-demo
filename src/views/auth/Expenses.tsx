@@ -2,7 +2,7 @@ import { FaPlus } from "react-icons/fa";
 import { DemoButton } from "../../components/button/DemoButton";
 import { PageHeaderCard } from "../../components/cards/PageHeaderCard";
 import { Transaction } from "../Transaction";
-import { categoryExpenses, comparisonItems } from "../../store/budget-data";
+import { categoryExpenses, comparisonItems } from "../../store/expense-data";
 import { Doughnut } from "react-chartjs-2";
 import { centerTextPlugin } from "../../components/chart/centerTextPlugin";
 import type { DoughnutChartOptions } from "../../features/type/User";

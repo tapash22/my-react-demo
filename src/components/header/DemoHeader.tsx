@@ -15,7 +15,8 @@ import { DemoIcon } from "../common-property/DemoIcon";
 import DemoBreadcrumbs from "../Breadcrumb/DemoBreadcrumbs";
 import { DropdownProfileCard } from "../cards/DropdownProfileCard";
 import { DemoNotificationList } from "../list/DemoNotificationList";
-import { FUNDS_DATA, pages } from "../../store/budget-data";
+import { pages } from "../../store/link-data";
+import { FUNDS_DATA } from "../../store/chart-data";
 import { DemoList } from "../list/DemoList";
 
 import { useOutsideClick } from "../hooks/useOutsideClick";

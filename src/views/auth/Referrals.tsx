@@ -2,19 +2,20 @@ import { DemoButton } from "../../components/button/DemoButton";
 import { DemoPageSectionCard } from "../../components/cards/DemoPageSectionCard";
 import { PageHeaderCard } from "../../components/cards/PageHeaderCard";
 import { PageLayout } from "../../components/layout/PageLayout";
-// import { ExampleOne } from "./advancestoreuses/ExampleOne";
-// import { ExampleTwo } from "./advancestoreuses/ExampleTwo";
 import { useRef, useState } from "react";
 import { FaRegCopy } from "react-icons/fa6";
 import {
   referralSteps,
   referralTerms,
   referralUserData,
-} from "../../store/budget-data";
+} from "../../store/referral-data";
 import { DemoBadge } from "../../components/Badge/DemoBadge";
 import { DemoLinearProgressBar } from "../../components/progressbar/DemoLinearProgressBar";
 import { DemoMonthlyComparisonCard } from "../../components/cards/DemoMonthlyComparisonCard";
 import { Container } from "../../components/layout/Container";
+
+// import { ExampleOne } from "./advancestoreuses/ExampleOne";
+// import { ExampleTwo } from "./advancestoreuses/ExampleTwo";
 
 export default function Profile() {
   const containerRef = useRef<HTMLDivElement>(null);

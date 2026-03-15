@@ -1,7 +1,7 @@
 import { DemoPageSectionCard } from "../../../components/cards/DemoPageSectionCard";
 import { DemoResourceCard } from "../../../components/cards/DemoResourceCard";
 import { PageHeaderCard } from "../../../components/cards/PageHeaderCard";
-import { resources, calculators } from "../../../store/budget-data";
+import { resources, calculators } from "../../../store/settings-data";
 
 export function ResourcesSettings() {
   return (

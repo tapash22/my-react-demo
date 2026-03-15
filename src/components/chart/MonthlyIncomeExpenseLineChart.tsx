@@ -4,7 +4,7 @@ import {
   getIncomeExpenseData,
   PERIOD_LABEL_MAP,
   PERIOD_OPTIONS,
-} from "../../store/budget-data";
+} from "../../store/chart-data";
 import { cssVar } from "../../utils/cssVar";
 import type { PeriodType } from "../../assets/type/budget-type";
 import { useMemo, useState } from "react";

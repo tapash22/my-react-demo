@@ -1,7 +1,8 @@
-import { FaHome, FaUser } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
 import { DemoAvatar } from "../avatar/DemoAvatar";
 import { useState } from "react";
-import type { BankAccount, Page } from "../../features/type/User";
+import type { BankAccount } from "../../features/type/User";
+import { pages } from "../../store/link-data";
 import { useOutsideClick } from "../hooks/useOutsideClick";
 import { DropdownProfileCard } from "./DropdownProfileCard";
 import { DemoChip } from "../chip/DemoChip";
@@ -21,19 +22,6 @@ export function AccountDetailsCard({
   const [showProfileCard, setShowProfileCard] = useState<boolean>(false);
 
   const profileRef = useOutsideClick(() => setShowProfileCard(false));
-
-  const pages: Page[] = [
-    {
-      name: "Home",
-      path: "home",
-      icon: FaHome,
-    },
-    {
-      name: "Profile",
-      path: "profile",
-      icon: FaUser,
-    },
-  ];
 
   const handleNavLinkClick = () => {
     setShowProfileCard(false);

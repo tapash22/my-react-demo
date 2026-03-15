@@ -5,7 +5,7 @@ import { MonthlyIncomeExpenseLabelChart } from "../../components/chart/MonthlyIn
 import { MonthlyIncomeExpenseLineChart } from "../../components/chart/MonthlyIncomeExpenseLineChart";
 import { DemoButton } from "../../components/button/DemoButton";
 import card from "../../assets/images/card.jpg";
-import { QUICK_ROUTING_PAGES, status } from "../../store/budget-data";
+import { QUICK_ROUTING_PAGES } from "../../store/link-data";
 import { DemoList } from "../../components/list/DemoList";
 import { DemoIcon } from "../../components/common-property/DemoIcon";
 import { NavLink } from "react-router-dom";
@@ -13,8 +13,8 @@ import { DemoCardWithProgressbar } from "../../components/cards/DemoCardWithProg
 import { GoalTrackerCard } from "../../components/cards/GoalTrackerCard";
 import { PageHeaderCard } from "../../components/cards/PageHeaderCard";
 import { useRef, useState } from "react";
-import { FUNDS_DATA } from "../../store/budget-data";
-import { activities } from "../../store/budget-data";
+import { FUNDS_DATA } from "../../store/chart-data";
+import { activities, status } from "../../store/home-data";
 import { DemoDetailsCard } from "../../components/cards/DemoDetailsCard";
 import { PageLayout } from "../../components/layout/PageLayout";
 import { Container } from "../../components/layout/Container";

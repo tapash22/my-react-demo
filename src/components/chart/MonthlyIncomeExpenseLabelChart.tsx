@@ -1,5 +1,5 @@
 import { Bar } from "react-chartjs-2";
-import { MONTHLY_INCOME_EXPENSE_DATA } from "../../store/budget-data";
+import { MONTHLY_INCOME_EXPENSE_DATA } from "../../store/chart-data";
 import type { ChartOptions } from "chart.js";
 import { cssVar } from "../../utils/cssVar";
 

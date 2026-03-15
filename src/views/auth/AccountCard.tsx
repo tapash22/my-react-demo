@@ -5,7 +5,7 @@ import { PageLayout } from "../../components/layout/PageLayout";
 import { useRef, useState } from "react";
 import { AccountDetailsCard } from "../../components/cards/AccountDetailsCard";
 // import { CategoryCard } from "../../components/cards/CategoryCard";
-import { balanceData, bankAccounts } from "../../store/budget-data";
+import { balanceData, bankAccounts } from "../../store/account-data";
 import { DemoAvatar } from "../../components/avatar/DemoAvatar";
 import { LuCable } from "react-icons/lu";
 import { DemoLinearProgressBar } from "../../components/progressbar/DemoLinearProgressBar";

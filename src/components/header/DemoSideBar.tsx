@@ -2,7 +2,7 @@ import { FaPowerOff } from "react-icons/fa";
 import image from "../../../public/image/side_bar.png";
 import { NavLink, useNavigate } from "react-router-dom";
 import { logout } from "../auth/useAuth";
-import { ROUTING_PAGES } from "../../store/budget-data";
+import { ROUTING_PAGES } from "../../store/link-data";
 import { DemoIcon } from "../common-property/DemoIcon";
 import { DemoButton } from "../button/DemoButton";
 

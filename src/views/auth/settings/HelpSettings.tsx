@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { DemoButton } from "../../../components/button/DemoButton";
-import { DemoPageSectionCard } from "../../../components/cards/DemoPageSectionCard";
 import { DemoDropdownSelect } from "../../../components/dropdown/DemoDropdownSelect";
-import { faqs } from "../../../store/budget-data";
+import { faqs } from "../../../store/settings-data";
 import { DemoCardExpansion } from "../../../components/cards/DemoCardExpansion";
 import { PageHeaderCard } from "../../../components/cards/PageHeaderCard";
 

@@ -1,8 +1,6 @@
-import {
-  FUNDS_DATA,
-  monthlySavingData,
-  savingsData,
-} from "../../store/budget-data";
+import { FUNDS_DATA } from "../../store/chart-data";
+import { savingsData } from "../../store/saving-data";
+import { monthlySavingData } from "../../store/saving-data";
 import { useSavingsOverview } from "../../components/hooks/useSavingsOverview";
 import { DemoCardWithProgressbar } from "../../components/cards/DemoCardWithProgressbar";
 import { FUND_TABS } from "../../utils/tabData";

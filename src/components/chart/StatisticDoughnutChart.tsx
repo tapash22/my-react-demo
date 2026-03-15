@@ -1,11 +1,7 @@
 import { useMemo, useState } from "react";
-import {
-  EXPENSE_DATA,
-  FUND_COLORS,
-  FUNDS_DATA,
-  INCOME_DATA,
-  statisticMenu,
-} from "../../store/budget-data";
+import { FUNDS_DATA } from "../../store/chart-data";
+import { statisticMenu } from "../../store/home-data";
+import { EXPENSE_DATA, FUND_COLORS, INCOME_DATA } from "../../store/chart-data";
 import { Doughnut } from "react-chartjs-2";
 import type { TooltipItem } from "chart.js";
 import { cssVar } from "../../utils/cssVar";
