@@ -13,7 +13,7 @@ export default function DemoBreadcrumbs() {
           const isLast = index === breadcrumbs.length - 1;
 
           return (
-            <p key={crumb.path} className="flex items-center">
+            <div key={crumb.path} className="flex items-center">
               {!isLast ? (
                 <Link
                   to={crumb.path}
@@ -26,7 +26,7 @@ export default function DemoBreadcrumbs() {
               )}
 
               {!isLast && <p className="px-1">/</p>}
-            </p>
+            </div>
           );
         })}
     </nav>

@@ -27,12 +27,12 @@ export function DemoCurrency({
           {currencyLabel}:
         </p>
       )}
-      <p className="flex items-center">
+      <div className="flex items-center">
         <DemoIcon icon={Icon} size={16} />
         <span className="text-sm font-bold tracking-wide text-(--foreground)">
           {formatted}
         </span>
-      </p>
+      </div>
     </div>
   );
 }

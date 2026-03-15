@@ -29,12 +29,12 @@ export function CategoryCard() {
                 currency="TK"
               />
 
-              <p className="flex items-center gap-2">
+              <div className="flex items-center gap-2">
                 <span className="font-medium text-sm tracking-wide">
                   incress
                 </span>
                 <DemoIcon icon={FaUser} size={10} />
-              </p>
+              </div>
             </div>
           }
         >

@@ -39,13 +39,19 @@ export function DemoDetailsCard<T>({ items, keys }: DemoDetailsCardProps<T>) {
               </div>
 
               <div className="flex flex-col space-y-1 w-full h-auto">
-                <p className="text-sm font-normal  tracking-wide text-(--forground) space-x-2">
+                <div className=" space-x-2">
                   <span className="tracking-wider font-medium text-sm">
                     {name}
                   </span>
-                  <span>{action}</span>
-                  {amount !== undefined && <span>{amount}</span>}
-                </p>
+                  <span className="text-sm font-normal  tracking-wide text-(--forground)">
+                    {action}
+                  </span>
+                  {amount !== undefined && (
+                    <span className="text-sm font-normal  tracking-wide text-(--forground)">
+                      {amount}
+                    </span>
+                  )}
+                </div>
                 <p className="text-sm font-normal tracking-wider text-(--forground)">
                   {time}
                 </p>

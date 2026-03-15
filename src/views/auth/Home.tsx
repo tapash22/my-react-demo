@@ -140,7 +140,6 @@ export default function Home() {
                 </div>
               )} */}
               {/* //using for dropdown menu end */}
-              ;
               <DemoDetailsCard
                 items={activities}
                 keys={{
