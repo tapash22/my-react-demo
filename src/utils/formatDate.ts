@@ -50,23 +50,51 @@ export function formatDate(
   date: Date,
   format: DateFormatType = "full",
   locale: string = "en-US",
+  timeZone: string = "Asia/Dhaka",
 ): string {
-  return date.toLocaleDateString(locale, FORMAT_MAP[format]);
+  const options = { ...FORMAT_MAP[format], timeZone };
+  // Only works for date (year, month, day).
+  // return date.toLocaleDateString(locale, FORMAT_MAP[format]);
+
+  //   Can handle full date & time formats.
+  // Properly respects timeZone like "Asia/Dhaka"
+  return new Intl.DateTimeFormat(locale, options).format(date);
 }
 
+/**
+ * Parses a date-only string or Date and returns a Date object at Bangladesh midnight
+ */
+function parseBangladeshDate(date: string | Date): Date {
+  if (date instanceof Date) return date;
+
+  // Parse date-only string like "2025-01-10" as Bangladesh midnight
+  const [year, month, day] = date.split("-").map(Number);
+  // Use UTC so formatting with Asia/Dhaka works correctly
+  return new Date(Date.UTC(year, month - 1, day, 0, 0, 0));
+}
+
+//
 export function formatRelativeDate(
   date: Date | string,
   locale: string = "en-US",
   fallbackFormat: DateFormatType = "short",
+  timeZone: string = "Asia/Dhaka",
 ): string {
-  const inputDate = typeof date === "string" ? new Date(date) : date;
+  const inputDate = typeof date === "string" ? parseBangladeshDate(date) : date;
 
   if (isNaN(inputDate.getTime())) return "Invalid date";
 
-  const today = new Date();
+  // Convert both dates to the specified timezone
+  const todayStr = new Intl.DateTimeFormat("en-US", { timeZone }).format(
+    new Date(),
+  );
+  const today = new Date(todayStr);
   today.setHours(0, 0, 0, 0);
 
-  const compareDate = new Date(inputDate);
+  const compareStr = new Intl.DateTimeFormat("en-US", { timeZone }).format(
+    inputDate,
+  );
+  const compareDate = new Date(compareStr);
   compareDate.setHours(0, 0, 0, 0);
 
   const diffTime = today.getTime() - compareDate.getTime();
@@ -77,5 +105,5 @@ export function formatRelativeDate(
   if (diffDays > 1 && diffDays <= 7) return `${diffDays} days ago`;
 
   // fallback to normal formatted date
-  return formatDate(inputDate, fallbackFormat, locale);
+  return formatDate(inputDate, fallbackFormat, locale, timeZone);
 }

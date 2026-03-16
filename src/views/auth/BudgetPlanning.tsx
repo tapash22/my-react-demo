@@ -154,8 +154,9 @@ export default function BudgetPlanning() {
                 />
                 <DemoButton
                   title="Update"
+                  classTag="text-sm font-medium flex items-center p-2 rounded-lg tracking-wide"
                   icon={FaPlus}
-                  iconClass="10"
+                  iconSize={12}
                   onClick={() => handleClick}
                 />
               </div>
