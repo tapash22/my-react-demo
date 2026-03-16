@@ -67,7 +67,6 @@ export default function Home() {
           ))}
         </div>
         {/* dashboard top component view end */}
-
         {/* dashboard body component view */}
         <div className="flex gap-5 items-start w-full h-auto p-2">
           {/* left side */}

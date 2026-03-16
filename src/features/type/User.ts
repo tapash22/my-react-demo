@@ -269,3 +269,13 @@ export type ComparisonItems<T extends ComparisonItem = ComparisonItem> = T[];
 //route or tab animation type declear
 export type AnimationMode = "route" | "tab";
 export type Direction = "left" | "right";
+
+export interface Transaction {
+  id: number;
+  name: string;
+  category: string;
+  dateTime: string;
+  amount: number;
+  status: string;
+  note: string;
+}

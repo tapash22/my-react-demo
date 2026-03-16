@@ -249,20 +249,18 @@ export function ExampleThree() {
   if (error) return <p className="text-red-500">Error loading photos</p>;
 
   return (
-    <div>
+    <div className="p-6">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-xl font-bold">
           Photo Gallery: {totalItems} items, Page {page}/{totalPages || 1}
         </h1>
         <DemoButton title="Add Photo" onClick={openCreate} icon={FaPlus} />
       </div>
-
       <DemoList
         items={fruits}
         initialCount={3}
         children={(item) => <span>{item}</span>}
       />
-
       <div className="block items-center mb-4 gap-4 space-y-3 p-3">
         <input
           type="text"
@@ -282,7 +280,6 @@ export function ExampleThree() {
           </div>
         )}
       </div>
-
       {/* 1. Check if there are photos to display */}
       {currentPhotos.length > 0 ? (
         <>
@@ -312,7 +309,6 @@ export function ExampleThree() {
           <EmptyState {...emptyStateProps} />
         </div>
       )}
-
       {/* -------- Modal Form -------- */}
       <FormDialog
         open={isOpen}

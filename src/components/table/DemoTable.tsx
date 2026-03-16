@@ -7,8 +7,7 @@ import { FaPen, FaTrash } from "react-icons/fa";
 import { DemoExpandableSearch } from "../input-component/DemoExpandableSearch";
 
 interface DemoTableProps<T> {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  data: any[];
+  data: T[];
   pageSize?: number;
   hideColumns?: (keyof T)[];
   onDelete?: (id: number) => void;
@@ -27,13 +26,23 @@ export function DemoTable<T extends { id: number }>({
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
 
-  const columns = useMemo(
-    () =>
-      Array.from(new Set(data.flatMap((row) => Object.keys(row)))).filter(
-        (col) => !hideColumns.includes(col as keyof T),
-      ),
-    [data, hideColumns],
-  );
+  //using short and advance
+  // const columns = useMemo(
+  //   () =>
+  //     Array.from(new Set(data.flatMap((row) => Object.keys(row)))).filter(
+  //       (col) => !hideColumns.includes(col as keyof T),
+  //     ),
+  //   [data, hideColumns],
+  // );
+
+  //with details
+  const columns = useMemo(() => {
+    const keys = data.flatMap((row) => Object.keys(row));
+
+    const uniqueColumns = [...new Set(keys)];
+
+    return uniqueColumns.filter((col) => !hideColumns.includes(col as keyof T));
+  }, [data, hideColumns]);
 
   const filterableColumns = columns;
 
@@ -77,7 +86,7 @@ export function DemoTable<T extends { id: number }>({
   const currentData = filteredData.slice(startIndex, startIndex + pageSize);
 
   return (
-    <div className="w-full rounded-xl bg-(--background) spacer-y-3 shadow-(--shadow-card) p-2">
+    <div className="w-full rounded-xl bg-(--background) spacer-y-3 shadow-(--shadow-card) p-4">
       {/* Search */}
       <div className="w-full h-auto p-3 flex justify-between align-bottom gap-3">
         <div className="w-1/3">
@@ -111,7 +120,7 @@ export function DemoTable<T extends { id: number }>({
                   key={key}
                   className="py-4 px-4 text-center text-sm font-bold tracking-wide"
                 >
-                  {key}
+                  {key.charAt(0).toUpperCase() + key.slice(1)}
                 </th>
               ))}
               {(onEdit || onDelete) && <th>Action</th>}
