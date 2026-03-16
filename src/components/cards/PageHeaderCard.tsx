@@ -27,9 +27,9 @@ export function PageHeaderCard({
     <div
       className={`flex w-full items-center justify-between gap-3 
       ${direction ? "flex-col items-start" : "flex-col md:flex-row"}
-      ${subtitle || visibleDate ? "py-2" : "py-3"}`}
+      ${subtitle || visibleDate ? "p-2" : "p-3"}`}
     >
-      <h2 className="flex flex-col w-full">
+      <div className="flex flex-col items-start w-auto">
         {title && (
           <span
             className={`${
@@ -51,7 +51,7 @@ export function PageHeaderCard({
             {formatDate(data)}
           </span>
         )}
-      </h2>
+      </div>
       {children && (
         <div
           className={`

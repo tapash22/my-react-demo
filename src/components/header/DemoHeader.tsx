@@ -18,10 +18,10 @@ import { DemoNotificationList } from "../list/DemoNotificationList";
 import { pages } from "../../store/link-data";
 import { FUNDS_DATA } from "../../store/chart-data";
 import { DemoList } from "../list/DemoList";
-
 import { useOutsideClick } from "../hooks/useOutsideClick";
 import { DemoBadge } from "../Badge/DemoBadge";
 import { DemoButton } from "../button/DemoButton";
+import { Modal } from "../../features/onboarding/Modal";
 
 interface DemoHeaderProps {
   onToggleSidebar: () => void;
@@ -34,6 +34,8 @@ export function DemoHeader({ onToggleSidebar }: DemoHeaderProps) {
   const { theme, toggleTheme } = useTheme();
   const [showProfileCard, setShowProfileCard] = useState<boolean>(false);
   const [showNotification, setShowNotification] = useState<boolean>(false);
+  const [showTabNotification, setShowTabNotification] =
+    useState<boolean>(false);
 
   // Close profile card if click outside
   const profileRef = useOutsideClick(() => setShowProfileCard(false));
@@ -43,13 +45,13 @@ export function DemoHeader({ onToggleSidebar }: DemoHeaderProps) {
     logout();
     navigate("/login");
   };
-
   const handleNavLinkClick = () => {
     setShowProfileCard(false);
   };
 
   return (
-    <header className="h-16 w-full flex items-center justify-between p-5 bg-(--background) shadow-(--shadow)">
+    <header className="h-16 w-full flex items-center justify-between p-4 sm:p-5 bg-(--background) shadow-(--shadow)">
+      {/* Left: Sidebar + Breadcrumbs */}
       <div className="flex items-center gap-2 shrink-0">
         <DemoIcon
           icon={PiSidebarSimpleLight}
@@ -63,7 +65,7 @@ export function DemoHeader({ onToggleSidebar }: DemoHeaderProps) {
       </div>
 
       {/* search start */}
-      <div className="flex-1 max-w-lg p-2">
+      <div className="flex-1 max-w-[16rem] sm:max-w-lg p-2">
         <InputPrepend
           type="search"
           name="search"
@@ -71,39 +73,42 @@ export function DemoHeader({ onToggleSidebar }: DemoHeaderProps) {
           onChange={(e) => setSearch(e.target.value)}
           className="placeholder:text-(--foreground)"
           placeholder="Search . . ."
-          prepend={<DemoIcon icon={FaSearch} color="--foreground" size={16} />}
+          prepend={<DemoIcon icon={FaSearch} color="--muted" size={16} />}
         />
       </div>
       {/* search start end */}
 
-      {/* Badge */}
-      <div className="flex items-center gap-2 md:gap-6 ">
-        <DemoButton
-          onClick={toggleTheme}
-          icon={theme !== "dark" ? FaMoon : FaSun}
-          iconSize={20}
-          classTag="p-1 flex justify-center items-center rounded-full  ring-1 ring-(--muted)"
-        />
-        <div ref={notificationRef} className="relative ">
-          {/* Badge */}
-
-          <DemoBadge
-            onClick={() => setShowNotification(!showNotification)}
-            badgeLengthCount={FUNDS_DATA.length}
-            icon={FaRegBell}
+      {/* Right: Actions */}
+      <div className="flex items-center gap-2 md:gap-6">
+        {/* Desktop actions */}
+        <div className="hidden md:flex items-center gap-2 md:gap-6">
+          <DemoButton
+            onClick={toggleTheme}
+            icon={theme !== "dark" ? FaMoon : FaSun}
+            iconSize={20}
+            classTag="p-1 flex justify-center items-center rounded-full ring-1 ring-(--muted)"
           />
-          {showNotification && (
-            <div className="absolute right-0 px-0 w-72 bg-(--surface) mt-3 flex flex-col gap-1 rounded-lg drop-shadow-xl space-y-1 z-50 text-(--foreground) h-min-[20vh] h-max-[40vh] overflow-hidden">
-              <DemoList
-                items={FUNDS_DATA}
-                initialCount={3}
-                haveBorder={true}
-                children={(fund) => <DemoNotificationList fund={fund} />}
-              />
-            </div>
-          )}
+
+          <div ref={notificationRef} className="relative">
+            <DemoBadge
+              onClick={() => setShowNotification(!showNotification)}
+              badgeLengthCount={FUNDS_DATA.length}
+              icon={FaRegBell}
+            />
+            {showNotification && (
+              <div className="absolute right-0 w-72 bg-(--surface) mt-3 flex flex-col gap-1 rounded-lg drop-shadow-xl space-y-1 z-50 text-(--foreground) max-h-[40vh] overflow-auto">
+                <DemoList
+                  items={FUNDS_DATA}
+                  initialCount={3}
+                  haveBorder={true}
+                  children={(fund) => <DemoNotificationList fund={fund} />}
+                />
+              </div>
+            )}
+          </div>
         </div>
 
+        {/* Profile icon */}
         <div ref={profileRef} className="relative">
           <DemoIcon
             icon={FaUserCircle}
@@ -112,8 +117,6 @@ export function DemoHeader({ onToggleSidebar }: DemoHeaderProps) {
             color="var(--foreground)"
             onClick={() => setShowProfileCard(!showProfileCard)}
           />
-
-          {/* Card Dropdown */}
           {showProfileCard && (
             <DropdownProfileCard
               title="John"
@@ -121,11 +124,29 @@ export function DemoHeader({ onToggleSidebar }: DemoHeaderProps) {
               menuData={pages}
               navClick={handleNavLinkClick}
               logout={handleLogout}
+              theme={theme}
+              toggleTheme={toggleTheme}
+              showNotification={showNotification}
+              setShowNotification={setShowTabNotification}
+              badgeCount={FUNDS_DATA.length}
             />
           )}
         </div>
+
+        <Modal
+          onClose={() => setShowTabNotification(!showTabNotification)}
+          open={showTabNotification}
+        >
+          <div className="md:hidden flex flex-col gap-1 rounded-lg drop-shadow-xl space-y-1 text-(--foreground) overflow-auto w-full">
+            <DemoList
+              items={FUNDS_DATA}
+              initialCount={3}
+              haveBorder={true}
+              children={(fund) => <DemoNotificationList fund={fund} />}
+            />
+          </div>
+        </Modal>
       </div>
-      {/* Badge end */}
     </header>
   );
 }

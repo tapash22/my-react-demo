@@ -1,13 +1,17 @@
 import { DemoButton } from "../../components/button/DemoButton";
 
 export function Modal({
+  title = "",
   open,
   children,
   onClose,
+  showBottom,
 }: {
+  title?: string;
   open: boolean;
   children: React.ReactNode;
   onClose: () => void;
+  showBottom?: boolean;
 }) {
   if (!open) return null;
   return (
@@ -16,12 +20,29 @@ export function Modal({
       onClick={onClose} // clicking outside the modal closes it
     >
       <div
-        className="bg-white p-5 border border-gray-300 w-[400px] text-center rounded-lg"
+        className="bg-(--surface) p-0 border-(--card-shadow) w-[400px] text-center rounded-lg"
         onClick={(e) => e.stopPropagation()} // prevent click inside modal from closing
       >
-        {children}
+        <div className="flex justify-between items-center p-4 border-b border-(--input-border)">
+          {title && (
+            <h2 className="text-lg font-medium tracking-wide text-(--foreground)">
+              {title}
+            </h2>
+          )}
+        </div>
+
+        <div className="flex justify-center items-center p-4 border-b border-(--input-border)">
+          {children}
+        </div>
         {/* Optional Close Button */}
-        <DemoButton onClick={onClose} />
+        <div className="flex justify-end items-center p-2">
+          {showBottom && (
+            <DemoButton
+              classTag="py-1 px-2 text-sm font-medium traking-wide rounded-lg ring-1 ring-(--input-border)"
+              onClick={onClose}
+            />
+          )}
+        </div>
       </div>
     </div>
   );

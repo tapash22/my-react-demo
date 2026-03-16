@@ -49,7 +49,8 @@ export function DemoList<T>({
         <motion.div layout className="p-4 flex justify-center w-full">
           <DemoButton
             onClick={() => setShowAll(!showAll)}
-            classTag="w-full py-1 rounded-lg text-sm font-normal py-1"
+            classTag="rounded-lg text-sm font-medium tracking-wide inline-flex px-4 py-2 ring-1 ring-(--surface)"
+            buttonColor="bg-(--shadow)"
           >
             <AnimatePresence mode="wait">
               <motion.span
