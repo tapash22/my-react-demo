@@ -40,17 +40,17 @@ export default function Home() {
     <PageLayout
       header={
         <PageHeaderCard title="Dashboard">
-          <div className="flex justify-end items-center gap-5">
+          <div className="flex justify-end items-center gap-3">
             <DemoButton
               title="Export Data"
-              classTag="rounded-lg text-sm font-medium tracking-wide px-4 py-2"
+              classTag="rounded-lg text-sm font-medium tracking-wide  px-4 py-2"
               buttonColor="bg-(--surface)"
               textColor="--foreground"
               widthSize="auto"
             />
             <DemoButton
               title="View Reports"
-              classTag="rounded-lg text-sm font-medium tracking-wide px-4 py-2 ring-1 ring-(--surface)"
+              classTag="rounded-lg text-sm font-medium tracking-wide inline-flex px-4 py-2 ring-1 ring-(--surface)"
               buttonColor="bg-(--shadow)"
               textColor="--muted"
               widthSize="auto"
@@ -59,7 +59,7 @@ export default function Home() {
         </PageHeaderCard>
       }
     >
-      <Container ref={containerRef} direction="column">
+      <Container ref={containerRef} direction="column" className="w-full">
         {/* dashboard top component view */}
         <div className="grid grid-cols-4 gap-3 w-full h-auto p-2">
           {status.map((statusData) => (

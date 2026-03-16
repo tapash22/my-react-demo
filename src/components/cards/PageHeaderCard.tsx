@@ -25,31 +25,41 @@ export function PageHeaderCard({
 }: PageHeaderCardProps) {
   return (
     <div
-      className={`flex justify-between w-full h-auto items-center px-4 py-1 ${subtitle || visibleDate ? "py-1" : "py-3"} ${direction ? "flex flex-col justify-between items-center space-y-3" : "flex justify-between items-center"}`}
+      className={`flex w-full items-center justify-between gap-3 
+      ${direction ? "flex-col items-start" : "flex-col md:flex-row"}
+      ${subtitle || visibleDate ? "py-2" : "py-3"}`}
     >
       <h2 className="flex flex-col w-full">
         {title && (
           <span
-            className={` ${titleClass ? titleClass : "text-xl font-semibold"} text-(--foreground) tracking-wide`}
+            className={`${
+              titleClass ? titleClass : "text-lg md:text-xl font-semibold"
+            } text-(--foreground) tracking-wide`}
           >
             {title}
           </span>
         )}
         {subtitle && (
           <span
-            className={` ${subtitleClass ? subtitleClass : "text-sm font-medium"} text-(--subtitle) tracking-normal`}
+            className={` ${subtitleClass ? subtitleClass : "text-sm font-normal"} text-(--subtitle) tracking-normal`}
           >
             {subtitle}
           </span>
         )}
         {visibleDate && (
-          <span className="text-sm font-normal text-(--subtitle) ">
+          <span className="text-xs md:text-sm text-(--subtitle)">
             {formatDate(data)}
           </span>
         )}
       </h2>
       {children && (
-        <div className={`${direction ? "w-full h-auto" : "w-1/2 h-auto"}`}>
+        <div
+          className={`
+            flex flex-wrap gap-3
+            w-full md:w-auto
+            justify-start md:justify-end
+        `}
+        >
           {children}
         </div>
       )}

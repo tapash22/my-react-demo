@@ -80,7 +80,7 @@ export default function Profile() {
                   onChange={handleChange}
                   className="input-field"
                 />
-                <DemoButton title="Copy" icon={FaRegCopy} iconSize={16} />
+                <DemoButton title="Copy Link" icon={FaRegCopy} iconSize={16} />
               </div>
             </form>
           </div>
