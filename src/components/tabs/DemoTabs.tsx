@@ -39,7 +39,9 @@ export function DemoTabs({
 
   return (
     <div
-      className={`relative inline-flex rounded-lg ${useTabsBorder ? " border-2 border-(--input-border)" : "shadow-(--shadow-card)"}`}
+      className={`relative inline-flex rounded-lg 
+    ${useTabsBorder ? "border-2 border-(--input-border)" : "shadow-(--shadow-card)"} 
+    w-full md:w-auto overflow-x-scroll md:overflow-x-visible`}
     >
       {/* Sliding background */}
       <div

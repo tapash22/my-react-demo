@@ -62,7 +62,7 @@ export default function SavingGoals() {
     >
       <Container ref={containerRef}>
         {/* left side card */}
-        <div className="w-1/3 p-2 sticky top-2 h-fit">
+        <div className="w-full lg:w-1/3  p-2 sticky top-2 h-fit">
           <div className="flex flex-col w-full h-auto bg-(--background) ring-2 ring-(--input-border) rounded-xl p-3 space-y-1">
             <PageHeaderCard
               title="Saving Goals"
@@ -103,9 +103,9 @@ export default function SavingGoals() {
           </div>
         </div>
 
-        <div className="w-2/3 h-auto p-2 flex flex-col space-y-5">
+        <div className="w-full lg:w-2/3  h-auto p-2 flex flex-col space-y-5">
           <div className="flex flex-col w-full h-auto bg-(--background) ring-2 ring-(--input-border) rounded-xl p-3 space-y-3">
-            <div className="flex justify-between items-center py-2 ">
+            <div className="flex flex-col md:flex-row justify-between items-center py-2 ">
               <PageHeaderCard
                 title="Savings Overview"
                 titleClass="text-lg font-normal"

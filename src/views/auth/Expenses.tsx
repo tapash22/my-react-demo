@@ -104,7 +104,7 @@ export default function Expenses() {
     >
       <Container ref={containerRef}>
         {/* left side */}
-        <div className="w-2/3 h-auto p-2 flex flex-col space-y-5">
+        <div className="w-full lg:w-2/3 h-auto p-2 flex flex-col space-y-5">
           <div className="w-full h-full ">
             <Transaction />
           </div>
@@ -130,7 +130,7 @@ export default function Expenses() {
         {/* left side end */}
 
         {/* right side */}
-        <div className="w-1/3 p-2 sticky top-2 h-fit">
+        <div className="w-full lg:w-1/3 p-2 sticky top-2 h-fit">
           <div className="flex flex-col w-full h-auto bg-(--background) ring-2 ring-(--input-border) rounded-xl p-3 space-y-3">
             <PageHeaderCard
               title="Expense Breakdown"

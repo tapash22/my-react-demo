@@ -44,10 +44,10 @@ export default function BudgetPlanning() {
     >
       <Container ref={containerRef}>
         {/* left side */}
-        <div className="w-1/3 p-2 sticky top-2 h-fit">
+        <div className="w-full lg:w-1/3 p-2 sticky top-2 h-fit">
           <div className="flex flex-col w-full h-auto ring-2 ring-(--input-border) rounded-xl p-3 space-y-3 py-5 bg-(--background)">
             <PageHeaderCard title="Budget" titleClass="text-lg font-normal" />
-            <div className="flex justify-between ">
+            <div className="flex flex-col md:flex-row justify-between w-full ">
               {statsArray.map((stat) => (
                 <div
                   key={stat.label}
@@ -118,15 +118,15 @@ export default function BudgetPlanning() {
         {/* left side end */}
 
         {/* right side */}
-        <div className="w-2/3 h-auto p-2 block space-y-5">
+        <div className="w-full lg:w-2/3 h-auto p-2 block space-y-5">
           <div className="block w-full h-auto ring-2 ring-(--input-border) rounded-xl p-5 space-y-2 ">
             <PageHeaderCard
               title="Budget Categories"
               titleClass="text-lg font-normal"
               visibleDate={false}
             />
-            <div className="flex justify-between items-center px-2 w-full h-auto">
-              <div className="w-1/2 h-auto flex justify-start items-center gap-2 ">
+            <div className="flex flex-col lg:flex-row justify-between items-center px-2 w-full h-auto space-y-3">
+              <div className="w-full lg:w-1/2 h-auto flex flex-col sm:flex-row justify-start items-center gap-2 ">
                 <p className="space-x-1">
                   <span className="text-wrap text-sm font-normal text-(--foreground) tracking-wide">
                     Total budget:
@@ -141,7 +141,7 @@ export default function BudgetPlanning() {
                   <span className="text-sm font-semibold">$2800</span>
                 </p>
               </div>
-              <div className="w-1/2 h-auto flex flex-row justify-end items-center gap-3">
+              <div className="w-full lg:w-1/2 h-auto flex flex-col sm:flex-row  justify-end items-center gap-3">
                 <p className="text-sm font-normal tracking-wide whitespace-nowrap">
                   Manage Budget:
                 </p>

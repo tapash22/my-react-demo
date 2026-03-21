@@ -67,11 +67,11 @@ export function DemoCardExpansion({
           >
             {isCategoryData(data) && data.recentTransactions?.length ? (
               <>
-                <div className="px-5 py-3 flex justify-between items-center">
-                  <h3 className="text-sm font-bold text-(--forground)">
+                <div className="px-2 md:px-5 py-3 flex justify-between items-center">
+                  <h3 className="text-sm font-normal md:font-bold text-(--forground)">
                     Recent Transactions
                   </h3>
-                  <span className="text-[12px] font-medium bg-(--surface) text-(--forground) px-3 py-1 rounded-xl border border-(--input-border)">
+                  <span className="text-[12px] font-medium bg-(--surface) text-(--forground) px-1 py-1 rounded-xl border border-(--input-border)">
                     {data.recentTransactions.length} transactions
                   </span>
                 </div>
@@ -79,7 +79,7 @@ export function DemoCardExpansion({
                   {data.recentTransactions.map((tx, idx) => (
                     <div
                       key={`${tx.title}-${idx}`}
-                      className="flex justify-between items-center px-5 py-3  border-b border-(--input-border) last:border-b-0 hover:bg-(--hover) transition-colors"
+                      className="flex justify-between items-center px-2 md:px-5 py-3  border-b border-(--input-border) last:border-b-0 hover:bg-(--hover) transition-colors"
                     >
                       <div>
                         <p className="text-sm font-medium text-(--forground) tracking-wide">

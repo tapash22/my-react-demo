@@ -39,18 +39,18 @@ export function DemoInvertedProgressBar({
     <div className="w-full p-6 bg-(--surface) rounded-tl-xl rounded-tr-xl">
       {/* Top Bar: Visual feedback of the inverse value */}
       <div className="space-y-4">
-        <div className="flex justify-between items-center text-xs font-semibold text-(--foreground) opacity-70 w-full">
+        <div className="flex flex-col md:flex-row justify-between md:items-center text-xs font-semibold text-(--foreground) opacity-70 w-full space-y-3">
           <div className="flex justify-start items-center gap-3 w-1/2 h-auto ">
             <div className=" bg-(--surface)  text-(--forground) rounded-xl h-auto  ">
               <DemoAvatar size={10} icon={FaUser} />
             </div>
-            <h2 className="text-[16px] font-medium text-(--forground)">
+            <h2 className="text-[14px] font-medium text-(--forground) whitespace-nowrap">
               {title && title}
             </h2>
           </div>
-          <span className="text-sm font-semibold tracking-wide text-(--forground)">
+          <p className="text-sm font-semibold tracking-wide text-(--forground)">
             ${calculatedAmountA.toFixed(0)} / ${targetAmount}
-          </span>
+          </p>
         </div>
 
         <DemoLinearProgressBar
