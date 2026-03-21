@@ -86,10 +86,10 @@ export function DemoTable<T extends { id: number }>({
   const currentData = filteredData.slice(startIndex, startIndex + pageSize);
 
   return (
-    <div className="w-full rounded-xl bg-(--background) spacer-y-3 shadow-(--shadow-card) p-4">
+    <div className="w-full rounded-xl bg-(--background) spacer-y-3 shadow-(--shadow-card) p-2 md:p-4 ">
       {/* Search */}
-      <div className="w-full h-auto p-3 flex justify-between align-bottom gap-3">
-        <div className="w-1/3">
+      <div className="w-full h-auto p-1 md:p-3 flex flex-col sm:flex-col md:flex-row justify-between align-bottom gap-1 md:gap-3 ">
+        <div className="w-full md:w-1/3">
           <DemoDropdownSelect
             value={filterColumn}
             options={filterableColumns}
@@ -106,14 +106,13 @@ export function DemoTable<T extends { id: number }>({
             setPage(1);
           }}
           placeholder="Search..."
-          initialWidth="w-32"
-          expandedWidth="w-full sm:max-w-xs"
+          initialWidth="w-auto"
         />
       </div>
-      <div className="flex flex-col w-full p-3">
+      <div className="flex flex-col w-full p-1 md:p-3 overflow-x-scroll">
         {/* Table */}
-        <table className="w-full h-full  rounded-2xl  ">
-          <thead className="rounded-tl-2xl rounded-tr-2xl ring-2 ring-(--input-border) ">
+        <table className="w-full h-full  rounded-2xl   ">
+          <thead className="rounded-tl-2xl rounded-tr-2xl ring-2 ring-(--input-border)">
             <tr>
               {columns.map((key) => (
                 <th

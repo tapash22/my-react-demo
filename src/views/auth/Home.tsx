@@ -61,16 +61,16 @@ export default function Home() {
     >
       <Container ref={containerRef} direction="column" className="w-full">
         {/* dashboard top component view */}
-        <div className="grid grid-cols-4 gap-3 w-full h-auto p-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 w-full h-auto p-2">
           {status.map((statusData) => (
             <Democard key={statusData.title} statusData={statusData} />
           ))}
         </div>
         {/* dashboard top component view end */}
         {/* dashboard body component view */}
-        <div className="flex gap-5 items-start w-full h-auto p-2">
+        <div className="flex flex-col md:flex-row gap-5 items-start w-full h-auto p-2">
           {/* left side */}
-          <div className="w-1/4 h-auto flex flex-col space-y-5">
+          <div className="sm:w-full md:w-1/2  h-auto flex flex-col space-y-5">
             <div className="flex flex-col w-full h-auto ring-2 ring-(--input-border) rounded-xl ">
               <StatisticDoughnutChart />
             </div>
@@ -103,7 +103,7 @@ export default function Home() {
           {/* left side end */}
 
           {/* middle side */}
-          <div className="w-2/4 h-full flex flex-col space-y-5">
+          <div className="w-full sm:w-full md:w-1/2 lg:w-2/4 h-full flex flex-col space-y-5">
             {/* Line chart */}
             <div className="block w-auto rounded-xl p-4 h-96  ring-2 ring-(--input-border)">
               <MonthlyIncomeExpenseLineChart showFill={false} />
@@ -118,7 +118,7 @@ export default function Home() {
           {/* middle side end */}
 
           {/* right side */}
-          <div className="w-1/4 h-auto flex flex-col space-y-5">
+          <div className="sm:w-full md:hidden lg:w-1/4 h-auto flex flex-col space-y-5">
             <div className="w-full h-[26vh] ring-2 ring-(--input-border) rounded-xl overflow-hidden">
               <img
                 src={card}
@@ -155,8 +155,8 @@ export default function Home() {
         {/* dashboard body component view end*/}
 
         {/* dashboard bottom component view */}
-        <div className="flex gap-5 items-start w-full h-auto p-2">
-          <div className="w-1/4 h-auto flex flex-col space-y-5">
+        <div className="flex flex-col md:flex-row gap-5 items-start w-full h-auto p-2">
+          <div className="w-full sm:w-full md:w-1/2 lg:w-1/4 h-auto flex flex-col space-y-5">
             <div className="flex flex-col w-full h-auto p-2 ring-2 ring-(--input-border) rounded-xl space-y-1">
               <GoalTrackerCard
                 title="Budget Performance"
@@ -171,13 +171,13 @@ export default function Home() {
               />
             </div>
           </div>
-          <div className="w-2/4 h-auto  flex flex-col space-y-5">
+          <div className="w-full sm:w-full md:w-1/2 lg:w-2/4 h-auto  flex flex-col space-y-5">
             {/* table with pagination */}
 
             <Transaction />
             {/* table with pagination end */}
           </div>
-          <div className="w-1/4 h-auto  flex flex-col space-y-5">
+          <div className="w-full sm:w-full md:hidden lg:w-1/4 h-auto  flex flex-col space-y-5">
             <div className="flex flex-col w-full h-auto p-2 ring-2 ring-(--input-border) rounded-xl space-y-1">
               <GoalTrackerCard
                 title="Saving Plans"

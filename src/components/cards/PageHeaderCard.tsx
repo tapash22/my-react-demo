@@ -25,11 +25,11 @@ export function PageHeaderCard({
 }: PageHeaderCardProps) {
   return (
     <div
-      className={`flex w-full items-center justify-between gap-3 
+      className={`flex w-full md:items-center md:justify-between  gap-3 
       ${direction ? "flex-col items-start" : "flex-col md:flex-row"}
       ${subtitle || visibleDate ? "p-2" : "p-3"}`}
     >
-      <div className="flex flex-col items-start w-auto">
+      <div className="flex flex-col justify-start items-start w-auto">
         {title && (
           <span
             className={`${
