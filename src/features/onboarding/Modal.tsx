@@ -1,3 +1,4 @@
+import React from "react";
 import { DemoButton } from "../../components/button/DemoButton";
 
 export function Modal({
@@ -6,22 +7,25 @@ export function Modal({
   children,
   onClose,
   showBottom,
+  classTag = "",
 }: {
   title?: string;
   open: boolean;
   children: React.ReactNode;
   onClose: () => void;
   showBottom?: boolean;
+  classTag?: string;
 }) {
   if (!open) return null;
+
   return (
     <div
-      className="fixed inset-0 bg-black/50 flex justify-center items-center z-50"
-      onClick={onClose} // clicking outside the modal closes it
+      className={`fixed inset-0 bg-black/50 flex justify-center items-center z-50 ${classTag}`}
+      onClick={onClose}
     >
       <div
         className="bg-(--surface) p-0 border-(--card-shadow) w-[400px] text-center rounded-lg"
-        onClick={(e) => e.stopPropagation()} // prevent click inside modal from closing
+        onClick={(e) => e.stopPropagation()}
       >
         <div className="flex justify-between items-center p-4 border-b border-(--input-border)">
           {title && (

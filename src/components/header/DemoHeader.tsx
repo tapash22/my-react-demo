@@ -22,6 +22,7 @@ import { useOutsideClick } from "../hooks/useOutsideClick";
 import { DemoBadge } from "../Badge/DemoBadge";
 import { DemoButton } from "../button/DemoButton";
 import { Modal } from "../../features/onboarding/Modal";
+import { useIsMobile } from "../hooks/useIsMobile";
 
 interface DemoHeaderProps {
   onToggleSidebar: () => void;
@@ -36,6 +37,7 @@ export function DemoHeader({ onToggleSidebar }: DemoHeaderProps) {
   const [showNotification, setShowNotification] = useState<boolean>(false);
   const [showTabNotification, setShowTabNotification] =
     useState<boolean>(false);
+  const isMobile = useIsMobile();
 
   // Close profile card if click outside
   const profileRef = useOutsideClick(() => setShowProfileCard(false));
@@ -47,6 +49,16 @@ export function DemoHeader({ onToggleSidebar }: DemoHeaderProps) {
   };
   const handleNavLinkClick = () => {
     setShowProfileCard(false);
+  };
+
+  const handleNotificationClick = () => {
+    if (isMobile) {
+      setShowNotification(false); // close dropdown if open
+      setShowTabNotification(true); // open modal
+    } else {
+      setShowTabNotification(false); // close modal
+      setShowNotification((prev) => !prev); // toggle dropdown
+    }
   };
 
   return (
@@ -91,7 +103,7 @@ export function DemoHeader({ onToggleSidebar }: DemoHeaderProps) {
 
           <div ref={notificationRef} className="relative">
             <DemoBadge
-              onClick={() => setShowNotification(!showNotification)}
+              onClick={handleNotificationClick}
               badgeLengthCount={FUNDS_DATA.length}
               icon={FaRegBell}
             />
@@ -134,13 +146,15 @@ export function DemoHeader({ onToggleSidebar }: DemoHeaderProps) {
         </div>
 
         <Modal
-          onClose={() => setShowTabNotification(!showTabNotification)}
-          open={showTabNotification}
+          title="Notification"
+          open={showTabNotification && isMobile && FUNDS_DATA.length > 0}
+          onClose={() => setShowTabNotification(false)}
         >
           <div className="md:hidden flex flex-col gap-1 rounded-lg drop-shadow-xl space-y-1 text-(--foreground) overflow-auto w-full">
+            {showTabNotification}{" "}
             <DemoList
               items={FUNDS_DATA}
-              initialCount={3}
+              initialCount={FUNDS_DATA.length}
               haveBorder={true}
               children={(fund) => <DemoNotificationList fund={fund} />}
             />
