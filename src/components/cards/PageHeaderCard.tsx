@@ -25,15 +25,17 @@ export function PageHeaderCard({
 }: PageHeaderCardProps) {
   return (
     <div
-      className={`flex w-full md:items-center md:justify-between  gap-3 
+      className={`flex w-full md:items-center md:justify-between gap-3 
       ${direction ? "flex-col items-start" : "flex-col md:flex-row"}
       ${subtitle || visibleDate ? "p-2" : "p-3"}`}
     >
-      <div className="flex flex-col justify-start items-start w-auto">
+      <div className="flex flex-col justify-center sm:items-center md:items-start w-full sm:w-full md:w-full">
         {title && (
           <span
             className={`${
-              titleClass ? titleClass : "text-lg md:text-xl font-semibold"
+              titleClass
+                ? titleClass
+                : "text-lg md:text-xl font-semibold text-center"
             } text-(--foreground) tracking-wide`}
           >
             {title}
@@ -41,13 +43,13 @@ export function PageHeaderCard({
         )}
         {subtitle && (
           <span
-            className={` ${subtitleClass ? subtitleClass : "text-sm font-normal"} text-(--subtitle) tracking-normal`}
+            className={` ${subtitleClass ? subtitleClass : "text-sm font-normal text-center"} text-(--subtitle) tracking-normal `}
           >
             {subtitle}
           </span>
         )}
         {visibleDate && (
-          <span className="text-xs md:text-sm text-(--subtitle)">
+          <span className="text-xs md:text-sm text-(--subtitle) text-center">
             {formatDate(data)}
           </span>
         )}
@@ -55,9 +57,9 @@ export function PageHeaderCard({
       {children && (
         <div
           className={`
-            flex flex-wrap gap-3
-            w-full md:w-auto
-            justify-start md:justify-end
+            flex flex-col h-auto sm:flex-wrap  gap-3
+            w-full sm:w-full md:w-full lg:w-auto
+            justify-center sm:justify-center md:justify-end items-center sm:items-center md:items-end
         `}
         >
           {children}

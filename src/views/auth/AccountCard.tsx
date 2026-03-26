@@ -49,8 +49,8 @@ export default function Accountcard() {
     >
       <Container ref={containerRef}>
         {/* left side */}
-        <div className="w-full mt-1 lg:w-1/2 xl:w-2/3 h-auto p-2">
-          <div className="flex flex-col w-full h-auto bg-(--background) ring-2 ring-(--input-border) rounded-xl p-3 space-y-3">
+        <div className="w-full lg:w-1/2 xl:w-2/3 h-auto p-2">
+          <div className="w-full h-auto flex flex-col bg-(--background) ring-2 ring-(--input-border) rounded-xl p-3 space-y-3">
             {/* left side block header */}
             <PageHeaderCard
               title="Linked Accounts"
@@ -104,7 +104,7 @@ export default function Accountcard() {
 
         {/* right side */}
         <div className="w-full lg:w-1/2 xl:w-1/3 p-2">
-          <div className="flex flex-col w-full h-auto bg-(--background) ring-2 ring-(--input-border) rounded-xl p-3 space-y-3">
+          <div className="w-full h-auto flex flex-col bg-(--background) ring-2 ring-(--input-border) rounded-xl p-3 space-y-3">
             {/* right side block header */}
             <PageHeaderCard
               title="Account Summary"

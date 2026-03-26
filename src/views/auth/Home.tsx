@@ -40,17 +40,17 @@ export default function Home() {
     <PageLayout
       header={
         <PageHeaderCard title="Dashboard">
-          <div className="flex justify-end items-center gap-3">
+          <div className="flex flex-col sm:flex-row sm:items-center md:items-center gap-3 w-full sm:w-auto md:w-auto">
             <DemoButton
               title="Export Data"
-              classTag="rounded-lg text-sm font-medium tracking-wide  px-4 py-2"
+              classTag="rounded-lg text-sm font-medium tracking-wide justify-center  px-4 py-2"
               buttonColor="bg-(--surface)"
               textColor="--foreground"
               widthSize="auto"
             />
             <DemoButton
               title="View Reports"
-              classTag="rounded-lg text-sm font-medium tracking-wide inline-flex px-4 py-2 ring-1 ring-(--surface)"
+              classTag="rounded-lg text-sm font-medium tracking-wide inline-flex justify-center px-4 py-2 ring-1 ring-(--surface)"
               buttonColor="bg-(--shadow)"
               textColor="--muted"
               widthSize="auto"
