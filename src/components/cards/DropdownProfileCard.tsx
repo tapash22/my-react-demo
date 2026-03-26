@@ -36,7 +36,7 @@ export function DropdownProfileCard({
   return (
     <div
       className={`
-        absolute right-0 top-full mt-2
+        absolute right-0  mt-2
         w-40 sm:w-56 md:w-72
         max-w-[18rem] md:max-w-[24rem]
         bg-(--surface) shadow-(--shadow) rounded-lg

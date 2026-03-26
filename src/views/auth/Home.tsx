@@ -61,7 +61,7 @@ export default function Home() {
     >
       <Container ref={containerRef} direction="column" className="w-full">
         {/* dashboard top component view */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 w-full h-auto p-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-3 w-full h-auto p-2">
           {status.map((statusData) => (
             <Democard key={statusData.title} statusData={statusData} />
           ))}
@@ -70,11 +70,11 @@ export default function Home() {
         {/* dashboard body component view */}
         <div className="flex flex-col md:flex-row gap-5 items-start w-full h-auto p-2">
           {/* left side */}
-          <div className="sm:w-full md:w-1/2  h-auto flex flex-col space-y-5">
+          <div className="sm:w-full lg:w-1/2 xl:w-1/4  h-auto flex flex-col space-y-5">
             <div className="flex flex-col w-full h-auto ring-2 ring-(--input-border) rounded-xl ">
               <StatisticDoughnutChart />
             </div>
-            <div className="w-full grid bg-(--surface) rounded-lg  ">
+            <div className="w-full grid justify-center bg-(--surface) rounded-lg  ">
               {QUICK_ROUTING_PAGES.length && (
                 <DemoList
                   items={QUICK_ROUTING_PAGES}
@@ -87,7 +87,7 @@ export default function Home() {
                       className="h-full"
                     >
                       <div
-                        className={`flex flex-col justify-center items-center transform scale-80 transition-all duration-700 hover:scale-110  hover:bg-(--background) hover:text-(--muted) p-3 h-full space-y-1 `}
+                        className={`flex flex-col justify-center w-full items-center transform scale-90 transition-all duration-700 hover:scale-100  hover:bg-(--background) hover:text-(--muted) px-4 py-2 h-full `}
                       >
                         <DemoIcon size={24} icon={page.icon} iconClass="" />
                         <p className="tracking-wide text-sm text-center font-normal  scale-95 hover:scale-100">
@@ -103,7 +103,7 @@ export default function Home() {
           {/* left side end */}
 
           {/* middle side */}
-          <div className="w-full sm:w-full md:w-1/2 lg:w-2/4 h-full flex flex-col space-y-5">
+          <div className="w-full sm:w-full lg:w-1/2 xl:w-2/4 h-full flex flex-col space-y-5">
             {/* Line chart */}
             <div className="block w-auto rounded-xl p-4 h-96  ring-2 ring-(--input-border)">
               <MonthlyIncomeExpenseLineChart showFill={false} />
@@ -118,7 +118,7 @@ export default function Home() {
           {/* middle side end */}
 
           {/* right side */}
-          <div className="sm:w-full md:hidden lg:w-1/4 h-auto flex flex-col space-y-5">
+          <div className="sm:w-full lg:hidden xl:w-1/4 h-auto flex flex-col space-y-5">
             <div className="w-full h-[26vh] ring-2 ring-(--input-border) rounded-xl overflow-hidden">
               <img
                 src={card}
@@ -156,7 +156,7 @@ export default function Home() {
 
         {/* dashboard bottom component view */}
         <div className="flex flex-col md:flex-row gap-5 items-start w-full h-auto p-2">
-          <div className="w-full sm:w-full md:w-1/2 lg:w-1/4 h-auto flex flex-col space-y-5">
+          <div className="w-full sm:w-full s lg:w-1/2 xl:w-1/4 h-auto flex flex-col space-y-5">
             <div className="flex flex-col w-full h-auto p-2 ring-2 ring-(--input-border) rounded-xl space-y-1">
               <GoalTrackerCard
                 title="Budget Performance"
@@ -171,13 +171,13 @@ export default function Home() {
               />
             </div>
           </div>
-          <div className="w-full sm:w-full md:w-1/2 lg:w-2/4 h-auto  flex flex-col space-y-5">
+          <div className="w-full sm:w-full  lg:w-1/2 xl:w-2/4 h-auto  flex flex-col space-y-5">
             {/* table with pagination */}
 
             <Transaction />
             {/* table with pagination end */}
           </div>
-          <div className="w-full sm:w-full md:hidden lg:w-1/4 h-auto  flex flex-col space-y-5">
+          <div className="w-full sm:w-full  lg:hidden xl:w-1/4 h-auto  flex flex-col space-y-5">
             <div className="flex flex-col w-full h-auto p-2 ring-2 ring-(--input-border) rounded-xl space-y-1">
               <GoalTrackerCard
                 title="Saving Plans"

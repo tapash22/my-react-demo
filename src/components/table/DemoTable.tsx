@@ -88,7 +88,7 @@ export function DemoTable<T extends { id: number }>({
   return (
     <div className="w-full rounded-xl bg-(--background) spacer-y-3 shadow-(--shadow-card) p-2 md:p-4 ">
       {/* Search */}
-      <div className="w-full h-auto p-1 md:p-3 flex flex-col sm:flex-col md:flex-row justify-between align-bottom gap-1 md:gap-3 ">
+      <div className="w-full h-auto p-1 md:p-3 flex flex-col sm:flex-col lg:flex-col xl:flex-row justify-between align-bottom gap-1 md:gap-3 ">
         <div className="w-full md:w-1/3">
           <DemoDropdownSelect
             value={filterColumn}
@@ -109,7 +109,7 @@ export function DemoTable<T extends { id: number }>({
           initialWidth="w-auto"
         />
       </div>
-      <div className="flex flex-col w-full p-1 md:p-3 overflow-x-scroll">
+      <div className="flex flex-col w-full p-1 md:p-3 overflow-x-auto">
         {/* Table */}
         <table className="w-full h-full  rounded-2xl   ">
           <thead className="rounded-tl-2xl rounded-tr-2xl ring-2 ring-(--input-border)">

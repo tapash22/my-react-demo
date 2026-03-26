@@ -21,9 +21,9 @@ export function DemoList<T>({
   const visibleItems = showAll ? items : items?.slice(0, initialCount);
 
   return (
-    <motion.div layout className="rounded-sm px-0 py-0 w-full h-full">
+    <motion.div layout className="rounded-sm  w-full h-full">
       <ul
-        className={`${direction === true ? "flex flex-col" : "flex gap-0 rounded-xl h-full bg-(--surface) "}`}
+        className={`${direction === true ? "flex flex-col" : "flex flex-row gap-0 rounded-xl w-full h-full bg-(--surface) "}`}
       >
         <AnimatePresence>
           {visibleItems &&
@@ -49,7 +49,7 @@ export function DemoList<T>({
         <motion.div layout className="p-4 flex justify-center w-full">
           <DemoButton
             onClick={() => setShowAll(!showAll)}
-            classTag="rounded-lg text-sm font-medium tracking-wide inline-flex px-4 py-2 ring-1 ring-(--surface)"
+            classTag="rounded-lg text-sm font-medium tracking-wide inline-flex px-3 py-2 ring-1 ring-(--surface)"
             buttonColor="bg-(--shadow)"
           >
             <AnimatePresence mode="wait">

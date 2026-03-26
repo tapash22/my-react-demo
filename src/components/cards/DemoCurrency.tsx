@@ -21,15 +21,15 @@ export function DemoCurrency({
   }).format(amount);
 
   return (
-    <div className="w-auto h-auto py-2 px-1 flex justify-evenly items-center ">
+    <div className="w-auto h-auto py-0 px-0 lg:py-2 lg:px-1 flex justify-start md:justify-start lg:justify-evenly items-center ">
       {currencyLabel && (
-        <p className="text-sm font-normal tracking-wider text-(--foreground)">
+        <p className="text-sm font-light sm:font-light md:font-light lg:font-normal tracking-wider text-(--foreground)">
           {currencyLabel}:
         </p>
       )}
-      <div className="flex items-center">
+      <div className="flex justify-start md:justify-start lg:justify-evenly items-center ">
         <DemoIcon icon={Icon} size={16} />
-        <span className="text-sm font-bold tracking-wide text-(--foreground)">
+        <span className="text-sm font-light sm:font-light md:font-light lg:font-normal tracking-wide text-(--foreground)">
           {formatted}
         </span>
       </div>

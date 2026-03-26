@@ -63,7 +63,7 @@ export default function Reports() {
     //total value income / expense
     centerTotal: total,
     //using for size
-    cutout: "60%",
+    cutout: "70%",
     animation: {
       animateRotate: true,
       animateScale: true, // optional smooth scale
@@ -117,7 +117,7 @@ export default function Reports() {
       <Container ref={containerRef}>
         {/* left side */}
 
-        <div className="w-1/3 h-auto space-y-5 p-2">
+        <div className="w-full lg:w-1/2 xl:w-1/3 h-auto space-y-5 p-2">
           {/* Expenses section */}
           <div className="flex flex-col w-full h-auto bg-(--background) ring-2 ring-(--input-border) rounded-xl p-3 space-y-3">
             <PageHeaderCard
@@ -199,7 +199,7 @@ export default function Reports() {
         {/* left side end */}
 
         {/* right side */}
-        <div className="w-2/3 h-auto p-2 block space-y-5">
+        <div className="w-full lg:w-1/2 xl:w-2/3 h-auto p-2 block space-y-5">
           {/* line chart */}
           <div className="block w-full rounded-xl p-4 h-96  ring-2 ring-(--input-border)">
             <MonthlyIncomeExpenseLineChart />
@@ -207,7 +207,6 @@ export default function Reports() {
           {/* line chart end*/}
 
           {/* bar chart */}
-
           <div className="block w-full h-80 ring-2 ring-(--input-border) rounded-xl p-2 ">
             <MonthlyIncomeExpenseLabelChart />
           </div>

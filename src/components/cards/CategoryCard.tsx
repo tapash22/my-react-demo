@@ -22,7 +22,7 @@ export function CategoryCard() {
           targetAmount={300}
           height="h-1"
           childrenBottom={
-            <div className="w-full flex justify-between items-center ">
+            <div className="w-full flex flex-col md:flex-col lg:flex-row justify-start lg:justify-between lg:items-center mt-1 lg:mt-0 ">
               <DemoCurrency
                 amount={200}
                 currencyLabel="Projected"
@@ -38,7 +38,7 @@ export function CategoryCard() {
             </div>
           }
         >
-          <div className="w-full flex justify-between">
+          <div className="w-full flex flex-col md:flex-col lg:flex-row justify-start lg:justify-between mb-1 lg:mb-0">
             <DemoCurrency amount={200} currencyLabel="Spent" currency="TK" />
             <DemoCurrency amount={300} currencyLabel="Budget" currency="TK" />
           </div>
