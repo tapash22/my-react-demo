@@ -11,5 +11,5 @@ interface ThemeContextType {
 
 //create context declear
 export const ThemeContext = createContext<ThemeContextType | undefined>(
-  undefined
+  undefined,
 );

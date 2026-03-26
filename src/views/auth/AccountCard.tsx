@@ -4,7 +4,6 @@ import { PageHeaderCard } from "../../components/cards/PageHeaderCard";
 import { PageLayout } from "../../components/layout/PageLayout";
 import { useRef, useState } from "react";
 import { AccountDetailsCard } from "../../components/cards/AccountDetailsCard";
-// import { CategoryCard } from "../../components/cards/CategoryCard";
 import { balanceData, bankAccounts } from "../../store/account-data";
 import { DemoAvatar } from "../../components/avatar/DemoAvatar";
 import { LuCable } from "react-icons/lu";
@@ -104,7 +103,6 @@ export default function Accountcard() {
         {/* left side end */}
 
         {/* right side */}
-        {/* <CategoryCard /> */}
         <div className="w-full lg:w-1/2 xl:w-1/3 p-2">
           <div className="flex flex-col w-full h-auto bg-(--background) ring-2 ring-(--input-border) rounded-xl p-3 space-y-3">
             {/* right side block header */}

@@ -116,9 +116,8 @@ export default function Reports() {
     >
       <Container ref={containerRef}>
         {/* left side */}
-
         <div className="w-full lg:w-1/2 xl:w-1/3 h-auto space-y-5 p-2">
-          {/* Expenses section */}
+          {/* Expenses section with donught chart */}
           <div className="flex flex-col w-full h-auto bg-(--background) ring-2 ring-(--input-border) rounded-xl p-3 space-y-3">
             <PageHeaderCard
               title="Expenses by Category"
@@ -137,11 +136,11 @@ export default function Reports() {
             </div>
             <FinanceList dataList={categoryExpenses} direction={false} />
           </div>
-          {/* Expenses section end */}
+          {/* Expenses section with donught chart end */}
 
           {/* Budget Analysis */}
-
-          <div className="block w-full h-auto ring-2 ring-(--input-border) rounded-xl p-3 space-y-3  ">
+          <div className="block w-full h-auto ring-2 ring-(--input-border) rounded-xl p-3 space-y-3 ">
+            {/* Budget Analysis header */}
             <PageHeaderCard
               title="Budget Analysis"
               titleClass="text-lg font-normal"
@@ -149,12 +148,14 @@ export default function Reports() {
               subtitleClass="text-sm font-normal"
               visibleDate={false}
             />
+            {/* Budget Analysis header end */}
+            {/* Budget Analysis progressbar list with percentage*/}
             <div className="w-full h-auto px-2 py-4 space-y-2 flex flex-col justify-center items-center bg-(--surface) opacity-80 rounded-2xl">
               <DemoDataCard
                 title="Credit Utilization"
                 chipLabel="95%"
                 chipLabelSize="tiny"
-                chipclassName="px-2"
+                chipclassName="p-1 rounded-sm"
               />
 
               <DemoLinearProgressBar
@@ -170,14 +171,18 @@ export default function Reports() {
                 targetAmount={300}
               />
             </div>
+            {/* Budget Analysis progressbar list with percentage end*/}
 
+            {/* Budget Analysis progressbar list with details*/}
             <div className="scrollbar-thin h-[30vh] space-y-3 p-4 ring-2 ring-(--input-border) shadow rounded-lg">
               <CategoryCard />
               <CategoryCard />
               <CategoryCard />
               <CategoryCard />
             </div>
+            {/* Budget Analysis progressbar list with details end*/}
 
+            {/* Budget Analysis progressbar list with advice*/}
             <div className="w-full h-auto p-3 flex flex-col justify-center items-center bg-(--surface) opacity-80 rounded-2xl">
               <DemoPageSectionCard title="Recommendations" haveBorder={false} />
               <ul
@@ -193,6 +198,7 @@ export default function Reports() {
                   ))}
               </ul>
             </div>
+            {/* Budget Analysis progressbar list with advice end*/}
           </div>
           {/* Budget Analysis end */}
         </div>
