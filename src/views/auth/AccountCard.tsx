@@ -49,97 +49,123 @@ export default function Accountcard() {
       }
     >
       <Container ref={containerRef}>
-        <div className="w-full mt-1 lg:w-2/3 h-auto p-3 space-y-2 ring-1 ring-(--input-border) rounded-2xl flex flex-col">
-          <PageHeaderCard
-            title="Linked Accounts"
-            titleClass="text-lg font-normal"
-            subtitle="Manage your connected bank accounts and credit cards"
-            subtitleClass="text-sm font-normal"
-            visibleDate={false}
-          >
-            <div className="flex justify-end items-center gap-5">
-              <DemoButton
-                title={show ? "Hide Balances" : "Show Balances"}
-                onClick={() => setShow(!show)}
+        {/* left side */}
+        <div className="w-full mt-1 lg:w-1/2 xl:w-2/3 h-auto p-2">
+          <div className="flex flex-col w-full h-auto bg-(--background) ring-2 ring-(--input-border) rounded-xl p-3 space-y-3">
+            {/* left side block header */}
+            <PageHeaderCard
+              title="Linked Accounts"
+              titleClass="text-lg font-normal"
+              subtitle="Manage your connected bank accounts and credit cards"
+              subtitleClass="text-sm font-normal"
+              visibleDate={false}
+            >
+              <div className="flex justify-end items-center gap-5">
+                <DemoButton
+                  title={show ? "Hide Balances" : "Show Balances"}
+                  onClick={() => setShow(!show)}
+                />
+              </div>
+            </PageHeaderCard>
+            {/* left side block header end */}
+
+            {/* list of card */}
+            <div className="flex flex-col space-y-3 p-2">
+              {bankAccounts.length > 0 &&
+                bankAccounts.map((account) => {
+                  return (
+                    <AccountDetailsCard
+                      key={account.name}
+                      accountData={account}
+                      showBalance={show}
+                    />
+                  );
+                })}
+            </div>
+            {/* list of card end */}
+
+            {/* bottom card with button */}
+            <DemoFinancialMetricCard
+              title="Connect More Accounts"
+              description="Add more bank accounts or credit cards to get a complete financial picture"
+              prependChildren={<DemoAvatar icon={LuCable} size={16} />}
+              Children={
+                <DemoButton
+                  title="Add Another Account"
+                  icon={FaPlus}
+                  iconSize={12}
+                  onClick={createAccount}
+                />
+              }
+            />
+            {/* left side bottom card with button end */}
+          </div>
+        </div>
+        {/* left side end */}
+
+        {/* right side */}
+        {/* <CategoryCard /> */}
+        <div className="w-full lg:w-1/2 xl:w-1/3 p-2">
+          <div className="flex flex-col w-full h-auto bg-(--background) ring-2 ring-(--input-border) rounded-xl p-3 space-y-3">
+            {/* right side block header */}
+            <PageHeaderCard
+              title="Account Summary"
+              titleClass="text-lg font-normal -ml-1"
+              visibleDate={false}
+            ></PageHeaderCard>
+            {/* right side block header end */}
+
+            {/* right side comparison header */}
+            <DemoMonthlyComparisonCard
+              title="Monthly Comparison"
+              items={balanceData}
+              differenceLabel="Monthly Change"
+            />
+            {/* right side comparison header end */}
+
+            {/* right side comparison total summery*/}
+            <div className="px-2">
+              <DemoLinearProgressBar
+                showLabel={String(difference)}
+                currentAmount={200}
+                targetAmount={250}
+                height="h-1"
               />
             </div>
-          </PageHeaderCard>
-          <div className="flex flex-col space-y-3 p-2">
-            {bankAccounts.length > 0 &&
-              bankAccounts.map((account) => {
-                return (
-                  <AccountDetailsCard
-                    key={account.name}
-                    accountData={account}
-                    showBalance={show}
-                  />
-                );
-              })}
-          </div>
+            {/* right side comparison total summery end*/}
 
-          <DemoFinancialMetricCard
-            title="Connect More Accounts"
-            description="Add more bank accounts or credit cards to get a complete financial picture"
-            prependChildren={<DemoAvatar icon={LuCable} size={16} />}
-            Children={
-              <DemoButton
-                title="Add Another Account"
-                icon={FaPlus}
-                iconSize={12}
-                onClick={createAccount}
+            {/* right side cost header */}
+            <PageHeaderCard
+              title="Account Distribution"
+              titleClass="text-sm font-medium "
+              visibleDate={false}
+            />
+            {/* right side cost header end */}
+
+            {/* right side body costing list */}
+            <div className="px-2 space-y-1">
+              <DemoLinearProgressBar
+                showLabel="Checking"
+                currentAmount={200}
+                targetAmount={250}
+                height="h-1"
               />
-            }
-          />
-        </div>
-        {/* <CategoryCard /> */}
+              <DemoLinearProgressBar
+                showLabel="Savings"
+                currentAmount={200}
+                targetAmount={250}
+                height="h-1"
+              />
+              <DemoLinearProgressBar
+                showLabel="Credit"
+                currentAmount={200}
+                targetAmount={250}
+                height="h-1"
+              />
+            </div>
+            {/* right side body costing list end */}
 
-        <div className="w-full lg:w-1/3 h-auto p-3 space-y-2 ring-1 ring-(--input-border) rounded-2xl flex flex-col ">
-          <PageHeaderCard
-            title="Account Summary"
-            titleClass="text-lg font-normal -ml-1"
-            visibleDate={false}
-          ></PageHeaderCard>
-
-          <DemoMonthlyComparisonCard
-            title="Monthly Comparison"
-            items={balanceData}
-            differenceLabel="Monthly Change"
-          />
-
-          <div className="px-2">
-            <DemoLinearProgressBar
-              showLabel={String(difference)}
-              currentAmount={200}
-              targetAmount={250}
-              height="h-1"
-            />
-          </div>
-          <PageHeaderCard
-            title="Account Distribution"
-            titleClass="text-sm font-medium "
-            visibleDate={false}
-          />
-          <div className="px-2 space-y-1">
-            <DemoLinearProgressBar
-              showLabel="Checking"
-              currentAmount={200}
-              targetAmount={250}
-              height="h-1"
-            />
-            <DemoLinearProgressBar
-              showLabel="Savings"
-              currentAmount={200}
-              targetAmount={250}
-              height="h-1"
-            />
-            <DemoLinearProgressBar
-              showLabel="Credit"
-              currentAmount={200}
-              targetAmount={250}
-              height="h-1"
-            />
-          </div>
-          <div className="p-2">
+            {/* right side bottom card with button  */}
             <DemoFinancialMetricCard
               title="Credit Utilization"
               value={12.5}
@@ -152,8 +178,10 @@ export default function Accountcard() {
                 />
               }
             />
+            {/* right side bottom card with button end */}
           </div>
         </div>
+        {/* right side end */}
       </Container>
     </PageLayout>
   );

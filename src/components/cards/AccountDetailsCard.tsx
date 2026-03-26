@@ -29,7 +29,7 @@ export function AccountDetailsCard({
 
   return (
     <div className="flex flex-col md:flex-row justify-between items-center text-xs font-semibold text-(--foreground) opacity-80 w-full ring-2 ring-(--input-border) p-2 rounded-xl hover:ring-2 hover:ring-(--surface) cursor-pointer">
-      <div className="flex justify-start items-center gap-3 w-full sm:w-full md:w-2/4 px-1 h-auto ">
+      <div className="w-full sm:w-full md:w-2/4 h-auto flex justify-start items-center gap-3 px-1">
         <DemoAvatar size={12} icon={FaUser} />
         <div className="flex flex-col justify-start items-center space-y-1 w-full">
           <h2 className="text-lg font-semibold text-(--forground) flex justify-between sm:justify-between md:justify-start gap-3 py-2 w-full ">
@@ -49,7 +49,7 @@ export function AccountDetailsCard({
           </p>
         </div>
       </div>
-      <div className="flex flex-row-reverse md:flex-row justify-between sm:justify-between md:justify-between  items-center gap-5 p-2  w-full sm:w-full md:w-1/4">
+      <div className="w-full sm:w-full md:w-full lg:w-full xl:w-full flex flex-row-reverse md:flex-row justify-end sm:justify-end md:justify-end items-center gap-5 p-2">
         <span className="text-sm font-bold tracking-wider transition-all duration-200 text-(--forground)">
           {showBalance ? (
             <DemoCurrency amount={accountData.amount} currency="TK" />
@@ -63,7 +63,7 @@ export function AccountDetailsCard({
       </div>
       <div
         ref={profileRef}
-        className="relative w-full md:w-1/4 p-2 h-full flex justify-end items-start "
+        className="relative w-full md:w-auto p-2 h-full flex justify-end items-start "
       >
         <DemoIcon
           icon={HiDotsHorizontal}
