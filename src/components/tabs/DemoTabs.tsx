@@ -78,7 +78,7 @@ export function DemoTabs({
       >
         {/* Sliding background */}
         <div
-          className={`absolute top-0 left-0 bottom-0 z-0 ${activeBgClass}`}
+          className={`absolute top-0 left-0 bottom-0 z-0 ${activeBgClass} ${activeBgClass ? "text-(--foreground)" : "text-(--muted)"}`}
           style={{
             width: `${activeWidth}px`,
             transform: `translateX(${translateX}px)`,

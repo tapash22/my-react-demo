@@ -41,14 +41,14 @@ export function DemoDropdownSelect<T extends string>({
 
   return (
     <div
-      className={`${title ? "flex flex-col sm:flex-col md:flex-row justify-between items-center" : "flex flex-row justify-center sm:justify-center md:justify-center items-center "} w-full h-auto`}
+      className={`${title ? "flex flex-col sm:flex-col md:flex-row justify-between items-center space-y-2" : "flex flex-row justify-center sm:justify-center md:justify-center items-center "} w-full h-auto`}
     >
       {title && (
         <span
           className={`${
             titleClass
               ? titleClass
-              : "text-sm font-normal md:font-medium w-full text-center sm:text-center md:text-start"
+              : "text-sm font-medium md:font-medium w-full text-center sm:text-center md:text-start"
           } text-(--foreground) tracking-wide`}
         >
           {title}

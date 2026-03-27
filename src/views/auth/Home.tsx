@@ -69,7 +69,7 @@ export default function Home() {
         {/* dashboard top component view end */}
 
         {/* dashboard body component view */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 w-full h-full p-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 w-full p-2">
           {/* 🔹 LEFT */}
           <div className="xl:col-span-1 flex flex-col gap-3 min-w-0">
             <div className="w-full ring-2 ring-(--input-border) rounded-xl">

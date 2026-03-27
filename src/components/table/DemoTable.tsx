@@ -94,9 +94,9 @@ export function DemoTable<T extends { id: number }>({
   return (
     <div className="w-full h-full rounded-xl spacer-y-3 shadow-(--shadow-card) p-2">
       {/* Search */}
-      <div className="w-full h-auto p-1 md:p-3 flex flex-col lg:flex-row justify-between items-center gap-1 md:gap-3">
+      <div className="w-full h-auto p-1 md:p-3 flex flex-col lg:flex-row justify-between items-center gap-1 md:gap-3 space-y-2">
         {/* LEFT */}
-        <div className="w-full sm:w-full md:w-full lg:w-1/3 flex justify-center  ">
+        <div className="w-full sm:w-full md:w-full lg:w-1/3 flex justify-center">
           <DemoDropdownSelect
             value={filterColumn}
             options={filterableColumns}
@@ -107,9 +107,9 @@ export function DemoTable<T extends { id: number }>({
             }}
           />
         </div>
+        {/* LEFT end */}
 
         {/* RIGHT */}
-        {/* <div className="w-full md:w-2/3 flex justify-center lg:justify-end items-center"> */}
         <div className="w-full flex justify-center md:justify-center lg:justify-end">
           <DemoExpandableSearch
             value={search}
@@ -120,8 +120,11 @@ export function DemoTable<T extends { id: number }>({
             resetKey={searchResetKey}
           />
         </div>
+        {/* RIGHT end*/}
       </div>
-      <div className="flex flex-col w-full h-auto p-1 md:p-3 space-y-2 overflow-x-scroll">
+
+      {/* table with data */}
+      <div className="flex flex-col w-full h-auto p-2 md:p-3 space-y-2 overflow-x-auto">
         {/* Table */}
         <table className="w-full h-full rounded-2xl">
           <thead className="rounded-tl-2xl rounded-tr-2xl ring-2 ring-(--input-border)">
@@ -191,8 +194,12 @@ export function DemoTable<T extends { id: number }>({
           </tbody>
         </table>
       </div>
+      {/* table with data end*/}
+
       {/* Pagination */}
       <Pagination page={page} totalPages={totalPages} onPageChange={setPage} />
+
+      {/* Pagination end */}
     </div>
   );
 }
