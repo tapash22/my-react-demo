@@ -35,7 +35,7 @@ export const DemoChip = ({
 }: DemoChipProps) => {
   const fontSizeClass = getFontSize(labelSize);
   const baseClasses =
-    "flex justify-between items-center ring-1 ring-(--input-border) gap-1.5 p-1 rounded-lg text-xs font-normal transition-all";
+    "flex justify-between items-center ring-1 ring-(--input-border) gap-2 p-1 rounded-lg text-xs font-normal transition-all";
   const variantClasses =
     variant === "outlined" ? "bg-transparent " : colorStyles[color];
 

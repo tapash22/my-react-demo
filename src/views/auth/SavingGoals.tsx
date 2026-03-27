@@ -102,7 +102,9 @@ export default function SavingGoals() {
             {/* Savings Rate Card end */}
           </div>
         </div>
+        {/* left side card end*/}
 
+        {/* right side */}
         <div className="w-full lg:w-2/3  h-auto p-2 flex flex-col space-y-5">
           <div className="flex flex-col w-full h-auto bg-(--background) ring-2 ring-(--input-border) rounded-xl p-3 space-y-3">
             <div className="flex flex-col md:flex-row justify-between items-center py-2 ">
@@ -137,6 +139,7 @@ export default function SavingGoals() {
             {/* Scrollable content end */}
           </div>
         </div>
+        {/* right side end*/}
       </Container>
     </PageLayout>
   );

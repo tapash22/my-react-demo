@@ -42,9 +42,9 @@ export function DemoMonthlyComparisonCard({
   const sign = difference >= 0 ? "+" : "-";
 
   return (
-    <div className="w-full p-1 flex flex-col space-y-2">
+    <div className="w-full flex flex-col space-y-2">
       {title && (
-        <p className="text-sm font-medium text-(--foreground) tracking-wide text-left py-1 px-2">
+        <p className="text-sm font-semibold text-(--foreground) tracking-wide text-left py-1 px-2">
           {title}
         </p>
       )}

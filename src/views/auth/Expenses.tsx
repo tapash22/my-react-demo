@@ -111,9 +111,9 @@ export default function Expenses() {
           <div className="flex flex-col space-y-2 ring-2 ring-(--input-border) rounded-xl p-3">
             <PageHeaderCard
               title="Upcoming Payments"
-              titleClass="text-lg font-normal"
               subtitle="Bills due in the next 2 weeks"
-              subtitleClass="text-sm font-normal"
+              titleClass="text-lg font-normal text-center sm:text-center md:text-start w-full"
+              subtitleClass="text-sm font-normal text-center sm:text-center md:text-start w-full"
               visibleDate={false}
             />
             <BillCard />

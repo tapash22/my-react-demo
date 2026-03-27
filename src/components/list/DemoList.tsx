@@ -21,7 +21,7 @@ export function DemoList<T>({
   const visibleItems = showAll ? items : items?.slice(0, initialCount);
 
   return (
-    <motion.div layout className="rounded-sm  w-full h-full">
+    <motion.div layout className="w-full h-full rounded-sm ">
       <ul
         className={`${direction === true ? "flex flex-col" : "flex flex-row gap-0 rounded-xl w-full h-full bg-(--surface) "}`}
       >

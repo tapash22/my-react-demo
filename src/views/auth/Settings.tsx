@@ -69,7 +69,7 @@ export default function Settings() {
       }
     >
       <Container ref={containerRef} direction="column">
-        <div className="sticky top-0 z-50 flex justify-center sm:justify-center md:justify-center lg:justify-start bg-(--background) p-2 backdrop-blur-lg">
+        <div className="sticky top-0 z-50 flex justify-center sm:justify-center md:justify-start lg:justify-start bg-(--background) p-2 backdrop-blur-lg">
           <DemoTabs
             tabs={settingTabs}
             activeIndex={activeIndex}

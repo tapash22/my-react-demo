@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { cssVar } from "../../utils/cssVar";
+import { DemoButton } from "../button/DemoButton";
+import { color } from "framer-motion";
 
 interface DemoBooleanToggleProps {
   value: boolean;
@@ -31,37 +33,30 @@ export function DemoBooleanToggle({
   }, [value, delay]);
 
   return (
-    <div className="p-3 ">
-      <div className="relative flex w-10 rounded-full ring-2 ring-(--input-border) overflow-hidden">
-        {/* Sliding Background */}
+    <div className="flex items-center justify-center w-full">
+      <DemoButton
+        onClick={() => onChange(!value)}
+        // The title updates based on state
+        title={value ? trueLabel : falseLabel}
+        // Removing default rings and adding a smooth hover scale
+        classTag="flex items-center gap-3 bg-transparent ring-0 ring-transparent border-0 hover:scale-105 transition-transform"
+      >
+        {/* The Toggle Track */}
         <div
-          className="absolute top-0 bottom-0 left-0 rounded-full"
+          className="relative w-12 h-7 rounded-full transition-colors duration-300 p-0.5 shadow-inner"
           style={{
-            width: "50%",
-            transform: `translateX(${translateX}%)`,
-            backgroundColor: activeBgColor,
-            transition: `transform ${duration}ms ease`,
+            // If active, use the prop color; otherwise, use a muted gray
+            backgroundColor: value ? activeBgColor : "var(--input-border)",
           }}
-        />
-
-        {/* False Button */}
-        <button
-          onClick={() => onChange(false)}
-          className="flex-1 text-center font-semibold h-5 z-10"
-          style={{
-            color: !value ? cssVar("--foreground") : cssVar("--muted"),
-          }}
-        ></button>
-
-        {/* True Button */}
-        <button
-          onClick={() => onChange(true)}
-          className="flex-1 text-center font-semibold h-5 z-10"
-          style={{
-            color: value ? cssVar("--foreground") : cssVar("--muted"),
-          }}
-        ></button>
-      </div>
+        >
+          {/* The Sliding Dot */}
+          <div
+            className={`w-6 h-6 bg-white rounded-full shadow-md transition-transform duration-300 ease-in-out ${
+              value ? "translate-x-5" : "translate-x-0"
+            }`}
+          />
+        </div>
+      </DemoButton>
     </div>
   );
 }

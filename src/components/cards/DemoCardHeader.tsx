@@ -44,7 +44,7 @@ export function DemoCardHeader<T>({
           <DemoIcon icon={getIcon(name)} size={20} color="var(--muted)" />
         )}
         <div
-          className={`${direction ? "flex flex-col" : "flex justify-between items-center"}`}
+          className={`${direction ? "flex flex-col space-y-1" : "flex justify-between items-center"}`}
         >
           <p className={` text-sm font-medium text-(--foreground)`}>{name}</p>
           {direction && (
@@ -56,13 +56,8 @@ export function DemoCardHeader<T>({
       </div>
 
       {haveAction && (
-        <div className="flex justify-end items-center gap-3">
-          <DemoIcon
-            icon={FaTrash}
-            size={18}
-            onClick={() => onDelete(id)}
-            color="var(--surface)"
-          />
+        <div className="flex justify-end items-center space-x-3">
+          <DemoIcon icon={FaTrash} size={18} onClick={() => onDelete(id)} />
           <DemoIcon icon={FaPen} size={18} onClick={() => onEdit(id)} />
         </div>
       )}

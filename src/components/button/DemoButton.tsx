@@ -13,6 +13,7 @@ interface DemoButtonProps {
   classTag?: string;
   children?: React.ReactNode;
   isDisabled?: boolean;
+  style?: React.CSSProperties;
 }
 export function DemoButton({
   title,
@@ -26,9 +27,11 @@ export function DemoButton({
   children,
   classTag,
   isDisabled = false,
+  style,
 }: DemoButtonProps) {
   return (
     <button
+      style={style}
       className={`
        ${buttonColor} 
        ${classTag ?? "justify-evenly items-center px-3 py-2 text-sm font-semibold rounded-lg"} 

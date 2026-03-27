@@ -6,13 +6,13 @@ interface DemoComparisonProps {
 
 export function DemoComparisonItem({ item }: DemoComparisonProps) {
   return (
-    <div className="w-full flex flex-col px-3 py-1">
+    <div className="w-full flex flex-col px-2 py-1">
       {item && (
         <div className="bg-transparent rounded-lg flex justify-between items-center">
-          <p className="text-sm font-normal tracking-wide text-(--foreground)">
+          <p className="text-sm font-normal text-(--foreground) tracking-wide ">
             {item.label}
           </p>
-          <p className="font-semibold text-sm text-(--foreground) tracking-wide">
+          <p className="text-sm font-medium text-(--foreground) tracking-wide">
             ${item.value}
           </p>
         </div>

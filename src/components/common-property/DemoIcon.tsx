@@ -35,7 +35,6 @@ export function DemoIcon({
       onMouseLeave={onMouseLeave}
       style={{
         color,
-        fill: "currentColor", // 🔥 IMPORTANT FIX
       }}
     />
   );

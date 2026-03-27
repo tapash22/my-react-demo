@@ -76,7 +76,7 @@ export default function Home() {
               <StatisticDoughnutChart />
             </div>
 
-            <div className="w-full grid justify-center bg-(--surface) rounded-lg">
+            <div className="w-full grid justify-center bg-(--surface) rounded-lg bg-red-800">
               {QUICK_ROUTING_PAGES.length > 0 && (
                 <DemoList
                   items={QUICK_ROUTING_PAGES}
@@ -88,7 +88,7 @@ export default function Home() {
                       to={`/dashboard/${page.path}`}
                       className="h-full"
                     >
-                      <div className="flex flex-col justify-center items-center w-full scale-90 transition-all duration-500 hover:scale-100 hover:bg-(--background) hover:text-(--muted) px-4 py-2">
+                      <div className="flex flex-col justify-center items-center w-full scale-90 transition-all duration-500 hover:scale-100 hover:bg-(--background) hover:text-(--muted) px-4 py-2 bg-accent">
                         <DemoIcon size={24} icon={page.icon} />
                         <p className="text-sm text-center">{page.name}</p>
                       </div>

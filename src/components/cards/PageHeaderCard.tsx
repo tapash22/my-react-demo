@@ -59,7 +59,8 @@ export function PageHeaderCard({
           className={`
             flex flex-col h-auto sm:flex-wrap  gap-3
             w-full sm:w-full md:w-full lg:w-auto
-            justify-center sm:justify-center md:justify-end items-center sm:items-center md:items-end
+            justify-center sm:justify-center md:justify-end 
+            items-center sm:items-center md:items-end
         `}
         >
           {children}

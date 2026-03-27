@@ -49,7 +49,7 @@ export function DemoCardWithProgressbar<T>({
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.25 }}
                 className={`rounded-xl flex flex-col w-full ${
-                  direction ? "ring-1 ring-(--input-border) p-2" : ""
+                  direction ? "ring-1 ring-(--input-border) p-3 space-y-1" : ""
                 }`}
               >
                 <DemoCardHeader
