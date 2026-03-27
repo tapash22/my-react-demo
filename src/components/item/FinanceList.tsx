@@ -8,7 +8,7 @@ interface FinanceListProps {
 export function FinanceList({ dataList, direction = true }: FinanceListProps) {
   return (
     <>
-      <ul className="w-full p-1 flex flex-col space-y-2 overflow-hidden relative">
+      <ul className="w-full p-1 flex flex-col space-y-1 overflow-hidden relative">
         <AnimatePresence mode="popLayout">
           {dataList &&
             dataList.map((item, index) => (

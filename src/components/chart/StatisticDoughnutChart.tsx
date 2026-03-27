@@ -116,16 +116,32 @@ export function StatisticDoughnutChart() {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto space-y-4 bg-(--background)  rounded-xl">
-      <div className="p-4 flex justify-start items-center gap-2">
-        <p className="tracking-wide font-normal text-lg">Statistic</p>
+    <div className="w-full max-w-md mx-auto bg-(--background) rounded-xl py-3">
+      <div className=" w-full h-auto flex flex-col sm:flex-col md:flex-row justify-start items-center p-4 space-y-2 md:space-y-0  gap-2">
+        <div className="w-full sm:w-full md:w-auto flex flex-row justify-between items-center ">
+          <p className="tracking-wide font-normal text-lg">Statistic</p>
+          <div ref={menuRef} className="relative md:hidden">
+            <DemoIcon
+              icon={HiDotsHorizontal}
+              size={24}
+              onClick={() => setShowMenuCard(!showMenuCard)}
+            />
+            {showMenuCard && (
+              <DropdownProfileCard
+                menuData={statisticMenu}
+                navClick={() => setShowMenuCard(showMenuCard)}
+              />
+            )}
+          </div>
+        </div>
         <DemoToggleTabs
           tabs={["Income", "Expense"]}
           activeIndex={activeIndex}
           onChange={(index) => setMode(tabs[index])}
           activeBgColor={cssVar("--surface")}
         />
-        <div ref={menuRef} className="relative">
+
+        <div ref={menuRef} className="relative hidden sm:hidden md:flex w-auto">
           <DemoIcon
             icon={HiDotsHorizontal}
             size={24}

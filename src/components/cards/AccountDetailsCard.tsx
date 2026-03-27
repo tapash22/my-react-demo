@@ -67,8 +67,11 @@ export function AccountDetailsCard({
       >
         <DemoIcon
           icon={HiDotsHorizontal}
-          size={16}
-          onClick={() => setShowProfileCard(!showProfileCard)}
+          size={20}
+          onClick={(e) => {
+            e?.stopPropagation();
+            setShowProfileCard((prev) => !prev);
+          }}
         />
         {/* Card Dropdown */}
         {showProfileCard && (

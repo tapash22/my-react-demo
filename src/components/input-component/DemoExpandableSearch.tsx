@@ -1,61 +1,156 @@
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+// import { useOutsideClick } from "../hooks/useOutsideClick";
+import { FaTimes } from "react-icons/fa";
+import { useOutsideClick } from "../hooks/useOutsideClick";
 
 interface DemoExpandableSearchProps {
   value: string;
   onChange: (val: string) => void;
   placeholder?: string;
-  initialWidth?: string; // e.g., "w-32"
-  expandedWidth?: string; // e.g., "w-full sm:max-w-xs"
+  initialWidth?: string;
+  expandedWidth?: {
+    xs?: string;
+    sm?: string;
+    md?: string;
+    lg?: string;
+  };
+  resetKey?: number;
 }
 
 export function DemoExpandableSearch({
   value,
   onChange,
   placeholder = "Search...",
-  initialWidth = "w-32",
-  expandedWidth = "w-full sm:max-w-xs",
+  initialWidth = "12rem",
+  expandedWidth = {
+    xs: "100%",
+    sm: "18rem",
+    md: "22rem",
+    lg: "100%",
+  },
+  resetKey = 0,
 }: DemoExpandableSearchProps) {
   const [isFocused, setIsFocused] = useState(false);
+  const [screenWidth, setScreenWidth] = useState(0);
 
-  // Convert Tailwind width classes to CSS widths
-  const parseWidth = (twClass: string) => {
-    if (twClass === "w-32") return "8rem";
-    if (twClass === "w-40") return "10rem";
-    if (twClass === "w-48") return "12rem";
-    if (twClass.includes("w-full")) return "100%";
-    return "8rem";
+  //using for search back to default size
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  // ===============================
+  // SAFE CLOSE FUNCTION (NO SIDE EFFECT CHAINS)
+  // ===============================
+  const closeSearch = useCallback(() => {
+    setIsFocused(false);
+  }, []);
+
+  // ===============================
+  // OUTSIDE CLICK → ONLY UI STATE
+  // ===============================
+  const containerRef = useOutsideClick(() => {
+    closeSearch();
+  });
+
+  // =========================
+  // RESET FROM PARENT (FIXED)
+  // =========================
+  useEffect(() => {
+    // STEP 1: state update
+    setIsFocused(false);
+
+    // STEP 2: defer DOM mutation to avoid React sync warning
+    const id = requestAnimationFrame(() => {
+      if (inputRef.current) {
+        inputRef.current.value = ""; // avoid controlled sync issues
+        inputRef.current.blur();
+      }
+    });
+
+    return () => cancelAnimationFrame(id);
+  }, [resetKey]);
+
+  // =========================
+  // SCREEN SIZE
+  // =========================
+  useEffect(() => {
+    const update = () => setScreenWidth(window.innerWidth);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  // =========================
+  // ESC KEY
+  // =========================
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        closeSearch();
+
+        requestAnimationFrame(() => {
+          inputRef.current?.blur();
+        });
+      }
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [closeSearch]);
+
+  // =========================
+  // WIDTH CALC
+  // =========================
+  const getWidth = () => {
+    if (!isFocused) return initialWidth;
+    const w = screenWidth;
+    if (w <= 500) return expandedWidth.xs ?? "100%";
+    if (w <= 639) return expandedWidth.sm ?? "18rem";
+    if (w <= 1023) return expandedWidth.md ?? "22rem";
+    return expandedWidth.lg ?? "24rem";
   };
 
-  // Compute width dynamically on every render
-  const expanded = (() => {
-    const width = window.innerWidth;
-    if (width >= 640 && expandedWidth.includes("sm:max-w-xs")) {
-      return isFocused ? 320 : parseWidth(initialWidth); // 20rem ~ 320px
-    }
-    return isFocused ? window.innerWidth : parseWidth(initialWidth);
-  })();
+  // =========================
+  // CLEAR
+  // =========================
+  const handleClear = () => {
+    onChange("");
+    inputRef.current?.focus();
+  };
 
   return (
-    <motion.input
-      type="text"
-      value={value}
-      placeholder={placeholder}
-      onChange={(e) => onChange(e.target.value)}
-      onFocus={() => setIsFocused(true)}
-      onBlur={() => setIsFocused(false)}
-      className="input-search"
-      style={{ width: parseWidth(initialWidth) }}
-      animate={{
-        width: expanded,
-        boxShadow: isFocused
-          ? "var(--shadow-default)" // use your CSS variable
-          : "var(--shadow-light)", // use a lighter shadow variable
-      }}
-      transition={{
-        width: { type: "tween", duration: 0 }, // instant width change on focus
-        default: { type: "spring", stiffness: 200, damping: 25 }, // smooth on blur/shadow
-      }}
-    />
+    <motion.div
+      ref={containerRef}
+      className="relative inline-flex items-center"
+    >
+      <motion.input
+        ref={inputRef}
+        type="text"
+        value={value}
+        placeholder={placeholder}
+        onChange={(e) => onChange(e.target.value)}
+        onFocus={() => setIsFocused(true)}
+        className="input-search"
+        animate={{
+          width: getWidth(),
+          boxShadow: isFocused
+            ? "var(--shadow-default)"
+            : "var(--shadow-light)",
+        }}
+        transition={{
+          width: { type: "tween", duration: 0 },
+          default: { type: "spring", stiffness: 200, damping: 25 },
+        }}
+      />
+
+      {value && isFocused && (
+        <button
+          onMouseDown={(e) => e.preventDefault()}
+          onClick={handleClear}
+          className="absolute right-2 text-gray-500 hover:text-black transition"
+        >
+          <FaTimes size={14} />
+        </button>
+      )}
+    </motion.div>
   );
 }

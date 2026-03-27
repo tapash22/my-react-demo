@@ -23,8 +23,11 @@ export function DemoTable<T extends { id: number }>({
   onEdit,
   disabled,
 }: DemoTableProps<T>) {
-  const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
+  const [searchResetKey, setSearchResetKey] = useState(0);
+  const [page, setPage] = useState(1);
+
+  // used only for forcing reset (safe trigger)
 
   //using short and advance
   // const columns = useMemo(
@@ -38,9 +41,7 @@ export function DemoTable<T extends { id: number }>({
   //with details
   const columns = useMemo(() => {
     const keys = data.flatMap((row) => Object.keys(row));
-
     const uniqueColumns = [...new Set(keys)];
-
     return uniqueColumns.filter((col) => !hideColumns.includes(col as keyof T));
   }, [data, hideColumns]);
 
@@ -49,6 +50,10 @@ export function DemoTable<T extends { id: number }>({
   const [filterColumn, setFilterColumn] = useState<string>(
     () => filterableColumns[0] ?? "",
   );
+  const resetSearch = () => {
+    setSearch(""); // ✅ source of truth
+    setSearchResetKey((p) => p + 1); // UI reset trigger
+  };
 
   useEffect(() => {
     startTransition(() => {
@@ -61,6 +66,7 @@ export function DemoTable<T extends { id: number }>({
     });
   }, [filterableColumns, filterColumn]);
 
+  // filter logic
   const filteredData = useMemo(() => {
     if (!search) return data;
 
@@ -86,32 +92,38 @@ export function DemoTable<T extends { id: number }>({
   const currentData = filteredData.slice(startIndex, startIndex + pageSize);
 
   return (
-    <div className="w-full rounded-xl bg-(--background) spacer-y-3 shadow-(--shadow-card) p-2 md:p-4 ">
+    <div className="w-full h-full rounded-xl spacer-y-3 shadow-(--shadow-card) p-2">
       {/* Search */}
-      <div className="w-full h-auto p-1 md:p-3 flex flex-col sm:flex-col lg:flex-col xl:flex-row justify-between align-bottom gap-1 md:gap-3 ">
-        <div className="w-full md:w-1/3">
+      <div className="w-full h-auto p-1 md:p-3 flex flex-col lg:flex-row justify-between items-center gap-1 md:gap-3">
+        {/* LEFT */}
+        <div className="w-full sm:w-full md:w-full lg:w-1/3 flex justify-center  ">
           <DemoDropdownSelect
             value={filterColumn}
             options={filterableColumns}
             onChange={(col) => {
               setFilterColumn(col);
               setPage(1);
+              resetSearch(); // clean reset
             }}
           />
         </div>
-        <DemoExpandableSearch
-          value={search}
-          onChange={(val) => {
-            setSearch(val);
-            setPage(1);
-          }}
-          placeholder="Search..."
-          initialWidth="w-auto"
-        />
+
+        {/* RIGHT */}
+        {/* <div className="w-full md:w-2/3 flex justify-center lg:justify-end items-center"> */}
+        <div className="w-full flex justify-center md:justify-end">
+          <DemoExpandableSearch
+            value={search}
+            onChange={(val) => {
+              setSearch(val);
+              setPage(1);
+            }}
+            resetKey={searchResetKey}
+          />
+        </div>
       </div>
-      <div className="flex flex-col w-full p-1 md:p-3 overflow-x-auto">
+      <div className="flex flex-col w-full h-auto p-1 md:p-3 space-y-2 overflow-x-scroll">
         {/* Table */}
-        <table className="w-full h-full  rounded-2xl   ">
+        <table className="w-full h-full rounded-2xl">
           <thead className="rounded-tl-2xl rounded-tr-2xl ring-2 ring-(--input-border)">
             <tr>
               {columns.map((key) => (
@@ -126,7 +138,7 @@ export function DemoTable<T extends { id: number }>({
             </tr>
           </thead>
 
-          <tbody className="ring-2 ring-(--input-border) rounded-bl-2xl rounded-br-2xl  ">
+          <tbody className="ring-2 ring-(--input-border) rounded-bl-2xl rounded-br-2xl">
             <AnimatePresence mode="wait">
               {currentData.map((tx, rowIndex) => {
                 const isLastRow = rowIndex === currentData.length - 1;
@@ -178,14 +190,9 @@ export function DemoTable<T extends { id: number }>({
             </AnimatePresence>
           </tbody>
         </table>
-
-        {/* Pagination */}
-        <Pagination
-          page={page}
-          totalPages={totalPages}
-          onPageChange={setPage}
-        />
       </div>
+      {/* Pagination */}
+      <Pagination page={page} totalPages={totalPages} onPageChange={setPage} />
     </div>
   );
 }

@@ -9,7 +9,7 @@ export function Pagination({
   onPageChange,
 }: PaginationProps) {
   return (
-    <div className="flex gap-2 justify-center mt-4 bg-(--background)">
+    <div className="w-full h-auto py-1 flex gap-2 justify-center items-center bg-(--background)">
       <button
         onClick={() => onPageChange(Math.max(page - 1, 1))}
         disabled={page === 1}

@@ -90,7 +90,7 @@ export function MonthlyIncomeExpenseLineChart({
 
     plugins: {
       title: {
-        display: true,
+        display: false,
         text: `${PERIOD_LABEL_MAP[period]} Income vs Expense`,
         align: "start",
       },
@@ -131,11 +131,12 @@ export function MonthlyIncomeExpenseLineChart({
 
   return (
     <div
-      style={{ height: "300px" }}
-      className="min-h-80 object-contain space-y-0 p-0"
+      style={{ height: "250px" }}
+      className="w-auto h-auto object-contain space-y-0 p-0"
     >
       <div className="w-full flex justify-end items-center relative ">
         <DemoDropdownSelect
+          title={PERIOD_LABEL_MAP[period] + " Income vs Expense"}
           value={period}
           options={PERIOD_OPTIONS}
           onChange={setPeriod}

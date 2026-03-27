@@ -59,23 +59,25 @@ export default function Home() {
         </PageHeaderCard>
       }
     >
-      <Container ref={containerRef} direction="column" className="w-full">
+      <Container ref={containerRef} direction="column">
         {/* dashboard top component view */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-3 w-full h-auto p-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3 w-full p-2">
           {status.map((statusData) => (
             <Democard key={statusData.title} statusData={statusData} />
           ))}
         </div>
         {/* dashboard top component view end */}
+
         {/* dashboard body component view */}
-        <div className="flex flex-col md:flex-row gap-5 items-start w-full h-auto p-2">
-          {/* left side */}
-          <div className="sm:w-full lg:w-1/2 xl:w-1/4  h-auto flex flex-col space-y-5">
-            <div className="flex flex-col w-full h-auto ring-2 ring-(--input-border) rounded-xl ">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 w-full p-2">
+          {/* 🔹 LEFT */}
+          <div className="xl:col-span-1 flex flex-col gap-3 min-w-0">
+            <div className="w-full ring-2 ring-(--input-border) rounded-xl">
               <StatisticDoughnutChart />
             </div>
-            <div className="w-full grid justify-center bg-(--surface) rounded-lg  ">
-              {QUICK_ROUTING_PAGES.length && (
+
+            <div className="w-full grid justify-center bg-(--surface) rounded-lg">
+              {QUICK_ROUTING_PAGES.length > 0 && (
                 <DemoList
                   items={QUICK_ROUTING_PAGES}
                   initialCount={4}
@@ -86,13 +88,9 @@ export default function Home() {
                       to={`/dashboard/${page.path}`}
                       className="h-full"
                     >
-                      <div
-                        className={`flex flex-col justify-center w-full items-center transform scale-90 transition-all duration-700 hover:scale-100  hover:bg-(--background) hover:text-(--muted) px-4 py-2 h-full `}
-                      >
-                        <DemoIcon size={24} icon={page.icon} iconClass="" />
-                        <p className="tracking-wide text-sm text-center font-normal  scale-95 hover:scale-100">
-                          {page.name}
-                        </p>
+                      <div className="flex flex-col justify-center items-center w-full scale-90 transition-all duration-500 hover:scale-100 hover:bg-(--background) hover:text-(--muted) px-4 py-2">
+                        <DemoIcon size={24} icon={page.icon} />
+                        <p className="text-sm text-center">{page.name}</p>
                       </div>
                     </NavLink>
                   )}
@@ -100,26 +98,21 @@ export default function Home() {
               )}
             </div>
           </div>
-          {/* left side end */}
 
-          {/* middle side */}
-          <div className="w-full sm:w-full lg:w-1/2 xl:w-2/4 h-full flex flex-col space-y-5">
-            {/* Line chart */}
-            <div className="block w-auto rounded-xl p-4 h-96  ring-2 ring-(--input-border)">
+          {/* 🔹 MIDDLE */}
+          <div className="xl:col-span-2 flex flex-col gap-3 min-w-0">
+            <div className="w-full rounded-xl p-4 min-h-80 ring-2 ring-(--input-border)">
               <MonthlyIncomeExpenseLineChart showFill={false} />
             </div>
-            {/* Line chart end */}
-            {/* bar chart */}
-            <div className="block w-full h-80 ring-2 ring-(--input-border) rounded-xl p-2 ">
+
+            <div className="w-full rounded-xl p-4 min-h-80 ring-2 ring-(--input-border)">
               <MonthlyIncomeExpenseLabelChart />
             </div>
-            {/* bar chart end */}
           </div>
-          {/* middle side end */}
 
-          {/* right side */}
-          <div className="sm:w-full lg:hidden xl:w-1/4 h-auto flex flex-col space-y-5">
-            <div className="w-full h-[26vh] ring-2 ring-(--input-border) rounded-xl overflow-hidden">
+          {/* 🔹 RIGHT */}
+          <div className="hidden xl:flex xl:col-span-1 flex-col gap-3 min-w-0">
+            <div className="w-full h-[25vh] ring-2 ring-(--input-border) rounded-xl overflow-hidden">
               <img
                 src={card}
                 alt="card"
@@ -127,18 +120,12 @@ export default function Home() {
               />
             </div>
 
-            <div className="flex flex-col w-full h-auto p-2 ring-2 ring-(--input-border) rounded-xl">
+            <div className="flex flex-col w-full p-2 ring-2 ring-(--input-border) rounded-xl">
               <GoalTrackerCard
                 title="Recent Activity"
                 onClick={handleRecentActivityAction}
               />
-              {/* //using for dropdown menu */}
-              {/* {openMenu && (
-                <div className="w-10 h-10 ">
-                  <p>hi</p>
-                </div>
-              )} */}
-              {/* //using for dropdown menu end */}
+
               <DemoDetailsCard
                 items={activities}
                 keys={{
@@ -150,14 +137,15 @@ export default function Home() {
               />
             </div>
           </div>
-          {/* right side end */}
         </div>
         {/* dashboard body component view end*/}
 
         {/* dashboard bottom component view */}
-        <div className="flex flex-col md:flex-row gap-5 items-start w-full h-auto p-2">
-          <div className="w-full sm:w-full s lg:w-1/2 xl:w-1/4 h-auto flex flex-col space-y-5">
-            <div className="flex flex-col w-full h-auto p-2 ring-2 ring-(--input-border) rounded-xl space-y-1">
+
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 w-full h-auto p-2 items-stretch">
+          {/* 🔹 LEFT */}
+          <div className="xl:col-span-1 flex flex-col gap-5 min-w-0 h-full">
+            <div className="p-2 ring-2 ring-(--input-border) rounded-xl flex-1">
               <GoalTrackerCard
                 title="Budget Performance"
                 path="/dashboard/budget-planning"
@@ -171,14 +159,17 @@ export default function Home() {
               />
             </div>
           </div>
-          <div className="w-full sm:w-full  lg:w-1/2 xl:w-2/4 h-auto  flex flex-col space-y-5">
-            {/* table with pagination */}
 
-            <Transaction />
-            {/* table with pagination end */}
+          {/* 🔹 MIDDLE */}
+          <div className="xl:col-span-2 min-w-0 h-full flex">
+            <div className="w-full h-full">
+              <Transaction />
+            </div>
           </div>
-          <div className="w-full sm:w-full  lg:hidden xl:w-1/4 h-auto  flex flex-col space-y-5">
-            <div className="flex flex-col w-full h-auto p-2 ring-2 ring-(--input-border) rounded-xl space-y-1">
+
+          {/* 🔹 RIGHT */}
+          <div className="hidden xl:flex xl:col-span-1 flex-col gap-5 min-w-0 h-full">
+            <div className="p-2 ring-2 ring-(--input-border) rounded-xl flex-1">
               <GoalTrackerCard
                 title="Saving Plans"
                 path="/dashboard/saving-goals"

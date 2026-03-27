@@ -13,7 +13,7 @@ export const Container = forwardRef<HTMLDivElement, ContainerProps>(
           direction === "column"
             ? "flex-col"
             : "flex-col sm:flex-col lg:flex-row xl:flex-row "
-        } gap-3 w-full ${className}`}
+        } gap-3 w-full overflow-x-hidden ${className}`}
         {...props}
       >
         {children}

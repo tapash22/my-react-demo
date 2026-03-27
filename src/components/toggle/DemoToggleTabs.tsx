@@ -29,7 +29,7 @@ export function DemoToggleTabs({
   }, [activeIndex, tabs.length, delay]);
 
   return (
-    <div className="px-2 py-1 w-full  mx-auto">
+    <div className="px-4 w-full">
       {/* Parent wrapper with padding */}
       <div className="relative flex w-full rounded-full shadow-(--shadow) ring-2 py-1 ring-(--input-border) overflow-hidden">
         {/* Sliding background for active tab */}
