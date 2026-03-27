@@ -69,7 +69,7 @@ export default function Home() {
         {/* dashboard top component view end */}
 
         {/* dashboard body component view */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 w-full p-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 w-full h-full p-2">
           {/* 🔹 LEFT */}
           <div className="xl:col-span-1 flex flex-col gap-3 min-w-0">
             <div className="w-full ring-2 ring-(--input-border) rounded-xl">
@@ -125,7 +125,6 @@ export default function Home() {
                 title="Recent Activity"
                 onClick={handleRecentActivityAction}
               />
-
               <DemoDetailsCard
                 items={activities}
                 keys={{
@@ -168,7 +167,7 @@ export default function Home() {
           </div>
 
           {/* 🔹 RIGHT */}
-          <div className="hidden xl:flex xl:col-span-1 flex-col gap-5 min-w-0 h-full">
+          <div className="hidden xl:flex xl:col-span-1 flex-col gap-5 min-w-0 h-auto">
             <div className="p-2 ring-2 ring-(--input-border) rounded-xl flex-1">
               <GoalTrackerCard
                 title="Saving Plans"

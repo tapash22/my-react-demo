@@ -31,7 +31,7 @@ export function DemoCardWithProgressbar<T>({
   );
 
   return (
-    <div className="flex flex-col space-y-3 rounded-xl p-2 h-auto  overflow-y-scroll scrollbar-thin">
+    <div className="flex flex-col rounded-xl p-3 space-y-3 h-auto  overflow-y-scroll scrollbar-thin">
       <AnimatePresence mode="wait">
         {filteredData.length === 0 ? (
           <p className="text-lg font-medium tracking-wide">No data found</p>
@@ -48,7 +48,7 @@ export function DemoCardWithProgressbar<T>({
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.25 }}
-                className={`p-2 rounded-xl flex flex-col w-full ${
+                className={`rounded-xl flex flex-col w-full ${
                   direction ? "ring-1 ring-(--input-border)" : ""
                 }`}
               >
@@ -64,7 +64,6 @@ export function DemoCardWithProgressbar<T>({
                   direction={direction}
                   haveAction={haveAction}
                 />
-
                 <DemoLinearProgressBar
                   currentAmount={currentAmount}
                   targetAmount={targetAmount}

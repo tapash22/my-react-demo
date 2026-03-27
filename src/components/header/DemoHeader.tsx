@@ -85,7 +85,9 @@ export function DemoHeader({ onToggleSidebar }: DemoHeaderProps) {
           onChange={(e) => setSearch(e.target.value)}
           className="placeholder:text-(--foreground)"
           placeholder="Search . . ."
-          prepend={<DemoIcon icon={FaSearch} color="--muted" size={16} />}
+          prepend={
+            <DemoIcon icon={FaSearch} color="var-(--surface)" size={16} />
+          }
         />
       </div>
       {/* search start end */}

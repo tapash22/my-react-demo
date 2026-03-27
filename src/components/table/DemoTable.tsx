@@ -110,7 +110,7 @@ export function DemoTable<T extends { id: number }>({
 
         {/* RIGHT */}
         {/* <div className="w-full md:w-2/3 flex justify-center lg:justify-end items-center"> */}
-        <div className="w-full flex justify-center md:justify-end">
+        <div className="w-full flex justify-center md:justify-center lg:justify-end">
           <DemoExpandableSearch
             value={search}
             onChange={(val) => {

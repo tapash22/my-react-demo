@@ -31,21 +31,13 @@ export function DemoCardHeader<T>({
 
   return (
     <div className="flex justify-between items-center">
-      <div className="flex items-center space-x-2 ">
+      <div className="flex items-center space-x-2">
         {direction ? (
           <div className="p-3 bg-(--surface) shadow-(--shadow) h-auto w-auto rounded-lg flex justify-center items-center ring-2 ring-(--input-border)">
-            <DemoIcon
-              icon={getIcon(name)}
-              size={20}
-              iconClass="text-(--foreground)"
-            />
+            l <DemoIcon icon={getIcon(name)} size={20} color="var(--surface)" />
           </div>
         ) : (
-          <DemoIcon
-            icon={getIcon(name)}
-            size={20}
-            iconClass="text-(--foreground)"
-          />
+          <DemoIcon icon={getIcon(name)} size={20} color="var(--muted)" />
         )}
         <div
           className={`${direction ? "flex flex-col" : "flex justify-between items-center"}`}
@@ -61,7 +53,12 @@ export function DemoCardHeader<T>({
 
       {haveAction && (
         <div className="flex justify-end items-center gap-3">
-          <DemoIcon icon={FaTrash} size={18} onClick={() => onDelete(id)} />
+          <DemoIcon
+            icon={FaTrash}
+            size={18}
+            onClick={() => onDelete(id)}
+            color="var(--surface)"
+          />
           <DemoIcon icon={FaPen} size={18} onClick={() => onEdit(id)} />
         </div>
       )}

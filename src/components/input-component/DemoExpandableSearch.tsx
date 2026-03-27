@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 // import { useOutsideClick } from "../hooks/useOutsideClick";
 import { FaTimes } from "react-icons/fa";
 import { useOutsideClick } from "../hooks/useOutsideClick";
+import { DemoIcon } from "../common-property/DemoIcon";
 
 interface DemoExpandableSearchProps {
   value: string;
@@ -25,8 +26,8 @@ export function DemoExpandableSearch({
   initialWidth = "12rem",
   expandedWidth = {
     xs: "100%",
-    sm: "18rem",
-    md: "22rem",
+    sm: "80%",
+    md: "90%",
     lg: "100%",
   },
   resetKey = 0,
@@ -57,7 +58,6 @@ export function DemoExpandableSearch({
   useEffect(() => {
     // STEP 1: state update
     setIsFocused(false);
-
     // STEP 2: defer DOM mutation to avoid React sync warning
     const id = requestAnimationFrame(() => {
       if (inputRef.current) {
@@ -65,7 +65,6 @@ export function DemoExpandableSearch({
         inputRef.current.blur();
       }
     });
-
     return () => cancelAnimationFrame(id);
   }, [resetKey]);
 
@@ -76,6 +75,7 @@ export function DemoExpandableSearch({
     const update = () => setScreenWidth(window.innerWidth);
     update();
     window.addEventListener("resize", update);
+
     return () => window.removeEventListener("resize", update);
   }, []);
 
@@ -104,9 +104,9 @@ export function DemoExpandableSearch({
     if (!isFocused) return initialWidth;
     const w = screenWidth;
     if (w <= 500) return expandedWidth.xs ?? "100%";
-    if (w <= 639) return expandedWidth.sm ?? "18rem";
-    if (w <= 1023) return expandedWidth.md ?? "22rem";
-    return expandedWidth.lg ?? "24rem";
+    if (w <= 639) return expandedWidth.sm ?? "80%";
+    if (w <= 1023) return expandedWidth.md ?? "100%";
+    return expandedWidth.lg ?? "100%";
   };
 
   // =========================
@@ -120,7 +120,7 @@ export function DemoExpandableSearch({
   return (
     <motion.div
       ref={containerRef}
-      className="relative inline-flex items-center"
+      className="relative inline-flex items-center w-full justify-center lg:justify-end"
     >
       <motion.input
         ref={inputRef}
@@ -146,9 +146,14 @@ export function DemoExpandableSearch({
         <button
           onMouseDown={(e) => e.preventDefault()}
           onClick={handleClear}
-          className="absolute right-2 text-gray-500 hover:text-black transition"
+          className="absolute right-2 text-(--muted) flex items-center justify-end hover:text-black transition"
         >
-          <FaTimes size={14} />
+          <DemoIcon
+            icon={FaTimes}
+            size={14}
+            iconClass="text-xl font-light"
+            color="var(--foreground)"
+          />
         </button>
       )}
     </motion.div>

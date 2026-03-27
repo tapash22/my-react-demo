@@ -16,11 +16,11 @@ interface DemoDetailsCardProps<T> {
 
 export function DemoDetailsCard<T>({ items, keys }: DemoDetailsCardProps<T>) {
   return (
-    <div className="w-full h-auto p-2 flex flex-col">
+    <div className="w-full h-[40vh] p-2 flex flex-col">
       <h2 className="text-sm font-semibold tracking-wider text-(--forground) px-2">
         {formatRelativeDate(new Date())}
       </h2>
-      <div className="flex flex-col space-y-1 rounded-xl h-[45vh] overflow-y-scroll scrollbar-thin">
+      <div className="flex flex-col space-y-1 rounded-xl h-auto overflow-y-scroll scrollbar-thin">
         {items?.map((item, index) => {
           const name = String(item[keys.name] ?? "");
           const action = String(item[keys.action] ?? "");
