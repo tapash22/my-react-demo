@@ -69,19 +69,20 @@ export default function Settings() {
       }
     >
       <Container ref={containerRef} direction="column">
-        <div className="sticky top-0 z-50 bg-(--background) w-auto">
+        <div className="sticky top-0 z-50 flex justify-center sm:justify-center md:justify-center lg:justify-start bg-(--surface) p-5 backdrop-blur-lg">
           <DemoTabs
             tabs={settingTabs}
             activeIndex={activeIndex}
             onChange={handleTabChange}
-            delay={50}
-            duration={300}
-            activeBgClass="bg-(--surface)"
+            useTabsBorder={true}
+            activeBgClass="bg-(--muted)"
           />
         </div>
-        <div ref={activeTabRef} className=" bg-amber-500 w-full">
+        {/* Content */}
+        <div ref={activeTabRef} className="w-full">
           {tabComponents[activeTab.value as keyof typeof tabComponents]}
         </div>
+        {/* Content end */}
       </Container>
     </PageLayout>
   );

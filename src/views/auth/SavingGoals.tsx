@@ -62,7 +62,7 @@ export default function SavingGoals() {
     >
       <Container ref={containerRef}>
         {/* left side card */}
-        <div className="w-full lg:w-1/3  p-2 sticky top-2 h-fit">
+        <div className="w-full lg:w-1/3 p-2 lg:sticky top-2 h-fit">
           <div className="flex flex-col w-full h-auto bg-(--background) ring-2 ring-(--input-border) rounded-xl p-3 space-y-1">
             <PageHeaderCard
               title="Saving Goals"
@@ -111,14 +111,16 @@ export default function SavingGoals() {
                 titleClass="text-lg font-normal"
                 visibleDate={false}
               />
-              <DemoTabs
-                tabs={FUND_TABS}
-                activeIndex={activeIndex}
-                onChange={setActiveIndex}
-                delay={50}
-                duration={300}
-                activeBgClass="bg-(--surface)"
-              />
+              <div className="sticky top-0 z-40 rounded-xl  flex w-fit mx-auto lg:mx-0 justify-center sm:justify-center md:justify-center lg:justify-start">
+                <DemoTabs
+                  tabs={FUND_TABS}
+                  activeIndex={activeIndex}
+                  onChange={setActiveIndex}
+                  delay={50}
+                  duration={300}
+                  activeBgClass="bg-(--surface)"
+                />
+              </div>
             </div>
             {/* Scrollable content */}
             <div className="flex-1 overflow-y-auto scrollba">

@@ -11,7 +11,7 @@ export const Container = forwardRef<HTMLDivElement, ContainerProps>(
         ref={ref}
         className={`flex ${
           direction === "column"
-            ? "flex-col"
+            ? "flex-col "
             : "flex-col sm:flex-col lg:flex-row xl:flex-row "
         } gap-3 w-full  ${className}`}
         {...props}
