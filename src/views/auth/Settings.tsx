@@ -68,19 +68,17 @@ export default function Settings() {
         ></PageHeaderCard>
       }
     >
-      <Container
-        ref={containerRef}
-        direction="column"
-        className="overflow-hidden "
-      >
-        <DemoTabs
-          tabs={settingTabs}
-          activeIndex={activeIndex}
-          onChange={handleTabChange}
-          delay={50}
-          duration={300}
-          activeBgClass="bg-(--surface)"
-        />
+      <Container ref={containerRef} direction="column">
+        <div className="sticky top-0 z-50 bg-(--background) w-auto">
+          <DemoTabs
+            tabs={settingTabs}
+            activeIndex={activeIndex}
+            onChange={handleTabChange}
+            delay={50}
+            duration={300}
+            activeBgClass="bg-(--surface)"
+          />
+        </div>
         <div ref={activeTabRef} className=" bg-amber-500 w-full">
           {tabComponents[activeTab.value as keyof typeof tabComponents]}
         </div>

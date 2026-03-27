@@ -34,7 +34,11 @@ export function DemoCardHeader<T>({
       <div className="flex items-center space-x-2">
         {direction ? (
           <div className="p-3 bg-(--surface) shadow-(--shadow) h-auto w-auto rounded-lg flex justify-center items-center ring-2 ring-(--input-border)">
-            l <DemoIcon icon={getIcon(name)} size={20} color="var(--surface)" />
+            <DemoIcon
+              icon={getIcon(name)}
+              size={20}
+              color="var(--foreground)"
+            />
           </div>
         ) : (
           <DemoIcon icon={getIcon(name)} size={20} color="var(--muted)" />

@@ -3,7 +3,6 @@ import { DemoButton } from "../../../components/button/DemoButton";
 import { FaUser } from "react-icons/fa";
 import { DemoAvatar } from "../../../components/avatar/DemoAvatar";
 import type { Errors } from "../../../components/validation/validators";
-import { DemoPageSectionCard } from "../../../components/cards/DemoPageSectionCard";
 import { PageHeaderCard } from "../../../components/cards/PageHeaderCard";
 
 interface PasswordFields {
@@ -58,8 +57,8 @@ export function ProfileSettings() {
   };
 
   return (
-    <div className="p-2 w-full h-full bg-(--background) flex items-start gap-5">
-      <div className="w-1/2 h-full ">
+    <div className="w-full h-full bg-(--background) flex flex-col md:flex-row items-start gap-5">
+      <div className="w-full sm:w-full md:w-1/2 lg:w-1/2 xl:w-1/3 p-2 h-full ">
         <div className="flex flex-col w-full h-full bg-(--background) ring-2 ring-(--input-border) rounded-xl p-3 space-y-5">
           <PageHeaderCard
             title="Profile Information"
@@ -126,7 +125,7 @@ export function ProfileSettings() {
           </form>
         </div>
       </div>
-      <div className="w-1/2 h-full ">
+      <div className="w-full sm:w-full md:w-1/2 lg:w-1/2 xl:w-1/3 p-2 ">
         <div className="flex flex-col w-full h-full bg-(--background) ring-2 ring-(--input-border) rounded-xl p-3 space-y-1">
           <PageHeaderCard
             title="Password"

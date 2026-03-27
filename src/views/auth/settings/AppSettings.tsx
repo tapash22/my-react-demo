@@ -12,7 +12,7 @@ export function AppSettings() {
   const [isEnabled, setIsEnabled] = useState(false);
 
   return (
-    <div className="p-2 w-full h-auto bg-(--background) flex flex-col space-y-3 ">
+    <div className="w-full h-auto bg-(--background) flex flex-col space-y-3 ">
       <div className="w-full h-auto ring-1 ring-(--input-border) rounded-xl py-3 space-y-2">
         <PageHeaderCard
           title="Appearance"
@@ -25,11 +25,11 @@ export function AppSettings() {
           <PageHeaderCard
             title="Theme"
             subtitle="Select your preferred theme"
-            titleClass="text-lg font-normal"
-            subtitleClass="text-sm font-normal"
+            titleClass="text-lg font-normal text-center sm:text-center md:text-start w-full"
+            subtitleClass="text-sm font-normal text-center sm:text-center md:text-start w-full"
             visibleDate={false}
             children={
-              <div className="flex justify-end">
+              <div className="flex justify-start  w-full">
                 <DemoDropdownSelect
                   value={theme}
                   options={Theme_OPTIONS}
@@ -41,11 +41,12 @@ export function AppSettings() {
           <PageHeaderCard
             title="Animations"
             subtitle="Enable or disable animations"
-            titleClass="text-lg font-normal"
-            subtitleClass="text-sm font-normal"
+            titleClass="text-lg font-normal text-center sm:text-center md:text-start w-full"
+            subtitleClass="text-sm font-normal text-center sm:text-center md:text-start w-full"
+            direction={false}
             visibleDate={false}
             children={
-              <div className="flex justify-end">
+              <div className="flex justify-center">
                 <DemoBooleanToggle
                   value={isEnabled}
                   onChange={setIsEnabled}
@@ -61,16 +62,16 @@ export function AppSettings() {
         <PageHeaderCard
           title="Notifications"
           subtitle="Configure your notification preferences"
-          titleClass="text-lg font-normal"
-          subtitleClass="text-sm font-normal"
+          titleClass="text-lg font-normal text-center sm:text-center md:text-start w-full"
+          subtitleClass="text-sm font-normal text-center sm:text-center md:text-start w-full"
           visibleDate={false}
         />
         <div className="w-full border-t border-(--input-border) space-y-2 py-2 ">
           <PageHeaderCard
             title="Email Notifications"
             subtitle="Receive notifications via email"
-            titleClass="text-lg font-normal"
-            subtitleClass="text-sm font-normal"
+            titleClass="text-lg font-normal text-center sm:text-center md:text-start w-full"
+            subtitleClass="text-sm font-normal text-center sm:text-center md:text-start w-full"
             visibleDate={false}
             children={
               <div className="flex justify-end">
@@ -86,8 +87,8 @@ export function AppSettings() {
           <PageHeaderCard
             title="Push Notifications"
             subtitle="Receive notifications on your device"
-            titleClass="text-lg font-normal"
-            subtitleClass="text-sm font-normal"
+            titleClass="text-lg font-normal text-center sm:text-center md:text-start w-full"
+            subtitleClass="text-sm font-normal text-center sm:text-center md:text-start w-full"
             visibleDate={false}
             children={
               <div className="flex justify-end">
@@ -103,8 +104,8 @@ export function AppSettings() {
           <PageHeaderCard
             title="Budget Alerts"
             subtitle="Get notified when you're close to budget limits"
-            titleClass="text-lg font-normal"
-            subtitleClass="text-sm font-normal"
+            titleClass="text-lg font-normal text-center sm:text-center md:text-start w-full"
+            subtitleClass="text-sm font-normal text-center sm:text-center md:text-start w-full"
             visibleDate={false}
             children={
               <div className="flex justify-end">
@@ -120,8 +121,8 @@ export function AppSettings() {
           <PageHeaderCard
             title="Savings Goal"
             subtitle="Receive reminders to contribute to savings goals"
-            titleClass="text-lg font-normal"
-            subtitleClass="text-sm font-normal"
+            titleClass="text-lg font-normal text-center sm:text-center md:text-start w-full"
+            subtitleClass="text-sm font-normal text-center sm:text-center md:text-start w-full"
             children={
               <div className="flex justify-end">
                 <DemoBooleanToggle
@@ -139,16 +140,16 @@ export function AppSettings() {
         <PageHeaderCard
           title="Data & Privacy"
           subtitle="Manage your data and privacy settings"
-          titleClass="text-lg font-normal"
-          subtitleClass="text-sm font-normal"
+          titleClass="text-lg font-normal text-center sm:text-center md:text-start w-full"
+          subtitleClass="text-sm font-normal text-center sm:text-center md:text-start w-full"
           visibleDate={false}
         />
         <div className="w-full border-t border-(--input-border) space-y-2 py-2">
           <PageHeaderCard
             title="Data Sharing"
             subtitle="Share anonymous usage data to improve the app"
-            titleClass="text-lg font-normal"
-            subtitleClass="text-sm font-normal"
+            titleClass="text-lg font-normal text-center sm:text-center md:text-start w-full"
+            subtitleClass="text-sm font-normal text-center sm:text-center md:text-start w-full"
             visibleDate={false}
             children={
               <div className="flex justify-end">
@@ -164,8 +165,8 @@ export function AppSettings() {
           <PageHeaderCard
             title="Marketing Emails"
             subtitle="Receive marketing and promotional emails"
-            titleClass="text-lg font-normal"
-            subtitleClass="text-sm font-normal"
+            titleClass="text-lg font-normal text-center sm:text-center md:text-start w-full"
+            subtitleClass="text-sm font-normal text-center sm:text-center md:text-start w-full"
             visibleDate={false}
             children={
               <div className="flex justify-end ">

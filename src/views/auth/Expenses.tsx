@@ -130,7 +130,7 @@ export default function Expenses() {
         {/* left side end */}
 
         {/* right side */}
-        <div className="w-full lg:w-1/2 xl:w-1/3 p-2 sticky top-2 h-fit">
+        <div className="w-full lg:w-1/2 xl:w-1/3 p-2 md:sticky top-2 h-fit">
           <div className="flex flex-col w-full h-auto bg-(--background) ring-2 ring-(--input-border) rounded-xl p-3 space-y-3">
             <PageHeaderCard
               title="Expense Breakdown"

@@ -12,7 +12,7 @@ export function ResourcesSettings() {
         visibleDate={false}
       />
       <div className="w-full h-auto flex flex-col ">
-        <div className="w-full grid grid-cols-3 gap-5">
+        <div className="w-full grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-5">
           {resources &&
             resources.map((resource) => (
               <DemoResourceCard
@@ -29,7 +29,7 @@ export function ResourcesSettings() {
           titleClass="text-lg font-normal -ml-2"
           visibleDate={false}
         />
-        <div className="w-full grid grid-cols-2 gap-3">
+        <div className="w-full grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-3">
           {calculators &&
             calculators.map((item, index) => (
               <DemoPageSectionCard key={index} item={item} />

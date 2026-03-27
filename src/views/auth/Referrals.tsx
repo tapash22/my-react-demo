@@ -82,7 +82,7 @@ export default function Profile() {
                 />
                 <DemoButton
                   title="Copy Link"
-                  classTag="flex justify-center items-center p-2 md:p-2 rounded-lg md:rounded-sm"
+                  classTag="flex justify-center items-center p-2 md:p-2 rounded-lg md:rounded-sm text-sm font-semibold"
                   icon={FaRegCopy}
                   iconSize={16}
                 />

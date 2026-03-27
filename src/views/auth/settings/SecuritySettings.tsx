@@ -13,15 +13,15 @@ export function SecuritySettings() {
         <PageHeaderCard
           title="Two-Factor Authentication"
           subtitle="Add an extra layer of security to your account"
-          titleClass="text-lg font-normal"
-          subtitleClass="text-sm font-normal"
+          titleClass="text-lg font-normal text-center sm:text-center md:text-start w-full"
+          subtitleClass="text-sm font-normal text-center sm:text-center md:text-start w-full"
           visibleDate={false}
         />
         <PageHeaderCard
           title="Enable2FA"
           subtitle="Send a code to your phone or email when logging in."
-          titleClass="text-lg font-normal"
-          subtitleClass="text-sm font-normal"
+          titleClass="text-lg font-normal text-center sm:text-center md:text-start w-full"
+          subtitleClass="text-sm font-normal text-center sm:text-center md:text-start w-full"
           visibleDate={false}
         />
       </div>
@@ -30,8 +30,8 @@ export function SecuritySettings() {
         <PageHeaderCard
           title="Device Management"
           subtitle="See where you're signed in"
-          titleClass="text-lg font-normal"
-          subtitleClass="text-sm font-normal"
+          titleClass="text-lg font-normal text-center sm:text-center md:text-start w-full"
+          subtitleClass="text-sm font-normal text-center sm:text-center md:text-start w-full"
           visibleDate={false}
         />
         <div className="w-full px-3 space-y-2">
@@ -44,16 +44,16 @@ export function SecuritySettings() {
         <PageHeaderCard
           title="Additional Security"
           subtitle="Configure extra protections"
-          titleClass="text-lg font-normal"
-          subtitleClass="text-sm font-normal"
+          titleClass="text-lg font-normal text-center sm:text-center md:text-start w-full"
+          subtitleClass="text-sm font-normal text-center sm:text-center md:text-start w-full"
           visibleDate={false}
         />
         <div className="w-full border-t border-(--input-border) space-y-2 py-2">
           <PageHeaderCard
             title="Login Alerts"
             subtitle="Receive email notifications of new logins"
-            titleClass="text-lg font-normal"
-            subtitleClass="text-sm font-normal"
+            titleClass="text-lg font-normal text-center sm:text-center md:text-start w-full"
+            subtitleClass="text-sm font-normal text-center sm:text-center md:text-start w-full"
             visibleDate={false}
             children={
               <div className="flex justify-end">
@@ -70,8 +70,8 @@ export function SecuritySettings() {
           <PageHeaderCard
             title="Suspicious Activity"
             subtitle="Alert on unusual login attempts"
-            titleClass="text-lg font-normal"
-            subtitleClass="text-sm font-normal"
+            titleClass="text-lg font-normal text-center sm:text-center md:text-start w-full"
+            subtitleClass="text-sm font-normal text-center sm:text-center md:text-start w-full"
             visibleDate={false}
             children={
               <div className="flex justify-end ">
@@ -88,8 +88,8 @@ export function SecuritySettings() {
           <PageHeaderCard
             title="Reset Protection"
             subtitle="Require verification to reset password"
-            titleClass="text-lg font-normal"
-            subtitleClass="text-sm font-normal"
+            titleClass="text-lg font-normal text-center sm:text-center md:text-start w-full"
+            subtitleClass="text-sm font-normal text-center sm:text-center md:text-start w-full"
             visibleDate={false}
             children={
               <div className="flex justify-end ">
@@ -103,10 +103,10 @@ export function SecuritySettings() {
             }
           />
 
-          <div className="w-full border-t border-(--input-border) p-4">
+          <div className="w-full flex justify-center sm:justify-center border-t border-(--input-border) p-4">
             <DemoButton
               title="Change Password"
-              classTag="text-sm font-normer tracking-wide text-(--foreground) px-4 py-2 rounded-lg"
+              classTag="text-sm font-normer tracking-wide text-(--foreground) px-4 py-2 w-full sm:w-full md:w-auto flex justify-center   rounded-sm"
             />
           </div>
         </div>

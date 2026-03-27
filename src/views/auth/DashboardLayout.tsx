@@ -33,7 +33,7 @@ export default function DashboardLayout() {
         {/* main body with routing and animation */}
         <main
           ref={scrollRef}
-          className="flex-1 relative overflow-y-auto overflow-x-hidden scrollbar-thin"
+          className="flex-1 relative overflow-y-auto overflow-x-hidden scrollbar-thin  min-h-0"
           style={{ scrollBehavior: "smooth" }}
         >
           <Suspense fallback={<Loader />}>
