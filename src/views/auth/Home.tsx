@@ -105,12 +105,12 @@ export default function Home() {
           {/* 🔹 MIDDLE end*/}
 
           {/* 🔹 RIGHT */}
-          <div className="hidden xl:block xl:col-span-1 flex-col gap-3 min-w-0 overflow-hidden rounded-xl space-y-3 px-2 ">
-            <div className="w-full h-[25vh] ring-2 ring-(--input-border) scale-100 transition-all duration-300 hover:scale-110">
+          <div className="hidden xl:block xl:col-span-1 flex-col gap-3 min-w-0 rounded-xl space-y-3 px-2 ">
+            <div className="w-full h-[25vh] ring-2 ring-(--input-border) overflow-hidden rounded-xl">
               <img
                 src={card}
                 alt="card"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover rounded-xl scale-100 transition-all duration-300 hover:scale-110"
               />
             </div>
 
