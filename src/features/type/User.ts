@@ -279,3 +279,15 @@ export interface Transaction {
   status: string;
   note: string;
 }
+
+export const GOAL_KEYS = {
+  id: "id",
+  name: "name",
+  targetDate: "targetDate",
+  status: "status",
+  currentAmount: "currentAmount",
+  targetAmount: "targetAmount",
+} as const;
+
+// Optional: Create a type based on the object if you need it elsewhere
+export type GoalKeys = typeof GOAL_KEYS;
