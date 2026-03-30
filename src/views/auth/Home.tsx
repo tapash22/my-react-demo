@@ -6,11 +6,6 @@ import { MonthlyIncomeExpenseLineChart } from "../../components/chart/MonthlyInc
 import { DemoButton } from "../../components/button/DemoButton";
 import card from "../../assets/images/card.jpg";
 import { QUICK_ROUTING_PAGES } from "../../store/link-data";
-import { DemoList } from "../../components/list/DemoList";
-import { DemoIcon } from "../../components/common-property/DemoIcon";
-import { NavLink } from "react-router-dom";
-import { DemoCardWithProgressbar } from "../../components/cards/DemoCardWithProgressbar";
-import { GoalTrackerCard } from "../../components/cards/GoalTrackerCard";
 import { PageHeaderCard } from "../../components/cards/PageHeaderCard";
 import { useRef, useState } from "react";
 import { FUNDS_DATA } from "../../store/chart-data";
@@ -26,15 +21,6 @@ import { GOAL_KEYS } from "../../features/type/User";
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [openMenu, setOpenMenu] = useState(false);
-
-  // const keys = {
-  //   id: "id",
-  //   name: "name",
-  //   targetDate: "targetDate",
-  //   status: "status",
-  //   currentAmount: "currentAmount",
-  //   targetAmount: "targetAmount",
-  // } as const;
 
   const handleRecentActivityAction = () => {
     console.log("click");
