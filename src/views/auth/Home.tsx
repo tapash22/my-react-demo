@@ -69,14 +69,11 @@ export default function Home() {
         {/* dashboard top component view end */}
 
         {/* dashboard body component view */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 w-full p-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 w-full p-2 ">
           {/* 🔹 LEFT */}
-          <div className="xl:col-span-1 flex flex-col gap-3 min-w-0">
-            <div className="w-full ring-2 ring-(--input-border) rounded-xl">
-              <StatisticDoughnutChart />
-            </div>
-
-            <div className="w-full grid justify-center bg-(--surface) rounded-lg bg-red-800">
+          <div className="xl:col-span-1 flex flex-col gap-3 min-w-0 space-y-3">
+            <StatisticDoughnutChart />
+            <div className="w-full grid justify-center bg-(--surface) rounded-lg ">
               {QUICK_ROUTING_PAGES.length > 0 && (
                 <DemoList
                   items={QUICK_ROUTING_PAGES}
@@ -88,7 +85,7 @@ export default function Home() {
                       to={`/dashboard/${page.path}`}
                       className="h-full"
                     >
-                      <div className="flex flex-col justify-center items-center w-full scale-90 transition-all duration-500 hover:scale-100 hover:bg-(--background) hover:text-(--muted) px-4 py-2 bg-accent">
+                      <div className="flex flex-col justify-center items-center w-full h-full scale-90 transition-all duration-500 hover:scale-100 hover:bg-(--background) hover:text-(--muted) px-4 py-2 ">
                         <DemoIcon size={24} icon={page.icon} />
                         <p className="text-sm text-center">{page.name}</p>
                       </div>
@@ -98,21 +95,18 @@ export default function Home() {
               )}
             </div>
           </div>
+          {/* 🔹 LEFT end*/}
 
           {/* 🔹 MIDDLE */}
-          <div className="xl:col-span-2 flex flex-col gap-3 min-w-0">
-            <div className="w-full rounded-xl p-4 min-h-80 ring-2 ring-(--input-border)">
-              <MonthlyIncomeExpenseLineChart showFill={false} />
-            </div>
-
-            <div className="w-full rounded-xl p-4 min-h-80 ring-2 ring-(--input-border)">
-              <MonthlyIncomeExpenseLabelChart />
-            </div>
+          <div className="xl:col-span-2 flex flex-col gap-3 min-w-0 space-y-3">
+            <MonthlyIncomeExpenseLineChart showFill={false} />
+            <MonthlyIncomeExpenseLabelChart />
           </div>
+          {/* 🔹 MIDDLE end*/}
 
           {/* 🔹 RIGHT */}
           <div className="hidden xl:flex xl:col-span-1 flex-col gap-3 min-w-0">
-            <div className="w-full h-[25vh] ring-2 ring-(--input-border) rounded-xl overflow-hidden">
+            <div className="w-full h-[20vh] ring-2 ring-(--input-border) rounded-xl overflow-hidden">
               <img
                 src={card}
                 alt="card"
@@ -120,12 +114,10 @@ export default function Home() {
               />
             </div>
 
-            <div className="flex flex-col w-full p-2 ring-2 ring-(--input-border) rounded-xl">
-              <GoalTrackerCard
+            <div className="flex flex-col w-full ring-2 ring-(--input-border) rounded-xl">
+              <DemoDetailsCard
                 title="Recent Activity"
                 onClick={handleRecentActivityAction}
-              />
-              <DemoDetailsCard
                 items={activities}
                 keys={{
                   name: "name",
@@ -136,11 +128,11 @@ export default function Home() {
               />
             </div>
           </div>
+          {/* 🔹 RIGHT end*/}
         </div>
         {/* dashboard body component view end*/}
 
         {/* dashboard bottom component view */}
-
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 w-full h-auto p-2 items-stretch">
           {/* 🔹 LEFT */}
           <div className="xl:col-span-1 flex flex-col gap-5 min-w-0 h-full">

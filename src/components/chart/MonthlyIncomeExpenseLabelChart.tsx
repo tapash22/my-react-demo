@@ -90,7 +90,10 @@ export function MonthlyIncomeExpenseLabelChart() {
   };
 
   return (
-    <div style={{ height: "280px" }} className="w-full">
+    <div
+      style={{ height: "290px" }}
+      className="w-full rounded-xl p-4 min-h-72 ring-2 ring-(--input-border)"
+    >
       <Bar data={data} options={options} />
     </div>
   );

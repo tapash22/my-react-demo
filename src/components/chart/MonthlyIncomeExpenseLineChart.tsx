@@ -130,20 +130,17 @@ export function MonthlyIncomeExpenseLineChart({
   };
 
   return (
-    <div className="w-auto h-auto object-contain space-y-0 p-0">
-      <div className="w-full flex justify-end items-center relative ">
-        <DemoDropdownSelect
-          title={PERIOD_LABEL_MAP[period] + " Income vs Expense"}
-          value={period}
-          options={PERIOD_OPTIONS}
-          onChange={setPeriod}
-          getLabel={(v) => PERIOD_LABEL_MAP[v]}
-        />
-      </div>
-      <div className="relative grow w-full h-[200px] sm:h-[200px] md:h-[230px] lg:h-[250px]">
+    <div className="w-full h-auto object-contain rounded-xl min-h-72 ring-2 ring-(--input-border) px-2">
+      <DemoDropdownSelect
+        title={PERIOD_LABEL_MAP[period] + " Income vs Expense"}
+        value={period}
+        options={PERIOD_OPTIONS}
+        onChange={setPeriod}
+        getLabel={(v) => PERIOD_LABEL_MAP[v]}
+      />
+      <div className="relative grow w-full h-[180px] sm:h-[200px] md:h-[230px] lg:h-[200px]">
         <Line data={data} options={options} plugins={[plugin]} />
       </div>
-      {/* <Line data={data} options={options} plugins={[plugin]} /> */}
     </div>
   );
 }

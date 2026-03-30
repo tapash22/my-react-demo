@@ -1,6 +1,7 @@
 import { FaUser } from "react-icons/fa";
 import { DemoAvatar } from "../avatar/DemoAvatar";
 import { formatRelativeDate } from "../../utils/formatDate";
+import { GoalTrackerCard } from "./GoalTrackerCard";
 
 export type DemoDetailsKeys<T> = {
   name: keyof T;
@@ -10,14 +11,22 @@ export type DemoDetailsKeys<T> = {
 };
 
 interface DemoDetailsCardProps<T> {
+  title?: string;
+  onClick?: () => void;
   items?: T[];
   keys: DemoDetailsKeys<T>;
 }
 
-export function DemoDetailsCard<T>({ items, keys }: DemoDetailsCardProps<T>) {
+export function DemoDetailsCard<T>({
+  items,
+  keys,
+  title,
+  onClick,
+}: DemoDetailsCardProps<T>) {
   return (
     <div className="w-full h-[40vh] p-2 flex flex-col">
-      <h2 className="text-sm font-semibold tracking-wider text-(--forground) px-2">
+      {title && onClick && <GoalTrackerCard title={title} onClick={onClick} />}
+      <h2 className="text-sm font-semibold tracking-wider text-(--forground) px-4 py-2">
         {formatRelativeDate(new Date())}
       </h2>
       <div className="flex flex-col space-y-1 rounded-xl h-auto overflow-y-scroll scrollbar-thin">
@@ -32,14 +41,11 @@ export function DemoDetailsCard<T>({ items, keys }: DemoDetailsCardProps<T>) {
           return (
             <div
               key={index}
-              className="flex justify-start items-center p-2 gap-3 opacity-80 hover:opacity-100 hover:bg-(--surface)"
+              className={`flex justify-start items-center px-4 py-1 gap-3 opacity-80 hover:opacity-100 hover:bg-(--surface) ${index !== items.length - 1 ? "border-b border-(--input-border)" : ""}`}
             >
-              <div className="w-auto h-10 flex justify-center items-center">
-                <DemoAvatar size={10} icon={FaUser} />
-              </div>
-
+              <DemoAvatar size={12} icon={FaUser} />
               <div className="flex flex-col space-y-1 w-full h-auto">
-                <div className=" space-x-2">
+                <div className="space-x-2">
                   <span className="tracking-wider font-medium text-sm">
                     {name}
                   </span>

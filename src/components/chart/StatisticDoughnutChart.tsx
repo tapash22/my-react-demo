@@ -116,7 +116,7 @@ export function StatisticDoughnutChart() {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto bg-(--background) rounded-xl py-3">
+    <div className="w-full max-w-md mx-auto bg-(--background) rounded-xl py-1 ring-2 ring-(--input-border) ">
       <div className=" w-full h-auto flex flex-col sm:flex-col md:flex-row justify-start items-center p-4 space-y-2 md:space-y-0  gap-2">
         <div className="w-full sm:w-full md:w-auto flex flex-row justify-between items-center ">
           <p className="tracking-wide font-normal text-lg">Statistic</p>
@@ -158,10 +158,10 @@ export function StatisticDoughnutChart() {
       {/* <DemoAnimatedToggle /> */}
 
       {/* Chart */}
-      <div className="h-[200px] w-full flex justify-center px-5">
+      <div className="h-[200px] w-full flex justify-center">
         <Doughnut data={data} options={options} plugins={[centerTextPlugin]} />
       </div>
-      <div className="w-full h-auto space-y-3 p-5  overflow-hidden">
+      <div className="w-full h-auto space-y-3 p-3  overflow-hidden">
         <FinanceList dataList={dataList} />
       </div>
     </div>
