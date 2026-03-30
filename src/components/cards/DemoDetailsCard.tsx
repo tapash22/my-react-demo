@@ -24,12 +24,12 @@ export function DemoDetailsCard<T>({
   onClick,
 }: DemoDetailsCardProps<T>) {
   return (
-    <div className="w-full h-[40vh] p-2 flex flex-col">
+    <div className="w-full h-auto p-3 flex flex-col ring-2 ring-(--input-border) rounded-lg  ">
       {title && onClick && <GoalTrackerCard title={title} onClick={onClick} />}
-      <h2 className="text-sm font-semibold tracking-wider text-(--forground) px-4 py-2">
+      <p className="text-sm font-semibold tracking-wider text-(--forground) pb-2 rounded-lg">
         {formatRelativeDate(new Date())}
-      </h2>
-      <div className="flex flex-col space-y-1 rounded-xl h-auto overflow-y-scroll scrollbar-thin">
+      </p>
+      <div className="w-full h-[28vh] flex flex-col space-y-1 rounded-xl overflow-y-scroll scrollbar-thin">
         {items?.map((item, index) => {
           const name = String(item[keys.name] ?? "");
           const action = String(item[keys.action] ?? "");
@@ -41,7 +41,7 @@ export function DemoDetailsCard<T>({
           return (
             <div
               key={index}
-              className={`flex justify-start items-center px-4 py-1 gap-3 opacity-80 hover:opacity-100 hover:bg-(--surface) ${index !== items.length - 1 ? "border-b border-(--input-border)" : ""}`}
+              className={`flex justify-start items-center px-2 py-1 gap-3 opacity-80 hover:opacity-100 hover:bg-(--surface) ${index !== items.length - 1 ? "border-b border-(--input-border)" : ""}`}
             >
               <DemoAvatar size={12} icon={FaUser} />
               <div className="flex flex-col space-y-1 w-full h-auto">

@@ -105,8 +105,8 @@ export default function Home() {
           {/* 🔹 MIDDLE end*/}
 
           {/* 🔹 RIGHT */}
-          <div className="hidden xl:flex xl:col-span-1 flex-col gap-3 min-w-0">
-            <div className="w-full h-[20vh] ring-2 ring-(--input-border) rounded-xl overflow-hidden">
+          <div className="hidden xl:block xl:col-span-1 flex-col gap-3 min-w-0 overflow-hidden rounded-xl space-y-3 px-2 ">
+            <div className="w-full h-[25vh] ring-2 ring-(--input-border) scale-100 transition-all duration-300 hover:scale-110">
               <img
                 src={card}
                 alt="card"
@@ -114,19 +114,17 @@ export default function Home() {
               />
             </div>
 
-            <div className="flex flex-col w-full ring-2 ring-(--input-border) rounded-xl">
-              <DemoDetailsCard
-                title="Recent Activity"
-                onClick={handleRecentActivityAction}
-                items={activities}
-                keys={{
-                  name: "name",
-                  action: "action",
-                  amount: "amount",
-                  time: "time",
-                }}
-              />
-            </div>
+            <DemoDetailsCard
+              title="Recent Activity"
+              onClick={handleRecentActivityAction}
+              items={activities}
+              keys={{
+                name: "name",
+                action: "action",
+                amount: "amount",
+                time: "time",
+              }}
+            />
           </div>
           {/* 🔹 RIGHT end*/}
         </div>
