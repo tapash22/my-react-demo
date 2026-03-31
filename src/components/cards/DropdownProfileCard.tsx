@@ -56,7 +56,7 @@ export function DropdownProfileCard({
       )}
 
       {/* Mobile Actions: Theme + Notification */}
-      <div className="flex md:hidden justify-center items-center gap-2 p-3 border-b border-(--input-border)">
+      <div className="flex md:hidden justify-center items-center gap-3 p-3 border-b border-(--input-border)">
         {toggleTheme && theme && (
           <DemoButton
             onClick={toggleTheme}

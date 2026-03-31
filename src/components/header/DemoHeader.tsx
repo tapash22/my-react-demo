@@ -162,7 +162,7 @@ export function DemoHeader({ onToggleSidebar }: DemoHeaderProps) {
           onClose={() => setShowTabNotification(false)}
         >
           <div className="md:hidden flex flex-col gap-1 rounded-lg drop-shadow-xl space-y-1 text-(--foreground) overflow-auto w-full">
-            {showTabNotification}{" "}
+            {showTabNotification}
             <DemoList
               items={FUNDS_DATA}
               initialCount={FUNDS_DATA.length}
