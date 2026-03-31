@@ -7,6 +7,9 @@ export type Theme = "light" | "dark";
 interface ThemeContextType {
   theme: Theme;
   toggleTheme: () => void;
+  //handle color
+  primaryColor: string;
+  setPrimaryColor: (color: string) => void;
 }
 
 //create context declear

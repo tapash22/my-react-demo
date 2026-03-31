@@ -63,7 +63,7 @@ export function DemoHeader({ onToggleSidebar }: DemoHeaderProps) {
   };
 
   return (
-    <header className="h-16 w-full flex items-center justify-between p-4 sm:p-5 bg-(--background) shadow-(--shadow)">
+    <header className="h-16 w-full flex items-center justify-between p-4 sm:p-5 bg-(--background) shadow-(--shadow) ">
       {/* Left: Sidebar + Breadcrumbs */}
       <div className="flex items-center gap-2 shrink-0">
         <DemoIcon

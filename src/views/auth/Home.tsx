@@ -17,10 +17,13 @@ import { DemoLinkCardList } from "../../components/cards/DemoLinkCardList";
 import { DemoImageCard } from "../../components/cards/DemoImageCard";
 import { DemoGoalOverviewCard } from "../../components/cards/DemoGoalOverviewCard";
 import { GOAL_KEYS } from "../../features/type/User";
+import { ColorPicker } from "../../features/color-picker/ColorPicker";
+import { useTheme } from "../../components/hooks/useTheme";
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [openMenu, setOpenMenu] = useState(false);
+  const { theme, primaryColor } = useTheme();
 
   const handleRecentActivityAction = () => {
     console.log("click");
@@ -34,8 +37,8 @@ export default function Home() {
             <DemoButton
               title="Export Data"
               classTag="rounded-lg text-sm font-medium tracking-wide justify-center  px-4 py-2"
-              buttonColor="bg-(--surface)"
-              textColor="--foreground"
+              buttonColor="var(--primary-override, var(--primary-color))"
+              textColor="var(--foreground)"
               widthSize="auto"
             />
             <DemoButton
@@ -50,6 +53,7 @@ export default function Home() {
       }
     >
       <Container ref={containerRef} direction="column">
+        <ColorPicker />
         {/* dashboard header content view */}
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3 w-full p-2">
           {status.map((statusData) => (
