@@ -1,4 +1,5 @@
 import { FaPowerOff } from "react-icons/fa";
+import { FaTimes } from "react-icons/fa";
 import image from "../../../public/image/side_bar.png";
 import { NavLink, useNavigate } from "react-router-dom";
 import { logout } from "../auth/useAuth";
@@ -8,8 +9,9 @@ import { DemoButton } from "../button/DemoButton";
 
 interface DemoSideBarProps {
   collapsed?: boolean;
+  onClose: () => void;
 }
-export function DemoSideBar({ collapsed }: DemoSideBarProps) {
+export function DemoSideBar({ collapsed, onClose }: DemoSideBarProps) {
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -19,20 +21,35 @@ export function DemoSideBar({ collapsed }: DemoSideBarProps) {
 
   return (
     <aside
-      className={`h-full bg-(--background) shadow-(--shadow)  transition-all duration-300 ease-in-out
-    ${collapsed ? "w-16" : "w-64"} overflow-hidden relative`}
+      className={`h-full bg-(--background) shadow-(--shadow)  transition-all duration-300 ease-in-out overflow-hidden z-50
+                  ${collapsed ? "w-16" : "w-64"} 
+                /* Mobile behavior */
+                fixed top-0 left-0 transition-transform duration-300 ease-in-out
+                ${collapsed ? "-translate-x-full sm:translate-x-0" : "translate-x-0"}
+                /* Desktop */
+                sm:relative sm:translate-x-0 `}
     >
       {/* Logo + Toggle */}
-      <div className="h-24 flex items-center justify-center px-2 my-4 transition-all duration-500 ease-in-out">
+      <div className="h-24 flex items-center justify-between sm:justify-between lg:justify-center px-2 my-4 transition-all duration-500 ease-in-out">
         <img
           src={image}
           alt="logo"
-          className={`transition-transform duration-500 ease-in-out logo-image object-contain h-full w-auto ${
+          className={`transition-transform duration-500 ease-in-out logo-image object-contain h-full w-auto sm:w-1/2 lg:w-auto  ${
             collapsed
               ? "scale-100 dark:brightness-200 logo-image"
-              : "scale-100 shadow-(--shadow) rounded-full p-2  "
+              : "scale-75 lg:scale-100 shadow-(--shadow) rounded-full lg:rounded-full p-2  "
           }`}
         />
+        <div className=" w-1/2 h-auto flex flex-col sm:flex-col justify-end items-end lg:hidden p-2">
+          {!collapsed && (
+            <DemoIcon
+              icon={FaTimes}
+              size={16}
+              color="var(--foreground)"
+              onClick={onClose}
+            />
+          )}
+        </div>
       </div>
 
       {/* Nav items */}
@@ -69,7 +86,7 @@ export function DemoSideBar({ collapsed }: DemoSideBarProps) {
                   ${
                     collapsed
                       ? "opacity-0 -translate-x-2 max-w-0"
-                      : "opacity-100 translate-x-0 `max-w-[160px]`"
+                      : "opacity-100 translate-x-0 max-w-40"
                   }
                 `}
                 title={name}

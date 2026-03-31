@@ -23,6 +23,7 @@ import { DemoBadge } from "../Badge/DemoBadge";
 import { DemoButton } from "../button/DemoButton";
 import { Modal } from "../../features/onboarding/Modal";
 import { useIsMobile } from "../hooks/useIsMobile";
+import { FaBars } from "react-icons/fa6";
 
 interface DemoHeaderProps {
   onToggleSidebar: () => void;
@@ -70,6 +71,14 @@ export function DemoHeader({ onToggleSidebar }: DemoHeaderProps) {
           size={30}
           dropShadow={true}
           onClick={onToggleSidebar}
+          iconClass="hidden sm:block"
+        />
+        <DemoIcon
+          icon={FaBars}
+          size={26}
+          dropShadow={true}
+          onClick={onToggleSidebar}
+          iconClass="block sm:hidden"
         />
         <div className="hidden md:block">
           <DemoBreadcrumbs />

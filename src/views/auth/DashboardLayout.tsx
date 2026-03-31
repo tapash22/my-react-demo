@@ -8,7 +8,7 @@ import { usePageAnimation } from "../../components/hooks/usePageAnimation";
 export default function DashboardLayout() {
   // Dashboard
   const location = useLocation();
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
   // Create a reference to the scrollable area
   const scrollRef = useRef<HTMLDivElement>(null);
   const contentRef = usePageAnimation<HTMLDivElement>();
@@ -23,7 +23,10 @@ export default function DashboardLayout() {
   return (
     <div className="h-screen w-full flex overflow-hidden  ">
       {/* Navbar */}
-      <DemoSideBar collapsed={collapsed} />
+      <DemoSideBar
+        collapsed={collapsed}
+        onClose={() => setCollapsed(!collapsed)}
+      />
 
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* header */}

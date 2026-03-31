@@ -26,7 +26,7 @@ export function DemoGoalOverviewCard<T>({
 }: DemoGoalOverviewCardProps<T>) {
   return (
     <div className="xl:col-span-1 flex flex-col gap-5 min-w-0 h-full">
-      <div className="p-2 ring-2 ring-(--input-border) rounded-xl flex-1">
+      <div className="p-2 ring-2 ring-(--input-border) rounded-xl flex-1 h-auto">
         {title && path && pathTitle && (
           <GoalTrackerCard
             title={title}
