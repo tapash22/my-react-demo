@@ -19,7 +19,7 @@ export function DemoButton({
   title,
   icon,
   iconClass,
-  buttonColor = "var(--primary-color)",
+  buttonColor = "bg-(--surface)",
   iconSize,
   textColor = "var(--foreground)",
   onClick,
@@ -32,20 +32,17 @@ export function DemoButton({
   return (
     <button
       style={{
-        background: buttonColor,
         color: textColor,
         width: widthSize === "auto" ? "auto" : widthSize,
         ...style,
       }}
       className={`
-        ${classTag ?? "justify-center items-center px-3 py-2 text-sm font-semibold rounded-lg"}
+        ${classTag ?? "justify-center items-center px-3 py-2 text-sm font-semibold rounded-lg text-[--(--foreground)]"}
+        ${buttonColor ?? "bg-(--surface)"}
         ${isDisabled ? "opacity-50 cursor-not-allowed" : ""}
         inline-flex gap-2 whitespace-nowrap
-        ring-1 ring-(--input-border)
-        shadow-[--(--shadow)]
         transition-colors duration-300
         `}
-      // shadow-[--(--shadow)]
       onClick={onClick}
       disabled={isDisabled}
     >

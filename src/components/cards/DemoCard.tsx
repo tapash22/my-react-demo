@@ -13,7 +13,7 @@ interface DemocardProps {
 
 export function Democard({ statusData, onClick, dotClick }: DemocardProps) {
   return (
-    <div className="bg-(--surfect) ring-2 ring-(--input-border) w-full h-auto p-2 rounded-lg flex flex-col space-y-3 ">
+    <div className="bg-(--surface) ring-1 ring-(--border)  w-full h-auto p-2 rounded-lg flex flex-col space-y-3 ">
       <div className="flex justify-between items-start p-2 w-full h-auto">
         <h2 className="flex flex-col">
           <p className="subtitle-small-title text-(--subtitle)">

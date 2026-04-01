@@ -36,16 +36,14 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row sm:items-center md:items-center gap-3 w-full sm:w-auto md:w-auto">
             <DemoButton
               title="Export Data"
-              classTag="rounded-lg text-sm font-medium tracking-wide justify-center  px-4 py-2"
-              buttonColor="var(--primary-color)"
+              classTag="rounded-lg text-sm font-medium tracking-wide justify-center px-4 py-2 "
               textColor="var(--foreground)"
               widthSize="auto"
             />
             <DemoButton
               title="View Reports"
-              classTag="rounded-lg text-sm font-medium tracking-wide inline-flex justify-center px-4 py-2 ring-1 ring-(--surface)"
-              buttonColor="var(--primary-override, var(--primary-color))"
-              textColor="var(--muted)"
+              classTag="rounded-lg text-sm font-medium tracking-wide inline-flex justify-center px-4 py-2 rounded-lg ring-2 ring-(--input-border) shadow-(--shadow) "
+              textColor="var(--foreground)"
               widthSize="auto"
             />
           </div>

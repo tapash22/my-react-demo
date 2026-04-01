@@ -15,7 +15,10 @@ export type ThemeColorKey =
   | "surface"
   | "background"
   | "card"
-  | "body";
+  | "body"
+  | "shadow"
+  | "input-border"
+  | "border";
 
 //context have
 interface ThemeContextType {

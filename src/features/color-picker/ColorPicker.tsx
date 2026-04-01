@@ -21,18 +21,16 @@ export function ColorPicker() {
         iconSize={20}
         buttonColor="var(--surface)"
         classTag="
-    p-1 flex justify-center items-center rounded-full
-    ring-2 ring-[var(--muted)]
-    hover:ring-[var(--primary-color)]
-    transition-all duration-200
-  "
+          p-2 flex justify-center items-center rounded-full
+          ring-2 ring-[var(--input-border)] 
+        "
       />
 
       {/* color Picker */}
       <input
         type="color"
         value={primaryColor}
-        onChange={(e) => setThemeColor("primary", e.target.value)}
+        onChange={(e) => setThemeColor("surface", e.target.value)}
         className="w-10 h-10 rounded-full cursor-pointer
           p-0 border-0 overflow-hidden
           shadow-[--(--shadow-button)]

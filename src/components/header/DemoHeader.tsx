@@ -109,7 +109,8 @@ export function DemoHeader({ onToggleSidebar }: DemoHeaderProps) {
             onClick={toggleTheme}
             icon={theme !== "dark" ? FaMoon : FaSun}
             iconSize={20}
-            classTag="p-1 flex justify-center items-center rounded-full ring-1 ring-(--muted)"
+            buttonColor="var(--surface)"
+            classTag="p-2 flex justify-center items-center rounded-full ring-2 ring-(--border)"
           />
 
           <div ref={notificationRef} className="relative">

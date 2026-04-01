@@ -1,323 +1,471 @@
-@import "tailwindcss";
+  @import "tailwindcss";
 
-@theme {
-  /* ===============================
-     🎨 BASE COLORS (LIGHT)
-  =============================== */
-  --color-background: #f8fafc;
-  --color-surface: #ffffff;
-  --color-foreground: #0f172a;
+  @theme {
+    /* default using */
+    --color-background: #f8fafc;
+    /* Snow White */
+    --color-surface: #ffffff;
+    /* Pure White */
+    --color-foreground: #0f172a;
+    /* Midnight Navy */
+    --color-primary: #4f46e5;
+    /* using for body text full black */
+    --color-button: #000000;
+    /* Digital Lavender (Pantone 2025) */
+    --color-secondary: #10b981;
+    /* Verdant Green */
+    --color-accent: #ec4899;
+    /* Cyber Fuchsia */
+    --color-success: #22c55e;
+    /* Emerald Growth */
+    --color-warning: #f59e0b;
+    /* Golden Hour */
+    --color-danger: #ef4444;
+    /* Coral Alert */
+    --color-info: #3b82f6;
+    /* Trust Blue */
+    --color-muted: #64748b;
+    /* Stone Gray */
+    /* shadow */
+    --shadow: 0 0 8px 2px rgba(148, 163, 184, 0.24);
 
-  --color-primary: #4f46e5;
-  --color-secondary: #10b981;
-  --color-accent: #ec4899;
-  --color-success: #22c55e;
-  --color-warning: #f59e0b;
-  --color-danger: #ef4444;
-  --color-info: #3b82f6;
-  --color-muted: #64748b;
-  --color-button: #000000;
+    --list: rgba(185, 175, 175, 0.568);
+    --list-possitive: #ddd8d8a1;
 
-  /* ===============================
-     🌙 DARK COLORS
-  =============================== */
-  --color-background-dark: #020617;
-  --color-surface-dark: #111827;
-  --color-foreground-dark: #e2e8f0;
+    /* Dark using */
+    --color-background-dark: #020617;
+    /* Cosmic Black */
+    --color-surface-dark: #111827;
+    /* Twilight Blue */
+    --color-foreground-dark: #e2e8f0;
+    /* Starlight White */
+    --color-primary-dark: #e64813;
+    /* Holographic Lilac */
+    --color-secondary-dark: #34d399;
+    /* Bio-Luminous */
+    --color-accent-dark: #f472b6;
+    /* Neon Pink */
+    --color-success-dark: #86efac;
+    /* Mint Fresh */
+    --color-warning-dark: #fcd34d;
+    /* Amber Glow */
+    --color-danger-dark: #fca5a5;
+    /* Soft Coral */
+    --color-info-dark: #93c5fd;
+    /* Sky Pulse */
+    --color-muted-dark: #94a3b8;
+    /* using for body text full black */
+    --color-button-dark: #ffffff;
+    /* Moon Dust */
+    /* shadow */
+    --shadow-dark: 0 0 8px 2px rgba(148, 163, 184, 0.5);
 
-  --color-secondary-dark: #34d399;
-  --color-accent-dark: #f472b6;
-  --color-success-dark: #86efac;
-  --color-warning-dark: #fcd34d;
-  --color-danger-dark: #fca5a5;
-  --color-info-dark: #93c5fd;
-  --color-muted-dark: #94a3b8;
-  --color-button-dark: #ffffff;
+    --list-dark: #5b82c0;
+    --list-possitive-dark: #3177e980;
 
-  /* ===============================
-     🧱 LAYOUT BASE
-  =============================== */
-  --header-sidebar: #e2e8f0;
-  --header-sidebar-dark: #020617;
+    /* new theme implement */
 
-  --body: #f8fafc;
-  --body-dark: red;
+    /* Header / Sidebar */
+    --header-sidebar: #e2e8f0;
+    --header-sidebar-dark: #020617;
 
-  --card: #ffffff;
-  --card-dark: #111827;
+    /* very dark navy */
 
-  --border: #cbd5e1;
-  --border-dark: #334155;
+    /* Main body */
+    --body: #f8fafc;
+    /* slightly lighter than header */
+    --body-dark: #1e293b;
+    /* slightly lighter than header */
 
-  --text: #1f2937;
-  --text-dark: #e5e7eb;
+    /* Cards */
+    --card: #ffffff;
+    /* subtle contrast for cards */
+    --card-dark: #111827;
+    /* subtle contrast for cards */
 
-  --text-muted: #6b7280;
-  --text-muted-dark: #9ca3af;
+    /* Borders / lines */
+    --border: #cbd5e1;
+    --border-dark: #334155;
 
-  --hover: #f1f5f9;
-  --hover-dark: #334155;
+    /* Text colors */
+    --text: #1f2937;
+    --text-muted: #6b7280;
+    --text-dark: #e5e7eb;
+    --text-muted-dark: #9ca3af;
 
-  /* ===============================
-     🌫 SHADOW
-  =============================== */
-  --shadow: 0 0 8px 2px rgba(148, 163, 184, 0.24);
-  --shadow-dark: 0 0 8px 2px rgba(148, 163, 184, 0.5);
+    /* Interactive hover */
+    --hover: #f1f5f9;
+    --hover-dark: #334155;
+    /* new theme implemnt declaration done */
 
-  /* ===============================
-     📋 LIST
-  =============================== */
-  --list: rgba(185, 175, 175, 0.568);
-  --list-dark: #5b82c0;
+    /* text format and size */
 
-  --list-possitive: #ddd8d8a1;
-  --list-possitive-dark: #3177e980;
-}
+    /* Page Title (Main Heading) */
+    --title-size: 1.875rem;
+    /* 30px */
+    --title-line-height: 2.25rem;
+    /* 36px */
+    --title-weight: 600;
 
-@tailwind utilities;
+    /* Section Title */
+    --section-title-size: 1.5rem;
+    /* 24px */
+    --section-title-line-height: 2rem;
+    /* 32px */
+    --section-title-weight: 700;
 
-/* ===============================
-   🎯 ROOT SYSTEM (FINAL TOKENS)
-================================ */
-:root {
-  /* ===== OVERRIDES ===== */
-  --primary-override: var(--header-sidebar-dark);
+    /* subtitle */
+    --subtitle-size: 1rem;
+    /* 16px */
+    --subtitle-line-height: 1.5rem;
+    /* 24px */
+    --subtitle-weight: 400;
 
+    /* Small Subtitle / Meta Text */
+    --subtitle-small-size: 0.875rem;
+    /* 14px */
+    --subtitle-small-line-height: 1.25rem;
+    /* 20px */
+    --subtitle-small-weight: 400;
 
-  --secondary-override: ;
-  --accent-override: ;
-  --success-override: ;
-  --warning-override: ;
-  --danger-override: ;
-  --info-override: ;
+    /* text format and size end */
 
-  --surface-override: ;
-  --background-override: ;
-  --card-override: ;
-  --body-override: ;
-
-  /* ===== BASE ===== */
-  --background-base: var(--header-sidebar);
-  --body-base: var(--body);
-  --card-base: var(--card);
-
-  /* ===== FINAL ===== */
-  --background: var(--background-override, var(--background-base));
-  --body-final: var(--body-override, var(--body-base));
-  --surface: var(--surface-override, var(--body-final));
-  --card-bg: var(--card-override, var(--card-base));
-
-  /* ===== TEXT ===== */
-  --foreground: var(--text);
-  --muted: var(--color-muted);
-
-  /* ===== COLORS ===== */
-  --primary-base: var(--color-primary);
-  --primary-color: var(--primary-override, var(--primary-base));
-
-  --secondary: var(--secondary-override, var(--color-secondary));
-  --accent: var(--accent-override, var(--color-accent));
-  --success: var(--success-override, var(--color-success));
-  --warning: var(--warning-override, var(--color-warning));
-  --danger: var(--danger-override, var(--color-danger));
-  --info: var(--info-override, var(--color-info));
-
-  /* ===== COMPONENT ===== */
-  --input-bg: var(--surface);
-  --input-border: rgba(100, 116, 139, 0.24);
-
-  --shadow-default: var(--shadow);
-  --shadow-button: 0 0 4px 1px rgba(100, 116, 139, 0.2);
-
-  --list-bg: var(--list);
-  --list-possitive-bg: var(--list-possitive);
-
-  --progress-track: #e5e7eb;
-
-  /* scrollbar */
-  --scrollbar-track: #999494de;
-  --scrollbar-thumb: #041952e1;
-  --scrollbar-thumb-hover: #64748b;
-}
-
-/* ===============================
-   🌙 DARK MODE
-================================ */
-.dark {
-  --primary-override: var(--header-sidebar);
-
-  --background-base: var(--header-sidebar-dark);
-  --body-base: var(--body-dark);
-  --card-base: var(--card-dark);
-
-  --foreground: var(--text-dark);
-  --muted: var(--color-muted-dark);
-
-  --secondary: var(--secondary-override, var(--color-secondary-dark));
-  --accent: var(--accent-override, var(--color-accent-dark));
-  --success: var(--success-override, var(--color-success-dark));
-  --warning: var(--warning-override, var(--color-warning-dark));
-  --danger: var(--danger-override, var(--color-danger-dark));
-  --info: var(--info-override, var(--color-info-dark));
-
-  --shadow-default: var(--shadow-dark);
-
-  --list-bg: var(--list-dark);
-  --list-possitive-bg: var(--list-possitive-dark);
-
-  --progress-track: #334155;
-
-  --scrollbar-track: #f0ececde;
-  --scrollbar-thumb: #3558b3c7;
-  --scrollbar-thumb-hover: #0d1735e1;
-}
-
-/* ===============================
-   🧱 BASE STYLES
-================================ */
-body {
-  background-color: var(--background-base);
-  color: var(--foreground);
-  font-family: 'Inter', system-ui, sans-serif;
-}
-
-/* ===============================
-   🧩 COMPONENTS
-================================ */
-.input-field {
-  @apply ring-1 rounded-lg p-3 w-full;
-  background: var(--input-bg);
-}
-
-.input-search {
-  @apply ring-1 rounded-lg px-5 py-2 w-full;
-  background: var(--surface);
-  box-shadow: var(--shadow-default);
-  outline: none;
-  transition: all 0.3s ease-in-out;
-}
-
-.input-search::placeholder {
-  color: var(--foreground);
-  @apply text-sm font-normal tracking-wider text-left px-0;
-}
-
-.input-search:focus {
-  @apply ring-2 outline-none;
-  --tw-ring-color: var(--input-border);
-}
-
-/* logo image */
-.logo-image {
-  @apply transition-all duration-500;
-  filter: none;
-  /* normal in light mode */
-}
-
-/* Dark mode logo */
-.dark .logo-image {
-  filter: invert(1) drop-shadow(0 4px 8px rgba(255, 255, 255, 0.5));
-}
-
-/* Toast container at bottom */
-.toast-container {
-  @apply fixed bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col gap-3 z-50 rounded-xl drop-shadow-xl;
-}
-
-/* Base toast style */
-.toast {
-  @apply relative px-4 py-2 rounded shadow-lg min-w-[180px] text-(--foreground) overflow-hidden;
-  animation: toastIn 0.3s ease-out;
-}
-
-.toast.success {
-  @apply bg-(--success);
-}
-
-.toast.error {
-  @apply bg-(--danger);
-}
-
-.toast.info {
-  @apply bg-(--info);
-}
-
-/* ===============================
-   🧵 SCROLLBAR
-================================ */
-/* width */
-/* .scrollbar-thin {
-  overflow: auto;
-} */
-.scrollbar-thin::-webkit-scrollbar {
-  width: 6px;
-}
-
-.scrollbar-thin::-webkit-scrollbar-track {
-  background: var(--scrollbar-track);
-}
-
-.scrollbar-thin::-webkit-scrollbar-thumb {
-  background: var(--scrollbar-thumb);
-  border-radius: 14px;
-}
-
-.scrollbar-thin::-webkit-scrollbar-thumb:hover {
-  background: var(--scrollbar-thumb-hover);
-}
-
-
-/* Keyframes */
-@keyframes toastIn {
-  0% {
-    opacity: 0;
-    transform: translateY(10px);
   }
 
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+  @tailwind utilities;
 
-@keyframes toastOut {
-  0% {
-    opacity: 1;
-    transform: translateY(0);
+  /* ============ Base Theme Variables ============ */
+  :root {
+    /* control color picker light mode color */
+    /* --primary-override: var(--color-primary); */
+    --surface-override: var(--color-surface);
+
+
+
+    /* handle theme and color picker  */
+    --surface: var(--surface-override, var(--body));
+    --primary-color: var(--primary-override, var(--primary-base));
+
+    /* Core Colors */
+    --background: var(--header-sidebar);
+    /* --surface: var(--body); */
+    --sidebar-hover-bg: #bbbec2cd;
+    /* soft light hover */
+    --sidebar-active-bg: #f5f0f0ee;
+    --foreground: var(--text);
+    --muted: var(--color-muted);
+
+
+    --border: #cbd5e1;
+    --title: var(--text);
+    /* Subtitle / Description */
+    --subtitle: var(--text-muted);
+
+
+    /* Semantic Colors */
+    --demo: var(--color-button);
+    /* --primary: #4f46e5; */
+    --primary-color: #4f46e5;
+    --secondary: var(--color-secondary);
+    --accent: var(--color-accent);
+    --success: var(--color-success);
+    --warning: var(--color-warning);
+    --danger: var(--color-danger);
+    --info: var(--color-info);
+
+    /* Component Specific light mode */
+    /* =================================================== */
+
+    /* card */
+    --card-bg: var(--surface);
+    --card-borde-dark: rgba(73, 76, 78, 0.301);
+
+    /* input */
+    --input-bg: var(--surface);
+    --input-border: rgba(100, 116, 139, 0.24);
+    /* Shadows */
+    --shadow-default: var(--shadow);
+    --shadow-card: var(--shadow);
+    --shadow-button: 0 0 4px 1px rgba(100, 116, 139, 0.2);
+
+    --list-bg: var(--list);
+    --list-possitive-bg: var(--list-possitive);
+
+    /* Match stripes to surface + slightly transparent overlay */
+    --stripe-light-primary: color-mix(in srgb, var(--color-surface) 85%, #000);
+    --stripe-light-secondary: color-mix(in srgb, var(--color-surface) 65%, #000);
+
+    /* Track background */
+    --progress-track: #e5e7eb;
+
+    /* scrollbar Light mode  css */
+    --scrollbar-track: #999494de;
+    --scrollbar-thumb: #041952e1;
+    --scrollbar-thumb-hover: #64748b;
+    /* scrollbar Light mode  css end */
+
   }
 
-  100% {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-}
+  .dark {
+    /* control color picker dark mode color */
+    /* --primary-override: var(--color-primary-dark); */
+    --surface-override: var(--color-surface-dark);
+    --surface: var(--surface-override, var(--body-dark));
 
-@keyframes progress {
-  0% {
-    width: 100%;
+
+    --background: var(--header-sidebar-dark);
+    --surface: var(--body-dark);
+    --sidebar-hover-bg-dark: #f00bd9;
+    /* soft hover for dark */
+    --sidebar-active-bg: #475569;
+    --foreground: var(--text-dark);
+    --muted: var(--color-muted-dark);
+    --border-dark: #334155;
+
+    --demo: var(--color-button-dark);
+    /* --primary-color: #a78bfa; */
+    /* --primary: var(--color-primary-dark); */
+    --secondary: var(--color-secondary-dark);
+    /* --accent: var(--color-accent-dark); */
+    --success: var(--color-success-dark);
+    --warning: var(--color-warning-dark);
+    --danger: var(--color-danger-dark);
+    --info: var(--color-info-dark);
+
+    /* Component Specific dark mode */
+    /* =================================================== */
+
+    /* card */
+    --card-bg: var(--surface);
+    --card-border: rgba(228, 230, 233, 0.733);
+    /* input */
+    --input-bg: var(--surface);
+    --input-border: rgba(148, 163, 184, 0.24);
+    /* Shadows */
+    --shadow-default: var(--shadow-dark);
+    --shadow-card: var(--shadow-dark);
+    --shadow-button: 0 0 6px 2px rgba(148, 163, 184, 0.4);
+
+    --list-bg: var(--list-dark);
+    --list-possitive-bg: var(--list-possitive-dark);
+
+    /* Dark-mode stripe overlays using surface-dark */
+    --stripe-dark-primary: color-mix(in srgb, var(--color-surface-dark) 85%, #fff);
+    --stripe-dark-secondary: color-mix(in srgb, var(--color-surface-dark) 65%, #fff);
+
+    /* progress track */
+    --progress-track: #334155;
+    /* Tailwind slate-700 */
+
+    --title: var(--text-dark);
+    /* Subtitle / Description */
+    --subtitle: var(--text-muted-dark);
+
+    /* scrollbar dark mode css */
+    --scrollbar-track: #f0ececde;
+    /* white track */
+    --scrollbar-thumb: #3558b3c7;
+    /* blue-950 */
+    --scrollbar-thumb-hover: #0d1735e1;
+    /* blue-700 */
+    /* scrollbar dark mode css end */
+
   }
 
-  100% {
-    width: 0%;
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes scaleIn {
-  from {
-    transform: scale(0.95);
+  /* ============ Base Styles ============ */
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    transition: color 0.2s, background-color 0.2s;
+    font-family: 'Inter', system-ui, sans-serif;
+    line-height: 1.5;
   }
 
-  to {
-    transform: scale(1);
+  .input-field {
+    @apply ring-1 rounded-lg p-3 ring-gray-400 w-full;
   }
-}
+
+  .input-search {
+    @apply ring-1 rounded-lg px-5 py-2 w-full shadow-2xl;
+    /* Always visible shadow */
+    background-color: var(--surface);
+    box-shadow: var(--shadow-light);
+    outline: none;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .input-search::placeholder {
+    @apply text-(--foreground) text-sm font-normal tracking-wider text-start px-0;
+  }
+
+  .input-search:focus {
+    @apply ring-2 ring-(--input-border) outline-none;
+  }
+
+
+  /* Make select match input styles */
+  .select-search {
+    @apply ring-1 rounded-lg px-5 py-2 ring-gray-300 w-3/4 text-(--foreground) font-medium tracking-wider;
+    /* Remove default arrow if needed */
+    /* @apply appearance-none; */
+  }
+
+  /* font declear start */
+
+  .page-title {
+    font-size: var(--title-size);
+    line-height: var(--title-line-height);
+    font-weight: var(--title-weight);
+  }
+
+  .section-title {
+    font-size: var(--section-title-size);
+    line-height: var(--section-title-line-height);
+    font-weight: var(--section-title-weight);
+  }
+
+  .subtitle-title {
+    font-size: var(--subtitle-size);
+    line-height: var(--subtitle-line-height);
+    font-weight: var(--subtitle-weight);
+  }
+
+  .subtitle-small-title {
+    font-size: var(--subtitle-small-title-size);
+    line-height: var(--subtitle-small-title-line-height);
+    font-weight: var(--subtitle-small-title-weight);
+  }
+
+  /* logo image */
+  .logo-image {
+    @apply transition-all duration-500;
+    filter: none;
+    /* normal in light mode */
+  }
+
+  /* Dark mode logo */
+  .dark .logo-image {
+    filter: invert(1) drop-shadow(0 4px 8px rgba(255, 255, 255, 0.5));
+  }
+
+  /* Toast container at bottom */
+  .toast-container {
+    @apply fixed bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col gap-3 z-50 rounded-xl drop-shadow-xl;
+  }
+
+  /* Base toast style */
+  .toast {
+    @apply relative px-4 py-2 rounded shadow-lg min-w-[180px] text-(--foreground) overflow-hidden;
+    animation: toastIn 0.3s ease-out;
+  }
+
+  /* Toast types */
+  .toast.success {
+    @apply bg-(--success);
+  }
+
+  .toast.error {
+    @apply bg-(--danger);
+  }
+
+  .toast.info {
+    @apply bg-(--info);
+  }
+
+  /* Fade-out animation */
+  .toast.hide {
+    animation: toastOut 0.3s ease-in forwards;
+  }
+
+  /* Progress bar at bottom */
+  .toast-progress {
+    @apply absolute left-0 bottom-0 h-1 bg-(--background);
+    animation: progress linear forwards;
+  }
+
+
+  /* scrollbar.css or global.css */
+
+  /* width */
+  .scrollbar-thin {
+    overflow: auto;
+  }
+
+  /* scrollbar size */
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  /* track */
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+    border-radius: 14px;
+  }
+
+  /* thumb — REAL rounded */
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb);
+    border-radius: 14px;
+
+  }
+
+  /* hover */
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background-color: var(--scrollbar-thumb-hover);
+  }
+
+
+  /* Keyframes */
+  @keyframes toastIn {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes toastOut {
+    0% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    100% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+  }
+
+  @keyframes progress {
+    0% {
+      width: 100%;
+    }
+
+    100% {
+      width: 0%;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      transform: scale(0.95);
+    }
+
+    to {
+      transform: scale(1);
+    }
+  }
