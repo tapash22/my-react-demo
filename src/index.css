@@ -1,15 +1,14 @@
 @import "tailwindcss";
 
-/* ===================================================
-   1. DESIGN TOKENS (STATIC - NEVER CHANGE AT RUNTIME)
-=================================================== */
-
 @theme {
-  /* Light palette */
+  /* ===============================
+     🎨 BASE COLORS (LIGHT)
+  =============================== */
   --color-background: #f8fafc;
   --color-surface: #ffffff;
   --color-foreground: #0f172a;
 
+  --color-primary: #4f46e5;
   --color-secondary: #10b981;
   --color-accent: #ec4899;
   --color-success: #22c55e;
@@ -17,10 +16,11 @@
   --color-danger: #ef4444;
   --color-info: #3b82f6;
   --color-muted: #64748b;
+  --color-button: #000000;
 
-  --shadow: 0 0 8px 2px rgba(148, 163, 184, 0.24);
-
-  /* Dark palette */
+  /* ===============================
+     🌙 DARK COLORS
+  =============================== */
   --color-background-dark: #020617;
   --color-surface-dark: #111827;
   --color-foreground-dark: #e2e8f0;
@@ -32,15 +32,16 @@
   --color-danger-dark: #fca5a5;
   --color-info-dark: #93c5fd;
   --color-muted-dark: #94a3b8;
+  --color-button-dark: #ffffff;
 
-  --shadow-dark: 0 0 8px 2px rgba(148, 163, 184, 0.5);
-
-  /* Layout tokens */
+  /* ===============================
+     🧱 LAYOUT BASE
+  =============================== */
   --header-sidebar: #e2e8f0;
   --header-sidebar-dark: #020617;
 
   --body: #f8fafc;
-  --body-dark: #1e293b;
+  --body-dark: red;
 
   --card: #ffffff;
   --card-dark: #111827;
@@ -50,104 +51,119 @@
 
   --text: #1f2937;
   --text-dark: #e5e7eb;
+
   --text-muted: #6b7280;
   --text-muted-dark: #9ca3af;
 
   --hover: #f1f5f9;
   --hover-dark: #334155;
 
-  /* Typography */
-  --title-size: 1.875rem;
-  --title-line-height: 2.25rem;
-  --title-weight: 600;
+  /* ===============================
+     🌫 SHADOW
+  =============================== */
+  --shadow: 0 0 8px 2px rgba(148, 163, 184, 0.24);
+  --shadow-dark: 0 0 8px 2px rgba(148, 163, 184, 0.5);
 
-  --section-title-size: 1.5rem;
-  --section-title-line-height: 2rem;
-  --section-title-weight: 700;
+  /* ===============================
+     📋 LIST
+  =============================== */
+  --list: rgba(185, 175, 175, 0.568);
+  --list-dark: #5b82c0;
 
-  --subtitle-size: 1rem;
-  --subtitle-line-height: 1.5rem;
-  --subtitle-weight: 400;
-
-  --subtitle-small-size: 0.875rem;
-  --subtitle-small-line-height: 1.25rem;
-  --subtitle-small-weight: 400;
+  --list-possitive: #ddd8d8a1;
+  --list-possitive-dark: #3177e980;
 }
-
-/* ===================================================
-   2. GLOBAL UTILITY IMPORT
-=================================================== */
 
 @tailwind utilities;
 
-/* ===================================================
-   3. LIGHT THEME (DEFAULT ACTIVE VARIABLES)
-=================================================== */
-
+/* ===============================
+   🎯 ROOT SYSTEM (FINAL TOKENS)
+================================ */
 :root {
-  --background: var(--header-sidebar);
-  --surface: var(--body);
+  /* ===== OVERRIDES ===== */
+  --primary-override: var(--header-sidebar-dark);
+
+
+  --secondary-override: ;
+  --accent-override: ;
+  --success-override: ;
+  --warning-override: ;
+  --danger-override: ;
+  --info-override: ;
+
+  --surface-override: ;
+  --background-override: ;
+  --card-override: ;
+  --body-override: ;
+
+  /* ===== BASE ===== */
+  --background-base: var(--header-sidebar);
+  --body-base: var(--body);
+  --card-base: var(--card);
+
+  /* ===== FINAL ===== */
+  --background: var(--background-override, var(--background-base));
+  --body-final: var(--body-override, var(--body-base));
+  --surface: var(--surface-override, var(--body-final));
+  --card-bg: var(--card-override, var(--card-base));
+
+  /* ===== TEXT ===== */
   --foreground: var(--text);
-  --muted: var(--text-muted);
+  --muted: var(--color-muted);
 
-  --border: var(--border);
+  /* ===== COLORS ===== */
+  --primary-base: var(--color-primary);
+  --primary-color: var(--primary-override, var(--primary-base));
 
-  /* 🔥 IMPORTANT: dynamic runtime color */
-  --primary-color: #4f46e5;
+  --secondary: var(--secondary-override, var(--color-secondary));
+  --accent: var(--accent-override, var(--color-accent));
+  --success: var(--success-override, var(--color-success));
+  --warning: var(--warning-override, var(--color-warning));
+  --danger: var(--danger-override, var(--color-danger));
+  --info: var(--info-override, var(--color-info));
 
-
-  /* USER OVERRIDE (EMPTY BY DEFAULT) */
-  --primary-override: var(--body);
-
-  --secondary: var(--color-secondary);
-  --accent: var(--color-accent);
-  --success: var(--color-success);
-  --warning: var(--color-warning);
-  --danger: var(--color-danger);
-  --info: var(--color-info);
-
-  --shadow-default: var(--shadow);
-
-  --card-bg: var(--surface);
+  /* ===== COMPONENT ===== */
   --input-bg: var(--surface);
   --input-border: rgba(100, 116, 139, 0.24);
 
+  --shadow-default: var(--shadow);
+  --shadow-button: 0 0 4px 1px rgba(100, 116, 139, 0.2);
+
+  --list-bg: var(--list);
+  --list-possitive-bg: var(--list-possitive);
+
   --progress-track: #e5e7eb;
 
+  /* scrollbar */
   --scrollbar-track: #999494de;
   --scrollbar-thumb: #041952e1;
   --scrollbar-thumb-hover: #64748b;
 }
 
-/* ===================================================
-   4. DARK THEME OVERRIDE
-=================================================== */
+/* ===============================
+   🌙 DARK MODE
+================================ */
+.dark {
+  --primary-override: var(--header-sidebar);
 
-html.dark {
-  --background: var(--header-sidebar-dark);
-  --surface: var(--body-dark);
+  --background-base: var(--header-sidebar-dark);
+  --body-base: var(--body-dark);
+  --card-base: var(--card-dark);
+
   --foreground: var(--text-dark);
-  --muted: var(--text-muted-dark);
-  --primary-color: #5da145;
-  /* --primary-override: var(--body-dark); */
-  --primary-override: var(--body-dark);
+  --muted: var(--color-muted-dark);
 
-
-
-  --border: var(--border-dark);
-
-  --secondary: var(--color-secondary-dark);
-  --accent: var(--color-accent-dark);
-  --success: var(--color-success-dark);
-  --warning: var(--color-warning-dark);
-  --danger: var(--color-danger-dark);
-  --info: var(--color-info-dark);
+  --secondary: var(--secondary-override, var(--color-secondary-dark));
+  --accent: var(--accent-override, var(--color-accent-dark));
+  --success: var(--success-override, var(--color-success-dark));
+  --warning: var(--warning-override, var(--color-warning-dark));
+  --danger: var(--danger-override, var(--color-danger-dark));
+  --info: var(--info-override, var(--color-info-dark));
 
   --shadow-default: var(--shadow-dark);
 
-  --card-bg: var(--surface);
-  --input-bg: var(--surface);
-  --input-border: rgba(148, 163, 184, 0.24);
+  --list-bg: var(--list-dark);
+  --list-possitive-bg: var(--list-possitive-dark);
 
   --progress-track: #334155;
 
@@ -156,88 +172,83 @@ html.dark {
   --scrollbar-thumb-hover: #0d1735e1;
 }
 
-/* ===================================================
-   5. BASE STYLES
-=================================================== */
-
+/* ===============================
+   🧱 BASE STYLES
+================================ */
 body {
-  background-color: var(--background);
+  background-color: var(--background-base);
   color: var(--foreground);
-  transition: all 0.2s ease-in-out;
   font-family: 'Inter', system-ui, sans-serif;
-  line-height: 1.5;
 }
 
-/* ===================================================
-   6. COMPONENTS
-=================================================== */
-
+/* ===============================
+   🧩 COMPONENTS
+================================ */
 .input-field {
   @apply ring-1 rounded-lg p-3 w-full;
   background: var(--input-bg);
-  border-color: var(--input-border);
 }
 
 .input-search {
-  @apply rounded-lg px-5 py-2 w-full;
+  @apply ring-1 rounded-lg px-5 py-2 w-full;
   background: var(--surface);
   box-shadow: var(--shadow-default);
   outline: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.input-search::placeholder {
+  color: var(--foreground);
+  @apply text-sm font-normal tracking-wider text-left px-0;
 }
 
 .input-search:focus {
-  @apply ring-2;
-  ring-color: var(--input-border);
+  @apply ring-2 outline-none;
+  --tw-ring-color: var(--input-border);
 }
 
-/* ===================================================
-   7. TYPOGRAPHY
-=================================================== */
-
-.page-title {
-  font-size: var(--title-size);
-  line-height: var(--title-line-height);
-  font-weight: var(--title-weight);
-}
-
-.section-title {
-  font-size: var(--section-title-size);
-  line-height: var(--section-title-line-height);
-  font-weight: var(--section-title-weight);
-}
-
-.subtitle-title {
-  font-size: var(--subtitle-size);
-  line-height: var(--subtitle-line-height);
-  font-weight: var(--subtitle-weight);
-}
-
-/* ===================================================
-   8. LOGO
-=================================================== */
-
+/* logo image */
 .logo-image {
-  transition: all 0.5s ease;
+  @apply transition-all duration-500;
+  filter: none;
+  /* normal in light mode */
 }
 
+/* Dark mode logo */
 .dark .logo-image {
   filter: invert(1) drop-shadow(0 4px 8px rgba(255, 255, 255, 0.5));
 }
 
-/* ===================================================
-   9. TOAST
-=================================================== */
-
-.toast {
-  @apply px-4 py-2 rounded shadow-lg;
-  background: var(--surface);
-  color: var(--foreground);
+/* Toast container at bottom */
+.toast-container {
+  @apply fixed bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col gap-3 z-50 rounded-xl drop-shadow-xl;
 }
 
-/* ===================================================
-   10. SCROLLBAR
-=================================================== */
+/* Base toast style */
+.toast {
+  @apply relative px-4 py-2 rounded shadow-lg min-w-[180px] text-(--foreground) overflow-hidden;
+  animation: toastIn 0.3s ease-out;
+}
 
+.toast.success {
+  @apply bg-(--success);
+}
+
+.toast.error {
+  @apply bg-(--danger);
+}
+
+.toast.info {
+  @apply bg-(--info);
+}
+
+/* ===============================
+   🧵 SCROLLBAR
+================================ */
+/* width */
+/* .scrollbar-thin {
+  overflow: auto;
+} */
 .scrollbar-thin::-webkit-scrollbar {
   width: 6px;
 }
@@ -248,9 +259,65 @@ body {
 
 .scrollbar-thin::-webkit-scrollbar-thumb {
   background: var(--scrollbar-thumb);
-  border-radius: 10px;
+  border-radius: 14px;
 }
 
 .scrollbar-thin::-webkit-scrollbar-thumb:hover {
   background: var(--scrollbar-thumb-hover);
+}
+
+
+/* Keyframes */
+@keyframes toastIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes toastOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+@keyframes progress {
+  0% {
+    width: 100%;
+  }
+
+  100% {
+    width: 0%;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.95);
+  }
+
+  to {
+    transform: scale(1);
+  }
 }

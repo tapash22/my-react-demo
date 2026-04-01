@@ -9,8 +9,6 @@
   --color-foreground: #0f172a;
   /* Midnight Navy */
   --color-primary: #4f46e5;
-  /* using for body text full black */
-  --color-button: #000000;
   /* Digital Lavender (Pantone 2025) */
   --color-secondary: #10b981;
   /* Verdant Green */
@@ -23,6 +21,8 @@
   --color-danger: #ef4444;
   /* Coral Alert */
   --color-info: #3b82f6;
+  /* using for body text full  */
+  --color-button: #000000;
   /* Trust Blue */
   --color-muted: #64748b;
   /* Stone Gray */
@@ -63,18 +63,9 @@
   --list-dark: #5b82c0;
   --list-possitive-dark: #3177e980;
 
-  /* new theme implement */
-
   /* Header / Sidebar */
   --header-sidebar: #e2e8f0;
   --header-sidebar-dark: #020617;
-
-
-
-  /* dark */
-
-  /* very dark navy */
-  /* very dark navy */
 
   /* Main body */
   --body: #f8fafc;

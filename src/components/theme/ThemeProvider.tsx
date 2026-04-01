@@ -1,5 +1,9 @@
 import { useEffect, useState, type ReactNode } from "react";
-import { type Theme, ThemeContext } from "../hooks/useContext/ThemeContext";
+import {
+  type Theme,
+  type ThemeColorKey,
+  ThemeContext,
+} from "../hooks/useContext/ThemeContext";
 
 interface ThemeProviderProps {
   children: ReactNode;
@@ -7,29 +11,40 @@ interface ThemeProviderProps {
 
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
   const [theme, setTheme] = useState<Theme>("light");
+
+  //  keep only for UI (optional)
   const [primaryColorState, setPrimaryColorState] = useState("#4f46e5");
 
   const toggleTheme = () => {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
   };
 
-  const setPrimaryColor = (color: string) => {
-    setPrimaryColorState(color);
-
+  // GENERIC COLOR SETTER (BEST)
+  const setThemeColor = (key: ThemeColorKey, color: string) => {
     const root = document.documentElement;
+    root.style.setProperty(`--${key}-override`, color);
 
-    // override theme color
-    root.style.setProperty("--primary-override", color);
+    if (key === "primary") {
+      setPrimaryColorState(color); // optional for UI
+    }
+  };
+
+  // RESET
+  const resetThemeColor = (key: ThemeColorKey) => {
+    const root = document.documentElement;
+    root.style.removeProperty(`--${key}-override`);
+
+    if (key === "primary") {
+      setPrimaryColorState("#4f46e5");
+    }
   };
 
   useEffect(() => {
     const root = document.documentElement;
 
+    //toggle dark class
     root.classList.toggle("dark", theme === "dark");
-
-    // reset theme default primary
-    root.style.setProperty("--primary-color", primaryColorState);
-  }, [theme, primaryColorState]);
+  }, [theme]);
 
   return (
     <ThemeContext.Provider
@@ -37,7 +52,8 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
         theme,
         toggleTheme,
         primaryColor: primaryColorState,
-        setPrimaryColor,
+        setThemeColor,
+        resetThemeColor,
       }}
     >
       {children}

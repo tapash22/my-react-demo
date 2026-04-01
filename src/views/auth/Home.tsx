@@ -37,15 +37,15 @@ export default function Home() {
             <DemoButton
               title="Export Data"
               classTag="rounded-lg text-sm font-medium tracking-wide justify-center  px-4 py-2"
-              buttonColor="var(--primary-override, var(--primary-color))"
+              buttonColor="var(--primary-color)"
               textColor="var(--foreground)"
               widthSize="auto"
             />
             <DemoButton
               title="View Reports"
               classTag="rounded-lg text-sm font-medium tracking-wide inline-flex justify-center px-4 py-2 ring-1 ring-(--surface)"
-              buttonColor="bg-(--shadow)"
-              textColor="--muted"
+              buttonColor="var(--primary-override, var(--primary-color))"
+              textColor="var(--muted)"
               widthSize="auto"
             />
           </div>
