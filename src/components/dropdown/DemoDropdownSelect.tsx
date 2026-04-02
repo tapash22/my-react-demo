@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { IoCaretDown } from "react-icons/io5";
-import { DemoIcon } from "../common-property/DemoIcon";
+import { DemoButton } from "../button/DemoButton";
 
 interface DemoDropdownSelectProps<T extends string> {
   title?: string;
@@ -8,7 +8,7 @@ interface DemoDropdownSelectProps<T extends string> {
   value: T;
   options: T[];
   onChange: (value: T) => void;
-  width?: string; // tailwind width class, e.g. "w-56"
+  width?: string;
   getLabel?: (value: T) => string;
 }
 
@@ -45,9 +45,9 @@ export function DemoDropdownSelect<T extends string>({
         ${
           title
             ? "flex flex-col sm:flex-col md:flex-row justify-between items-center "
-            : "flex flex-row justify-center sm:justify-center md:justify-center items-center "
+            : "flex flex-row justify-center sm:justify-center md:justify-start items-center "
         }
-         w-full h-auto p-2 `}
+          w-full h-auto p-2 `}
     >
       {title && (
         <p
@@ -62,25 +62,25 @@ export function DemoDropdownSelect<T extends string>({
       )}
       <div
         ref={dropdownRef}
-        className={`relative ${width} flex whitespace-nowrap text-sm sm:text-sm md:text-lg font-medium text-center`}
+        className={`relative ${width} flex whitespace-nowrap text-sm sm:text-sm md:text-lg font-medium text-center `}
       >
         {/* Button */}
-        <button
-          type="button"
-          onClick={() => setOpen((p) => !p)}
-          className="h-10 w-full rounded-md shadow-(--shadow-card) px-3 text-left text-(--foreground) flex items-center justify-between"
-        >
-          <span className="truncate text-sm font-medium tracking-wide">
-            {getLabel
+        <DemoButton
+          title={
+            getLabel
               ? getLabel(value)
               : value
                 ? value.charAt(0).toUpperCase() + value.slice(1)
-                : "Select"}
-          </span>
-          <DemoIcon icon={IoCaretDown} size={16} />
-        </button>
+                : "Select"
+          }
+          icon={IoCaretDown}
+          iconSize={16}
+          iconPosition={false}
+          classTag="h-10 flex-1 rounded-xl shadow-(--shadow-card) px-3 text-left text-(--foreground) flex justify-between items-center "
+          onClick={() => setOpen((p) => !p)}
+        />
         {open && (
-          <ul className="absolute z-10 mt-1 w-full rounded-md bg-(--background) shadow">
+          <ul className="absolute z-10 mt-10 w-full rounded- bg-(--background) shadow">
             {options.map((option) => {
               const lastItem = options.length - 1;
               return (

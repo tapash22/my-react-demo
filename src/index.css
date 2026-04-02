@@ -140,8 +140,6 @@
     /* --primary-override: var(--color-primary); */
     --surface-override: var(--color-surface);
 
-
-
     /* handle theme and color picker  */
     --surface: var(--surface-override, var(--body));
     --primary-color: var(--primary-override, var(--primary-base));

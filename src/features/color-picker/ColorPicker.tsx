@@ -31,10 +31,11 @@ export function ColorPicker() {
         type="color"
         value={primaryColor}
         onChange={(e) => setThemeColor("surface", e.target.value)}
-        className="w-10 h-10 rounded-full cursor-pointer
-          p-0 border-0 overflow-hidden
-          shadow-[--(--shadow-button)]
-        "
+        className="w-10 h-10 rounded-full cursor-pointer p-0 border-0 overflow-hidden
+                  [&::-webkit-color-swatch]:rounded-full
+                  [&::-webkit-color-swatch]:border-none
+                  [&::-webkit-color-swatch-wrapper]:p-0
+                 "
       />
     </div>
   );

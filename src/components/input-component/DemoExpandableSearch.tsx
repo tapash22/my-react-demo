@@ -23,7 +23,7 @@ export function DemoExpandableSearch({
   value,
   onChange,
   placeholder = "Search...",
-  initialWidth = "12rem",
+  initialWidth = "15rem",
   expandedWidth = {
     xs: "100%",
     sm: "80%",
@@ -120,7 +120,7 @@ export function DemoExpandableSearch({
   return (
     <motion.div
       ref={containerRef}
-      className="relative inline-flex items-center w-full justify-center lg:justify-end"
+      className="relative inline-flex items-center w-full justify-center lg:justify-end "
     >
       <motion.input
         ref={inputRef}

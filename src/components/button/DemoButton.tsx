@@ -14,6 +14,7 @@ interface DemoButtonProps {
   children?: React.ReactNode;
   isDisabled?: boolean;
   style?: React.CSSProperties;
+  iconPosition?: boolean; // true for left, false for right
 }
 export function DemoButton({
   title,
@@ -27,6 +28,7 @@ export function DemoButton({
   children,
   classTag,
   isDisabled = false,
+  iconPosition = true,
   style,
 }: DemoButtonProps) {
   return (
@@ -38,10 +40,11 @@ export function DemoButton({
       }}
       className={`
         ${classTag ?? "justify-center items-center px-3 py-2 text-sm font-semibold rounded-lg text-[--(--foreground)]"}
-        ${buttonColor ?? "bg-(--surface)"}
+        ${buttonColor ?? "bg-(--surface) "}
         ${isDisabled ? "opacity-50 cursor-not-allowed" : ""}
+        flex ${iconPosition ? "flex-row" : "flex-row-reverse"}  
         inline-flex gap-2 whitespace-nowrap
-        transition-colors duration-300
+        transition-colors duration-300  
         `}
       onClick={onClick}
       disabled={isDisabled}

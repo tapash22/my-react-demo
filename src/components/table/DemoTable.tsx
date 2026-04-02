@@ -94,16 +94,16 @@ export function DemoTable<T extends { id: number }>({
   return (
     <div className="w-full h-full rounded-xl spacer-y-3 shadow-(--shadow-card) p-2">
       {/* Search */}
-      <div className="w-full h-auto p-1 md:p-3 flex flex-col lg:flex-row justify-between items-center gap-1 md:gap-3 space-y-2">
+      <div className="w-full h-auto p-1 md:p-3 flex flex-col lg:flex-row justify-between items-center gap-1 md:gap-3">
         {/* LEFT */}
-        <div className="w-full sm:w-full md:w-full lg:w-1/3 flex justify-center">
+        <div className="w-full sm:w-full md:w-full lg:w-1/3 flex justify-start sm:justify-center md:justify-start lg:justify-start">
           <DemoDropdownSelect
             value={filterColumn}
             options={filterableColumns}
             onChange={(col) => {
               setFilterColumn(col);
               setPage(1);
-              resetSearch(); // clean reset
+              resetSearch();
             }}
           />
         </div>

@@ -26,7 +26,13 @@ export function Pagination({
       {/* Previous Button end */}
 
       {/* Page Numbers */}
-      <div className="flex items-center justify-between space-x-2 lg:space-x-4 p-2 lg:p-3 rounded-sm lg:rounded-md bg-(--surface) ring-1 ring-(--input-border) shadow-(--shadow-button) drop-shadow-xl ">
+      <div
+        className="
+                  flex items-center justify-between space-x-2 lg:space-x-4 p-2 lg:p-3 
+                  rounded-sm lg:rounded-md bg-(--surface) ring-1 ring-(--input-border) 
+                  shadow-(--shadow-button) drop-shadow-xl
+                  "
+      >
         {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
           <DemoButton
             key={pageNum}
@@ -38,11 +44,14 @@ export function Pagination({
             buttonColor={
               page === pageNum ? "bg-(--background)" : "bg-(--surface)"
             }
-            classTag={`px-2 py-1 lg:px-3  flex items-center justify-center rounded-sm text-sm font-bold transition-all ${
-              page === pageNum
-                ? "duration-300 scale-100 lg:scale-110"
-                : "duration-500 scale-90 lg:scale-100"
-            }`}
+            classTag={`
+                      px-2 py-1 lg:px-3 flex items-center justify-center rounded-sm 
+                      text-sm font-bold transition-all shadow-(--shadow-button)
+                      ${
+                        page === pageNum
+                          ? "duration-300 scale-100 lg:scale-110"
+                          : "duration-500 scale-80 lg:scale-100"
+                      }`}
           />
         ))}
       </div>
