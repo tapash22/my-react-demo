@@ -18,12 +18,12 @@ import { DemoImageCard } from "../../components/cards/DemoImageCard";
 import { DemoGoalOverviewCard } from "../../components/cards/DemoGoalOverviewCard";
 import { GOAL_KEYS } from "../../features/type/User";
 import { ColorPicker } from "../../features/color-picker/ColorPicker";
-import { useTheme } from "../../components/hooks/useTheme";
+// import { useTheme } from "../../components/hooks/useTheme";
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [openMenu, setOpenMenu] = useState(false);
-  const { theme, primaryColor } = useTheme();
+  // const { theme, primaryColor } = useTheme();
 
   const handleRecentActivityAction = () => {
     console.log("click");

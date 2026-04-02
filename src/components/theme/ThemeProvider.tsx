@@ -19,13 +19,13 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
   };
 
-  // GENERIC COLOR SETTER (BEST)
   const setThemeColor = (key: ThemeColorKey, color: string) => {
     const root = document.documentElement;
-    root.style.setProperty(`--${key}-override`, color);
+
+    root.style.setProperty(`--${key}-override`, color, "important");
 
     if (key === "primary") {
-      setPrimaryColorState(color); // optional for UI
+      setPrimaryColorState(color);
     }
   };
 

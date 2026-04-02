@@ -5,6 +5,7 @@ export type Theme = "light" | "dark";
 
 // supported color keys (must match CSS)
 export type ThemeColorKey =
+  | "pick"
   | "primary"
   | "secondary"
   | "accent"

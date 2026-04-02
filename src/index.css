@@ -137,16 +137,14 @@
   /* ============ Base Theme Variables ============ */
   :root {
     /* control color picker light mode color */
-    /* --primary-override: var(--color-primary); */
-    --surface-override: var(--color-surface);
 
     /* handle theme and color picker  */
-    --surface: var(--surface-override, var(--body));
+    --pick: var(--pick-override, var(--body));
     --primary-color: var(--primary-override, var(--primary-base));
 
     /* Core Colors */
     --background: var(--header-sidebar);
-    /* --surface: var(--body); */
+    --surface: var(--body);
     --sidebar-hover-bg: #bbbec2cd;
     /* soft light hover */
     --sidebar-active-bg: #f5f0f0ee;
@@ -206,9 +204,7 @@
 
   .dark {
     /* control color picker dark mode color */
-    /* --primary-override: var(--color-primary-dark); */
-    --surface-override: var(--color-surface-dark);
-    --surface: var(--surface-override, var(--body-dark));
+    --pick: var(--pick-override, var(--body-dark));
 
 
     --background: var(--header-sidebar-dark);

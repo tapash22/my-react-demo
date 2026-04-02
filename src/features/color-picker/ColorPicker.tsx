@@ -25,12 +25,12 @@ export function ColorPicker() {
           ring-2 ring-[var(--input-border)] 
         "
       />
-
+      {primaryColor}
       {/* color Picker */}
       <input
         type="color"
         value={primaryColor}
-        onChange={(e) => setThemeColor("surface", e.target.value)}
+        onChange={(e) => setThemeColor("pick", e.target.value)}
         className="w-10 h-10 rounded-full cursor-pointer p-0 border-0 overflow-hidden
                   [&::-webkit-color-swatch]:rounded-full
                   [&::-webkit-color-swatch]:border-none

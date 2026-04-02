@@ -48,8 +48,8 @@ export function Pagination({
                       px-2 py-1 lg:px-3 flex items-center justify-center rounded-sm 
                       text-sm font-bold shadow-(--shadow-button)
                       transform-gpu
-                      transition-transform duration-200 ease-linear
-                      ${page === pageNum ? "scale-100" : "scale-[0.9]"}
+                      transition-transform duration-300 ease-linear
+                      ${page === pageNum ? "scale-100" : "scale-[0.85]"}
                     `}
           />
         ))}
