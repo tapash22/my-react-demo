@@ -3,7 +3,8 @@ import { useTheme } from "../../components/hooks/useTheme";
 import { FaMoon, FaSun } from "react-icons/fa";
 
 export function ColorPicker() {
-  const { theme, toggleTheme, primaryColor, setThemeColor } = useTheme();
+  const { theme, toggleTheme, primaryColor, setThemeColor, resetThemeColor } =
+    useTheme();
 
   return (
     <div className="flex items-center gap-4">
@@ -25,7 +26,6 @@ export function ColorPicker() {
           ring-2 ring-[var(--input-border)] 
         "
       />
-      {primaryColor}
       {/* color Picker */}
       <input
         type="color"
@@ -37,6 +37,16 @@ export function ColorPicker() {
                   [&::-webkit-color-swatch-wrapper]:p-0
                  "
       />
+      <DemoButton
+        onClick={() => resetThemeColor("pick")}
+        iconSize={20}
+        buttonColor="var(--surface)"
+        classTag="
+          p-2 flex justify-center items-center rounded-full
+          ring-2 ring-[var(--input-border)] 
+        "
+      />
+      <button onClick={() => resetThemeColor("pick")}>Reset</button>
     </div>
   );
 }
