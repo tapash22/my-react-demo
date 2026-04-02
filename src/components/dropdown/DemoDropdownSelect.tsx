@@ -45,9 +45,9 @@ export function DemoDropdownSelect<T extends string>({
         ${
           title
             ? "flex flex-col sm:flex-col md:flex-row justify-between items-center "
-            : "flex flex-row justify-center sm:justify-center md:justify-start items-center "
+            : "flex flex-row justify-center sm:justify-center md:justify-start items-start "
         }
-          w-full h-auto p-2 `}
+          w-full h-auto p-2  `}
     >
       {title && (
         <p

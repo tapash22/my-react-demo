@@ -94,9 +94,9 @@ export function DemoTable<T extends { id: number }>({
   return (
     <div className="w-full h-full rounded-xl spacer-y-3 shadow-(--shadow-card) p-2">
       {/* Search */}
-      <div className="w-full h-auto p-1 md:p-3 flex flex-col lg:flex-row justify-between items-center gap-1 md:gap-3">
+      <div className="w-full h-auto p-1 md:p-3 flex flex-col md:flex-row lg:flex-row justify-between items-center gap-1 md:gap-3">
         {/* LEFT */}
-        <div className="w-full sm:w-full md:w-full lg:w-1/3 flex justify-start sm:justify-center md:justify-start lg:justify-start">
+        <div className="w-full sm:w-full md:w-1/3 lg:w-1/3 flex justify-start sm:justify-center md:justify-start lg:justify-start">
           <DemoDropdownSelect
             value={filterColumn}
             options={filterableColumns}
@@ -110,7 +110,7 @@ export function DemoTable<T extends { id: number }>({
         {/* LEFT end */}
 
         {/* RIGHT */}
-        <div className="w-full flex justify-center md:justify-center lg:justify-end">
+        <div className="w-full sm:w-full md:w-2/3 lg:w-2/3 flex justify-center sm:justify-center md:justify-end lg:justify-end">
           <DemoExpandableSearch
             value={search}
             onChange={(val) => {

@@ -10,6 +10,7 @@ interface DemoExpandableSearchProps {
   onChange: (val: string) => void;
   placeholder?: string;
   initialWidth?: string;
+
   expandedWidth?: {
     xs?: string;
     sm?: string;
@@ -120,7 +121,7 @@ export function DemoExpandableSearch({
   return (
     <motion.div
       ref={containerRef}
-      className="relative inline-flex items-center w-full justify-center lg:justify-end "
+      className="relative inline-flex items-center w-full justify-center md:justify-end lg:justify-end "
     >
       <motion.input
         ref={inputRef}

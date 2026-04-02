@@ -28,7 +28,7 @@ export function Pagination({
       {/* Page Numbers */}
       <div
         className="
-                  flex items-center justify-between space-x-2 lg:space-x-4 p-2 lg:p-3 
+                  flex items-center justify-between space-x-2 p-2 lg:p-3 
                   rounded-sm lg:rounded-md bg-(--surface) ring-1 ring-(--input-border) 
                   shadow-(--shadow-button) drop-shadow-xl
                   "
@@ -42,16 +42,15 @@ export function Pagination({
               page === pageNum ? "text-(--foreground)" : "text-(--muted)"
             }
             buttonColor={
-              page === pageNum ? "bg-(--background)" : "bg-(--surface)"
+              page === pageNum ? "bg-(--surface)" : "bg-(--background)"
             }
             classTag={`
                       px-2 py-1 lg:px-3 flex items-center justify-center rounded-sm 
-                      text-sm font-bold transition-all shadow-(--shadow-button)
-                      ${
-                        page === pageNum
-                          ? "duration-300 scale-100 lg:scale-110"
-                          : "duration-500 scale-80 lg:scale-100"
-                      }`}
+                      text-sm font-bold shadow-(--shadow-button)
+                      transform-gpu
+                      transition-transform duration-200 ease-linear
+                      ${page === pageNum ? "scale-100" : "scale-[0.9]"}
+                    `}
           />
         ))}
       </div>
