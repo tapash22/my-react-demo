@@ -5,6 +5,7 @@ interface DemoButtonProps {
   title?: string;
   icon?: IconType;
   iconClass?: string;
+  iconColor?: string;
   buttonColor?: string;
   iconSize?: number;
   textColor?: string;
@@ -20,7 +21,8 @@ export function DemoButton({
   title,
   icon,
   iconClass,
-  buttonColor = "bg-(--surface)",
+  iconColor,
+  buttonColor = "bg-(--pick)",
   iconSize,
   textColor = "var(--foreground)",
   onClick,
@@ -53,6 +55,7 @@ export function DemoButton({
         size={iconSize ? iconSize : 16}
         icon={icon ? icon : null}
         iconClass={iconClass}
+        color={iconColor}
       />
       {children || (title && <span className="">{children ?? title}</span>)}
     </button>

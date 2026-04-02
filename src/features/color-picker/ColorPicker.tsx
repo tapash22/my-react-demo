@@ -20,10 +20,11 @@ export function ColorPicker() {
         onClick={toggleTheme}
         icon={theme !== "dark" ? FaMoon : FaSun}
         iconSize={20}
+        iconClass="hover:text-(--pick) transition-all duration-300 "
         buttonColor="var(--surface)"
         classTag="
-          p-2 flex justify-center items-center rounded-full
-          ring-2 ring-[var(--input-border)] 
+          p-2 flex justify-center items-center rounded-full 
+          ring-2 ring-[var(--border)] 
         "
       />
       {/* color Picker */}
