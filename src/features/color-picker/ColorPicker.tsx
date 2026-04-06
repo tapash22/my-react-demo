@@ -39,15 +39,15 @@ export function ColorPicker() {
                  "
       />
       <DemoButton
+        title="Reset"
         onClick={() => resetThemeColor("pick")}
         iconSize={20}
         buttonColor="var(--surface)"
         classTag="
-          p-2 flex justify-center items-center rounded-full
-          ring-2 ring-[var(--input-border)] 
+          px-3 py-1 flex justify-center items-center 
+          ring-2 ring-[var(--input-border)] border-(--input-border) rounded-lg
         "
       />
-      <button onClick={() => resetThemeColor("pick")}>Reset</button>
     </div>
   );
 }

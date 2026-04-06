@@ -150,7 +150,7 @@ export default function Reports() {
             />
             {/* Budget Analysis header end */}
             {/* Budget Analysis progressbar list with percentage*/}
-            <div className="w-full h-auto px-2 py-4 space-y-2 flex flex-col justify-center items-center bg-(--surface) opacity-80 rounded-2xl">
+            <div className="w-full h-auto px-2 py-4 space-y-2 flex flex-col justify-center items-center bg-(--pick) opacity-80 rounded-2xl">
               <DemoDataCard
                 title="Credit Utilization"
                 chipLabel="95%"
@@ -183,7 +183,7 @@ export default function Reports() {
             {/* Budget Analysis progressbar list with details end*/}
 
             {/* Budget Analysis progressbar list with advice*/}
-            <div className="w-full h-auto p-3 flex flex-col justify-center items-center bg-(--surface) opacity-80 rounded-2xl">
+            <div className="w-full h-auto p-3 flex flex-col justify-center items-center bg-(--pick) opacity-90 rounded-2xl">
               <DemoPageSectionCard title="Recommendations" haveBorder={false} />
               <ul
                 className={`w-full flex flex-col  justify-start items-start rounded-xl h-full space-y-2 px-8 list-disc`}

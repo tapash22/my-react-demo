@@ -41,7 +41,7 @@ export function DemoCardExpansion({
       {/* Accordion Trigger */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`w-full flex items-center ${expandIconDirection ? "justify-between p-4" : "justify-center p-3"}  gap-1 text-(--forground) bg-(--surface) text-sm font-medium ring-1 ring-(--input-border) cursor-pointer transition-colors`}
+        className={`w-full flex items-center ${expandIconDirection ? "justify-between p-4" : "justify-center p-3"}  gap-1 text-(--forground) bg-(--pick) text-sm font-medium ring-1 ring-(--input-border) cursor-pointer transition-colors`}
       >
         {isFaqData(data)
           ? data.question

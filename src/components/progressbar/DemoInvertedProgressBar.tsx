@@ -36,7 +36,7 @@ export function DemoInvertedProgressBar({
   const calculatedAmountA = targetAmount - calculatedAmountB;
 
   return (
-    <div className="w-full p-6 bg-(--surface) rounded-tl-xl rounded-tr-xl">
+    <div className="w-full p-6 bg-(--pick) rounded-tl-xl rounded-tr-xl">
       {/* Top Bar: Visual feedback of the inverse value */}
       <div className="space-y-4">
         <div className="flex flex-col md:flex-row justify-between md:items-center text-xs font-semibold text-(--foreground) opacity-70 w-full space-y-3">

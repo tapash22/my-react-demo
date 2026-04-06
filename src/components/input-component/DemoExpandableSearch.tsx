@@ -130,7 +130,7 @@ export function DemoExpandableSearch({
         placeholder={placeholder}
         onChange={(e) => onChange(e.target.value)}
         onFocus={() => setIsFocused(true)}
-        className="input-search"
+        className="input-search bg-(--pick)"
         animate={{
           width: getWidth(),
           boxShadow: isFocused

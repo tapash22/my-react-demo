@@ -13,7 +13,7 @@ export function DemoFinancialMetricCard({
   prependChildren,
 }: DemoFinancialMetricCardProps) {
   return (
-    <div className="w-full h-auto p-4 space-y-2 flex flex-col  justify-center items-center bg-(--surface) opacity-80 rounded-2xl">
+    <div className="w-full h-auto p-4 space-y-2 flex flex-col  justify-center items-center bg-(--pick) opacity-80 rounded-2xl">
       {prependChildren && prependChildren}
       <p className="text-sm font-medium tracking-wide text-(--foreground) text-center ">
         {title}

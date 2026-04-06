@@ -126,7 +126,7 @@ export default function Profile() {
             {/* body end */}
 
             {/* terms */}
-            <div className="w-full h-auto p-3 space-y-1 flex flex-col justify-center items-center bg-(--surface) opacity-80 rounded-2xl">
+            <div className="w-full h-auto p-3 space-y-1 flex flex-col justify-center items-center  bg-(--pick) opacity-80 rounded-2xl">
               <DemoPageSectionCard
                 title="Referral Program Terms"
                 haveBorder={false}
@@ -188,7 +188,7 @@ export default function Profile() {
                     }
                   />
 
-                  <div className="w-full sm:w-full h-auto flex flex-col items-center sm:justify-end bg-(--surface) opacity-80 rounded-2xl p-4 space-y-2 ">
+                  <div className="w-full sm:w-full h-auto flex flex-col items-center sm:justify-end bg-(--pick)  opacity-80 rounded-2xl p-4 space-y-2 ">
                     <PageHeaderCard
                       title="Available Balance"
                       titleClass="tracking-wide text-sm font-semibold w-full flex justify-center"
@@ -201,7 +201,7 @@ export default function Profile() {
                       children={
                         <DemoButton
                           buttonColor="bg-(--surface)"
-                          classTag="h-1 text-sm font-medium track-wider rounded-sm p-2 lg:px-7 w-full flex justify-center"
+                          classTag="text-sm font-medium track-wider rounded-sm p-2 lg:px-7 w-full flex justify-center"
                           title={referralUserData.withdrawSection.actionText}
                         />
                       }

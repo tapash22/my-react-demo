@@ -70,6 +70,7 @@ export function DemoHeader({ onToggleSidebar }: DemoHeaderProps) {
           icon={PiSidebarSimpleLight}
           size={30}
           dropShadow={true}
+          color="var(--pick)"
           onClick={onToggleSidebar}
           iconClass="hidden sm:block"
         />
@@ -78,6 +79,7 @@ export function DemoHeader({ onToggleSidebar }: DemoHeaderProps) {
           size={26}
           dropShadow={true}
           onClick={onToggleSidebar}
+          color="var(--pick)"
           iconClass="block sm:hidden"
         />
         <div className="hidden md:block">
@@ -92,7 +94,7 @@ export function DemoHeader({ onToggleSidebar }: DemoHeaderProps) {
           name="search"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="placeholder:text-(--foreground)"
+          className="placeholder:text-(--foreground) "
           placeholder="Search . . ."
           prepend={
             <DemoIcon icon={FaSearch} color="var-(--surface)" size={16} />
@@ -138,7 +140,7 @@ export function DemoHeader({ onToggleSidebar }: DemoHeaderProps) {
             icon={FaUserCircle}
             size={30}
             iconClass="text-xl font-light"
-            color="var(--foreground)"
+            color="var(--pick)"
             onClick={() => setShowProfileCard(!showProfileCard)}
           />
           {showProfileCard && (

@@ -57,7 +57,7 @@ export function DemoMonthlyComparisonCard({
 
       {/* Render Difference */}
       {showDifference && (
-        <div className="bg-(--surface) backdrop-brightness-100 grid grid-cols-2 items-center p-1 rounded-lg ">
+        <div className="bg-(--pick) backdrop-brightness-100 grid grid-cols-2 items-center p-1 rounded-lg ">
           <p className="text-sm font-medium text-(--foreground) tracking-wide text-left py-2 px-3">
             {differenceLabel ? differenceLabel : "Difference"}
           </p>

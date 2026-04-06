@@ -79,7 +79,7 @@ export default function Settings() {
           />
         </div>
         {/* Content */}
-        <div ref={activeTabRef} className="w-full">
+        <div ref={activeTabRef} className="w-full ">
           {tabComponents[activeTab.value as keyof typeof tabComponents]}
         </div>
         {/* Content end */}

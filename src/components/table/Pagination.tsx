@@ -29,7 +29,7 @@ export function Pagination({
       <div
         className="
                   flex items-center justify-between space-x-2 p-2 lg:p-3 
-                  rounded-sm lg:rounded-md bg-(--surface) ring-1 ring-(--input-border) 
+                  rounded-sm lg:rounded-md bg-(--pick) ring-1 ring-(--input-border) 
                   shadow-(--shadow-button) drop-shadow-xl
                   "
       >
