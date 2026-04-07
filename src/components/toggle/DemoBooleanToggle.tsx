@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-import { cssVar } from "../../utils/cssVar";
 import { DemoButton } from "../button/DemoButton";
-import { color } from "framer-motion";
 
 interface DemoBooleanToggleProps {
   value: boolean;
@@ -17,7 +15,6 @@ export function DemoBooleanToggle({
   value,
   onChange,
   delay = 50,
-  duration = 400,
   activeBgColor = "#10B981",
   trueLabel = "True",
   falseLabel = "False",

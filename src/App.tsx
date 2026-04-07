@@ -13,11 +13,10 @@ import { CartProvider } from "./components/practice/CartProvider";
 import { ProductList } from "./components/item/ProductList";
 import { Cart } from "./components/item/Cart";
 // import Navbar from "./components/bar/Navbar";
-import { Example } from "./components/hooks/usememo/Example";
-import { FilterExample } from "./components/hooks/usememo/FilterExample";
-import { SearchExample } from "./components/hooks/useTransition/SearchExample";
-import AppRoutes from "./routes/AppRoutes";
-import ExampleIcon from "./components/icon-dynamic/ExampleIcon";
+// import { Example } from "./components/hooks/usememo/Example";
+// import { FilterExample } from "./components/hooks/usememo/FilterExample";
+// import { SearchExample } from "./components/hooks/useTransition/SearchExample";
+// import ExampleIcon from "./components/icon-dynamic/ExampleIcon";
 
 function App() {
   //use for show date
@@ -28,7 +27,7 @@ function App() {
   // Item state for list
   const [state, dispatch] = useReducer(
     itemReducer,
-    savedItems ? JSON.parse(savedItems) : initialState
+    savedItems ? JSON.parse(savedItems) : initialState,
   );
 
   const [count, setCount] = useState<number>(0);
@@ -100,16 +99,6 @@ function App() {
 
   return (
     <>
-      {/* <Navbar /> */}
-      <div className="my-10">
-        <ExampleIcon />
-        <AppRoutes />
-
-        <Example />
-        <FilterExample />
-
-        <SearchExample />
-      </div>
       <h1 className="text-3xl font-bold underline">Vite + React</h1>
       <p>{date}</p>
       <h2>{count}</h2>
@@ -123,7 +112,7 @@ function App() {
 
       <div className="w-full h-full p-5 block space-y-7">
         <UsingRefExample />
-        <LoginForm />
+        <LoginForm onFormChange={() => handleFormChange} />
         {/* using product with cart action for added */}
         <div className="p-5">
           <CartProvider>
