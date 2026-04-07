@@ -14,6 +14,7 @@ import "@fontsource/inter/400.css"; // normal
 import "@fontsource/inter/500.css"; // medium
 import "@fontsource/inter/600.css"; // semi-bold
 import "@fontsource/inter/700.css"; // bold
+import MouseGlow from "./components/mouse-effect/MouseGlow.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <Provider store={store}>
@@ -21,6 +22,7 @@ createRoot(document.getElementById("root")!).render(
       <ThemeProvider>
         <UserProvider>
           <ToastProvider>
+            <MouseGlow />
             <AppRoutes />
           </ToastProvider>
         </UserProvider>
